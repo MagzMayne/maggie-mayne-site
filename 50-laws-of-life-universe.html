@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 14 Laws of Life & The Universe | The Maggie Way</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --deep-purple: #1a1a2e;
+            --soft-white: #F5F5F5;
+            --rose: #C9A9A6;
+            --violet: #9B59B6;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Quattrocento', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            color: var(--soft-white);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .back-link {
+            display: inline-block;
+            color: var(--gold);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-family: 'Cinzel', serif;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover { transform: translateX(-5px); }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        .subtitle {
+            text-align: center;
+            color: var(--rose);
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .hero-icon {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .intro {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%);
+            border-left: 3px solid var(--gold);
+            padding: 1.5rem;
+            margin: 1.5rem 0 2.5rem;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+        }
+        
+        .law-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+        }
+        .law-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+        
+        .law-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .law-number {
+            background: linear-gradient(135deg, var(--gold) 0%, #B8860B 100%);
+            color: var(--deep-purple);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .law-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.4rem;
+        }
+        
+        .law-essence {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--rose);
+        }
+        
+        .law-teaching {
+            margin: 1rem 0;
+        }
+        
+        .law-practice {
+            background: rgba(155, 89, 182, 0.1);
+            border-left: 3px solid var(--violet);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+        }
+        .law-practice strong {
+            color: var(--violet);
+        }
+        
+        .chakra-tag, .domain-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 0.25rem;
+            font-family: 'Cinzel', serif;
+        }
+        .chakra-tag {
+            background: rgba(155, 89, 182, 0.2);
+            color: var(--violet);
+        }
+        .domain-tag {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+        }
+        
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin: 3rem 0 1.5rem;
+            text-align: center;
+        }
+        
+        .closing {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .closing p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .closing .final {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        
+        strong { color: var(--gold); }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+            .law-header { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to The Maggie Way</a>
+        
+        <div class="hero-icon">⚖️✨🌌</div>
+        <h1>The 14 Laws of Life & The Universe</h1>
+        <p class="subtitle">Universal Principles for Conscious Living</p>
+        
+        <div class="intro">
+            These laws are not rules imposed from outside—they are the natural principles that govern existence itself. Understanding and aligning with these laws allows us to work WITH the universe rather than against it. When we stop fighting reality and start flowing with it, everything changes.
+        </div>
+        
+        <!-- LAW 1 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">1</div>
+                <div class="law-title">The Law of Love</div>
+            </div>
+            <div class="law-essence">
+                "Love is the source of everything that transpires."
+            </div>
+            <div class="law-teaching">
+                <p>The purpose of human experience is to evolve and develop consciousness—to be filled with wisdom and love. We came here to learn two things: <strong>to be happy within ourselves</strong> and <strong>to love our neighbor as ourselves</strong>.</p>
+                <p>In order to confer on children all the information that exists in the Absolute, the Creator creates the Universe as their school. Everything which occurs in the Universe occurs because of Love. Living in peace and joy is to live in Love.</p>
+                <p>Understanding this frees us from all events—we stop seeing life as happening TO us and start seeing it as happening FOR us.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Place your hand on your heart. Ask: "What does my heart need right now?" Listen. Trust what comes. Remember that you ARE love expressing itself.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">💗 Heart Chakra</span>
+                <span class="domain-tag">Domain 1: Heart Center</span>
+                <span class="domain-tag">Domain 8: The Spark</span>
+            </div>
+        </div>
+        
+        <!-- LAW 2 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">2</div>
+                <div class="law-title">The Law of Correspondence</div>
+            </div>
+            <div class="law-essence">
+                "As above, so below. As within, so without."
+            </div>
+            <div class="law-teaching">
+                <p>Every situation is a learning experience. Every circumstance is generated by oneself. We are always exactly where we are meant to be.</p>
+                <p>All events happen to whom they are meant to happen. We come to life with what we need to live it. Only what needs to happen, happens. In each place only that which must exist and happen does. <strong>Nothing happens that is not meant to happen.</strong></p>
+                <p>Your outer world is a reflection of your inner world. When you change your inner state, your outer circumstances must follow.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> When facing a challenge, ask: "What is this teaching me? What pattern in me is this reflecting?" Look within before trying to change the without.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🔮 Third Eye</span>
+                <span class="domain-tag">Domain 2: Mind Temple</span>
+                <span class="domain-tag">Domain 18: Akashic</span>
+            </div>
+        </div>
+        
+        <!-- LAW 3 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">3</div>
+                <div class="law-title">The Law of Nature</div>
+            </div>
+            <div class="law-essence">
+                "Everything that is born, dies. The body knows."
+            </div>
+            <div class="law-teaching">
+                <p>The Law of Nature provides and maintains the bodies of all species. We act within it when we follow our instinct: to generate life, maintain it, and defend it.</p>
+                <p>Every living being has an instinctive sense of this law. <strong>Instinct knows what, when, and how much to eat.</strong> The body is your first home. It holds wisdom the mind often overrides.</p>
+                <p>Touch stimulates the parasympathetic nervous system, promoting relaxation and healing. The body always communicates—are you listening?</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Notice where you hold tension right now. Breathe into that space. Your body knows what it needs. Listen to it. Trust it. Care for it.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🔴 Root Chakra</span>
+                <span class="chakra-tag">🟠 Sacral Chakra</span>
+                <span class="domain-tag">Domain 3: Healing</span>
+                <span class="domain-tag">Domain 17: The Body</span>
+            </div>
+        </div>
+        
+        <!-- LAW 4 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">4</div>
+                <div class="law-title">The Law of Warning</div>
+            </div>
+            <div class="law-essence">
+                "Nothing happens in our lives that has not been previously announced."
+            </div>
+            <div class="law-teaching">
+                <p>Life warns us through subtle signs and sequences. Intuition speaks before events unfold. The Law of Warning is designed to help us <strong>avoid futile suffering</strong>.</p>
+                <p>There is not a single story where following true intuition led somewhere wrong. The challenge is learning to distinguish intuition from fear, wisdom from worry.</p>
+                <p>Signs appear as synchronicities, body sensations, dreams, repeated patterns, and that quiet knowing that something is off—or on track.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Close your eyes. Ask your inner compass: "What direction feels true for me right now?" Don't think the answer. Feel it. Notice where in your body your YES lives.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🔮 Third Eye</span>
+                <span class="chakra-tag">👑 Crown Chakra</span>
+                <span class="domain-tag">Domain 4: Oracle</span>
+            </div>
+        </div>
+        
+        <!-- LAW 5 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">5</div>
+                <div class="law-title">The Law of Sharing</div>
+            </div>
+            <div class="law-essence">
+                "The appropriate information makes it possible to resolve all human problems."
+            </div>
+            <div class="law-teaching">
+                <p>We should manage information as a loving service. When we recognize that we don't know, we can set about learning. <strong>When we share what we have verified in our own experience, it is a service of love.</strong></p>
+                <p>Teaching what we know facilitates our own mission. Your stories, your wisdom, your hard-won lessons—they are meant to be shared. Not to preach, but to serve.</p>
+                <p>The teacher learns more than the student. In sharing, we integrate. In giving, we receive.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> What stories are you carrying that need to be told? What wisdom lives in you that the world needs? Write it down. Share your magic.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🔵 Throat Chakra</span>
+                <span class="domain-tag">Domain 5: Education</span>
+            </div>
+        </div>
+        
+        <!-- LAW 6 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">6</div>
+                <div class="law-title">The Law of Manifestation</div>
+            </div>
+            <div class="law-essence">
+                "Nothing is created, nothing disappears—all is manifest or unmanifest."
+            </div>
+            <div class="law-teaching">
+                <p>The Law of Manifestation allows the pre-existing to be manifested. Everything already exists in potential form. Your role is to call it into being through aligned thought, word, and action.</p>
+                <p>When you speak your truth, you create alignment between heart and voice. <strong>Holding back creates energetic congestion. Speaking openly releases stagnant energy.</strong></p>
+                <p>Your words are your wand. Your beliefs are the blueprint. Your emotions are the fuel.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Today, say one thing you've been holding back. Speak your truth even if your voice shakes. Your voice is a healing tool.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🔵 Throat Chakra</span>
+                <span class="domain-tag">Domain 6: Expression</span>
+            </div>
+        </div>
+        
+        <!-- LAW 7 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">7</div>
+                <div class="law-title">The Law of Compensation</div>
+            </div>
+            <div class="law-essence">
+                "All actions and services entitle us to be compensated."
+            </div>
+            <div class="law-teaching">
+                <p>Perfect equilibrium is governed by action and recovery. In every relationship there is a healthy mutual interest in being complementary.</p>
+                <p><strong>Giving without receiving leads to exhaustion. Receiving without giving produces poverty.</strong> Balance is required for sustainable flow.</p>
+                <p>This applies to energy, money, time, love—all exchanges. Build a support system. Let people show up for you. Let compensation flow.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Who is in your support system right now? Who witnesses you? Who holds space? If you need more support, reach out. Let people love you.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">💗 Heart Chakra</span>
+                <span class="domain-tag">Domain 7: Community</span>
+            </div>
+        </div>
+        
+        <!-- LAW 8 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">8</div>
+                <div class="law-title">The Law of Harmony</div>
+            </div>
+            <div class="law-essence">
+                "Everything that is maintained tends towards equilibrium."
+            </div>
+            <div class="law-teaching">
+                <p>The Law of Harmony permits the perfect coordinated functioning of everything that exists. It manifests in all that pleases, attracts, and produces great satisfaction.</p>
+                <p>The key technique for harmony is <strong>respect</strong>—respect for yourself, for others, for the natural order. Discord comes from forcing what doesn't fit.</p>
+                <p>Sound, vibration, and frequency are direct expressions of this law. Everything is vibrating. Align with harmonious frequencies.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Listen to the sounds around you right now. Now hum a single note. Feel the vibration in your chest. Sound is medicine.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🔵 Throat Chakra</span>
+                <span class="domain-tag">Domain 10: Sound</span>
+            </div>
+        </div>
+        
+        <!-- LAW 9 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">9</div>
+                <div class="law-title">The Law of Cause and Effect</div>
+            </div>
+            <div class="law-essence">
+                "Everything we do to others will come back to us multiplied."
+            </div>
+            <div class="law-teaching">
+                <p>We receive the effect of everything we cause. There are no idle words, thoughts without effect, or deeds without results.</p>
+                <p><strong>Nobody should be judged by their past mistakes, but by their current behaviors.</strong> This applies to others AND to yourself.</p>
+                <p>This is the law of karma—not punishment, but natural consequence. Plant seeds of justice, truth, and love. The harvest will match the planting.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Consider: What patterns am I seeing repeat? What am I putting out into the world? Remember that everything returns multiplied.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🟡 Solar Plexus</span>
+                <span class="domain-tag">Domain 11: Bridge</span>
+            </div>
+        </div>
+        
+        <!-- LAW 10 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">10</div>
+                <div class="law-title">The Law of Affinity</div>
+            </div>
+            <div class="law-essence">
+                "All beings of similar character tend to convene in the same place."
+            </div>
+            <div class="law-teaching">
+                <p>Our personal mental condition creates affinity that attracts what is similar to it. By thinking, we create a mental structure that is in tune with similar minds.</p>
+                <p><strong>The best always associate with the best.</strong> This isn't elitism—it's energetic resonance. You attract what you are, not what you want.</p>
+                <p>Change your frequency, change your tribe. Your words create your world. Speak as if words create reality. Because they do.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> What words do you speak most often? Are they words of abundance, joy, peace, and love? Speak your desired reality into existence.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🔵 Throat Chakra</span>
+                <span class="domain-tag">Domain 12: The Word</span>
+            </div>
+        </div>
+        
+        <!-- LAW 11 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">11</div>
+                <div class="law-title">The Law of Evolution</div>
+            </div>
+            <div class="law-essence">
+                "No one can evolve without transforming themselves."
+            </div>
+            <div class="law-teaching">
+                <p>The Law of Evolution works by pitting opposites together. There are three characters: <strong>"the bad" (unfeeling), "the good" (sensitive), and "the wise" (desensitized)</strong>.</p>
+                <p>We move from innocence to ignorance to wisdom. Suffering ends at the limit of our ignorance. The more we learn, the less we suffer unnecessarily.</p>
+                <p>Transformation requires releasing what no longer serves. Fire burns away the old to make space for the new.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> What is ready to be burned away? What beliefs, patterns, or stories no longer serve you? Write them down. Release them to the flame.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🟡 Solar Plexus</span>
+                <span class="domain-tag">Domain 13: The Flame</span>
+            </div>
+        </div>
+        
+        <!-- LAW 12 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">12</div>
+                <div class="law-title">The Law of Two (Inquiry)</div>
+            </div>
+            <div class="law-essence">
+                "Life always has the answers ready whenever we inquire."
+            </div>
+            <div class="law-teaching">
+                <p>The Law of Two manifests through a binary language (yes or no) that is recognized in what is facilitated and what is blocked.</p>
+                <p>The Universe responds to questions asked through <strong>action, not inertia</strong>. You must move to receive guidance. Life gives clearer answers to those who ask through doing.</p>
+                <p>Trust the answer. Give up fighting against "no." A blocked path is not punishment—it's protection and redirection.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> What question do you need answered? Take action toward it. Life will respond with a clear yes (it flows) or no (it blocks). Trust the answer.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🔮 Third Eye</span>
+                <span class="domain-tag">Domain 14: The Crystal</span>
+            </div>
+        </div>
+        
+        <!-- LAW 13 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">13</div>
+                <div class="law-title">The Law of Communicating Vessels</div>
+            </div>
+            <div class="law-essence">
+                "When a person with high energy interacts with those with low energy, vital force flows toward the lower."
+            </div>
+            <div class="law-teaching">
+                <p>We must be careful selecting friendships, relationships, businesses, where we live. <strong>The biggest energy thief is inside: the ego</strong>, which feeds on suffering and ignorance.</p>
+                <p>Ask: "Is this even mine?" Notice where you're leaking energy. Turn off the tap of feelings that drain you. Protect your vital force.</p>
+                <p>This is why boundaries matter. This is why energy hygiene matters. This is why choosing your environment matters.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Notice where you're leaking energy today. Is it a person? A habit? A thought pattern? Consciously reclaim that energy. It belongs to you.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🟠 Sacral Chakra</span>
+                <span class="domain-tag">Domain 15: The Flow</span>
+            </div>
+        </div>
+        
+        <!-- LAW 14 -->
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">14</div>
+                <div class="law-title">The Law of Three</div>
+            </div>
+            <div class="law-essence">
+                "Make at least three attempts before giving up."
+            </div>
+            <div class="law-teaching">
+                <p>The Law of Three allows reasonable perseverance. If progress is seen, continue. If stagnation or backward movement, desist.</p>
+                <p>This Law streamlines the use of vital energy. <strong>Know the difference between perseverance and stubbornness.</strong> Perseverance follows flow. Stubbornness fights against it.</p>
+                <p>Three attempts gives enough data. Less is premature. More may be forcing. Trust the process. Trust the timing.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Slow, deep inhale through nose. Extend exhale longer than inhale. Hold at the top when comfortable. Notice thoughts, feelings, sensations. Breath is the bridge.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">💗 Heart Chakra</span>
+                <span class="domain-tag">Domain 16: The Breath</span>
+            </div>
+        </div>
+        
+        <!-- BONUS LAW -->
+        <h2>✨ Bonus Laws ✨</h2>
+        
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">+</div>
+                <div class="law-title">The Law of Empty Spaces</div>
+            </div>
+            <div class="law-essence">
+                "Any empty space tends to become filled with something new."
+            </div>
+            <div class="law-teaching">
+                <p>Everything that leaves our lives will be replaced. With the exception of the Absolute, everything is replaceable and nothing is indispensable.</p>
+                <p>We are always accompanied, never alone. <strong>Let go of attachments.</strong> What needs to leave to make space for the new?</p>
+                <p>By allowing ego thoughts to leave, we open space for wisdom to enter. Release. Trust that the void will fill with exactly what you need.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> What are you holding onto that has already served its purpose? Release it with gratitude. Trust that something better is coming to fill the space.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">👑 Crown Chakra</span>
+                <span class="domain-tag">Domain 19: The Void</span>
+            </div>
+        </div>
+        
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">+</div>
+                <div class="law-title">The Law of Generation</div>
+            </div>
+            <div class="law-essence">
+                "Everything that happens to us in life we have generated ourselves."
+            </div>
+            <div class="law-teaching">
+                <p>At each instant we are building our future. Everything created in our mind manifests in our life.</p>
+                <p>When we understand that nothing can harm us, and that we generate all our circumstances, <strong>we can start creating a new life</strong>.</p>
+                <p>This is ultimate responsibility and ultimate power. You are not a victim. You are a creator.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Ask yourself: What seeds am I sowing today in thought, word, and deed? Plant acceptance, peace, trust, commitment, enthusiasm, and joy. The harvest will be extraordinary.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">🔴 Root Chakra</span>
+                <span class="chakra-tag">🟠 Sacral Chakra</span>
+                <span class="domain-tag">Domain 9: Abundance</span>
+            </div>
+        </div>
+        
+        <div class="law-card">
+            <div class="law-header">
+                <div class="law-number">+</div>
+                <div class="law-title">The Law of Authenticity</div>
+            </div>
+            <div class="law-essence">
+                "The most valuable gift you have to offer is yourself."
+            </div>
+            <div class="law-teaching">
+                <p>This law is now making its way into the collective consciousness more than ever before. No matter what skills, knowledge, or talents you have, <strong>they become exponentially more powerful when expressed authentically</strong>.</p>
+                <p>The Law of Authenticity states that YOU are your unique offering to the world. There is no one else with your exact combination of experiences, perspectives, and gifts.</p>
+                <p>It is vibrationally more powerful than trying to be anyone other than who you truly are.</p>
+            </div>
+            <div class="law-practice">
+                <strong>✨ Practice:</strong> Today, show up as fully yourself as you can. Don't dim your light to fit in. The world needs your authentic expression. Accept that people might think you're weird. That's okay.
+            </div>
+            <div style="margin-top:1rem;">
+                <span class="chakra-tag">All Chakras</span>
+                <span class="domain-tag">Domain 6: Expression</span>
+            </div>
+        </div>
+        
+        <div class="closing">
+            <p>These laws are not constraints—they are <strong>invitations</strong>.</p>
+            <p>Invitations to align with the natural flow of existence.</p>
+            <p>Invitations to stop struggling and start flowing.</p>
+            <p>Invitations to remember what your soul has always known.</p>
+            <p class="final">⚖️ Work with the laws, and the laws work for you. ⚖️</p>
+        </div>
+    </div>
+</body>
+</html>
