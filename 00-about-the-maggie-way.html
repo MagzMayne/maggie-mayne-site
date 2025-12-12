@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About The Maggie Way | Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: linear-gradient(180deg, #1a0a1a 0%, #2d1f3d 50%, #1a0a2e 100%);
+            color: #FFF8F0;
+            min-height: 100vh;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        .back-link {
+            display: inline-block;
+            color: #FF69B4;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        .back-link:hover { color: #FFD700; }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #FF69B4 0%, #FFD700 50%, #DDA0DD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            text-align: center;
+        }
+        .subtitle {
+            color: #DDA0DD;
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .tagline {
+            text-align: center;
+            font-size: 1.4rem;
+            color: #FFD700;
+            font-style: italic;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255,215,0,0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+        .highlight-box {
+            background: rgba(255,105,180,0.15);
+            border-left: 4px solid #FF69B4;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .highlight-box p {
+            margin: 0;
+            font-style: italic;
+            color: rgba(255,248,240,0.9);
+        }
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: #DDA0DD;
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1rem;
+            text-align: center;
+        }
+        p { margin-bottom: 1.5rem; color: rgba(255,248,240,0.9); }
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #FF69B4, transparent);
+            margin: 2.5rem 0;
+        }
+        .dedication {
+            background: rgba(153,50,204,0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(153,50,204,0.3);
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .dedication p {
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        .know-this {
+            background: rgba(255,215,0,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,215,0,0.3);
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .know-this h3 {
+            color: #FFD700;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        .know-this p {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: #FFF8F0;
+        }
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .step {
+            background: rgba(255,105,180,0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,105,180,0.2);
+            text-align: center;
+        }
+        .step-num {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .step-label {
+            color: #DDA0DD;
+            font-size: 0.9rem;
+        }
+        .affirmation {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #FF69B4;
+            font-style: italic;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255,105,180,0.1);
+            border-radius: 10px;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, rgba(255,105,180,0.2), rgba(255,215,0,0.2));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .cta-box h3 {
+            color: #FFD700;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, #FF69B4, #FFD700);
+            color: #1a0a1a;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,105,180,0.3);
+        }
+        .footer a {
+            color: #FF69B4;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        .footer a:hover { color: #FFD700; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to The Maggie Way</a>
+        
+        <h1>✨ THE MAGGIE WAY</h1>
+        <p class="subtitle">Holistic Healing  -  Blending the Art of Massage Therapy with Energy Healing & Spiritual Practice</p>
+        
+        <div class="tagline">
+            "Always notice what you notice  -  and remember how MAGIC you are."
+        </div>
+        
+        <p>This is not just a book. It's not just a website. It's an open-ended invitation to embark on a profound and transformative journey toward a life filled with joy, purpose, and abundance  -  as a healthier, happier, even more MAGICAL you.</p>
+        
+        <p>Let your connection with Spirit guide you. Reach for the sky. Prepare to discover the incredible strength and resilience within you. Embrace the healing power of your authenticity. Cultivate self-love and self-compassion.</p>
+        
+        <p style="text-align:center; font-size:1.3rem; color:#FFD700;">Consider embracing The Maggie Way.</p>
+
+        <div class="divider"></div>
+
+        <div class="dedication">
+            <h2 style="margin-top:0;">💗 This Work is Dedicated</h2>
+            <p>To every soul who has ever felt lost, broken, or overwhelmed by the human experience.</p>
+            <p>To all the beautiful humans who have met me at my table and inspired me with their unwavering spirits  -  this is a celebration of your willingness to face your shadows and your commitment to reclaiming your power.</p>
+            <p>To the enlightened beings and teachers who have shared their MAGIC...</p>
+            <p>To anyone who has carried the weight of unspoken pain, hidden wounds, or unhealed trauma  -  this work is a forever testament to your strength, your resilience, and your infinite capacity for love and transformation.</p>
+            <p>I am deeply dedicated to the courageous truth-speakers, healers, and light workers who have come before me.</p>
+            <p style="margin-bottom:0;">May these pages serve as a beacon of hope, a guidepost on your path, and a reminder that you are not alone. <strong>You are never alone.</strong></p>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>🌟 Welcome</h2>
+        
+        <p>Welcome to The Maggie Way. This is a journey of self-discovery and transformation, designed to empower you to reclaim your physical, emotional, mental, and spiritual well-being.</p>
+        
+        <p>I'm here to share my unique approach to holistic healing  -  blending the art of massage therapy with powerful energy modalities, self-care, and spiritual practice.</p>
+        
+        <p>This work is a culmination of my years on this planet  -  and any and all previous lifetimes. It encompasses years of learning, thousands of hours of education and practice, working with clients, and witnessing the transformative power of integrated and holistic healing.</p>
+        
+        <div class="highlight-box">
+            <p>"For most of my life, I've seen the profound impact of trauma, both personally and collectively. I've witnessed physical pain, emotional turmoil, and the feelings of being lost and alone."</p>
+        </div>
+        
+        <p>As a holistic healer, integrated health coach, licensed massage therapist, and spiritual mentor, I've had the privilege of guiding countless people through their own journeys of healing and transformation.</p>
+        
+        <p>My methods are deeply rooted in the belief that true healing stems from embracing our most authentic selves and addressing the full spectrum of connection between body, mind, emotions, and spirit.</p>
+        
+        <p>This is an integrated approach that considers the whole person and soul  -  not just the current reality being experienced, the illusion of dis-ease, or any physical symptoms or manifestations.</p>
+
+        <div class="divider"></div>
+
+        <h2>✨ The Process</h2>
+        
+        <p style="text-align:center;">From this place, we can embrace self-love and authenticity over the lower vibrations of fear, inadequacy, doubt, guilt, and shame  -  and release the projected expectations of others.</p>
+        
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-num">1️⃣</div>
+                <div class="step-label">Self-Care</div>
+            </div>
+            <div class="step">
+                <div class="step-num">2️⃣</div>
+                <div class="step-label">Reflect</div>
+            </div>
+            <div class="step">
+                <div class="step-num">3️⃣</div>
+                <div class="step-label">Set Intentions</div>
+            </div>
+            <div class="step">
+                <div class="step-num">4️⃣</div>
+                <div class="step-label">Accountability</div>
+            </div>
+            <div class="step">
+                <div class="step-num">5️⃣</div>
+                <div class="step-label">Aligned Action</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>💫 My Stuff Always Works Sometimes</h2>
+        
+        <p>I like to say that my stuff always works sometimes, it's my first day, and I don't know. I have a dear friend that always asks, "if you did know, what would the answer be?"</p>
+        
+        <p style="text-align:center; color:#FFD700; font-size:1.2rem; font-style:italic;">When we know, we know.</p>
+        
+        <p>I recognize that I still carry a lot of blind spots. The more we push ourselves out of our comfort zones, the greater opportunity we can cultivate to equip us with experiences that reveal even more of the unhealed parts of ourselves.</p>
+        
+        <p>I have had to come face to face with the Maggie in the mirror, and my imposter syndrome has reared its ugly head at least once a week. I am not perfect, I don't even play that on TV, and I won't ever pretend I am or claim to be that.</p>
+        
+        <div class="highlight-box">
+            <p>"My life and journey has rarely felt easy. I have faced tremendous heartache, trauma, devastation, loss, challenges, and immense setbacks along the way. I have basked in confusion and failed many more times than once."</p>
+        </div>
+        
+        <p>Through my words and work I hope to cultivate a safe space for you to also explore your own authenticity and to encourage you to show up loudly in your own unique way.</p>
+
+        <div class="divider"></div>
+
+        <h2>🔥 The Maggie Way Means...</h2>
+        
+        <div class="affirmation">
+            "Showing up however you are  -  and doing the best you can with whatever you have."
+        </div>
+        
+        <p>I want everyone to experience the same feelings of freedom and self-acceptance I have felt by honoring my soul's highest calling. I acknowledge that not everyone has the current ability to make a living by doing what they love, but I invite you to strive for that.</p>
+        
+        <p>In my work with clients I always encourage them to do this  -  to show up as they are, whether that be loud or quiet, and to find their own forms of that pedicure feeling  -  a ritual that allows them to slow down, reflect, celebrate, grieve, be REAL, and emerge renewed.</p>
+        
+        <p>Life is really hard sometimes. It can life the life out of us if we let it. It is truly a journey of love, pain, magic, growth and learning  -  and we are never done.</p>
+
+        <div class="divider"></div>
+
+        <div class="know-this">
+            <h3>Know This:</h3>
+            <p>✨ You are worthy.</p>
+            <p>💗 You are loved.</p>
+            <p>🌟 You are exactly where you're meant to be.</p>
+            <p>🔥 You are absolutely capable of anything you set your heart to.</p>
+        </div>
+
+        <p>May you dare to step into a timeline and reality full of joy, peace, love, gratitude, and abundance. May you find support to fully express your unique and profound gifts and purpose.</p>
+        
+        <p>May this work serve as a catalyst for change, a spark for transformation, and a well of sustenance you can return to again and again.</p>
+        
+        <p>It is my hope that I can offer you both relief and inspiration  -  to help you rise, stand in your strength, and create a life filled with joy, magic, purpose, and abundance... whatever that means to you.</p>
+
+        <div class="divider"></div>
+
+        <div class="cta-box">
+            <h3>Let's walk this path together.</h3>
+            <p style="font-size:1.3rem; color:#FFF8F0; margin-bottom:0.5rem;">Are you ALL-IN?</p>
+            <a href="index.html#offerings" class="btn">Begin Your Journey</a>
+        </div>
+        
+        <div class="footer">
+            <p style="margin-bottom: 1rem;">💗</p>
+            <a href="index.html">Home</a>
+            <a href="https://www.amazon.com/stores/author/B0DJBZYQF4" target="_blank">📚 Books</a>
+            <a href="/cdn-cgi/l/email-protection#f895999f9f919d959981969dc9c9c9c9b89f95999194d69b9795">💌 Connect</a>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255,248,240,0.6);">© 2025 Maggie Mayne | The Maggie Wa
