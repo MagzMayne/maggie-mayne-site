@@ -15,6 +15,7 @@
             --purple: #9932CC;
             --cream: #FFF8F0;
             --deep: #0a0510;
+            --fire: #FF4500;
         }
         html { scroll-behavior: smooth; }
         body {
@@ -55,7 +56,7 @@
             z-index: 1000;
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
             border-bottom: 1px solid rgba(255, 105, 180, 0.2);
         }
@@ -64,13 +65,46 @@
             text-decoration: none;
             font-family: 'Cinzel', serif;
             font-size: 0.75rem;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             transition: all 0.3s;
-            padding: 0.25rem 0.5rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 20px;
         }
         nav a:hover { color: var(--pink); }
         nav a.active { color: var(--gold); border-bottom: 1px solid var(--gold); }
+        nav a.pink-tab {
+            background: rgba(255, 105, 180, 0.2);
+            border: 1px solid rgba(255, 105, 180, 0.4);
+            color: #fff;
+        }
+        nav a.pink-tab:hover {
+            background: rgba(255, 105, 180, 0.35);
+            transform: translateY(-2px);
+        }
+        nav a.justice-tab {
+            background: linear-gradient(135deg, rgba(191, 10, 48, 0.3), rgba(0, 40, 104, 0.3));
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+        nav a.love-letter-nav {
+            background: linear-gradient(135deg, #FFF8E7, #F5E6D3, #EDE0D4);
+            border: 1px solid #D4C4B0;
+            color: #8B4513;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            box-shadow: 0 2px 4px rgba(139, 69, 19, 0.15);
+        }
+        nav a.love-letter-nav:hover {
+            background: linear-gradient(135deg, #FFFAF0, #FAF0E6, #F5DEB3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.25);
+            color: #6B3510;
+        }
         
         /* Header */
         .header {
@@ -95,13 +129,58 @@
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
+        .header .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
         .header .titles {
             font-size: 0.85rem;
             color: rgba(255, 248, 240, 0.7);
             margin-bottom: 1rem;
-            max-width: 600px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .header .title-tag {
+            display: inline-block;
+            padding: 0.4rem 0.85rem;
+            background: rgba(255, 105, 180, 0.2);
+            border: 1px solid rgba(255, 105, 180, 0.4);
+            border-radius: 20px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+            transition: all 0.3s;
+            letter-spacing: 0.02em;
+        }
+        .header .title-tag:hover {
+            background: rgba(255, 105, 180, 0.35);
+            transform: translateY(-2px);
+        }
+        .header .title-tag.justice {
+            background: linear-gradient(135deg, rgba(191, 10, 48, 0.4), rgba(0, 40, 104, 0.4));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+        }
+        .header .title-tag.justice:hover {
+            background: linear-gradient(135deg, rgba(191, 10, 48, 0.6), rgba(0, 40, 104, 0.6));
+        }
+        .header .intro {
+            font-size: 1.35rem;
+            color: rgba(255, 248, 240, 0.9);
+            margin-bottom: 1.5rem;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.9;
         }
         .header .tagline {
             font-size: 1.1rem;
@@ -114,6 +193,66 @@
             font-size: 0.85rem;
             color: var(--pink);
             letter-spacing: 0.2em;
+        }
+        
+        /* Social Links */
+        .social-section {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .social-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .social-links a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 105, 180, 0.15);
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: rgba(255, 105, 180, 0.25);
+            transform: translateY(-2px);
+        }
+        .social-links.facebook a {
+            background: rgba(153, 50, 204, 0.15);
+            border-color: rgba(153, 50, 204, 0.3);
+        }
+        .social-links.facebook a:hover {
+            background: rgba(153, 50, 204, 0.25);
+        }
+        .website-btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, var(--pink-dark), var(--pink));
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+        .website-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255,105,180,0.4);
         }
         
         /* Legend */
@@ -158,12 +297,22 @@
         }
         .flower-svg { width: 100%; height: 100%; }
         .sacred-circle { fill: none; stroke-width: 0.5; }
-        .domain-group { cursor: pointer; transition: transform 0.3s; }
-        .domain-group:hover { transform: scale(1.12); }
-        .domain-circle { transition: all 0.3s; }
-        .domain-group:hover .domain-circle { filter: drop-shadow(0 0 12px currentColor); }
+        .domain-group { cursor: pointer; }
+        .domain-group:hover .domain-circle { 
+            filter: drop-shadow(0 0 15px currentColor);
+            stroke-width: 3;
+        }
+        .domain-circle { transition: filter 0.3s, stroke-width 0.3s; }
         .domain-emoji { font-size: 18px; pointer-events: none; }
-        .domain-label { font-family: 'Cinzel', serif; font-size: 6px; fill: var(--cream); text-anchor: middle; pointer-events: none; }
+        .domain-label { 
+            font-family: 'Cinzel', serif; 
+            font-size: 7px; 
+            fill: var(--cream); 
+            text-anchor: middle; 
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
         .center-domain .domain-circle { animation: pulse-heart 2s ease-in-out infinite; }
         @keyframes pulse-heart {
             0%, 100% { transform: scale(1); }
@@ -244,6 +393,7 @@
         }
         .offering-btn:hover { transform: scale(1.05); }
         .offering-btn.amazon { background: linear-gradient(135deg, #FF9900, #FFB84D); color: #000; }
+        .offering-btn.listen { background: linear-gradient(135deg, var(--fire), #FF6B35); }
         
         /* Sections */
         .section {
@@ -310,6 +460,7 @@
         .btn:hover { transform: scale(1.05); }
         .btn-gold { background: linear-gradient(135deg, var(--gold-soft), var(--gold)); color: var(--deep); }
         .btn-amazon { background: linear-gradient(135deg, #FF9900, #FFB84D); color: #000; }
+        .btn-fire { background: linear-gradient(135deg, var(--fire), #FF6B35); }
         
         /* Divider */
         .divider {
@@ -340,10 +491,94 @@
         .book-card h4 { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); margin-bottom: 0.25rem; }
         .book-card .series { font-size: 0.75rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem; }
         
-        /* Justice Section */
+        /* Shop Section */
+        .shop-section {
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.08), transparent);
+        }
+        
+        /* Justice Section - Red White Blue */
         .justice-section {
-            background: linear-gradient(180deg, rgba(153, 50, 204, 0.1), transparent);
+            background: linear-gradient(180deg, rgba(0, 40, 104, 0.15), rgba(191, 10, 48, 0.1), transparent);
             padding: 3rem 2rem;
+        }
+        .justice-section h2 {
+            background: linear-gradient(135deg, #BF0A30, #FFFFFF, #002868);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .justice-section .offering-card {
+            border-color: rgba(0, 40, 104, 0.3);
+        }
+        .justice-section .offering-card:hover {
+            border-color: #BF0A30;
+            box-shadow: 0 12px 35px rgba(191, 10, 48, 0.2);
+        }
+        .justice-section .btn {
+            background: linear-gradient(135deg, #BF0A30, #002868);
+        }
+        .justice-section .btn-gold {
+            background: linear-gradient(135deg, #FFFFFF, #E8E8E8);
+            color: #002868;
+        }
+        
+        /* D REBEL Section */
+        .d-rebel-section {
+            background: linear-gradient(180deg, rgba(255, 69, 0, 0.1), transparent);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .d-rebel-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--fire), #FF6B35);
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            margin-bottom: 1rem;
+        }
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            max-width: 650px;
+            margin: 1.5rem auto;
+        }
+        .tier-box {
+            background: rgba(255, 69, 0, 0.1);
+            border: 1px solid rgba(255, 69, 0, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .tier-name {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        .tier-price {
+            font-family: 'Cinzel', serif;
+            color: var(--fire);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .tier-spots {
+            font-size: 0.75rem;
+            color: rgba(255,248,240,0.6);
+        }
+        .music-link {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+        }
+        .music-link a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .music-link a:hover {
+            color: var(--pink);
         }
         
         /* Revolution Section */
@@ -388,6 +623,42 @@
         /* Garden Section */
         .garden-section {
             background: linear-gradient(180deg, rgba(34, 139, 34, 0.08), transparent);
+        }
+        
+        /* Events Section */
+        .events-section {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .events-quote {
+            font-style: italic;
+            color: var(--gold);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .events-date {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--cream);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Signature Section */
+        .signature-section {
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.05), transparent);
         }
         
         /* Love Letter */
@@ -439,17 +710,60 @@
     <a href="#flower">Sacred Map</a>
     <a href="#offerings">Offerings</a>
     <a href="#books">Books</a>
-    <a href="#justice">Justice</a>
+    <a href="#shop">Shop</a>
+    <a href="#justice" class="justice-tab">Justice</a>
     <a href="#garden">Garden</a>
-    <a href="#revolution">Pink Revolution</a>
-    <a href="mailto:MaggieMayne1111@gmail.com">Send a Love Letter</a>
+    <a href="/cdn-cgi/l/email-protection#a5c8c4c2c2ccc0c8c4dccbc094949494e5c2c8c4ccc98bc6cac8" class="love-letter-nav">💌 Send Me a Love Letter</a>
 </nav>
 
 <div class="header">
     <h1>Maggie Mayne</h1>
-    <p class="titles">Psychic Investigator · Intuitive Lightworker · Spiritual Mentor · Author · Somatic Healer · Human Rights Advocate · Constitutional Law Student · Licensed Massage Therapist · Duck Mama</p>
+    <p class="subtitle">Soul Architecture</p>
+    <div class="titles">
+        <span class="title-tag">Psychic Investigator</span>
+        <span class="title-tag">Intuitive Lightworker</span>
+        <span class="title-tag">Spiritual Mentor</span>
+        <span class="title-tag">Author</span>
+        <span class="title-tag">Somatic Healer</span>
+        <span class="title-tag">Civil Rights Advocate</span>
+        <span class="title-tag">Licensed Massage Therapist</span>
+        <span class="title-tag">Artist</span>
+        <span class="title-tag">Starseed</span>
+        <span class="title-tag">Pro Se Warrior</span>
+        <span class="title-tag">Pattern Documenter</span>
+        <span class="title-tag">Visionary</span>
+        <span class="title-tag">Lighthouse</span>
+        <a href="https://justicewithoutlimits.org/" target="_blank" class="title-tag justice">Justice Without Limits</a>
+    </div>
+    <p class="intro">For over 20 years, I have helped women heal and transform through bodywork, energy healing, and soul centered guidance. I offer workshops, classes, groups, retreats, and private practice integrating all modalities. Welcome to my Soul Architecture.</p>
     <p class="tagline">"We must stand in our light first to light the way for others."</p>
     <p class="mantra">Healers Going First™</p>
+</div>
+
+<!-- SOCIAL LINKS -->
+<div class="social-section">
+    <p class="social-label">Instagram</p>
+    <div class="social-links">
+        <a href="https://instagram.com/MaggieMayne1111" target="_blank">@MaggieMayne1111</a>
+        <a href="https://instagram.com/littletonmassage_maggiemagic" target="_blank">@littletonmassage_maggiemagic</a>
+        <a href="https://instagram.com/Weatheringthey" target="_blank">@Weatheringthey</a>
+    </div>
+    
+    <p class="social-label">Facebook</p>
+    <div class="social-links facebook">
+        <a href="https://facebook.com/MaggieMayne" target="_blank">Maggie Mayne</a>
+        <a href="https://facebook.com/MaggiesMAGIC" target="_blank">Maggie's MAGIC</a>
+        <a href="https://facebook.com/ResiliencyGardenProject" target="_blank">Resiliency Garden</a>
+        <a href="https://facebook.com/AllTheThings" target="_blank">All The Things</a>
+    </div>
+    
+    <a href="https://maggiemayne.carrd.co/?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" class="website-btn">🌸 Visit My Website</a>
+</div>
+
+<!-- EVENTS -->
+<div class="events-section">
+    <p class="events-quote">"Not all Who Wander Are Lost."</p>
+    <p class="events-date">📅 December 19, 2025 — Stockville, NE</p>
 </div>
 
 <div class="legend">
@@ -461,129 +775,174 @@
 <section class="flower-section" id="flower">
     <div class="flower-container">
         <svg class="flower-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="250" cy="250" r="240" class="sacred-circle" stroke="rgba(255,105,180,0.1)"/>
-            <circle cx="250" cy="250" r="190" class="sacred-circle" stroke="rgba(255,215,0,0.1)"/>
-            <circle cx="250" cy="250" r="140" class="sacred-circle" stroke="rgba(153,50,204,0.1)"/>
-            <circle cx="250" cy="250" r="90" class="sacred-circle" stroke="rgba(255,105,180,0.15)"/>
-            <g stroke="rgba(255,105,180,0.08)" fill="none" stroke-width="0.5">
-                <circle cx="250" cy="250" r="60"/><circle cx="250" cy="190" r="60"/><circle cx="302" cy="220" r="60"/>
-                <circle cx="302" cy="280" r="60"/><circle cx="250" cy="310" r="60"/><circle cx="198" cy="280" r="60"/><circle cx="198" cy="220" r="60"/>
+            <!-- Outer sacred circles - crisp and clean -->
+            <circle cx="250" cy="250" r="240" fill="none" stroke="rgba(255,105,180,0.25)" stroke-width="1"/>
+            <circle cx="250" cy="250" r="190" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="1"/>
+            <circle cx="250" cy="250" r="140" fill="none" stroke="rgba(153,50,204,0.2)" stroke-width="1"/>
+            <circle cx="250" cy="250" r="90" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="1"/>
+            
+            <!-- Flower of Life petals - subtle but visible -->
+            <g fill="none" stroke="rgba(255,105,180,0.15)" stroke-width="1">
+                <circle cx="250" cy="250" r="60"/>
+                <circle cx="250" cy="190" r="60"/>
+                <circle cx="302" cy="220" r="60"/>
+                <circle cx="302" cy="280" r="60"/>
+                <circle cx="250" cy="310" r="60"/>
+                <circle cx="198" cy="280" r="60"/>
+                <circle cx="198" cy="220" r="60"/>
             </g>
+            
             <!-- Domain 1: Heart Center -->
             <g class="domain-group center-domain" onclick="showDomain(1)" transform="translate(250,250)">
-                <circle r="30" class="domain-circle" fill="rgba(255,105,180,0.2)" stroke="#FF69B4" stroke-width="2"/>
+                <circle r="32" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">💗</text>
-                <text y="20" class="domain-label">Heart Center</text>
+                <text y="22" class="domain-label">Heart Center</text>
             </g>
             <!-- Domain 2: Mind Temple -->
             <g class="domain-group" onclick="showDomain(2)" transform="translate(250,168)">
-                <circle r="24" class="domain-circle" fill="rgba(255,105,180,0.15)" stroke="#FF69B4" stroke-width="1.5"/>
+                <circle r="26" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🧠</text>
-                <text y="17" class="domain-label">Mind Temple</text>
+                <text y="18" class="domain-label">Mind Temple</text>
             </g>
             <!-- Domain 3: Healing -->
             <g class="domain-group" onclick="showDomain(3)" transform="translate(320,209)">
-                <circle r="24" class="domain-circle" fill="rgba(255,105,180,0.15)" stroke="#FF69B4" stroke-width="1.5"/>
+                <circle r="26" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">💆</text>
-                <text y="17" class="domain-label">Healing</text>
+                <text y="18" class="domain-label">Healing</text>
             </g>
             <!-- Domain 4: Oracle -->
             <g class="domain-group" onclick="showDomain(4)" transform="translate(320,291)">
-                <circle r="24" class="domain-circle" fill="rgba(255,105,180,0.15)" stroke="#FF69B4" stroke-width="1.5"/>
+                <circle r="26" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🔮</text>
-                <text y="17" class="domain-label">Oracle</text>
+                <text y="18" class="domain-label">Oracle</text>
             </g>
             <!-- Domain 5: Education -->
             <g class="domain-group" onclick="showDomain(5)" transform="translate(250,332)">
-                <circle r="24" class="domain-circle" fill="rgba(255,105,180,0.15)" stroke="#FF69B4" stroke-width="1.5"/>
+                <circle r="26" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">📚</text>
-                <text y="17" class="domain-label">Education</text>
+                <text y="18" class="domain-label">Education</text>
             </g>
             <!-- Domain 6: Expression -->
             <g class="domain-group" onclick="showDomain(6)" transform="translate(180,291)">
-                <circle r="24" class="domain-circle" fill="rgba(255,105,180,0.15)" stroke="#FF69B4" stroke-width="1.5"/>
+                <circle r="26" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🎭</text>
-                <text y="17" class="domain-label">Expression</text>
+                <text y="18" class="domain-label">Expression</text>
             </g>
             <!-- Domain 7: Community -->
             <g class="domain-group" onclick="showDomain(7)" transform="translate(180,209)">
-                <circle r="24" class="domain-circle" fill="rgba(255,105,180,0.15)" stroke="#FF69B4" stroke-width="1.5"/>
+                <circle r="26" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🌐</text>
-                <text y="17" class="domain-label">Community</text>
+                <text y="18" class="domain-label">Community</text>
             </g>
             <!-- Domain 8: The Spark -->
             <g class="domain-group" onclick="showDomain(8)" transform="translate(250,98)">
-                <circle r="22" class="domain-circle" fill="rgba(255,215,0,0.15)" stroke="#FFD700" stroke-width="1.5"/>
+                <circle r="24" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🌕</text>
-                <text y="16" class="domain-label">Spark</text>
+                <text y="17" class="domain-label">Spark</text>
             </g>
             <!-- Domain 9: Abundance -->
             <g class="domain-group" onclick="showDomain(9)" transform="translate(380,178)">
-                <circle r="22" class="domain-circle" fill="rgba(255,215,0,0.15)" stroke="#FFD700" stroke-width="1.5"/>
+                <circle r="24" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">💰</text>
-                <text y="16" class="domain-label">Abundance</text>
+                <text y="17" class="domain-label">Abundance</text>
             </g>
             <!-- Domain 10: Sound -->
             <g class="domain-group" onclick="showDomain(10)" transform="translate(380,322)">
-                <circle r="22" class="domain-circle" fill="rgba(255,215,0,0.15)" stroke="#FFD700" stroke-width="1.5"/>
+                <circle r="24" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🎵</text>
-                <text y="16" class="domain-label">Sound</text>
+                <text y="17" class="domain-label">Sound</text>
             </g>
             <!-- Domain 11: Bridge -->
             <g class="domain-group" onclick="showDomain(11)" transform="translate(250,402)">
-                <circle r="22" class="domain-circle" fill="rgba(255,215,0,0.15)" stroke="#FFD700" stroke-width="1.5"/>
+                <circle r="24" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🌉</text>
-                <text y="16" class="domain-label">Bridge</text>
+                <text y="17" class="domain-label">Bridge</text>
             </g>
             <!-- Domain 12: The Word -->
             <g class="domain-group" onclick="showDomain(12)" transform="translate(120,178)">
-                <circle r="20" class="domain-circle" fill="rgba(153,50,204,0.15)" stroke="#9932CC" stroke-width="1.5"/>
+                <circle r="22" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">📿</text>
-                <text y="15" class="domain-label">Word</text>
+                <text y="16" class="domain-label">Word</text>
             </g>
             <!-- Domain 13: The Flame -->
             <g class="domain-group" onclick="showDomain(13)" transform="translate(120,322)">
-                <circle r="20" class="domain-circle" fill="rgba(153,50,204,0.15)" stroke="#9932CC" stroke-width="1.5"/>
+                <circle r="22" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🔥</text>
-                <text y="15" class="domain-label">Flame</text>
+                <text y="16" class="domain-label">Flame</text>
             </g>
             <!-- Domain 14: The Crystal -->
             <g class="domain-group" onclick="showDomain(14)" transform="translate(178,98)">
-                <circle r="20" class="domain-circle" fill="rgba(153,50,204,0.15)" stroke="#9932CC" stroke-width="1.5"/>
+                <circle r="22" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">💎</text>
-                <text y="15" class="domain-label">Crystal</text>
+                <text y="16" class="domain-label">Crystal</text>
             </g>
             <!-- Domain 15: The Flow -->
             <g class="domain-group" onclick="showDomain(15)" transform="translate(322,98)">
-                <circle r="20" class="domain-circle" fill="rgba(153,50,204,0.15)" stroke="#9932CC" stroke-width="1.5"/>
+                <circle r="22" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🌊</text>
-                <text y="15" class="domain-label">Flow</text>
+                <text y="16" class="domain-label">Flow</text>
             </g>
             <!-- Domain 16: The Breath -->
             <g class="domain-group" onclick="showDomain(16)" transform="translate(425,250)">
-                <circle r="20" class="domain-circle" fill="rgba(153,50,204,0.15)" stroke="#9932CC" stroke-width="1.5"/>
+                <circle r="22" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🌬️</text>
-                <text y="15" class="domain-label">Breath</text>
+                <text y="16" class="domain-label">Breath</text>
             </g>
             <!-- Domain 17: The Body -->
             <g class="domain-group" onclick="showDomain(17)" transform="translate(322,402)">
-                <circle r="20" class="domain-circle" fill="rgba(153,50,204,0.15)" stroke="#9932CC" stroke-width="1.5"/>
+                <circle r="22" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">🌍</text>
-                <text y="15" class="domain-label">Body</text>
+                <text y="16" class="domain-label">Body</text>
             </g>
             <!-- Domain 18: Akashic -->
             <g class="domain-group" onclick="showDomain(18)" transform="translate(178,402)">
-                <circle r="20" class="domain-circle" fill="rgba(153,50,204,0.15)" stroke="#9932CC" stroke-width="1.5"/>
+                <circle r="22" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">📜</text>
-                <text y="15" class="domain-label">Akashic</text>
+                <text y="16" class="domain-label">Akashic</text>
             </g>
             <!-- Domain 19: The Void -->
             <g class="domain-group" onclick="showDomain(19)" transform="translate(75,250)">
-                <circle r="20" class="domain-circle" fill="rgba(153,50,204,0.15)" stroke="#9932CC" stroke-width="1.5"/>
+                <circle r="22" class="domain-circle" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
                 <text y="5" class="domain-emoji" text-anchor="middle">👁️</text>
-                <text y="15" class="domain-label">Void</text>
+                <text y="16" class="domain-label">Void</text>
             </g>
         </svg>
+    </div>
+</section>
+
+<!-- CTA BUTTONS -->
+<div class="cta-section">
+    <a href="https://square.link/u/dIIrQUzO" target="_blank" class="btn">🔮 Oracle Card Pull — $33</a>
+    <a href="https://square.link/u/n9WztX2P" target="_blank" class="btn">Book Remote Session — $111</a>
+</div>
+
+<!-- SIGNATURE EXPERIENCES -->
+<section class="section signature-section">
+    <div class="container">
+        <h2>✨ Signature Experiences ✨</h2>
+        <div class="offerings-grid" style="max-width: 900px; margin: 1.5rem auto 0;">
+            <div class="offering-card">
+                <div class="emoji">✨</div>
+                <h3>An Evening with Maggie Mayne</h3>
+                <div class="price">$888</div>
+                <p>Book reading, signing, live experience, laughter, wisdom, sarcasm, community healing. Your event, my magic.</p>
+                <a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Book Your Evening</a>
+            </div>
+            <div class="offering-card">
+                <div class="emoji">🌸</div>
+                <h3>Flower of Life Blueprint</h3>
+                <div class="price">$444</div>
+                <p>Your complete sacred architecture, channeled, mapped, and delivered. Includes a 60 minute consultation to build YOUR Flower of Life Blueprint, cultivate your offerings, embody your archetypes, and tailor your execution plan.</p>
+                <a href="https://square.link/u/n9WztX2P" class="btn btn-gold" target="_blank">Book Your Blueprint</a>
+            </div>
+            <div class="offering-card">
+                <div class="emoji">💆</div>
+                <h3>90 Minute Integrated Session</h3>
+                <div class="price">$222</div>
+                <p>Bodywork, energy medicine, alchemy, intuitive healing. All the things.</p>
+                <a href="https://square.link/u/jGBu81PX" class="btn" target="_blank">Book Your Session</a>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -646,6 +1005,20 @@
                 <div class="price">$888</div>
                 <p>Book reading, signing, live experience. Story, truth, transformation. Laughter, wisdom, raw honesty. Community healing, connection.</p>
                 <a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Reserve</a>
+            </div>
+            <div class="offering-card" style="background: linear-gradient(145deg, rgba(255,248,231,0.1), rgba(245,230,211,0.08)); border-color: rgba(212,196,176,0.4);">
+                <div class="emoji">💌</div>
+                <h3>Send Me a Love Letter</h3>
+                <div class="price" style="color: #D4A574;">Free</div>
+                <p>Questions, collaboration, just want to connect? I read every message.</p>
+                <a href="/cdn-cgi/l/email-protection#ff929e9898969a929e86919acecececebf98929e9693d19c9092" class="btn" style="background: linear-gradient(135deg, #D4A574, #C19660);">Write to Me</a>
+            </div>
+            <div class="offering-card" style="background: linear-gradient(145deg, rgba(173,216,230,0.15), rgba(135,206,250,0.08)); border-color: rgba(135,206,250,0.4);">
+                <div class="emoji">🌀</div>
+                <h3>Share This Page</h3>
+                <div class="price" style="color: #87CEEB;">Spread the Light</div>
+                <p>Know someone who needs healing, guidance, or justice support? Share the love.</p>
+                <a href="javascript:void(0);" class="btn" style="background: linear-gradient(135deg, #87CEEB, #6BB3D9);" onclick="copyPageLink(); return false;">Share</a>
             </div>
         </div>
     </div>
@@ -713,6 +1086,32 @@
 
 <div class="divider"></div>
 
+<!-- SHOP -->
+<section class="section shop-section" id="shop">
+    <div class="container">
+        <h2>🛍️ Shop</h2>
+        <p class="section-subtitle">Sacred tools & treasures</p>
+        <div class="offerings-grid" style="max-width: 700px; margin: 0 auto;">
+            <div class="offering-card">
+                <div class="emoji">🃏</div>
+                <h3>The Maggie Way Oracle Deck</h3>
+                <div class="price">Coming Soon</div>
+                <p>The complete 19-domain oracle deck. Sacred geometry meets intuitive guidance.</p>
+                <span class="btn" style="opacity: 0.6; cursor: default;">Coming Soon</span>
+            </div>
+            <div class="offering-card">
+                <div class="emoji">📿</div>
+                <h3>Soul-Lit Merchandise</h3>
+                <div class="price">Shop Now</div>
+                <p>Wear your light. Sacred apparel and accessories for healers and lightworkers.</p>
+                <a href="https://maggiemayne.carrd.co" class="btn btn-gold" target="_blank">Browse</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- JUSTICE WITHOUT LIMITS -->
 <section class="section justice-section" id="justice">
     <div class="container">
@@ -772,24 +1171,15 @@
 
 <div class="divider"></div>
 
-<!-- PINK REVOLUTION -->
-<section class="revolution-section" id="revolution">
-    <div class="revolution-box">
-        <h3>💗🔥 The Pink Revolution</h3>
-        <p>Divine Feminine meets Divine Masculine. Sacred architecture for conscious creators. Part of the overkor-tek movement.</p>
-        <a href="https://github.com/overkor-tek" class="partner-link" target="_blank">🔥 Meet D REBEL →</a>
-    </div>
-</section>
-
 <!-- LOVE LETTER -->
 <div class="love-letter">
-    <a href="mailto:MaggieMayne1111@gmail.com">💌 Send Me a Love Letter</a>
+    <a href="/cdn-cgi/l/email-protection#d5b8b4b2b2bcb0b8b4acbbb0e4e4e4e495b2b8b4bcb9fbb6bab8">💌 Send Me a Love Letter</a>
 </div>
 
 <footer>
     <p class="mantra">HEALERS GOING FIRST™</p>
-    <p>© 2025 Maggie Mayne · Soul-Lit™ · The Maggie Way™</p>
-    <p style="margin-top: 0.5rem;"><a href="mailto:MaggieMayne1111@gmail.com">MaggieMayne1111@gmail.com</a></p>
+    <p>Soul Architecture™ by Maggie Mayne</p>
+    <p style="margin-top: 0.5rem;"><a href="mailto:maggiemayne1111@gmail.com">maggiemayne1111@gmail.com</a></p>
 </footer>
 
 <script>
@@ -924,8 +1314,10 @@ const domains = {
         archetype: "The Songstress / Sound Healer",
         element: "Aether",
         zodiac: "Libra",
-        description: "Sound healing. Crystal bowls, tuning forks, frequency medicine.",
-        offerings: []
+        description: "Sound healing and music. Crystal bowls, tuning forks, frequency medicine.",
+        offerings: [
+            { name: "🎵 Overkill Kulture (D's Music)", price: "Listen", link: "https://youtu.be/cVgLQEDysq4?si=7IVy4rs3jmohWUpA", listen: true }
+        ]
     },
     11: {
         name: "Bridge",
@@ -1026,7 +1418,11 @@ function showDomain(n) {
             o += '<div class="offering-item">';
             o += '<span class="offering-name">' + x.name + '</span>';
             o += '<span class="offering-price">' + x.price + '</span>';
-            o += '<a href="' + x.link + '" class="offering-btn' + (x.amazon ? ' amazon' : '') + '" target="_blank">' + (x.amazon ? 'Amazon' : 'Book') + '</a>';
+            let btnClass = 'offering-btn';
+            let btnText = 'Book';
+            if (x.amazon) { btnClass += ' amazon'; btnText = 'Amazon'; }
+            if (x.listen) { btnClass += ' listen'; btnText = 'Listen'; }
+            o += '<a href="' + x.link + '" class="' + btnClass + '" target="_blank">' + btnText + '</a>';
             o += '</div>';
         });
         o += '</div>';
@@ -1049,9 +1445,17 @@ function closePanel() {
     document.getElementById('infoPanel').classList.remove('active');
 }
 
+function copyPageLink() {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+        alert('Link copied! Share it with someone who needs it. 💗');
+    }).catch(function() {
+        prompt('Copy this link:', window.location.href);
+    });
+}
+
 document.addEventListener('click', function(e) {
     const p = document.getElementById('infoPanel');
-    if (p.classList.contains('active') && !p.contains(e.target) && !e.target.closest('.domain-group')) {
+    if (p && p.classList.contains('active') && !p.contains(e.target) && !e.target.closest('.domain-group')) {
         closePanel();
     }
 });
