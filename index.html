@@ -3012,7 +3012,11 @@ function showDomain(n) {
         teaching +
         exercise +
         o;
-    p.classList.add('visible');
+    p.classList.add('active');
+}
+
+function closePanel() {
+    document.getElementById('infoPanel').classList.remove('active');
 }
 
 // Initialize first domain on load
