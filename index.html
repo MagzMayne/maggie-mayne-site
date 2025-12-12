@@ -688,17 +688,330 @@
         footer p { font-size: 0.8rem; color: rgba(255,248,240,0.5); }
         footer a { color: var(--gold); text-decoration: none; }
         
-        /* Responsive */
+        /* Library Nav Tab */
+        nav a.library-tab {
+            background: linear-gradient(135deg, rgba(147, 112, 219, 0.3), rgba(138, 43, 226, 0.3));
+            border: 1px solid rgba(147, 112, 219, 0.5);
+            color: #E6E6FA;
+        }
+        nav a.library-tab:hover {
+            background: rgba(147, 112, 219, 0.45);
+            transform: translateY(-2px);
+        }
+        
+        /* Protocols Nav Tab */
+        nav a.protocols-tab {
+            background: linear-gradient(135deg, rgba(32, 178, 170, 0.3), rgba(0, 139, 139, 0.3));
+            border: 1px solid rgba(32, 178, 170, 0.5);
+            color: #AFEEEE;
+        }
+        nav a.protocols-tab:hover {
+            background: rgba(32, 178, 170, 0.45);
+            transform: translateY(-2px);
+        }
+        
+        /* Library Section */
+        .library-section {
+            background: linear-gradient(180deg, rgba(147, 112, 219, 0.05) 0%, transparent 100%);
+        }
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .library-card {
+            background: rgba(147, 112, 219, 0.08);
+            border: 1px solid rgba(147, 112, 219, 0.25);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .library-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(147, 112, 219, 0.5);
+            box-shadow: 0 10px 30px rgba(147, 112, 219, 0.2);
+        }
+        .library-card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .library-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #E6E6FA;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .library-card p {
+            color: rgba(255, 248, 240, 0.75);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .library-card .topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .library-card .topic-tag {
+            background: rgba(147, 112, 219, 0.2);
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: #DDA0DD;
+        }
+        
+        /* Protocols Section */
+        .protocols-section {
+            background: linear-gradient(180deg, rgba(32, 178, 170, 0.05) 0%, transparent 100%);
+        }
+        .protocols-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .protocol-card {
+            background: rgba(32, 178, 170, 0.08);
+            border: 1px solid rgba(32, 178, 170, 0.25);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .protocol-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(32, 178, 170, 0.5);
+            box-shadow: 0 10px 30px rgba(32, 178, 170, 0.2);
+        }
+        .protocol-card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .protocol-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #AFEEEE;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .protocol-card .frequency {
+            color: #20B2AA;
+            font-size: 0.8rem;
+            font-family: 'Cinzel', serif;
+            margin-bottom: 0.75rem;
+        }
+        .protocol-card p {
+            color: rgba(255, 248, 240, 0.75);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .protocol-card .protocol-steps {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(32, 178, 170, 0.2);
+        }
+        .protocol-card .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: rgba(255, 248, 240, 0.8);
+        }
+        .protocol-card .step-num {
+            background: rgba(32, 178, 170, 0.3);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+        
+        /* Panel Teaching & Exercise Styles */
+        .panel-teaching {
+            background: rgba(255, 105, 180, 0.1);
+            border-left: 3px solid var(--pink);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: rgba(255, 248, 240, 0.85);
+            line-height: 1.7;
+        }
+        .panel-exercise {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 3px solid var(--gold);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .panel-exercise h5 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .panel-exercise p {
+            color: rgba(255, 248, 240, 0.85);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Blog Nav Tab */
+        nav a.blog-tab {
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.3), rgba(255, 140, 0, 0.3));
+            border: 1px solid rgba(255, 165, 0, 0.5);
+            color: #FFE4B5;
+        }
+        nav a.blog-tab:hover {
+            background: rgba(255, 165, 0, 0.45);
+            transform: translateY(-2px);
+        }
+        
+        /* Blog Section */
+        .blog-section {
+            background: linear-gradient(180deg, rgba(255, 165, 0, 0.05) 0%, transparent 100%);
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .blog-card {
+            background: rgba(255, 165, 0, 0.08);
+            border: 1px solid rgba(255, 165, 0, 0.25);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 165, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.2);
+        }
+        .blog-card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .blog-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #FFE4B5;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .blog-card p {
+            color: rgba(255, 248, 240, 0.75);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .blog-card .read-more {
+            color: #FFA500;
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+        }
+        .blog-card .read-more:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive - Tablet */
         @media (max-width: 768px) {
-            nav { gap: 0.75rem; padding: 0.75rem 1rem; }
-            nav a { font-size: 0.65rem; letter-spacing: 0.08em; }
+            nav { 
+                gap: 0.5rem; 
+                padding: 0.75rem 1rem; 
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav a { 
+                font-size: 0.6rem; 
+                letter-spacing: 0.05em; 
+                padding: 0.3rem 0.5rem;
+            }
+            nav a.love-letter-nav {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.8rem;
+                margin-top: 0.25rem;
+            }
             .header { padding: 5.5rem 1.5rem 1.5rem; }
-            .legend { gap: 1rem; }
+            .header h1 { font-size: 2.2rem; }
+            .header .subtitle { font-size: 0.95rem; }
+            .header .titles { gap: 0.4rem; }
+            .header .title-tag { 
+                font-size: 0.7rem; 
+                padding: 0.3rem 0.6rem;
+            }
+            .header .intro { font-size: 1.1rem; }
+            .social-section { padding: 1rem; }
+            .social-links { gap: 0.5rem; }
+            .social-links a { font-size: 0.75rem; padding: 0.4rem 0.75rem; }
+            .legend { gap: 0.75rem; }
             .legend-item { font-size: 0.7rem; }
             .flower-container { max-width: 100%; }
             .domain-emoji { font-size: 14px; }
             .domain-label { font-size: 5px; }
-            .section { padding: 2rem 1.5rem; }
+            .section { padding: 2rem 1rem; }
+            .offerings-grid { gap: 1rem; }
+            .offering-card { padding: 1rem; }
+            .offering-card .emoji { font-size: 1.5rem; }
+            .offering-card h3 { font-size: 1rem; }
+            .offering-card .price { font-size: 1.1rem; }
+            .offering-card p { font-size: 0.8rem; }
+            .books-grid { gap: 0.75rem; }
+            .book-card { padding: 0.75rem; }
+            .book-card h4 { font-size: 0.85rem; }
+            .info-panel { 
+                width: 95%; 
+                padding: 1.5rem; 
+                max-height: 80vh;
+            }
+            .panel-emoji { font-size: 2rem; }
+            .panel-title { font-size: 1.2rem; }
+            .offering-item { 
+                flex-direction: column; 
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+        
+        /* Responsive - Mobile Small */
+        @media (max-width: 480px) {
+            nav { 
+                gap: 0.35rem; 
+                padding: 0.5rem 0.75rem; 
+            }
+            nav a { 
+                font-size: 0.55rem; 
+                padding: 0.25rem 0.4rem;
+            }
+            nav a.love-letter-nav {
+                font-size: 0.6rem;
+                padding: 0.35rem 0.6rem;
+            }
+            .header { padding: 5rem 1rem 1rem; }
+            .header h1 { font-size: 1.8rem; }
+            .header .subtitle { font-size: 0.85rem; }
+            .header .title-tag { 
+                font-size: 0.6rem; 
+                padding: 0.25rem 0.5rem;
+            }
+            .header .intro { font-size: 1rem; line-height: 1.6; }
+            .flower-section { padding: 1rem; min-height: 400px; }
+            .domain-emoji { font-size: 12px; }
+            .domain-label { font-size: 4px; }
+            .section { padding: 1.5rem 1rem; }
+            h2 { font-size: 1.4rem; }
+            .section-subtitle { font-size: 0.85rem; }
+            .offerings-grid { 
+                grid-template-columns: 1fr; 
+                gap: 0.75rem;
+            }
+            .info-panel { 
+                width: 98%; 
+                padding: 1rem; 
+            }
+            .panel-offerings h4 { font-size: 0.85rem; }
+            .events-section { padding: 1rem; }
+            .events-quote { font-size: 1rem; }
+            .events-date { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -709,11 +1022,14 @@
 <nav>
     <a href="#flower">Sacred Map</a>
     <a href="#offerings">Offerings</a>
+    <a href="#library" class="library-tab">Library</a>
+    <a href="#protocols" class="protocols-tab">Protocols</a>
+    <a href="#blog" class="blog-tab">Blog</a>
     <a href="#books">Books</a>
     <a href="#shop">Shop</a>
     <a href="#justice" class="justice-tab">Justice</a>
     <a href="#garden">Garden</a>
-    <a href="/cdn-cgi/l/email-protection#a5c8c4c2c2ccc0c8c4dccbc094949494e5c2c8c4ccc98bc6cac8" class="love-letter-nav">💌 Send Me a Love Letter</a>
+    <a href="mailto:maggiemayne1111@gmail.com" class="love-letter-nav">💌 Send Me a Love Letter</a>
 </nav>
 
 <div class="header">
@@ -1011,15 +1327,329 @@
                 <h3>Send Me a Love Letter</h3>
                 <div class="price" style="color: #D4A574;">Free</div>
                 <p>Questions, collaboration, just want to connect? I read every message.</p>
-                <a href="/cdn-cgi/l/email-protection#ff929e9898969a929e86919acecececebf98929e9693d19c9092" class="btn" style="background: linear-gradient(135deg, #D4A574, #C19660);">Write to Me</a>
+                <a href="mailto:maggiemayne1111@gmail.com" class="btn" style="background: linear-gradient(135deg, #D4A574, #C19660);">Write to Me</a>
             </div>
             <div class="offering-card" style="background: linear-gradient(145deg, rgba(173,216,230,0.15), rgba(135,206,250,0.08)); border-color: rgba(135,206,250,0.4);">
                 <div class="emoji">🌀</div>
                 <h3>Share This Page</h3>
                 <div class="price" style="color: #87CEEB;">Spread the Light</div>
                 <p>Know someone who needs healing, guidance, or justice support? Share the love.</p>
-                <a href="javascript:void(0);" class="btn" style="background: linear-gradient(135deg, #87CEEB, #6BB3D9);" onclick="copyPageLink(); return false;">Share</a>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;">
+                    <a href="javascript:void(0);" class="btn" style="background: linear-gradient(135deg, #87CEEB, #6BB3D9); font-size: 0.7rem; padding: 0.4rem 0.8rem;" onclick="navigator.clipboard.writeText('https://magzmayne.github.io/maggie-mayne-site/'); alert('Link copied! 💗');">📋 Copy Link</a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://magzmayne.github.io/maggie-mayne-site/" target="_blank" class="btn" style="background: linear-gradient(135deg, #4267B2, #5b7bd5); font-size: 0.7rem; padding: 0.4rem 0.8rem;">📘 Facebook</a>
+                    <a href="sms:?body=Check%20out%20Maggie%20Mayne%27s%20Soul%20Architecture%3A%20https%3A%2F%2Fmagzmayne.github.io%2Fmaggie-mayne-site%2F" class="btn" style="background: linear-gradient(135deg, #25D366, #128C7E); font-size: 0.7rem; padding: 0.4rem 0.8rem;">💬 Text</a>
+                    <a href="mailto:maggiemayne1111@gmail.com" class="btn" style="background: linear-gradient(135deg, #D4A574, #C19660); font-size: 0.7rem; padding: 0.4rem 0.8rem;">✉️ Email</a>
+                </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LIBRARY -->
+<section class="section library-section" id="library">
+    <h2>📚 THE MAGGIE WAY LIBRARY</h2>
+    <p class="section-subtitle">Sacred teachings organized by theme. Wisdom from 22+ years of healing work.</p>
+    
+    <div class="library-grid">
+        <div class="library-card">
+            <div class="card-icon">🔥</div>
+            <h3>Show Up Loud</h3>
+            <p>The art of speaking your truth, embracing authenticity, and refusing to shrink. Your voice is your wand.</p>
+            <div class="topics">
+                <span class="topic-tag">Authenticity</span>
+                <span class="topic-tag">Voice</span>
+                <span class="topic-tag">Truth</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">✨</div>
+            <h3>Massage = MAGIC</h3>
+            <p>The ancient art of healing touch. How bodywork transforms body, mind, emotions, and spirit.</p>
+            <div class="topics">
+                <span class="topic-tag">Bodywork</span>
+                <span class="topic-tag">Touch</span>
+                <span class="topic-tag">Healing</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">🧭</div>
+            <h3>Trust Your Intuition</h3>
+            <p>Your inner compass never lies. Learn to hear, trust, and follow the sacred whispers of your soul.</p>
+            <div class="topics">
+                <span class="topic-tag">Intuition</span>
+                <span class="topic-tag">Inner Knowing</span>
+                <span class="topic-tag">Discernment</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">💎</div>
+            <h3>Self Care is Your #1 Job</h3>
+            <p>The foundation of all healing. Hydration, rest, nourishment, movement, boundaries, and joy.</p>
+            <div class="topics">
+                <span class="topic-tag">Self Care</span>
+                <span class="topic-tag">Foundation</span>
+                <span class="topic-tag">Ritual</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">🌊</div>
+            <h3>Love Your Lymph</h3>
+            <p>Your body's river system. How lymphatic flow affects immunity, emotions, energy, and clarity.</p>
+            <div class="topics">
+                <span class="topic-tag">Lymphatic</span>
+                <span class="topic-tag">Detox</span>
+                <span class="topic-tag">Flow</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">🧠</div>
+            <h3>Cranial Sacral Therapy</h3>
+            <p>Gentle hands on healing for the nervous system. The rhythm of cerebrospinal fluid and deep release.</p>
+            <div class="topics">
+                <span class="topic-tag">CST</span>
+                <span class="topic-tag">Nervous System</span>
+                <span class="topic-tag">Rhythm</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">⚡</div>
+            <h3>Energy Work & Reiki</h3>
+            <p>Universal life force energy. Chakras, energy centers, and the art of clearing and balancing.</p>
+            <div class="topics">
+                <span class="topic-tag">Reiki</span>
+                <span class="topic-tag">Chakras</span>
+                <span class="topic-tag">Energy</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">🌿</div>
+            <h3>Oils & Essences</h3>
+            <p>Plant medicine for the soul. Essential oils and flower essences for emotional and energetic support.</p>
+            <div class="topics">
+                <span class="topic-tag">Aromatherapy</span>
+                <span class="topic-tag">Flower Essences</span>
+                <span class="topic-tag">Plant Medicine</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">🎵</div>
+            <h3>Sound Healing</h3>
+            <p>Vibration is everything. Crystal bowls, tuning forks, Solfeggio frequencies, and the medicine of sound.</p>
+            <div class="topics">
+                <span class="topic-tag">Sound</span>
+                <span class="topic-tag">Frequency</span>
+                <span class="topic-tag">Vibration</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">💔</div>
+            <h3>Trauma & The Body</h3>
+            <p>Your body remembers what the mind tries to forget. Understanding and healing complex trauma.</p>
+            <div class="topics">
+                <span class="topic-tag">Trauma</span>
+                <span class="topic-tag">Somatic</span>
+                <span class="topic-tag">CPTSD</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">🚧</div>
+            <h3>Boundaries</h3>
+            <p>Sacred structures that define where you end and others begin. Protection without walls.</p>
+            <div class="topics">
+                <span class="topic-tag">Boundaries</span>
+                <span class="topic-tag">Protection</span>
+                <span class="topic-tag">Self Respect</span>
+            </div>
+        </div>
+        <div class="library-card">
+            <div class="card-icon">🦋</div>
+            <h3>The Glow Up Gets Lonely</h3>
+            <p>What happens when you rise and not everyone can meet you there. The cost and gift of transformation.</p>
+            <div class="topics">
+                <span class="topic-tag">Growth</span>
+                <span class="topic-tag">Transformation</span>
+                <span class="topic-tag">Becoming</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROTOCOLS -->
+<section class="section protocols-section" id="protocols">
+    <h2>🌀 DAILY PROTOCOLS</h2>
+    <p class="section-subtitle">Practical exercises and rituals from The Maggie Way. Do the stuff that changes everything.</p>
+    
+    <div class="protocols-grid">
+        <div class="protocol-card">
+            <div class="card-icon">💧</div>
+            <h3>Hydration Protocol</h3>
+            <div class="frequency">Daily Foundation</div>
+            <p>Water is LIFE. True cellular hydration supports every system in your body.</p>
+            <div class="protocol-steps">
+                <div class="step"><span class="step-num">1</span> Start your day with water before anything else</div>
+                <div class="step"><span class="step-num">2</span> Increase intake slowly over 90 days</div>
+                <div class="step"><span class="step-num">3</span> Add minerals, herbs, or lemon</div>
+                <div class="step"><span class="step-num">4</span> Set an affirmation as you drink</div>
+            </div>
+        </div>
+        <div class="protocol-card">
+            <div class="card-icon">🌬️</div>
+            <h3>Find Breath Protocol</h3>
+            <div class="frequency">Daily Practice</div>
+            <p>Breath is the bridge between body and soul. Return to center with every breath.</p>
+            <div class="protocol-steps">
+                <div class="step"><span class="step-num">1</span> Slow, deep inhale through nose</div>
+                <div class="step"><span class="step-num">2</span> Extend exhale longer than inhale</div>
+                <div class="step"><span class="step-num">3</span> Hold at the top when comfortable</div>
+                <div class="step"><span class="step-num">4</span> Notice thoughts, feelings, sensations</div>
+            </div>
+        </div>
+        <div class="protocol-card">
+            <div class="card-icon">🏃</div>
+            <h3>Move Your Magic</h3>
+            <div class="frequency">30 min daily</div>
+            <p>Movement clears stuck energy. Dance, walk, stretch, shake. All of it counts.</p>
+            <div class="protocol-steps">
+                <div class="step"><span class="step-num">1</span> Choose movement that feels joyful</div>
+                <div class="step"><span class="step-num">2</span> Start your day with it when possible</div>
+                <div class="step"><span class="step-num">3</span> Dance in your kitchen</div>
+                <div class="step"><span class="step-num">4</span> Move like you love your body</div>
+            </div>
+        </div>
+        <div class="protocol-card">
+            <div class="card-icon">🌳</div>
+            <h3>Go Outside Already</h3>
+            <div class="frequency">Daily</div>
+            <p>Nature heals. Get your feet in the dirt, the grass, the water.</p>
+            <div class="protocol-steps">
+                <div class="step"><span class="step-num">1</span> Step outside every morning</div>
+                <div class="step"><span class="step-num">2</span> Engage all your senses</div>
+                <div class="step"><span class="step-num">3</span> Go barefoot when possible</div>
+                <div class="step"><span class="step-num">4</span> Let the trees witness your healing</div>
+            </div>
+        </div>
+        <div class="protocol-card">
+            <div class="card-icon">😴</div>
+            <h3>Rest Protocol</h3>
+            <div class="frequency">8 hrs nightly</div>
+            <p>Rest is medicine. Your body repairs, integrates, and heals during sleep.</p>
+            <div class="protocol-steps">
+                <div class="step"><span class="step-num">1</span> Create a sleep schedule</div>
+                <div class="step"><span class="step-num">2</span> Make your bedroom a sanctuary</div>
+                <div class="step"><span class="step-num">3</span> Avoid screens before bed</div>
+                <div class="step"><span class="step-num">4</span> Choose rest without guilt</div>
+            </div>
+        </div>
+        <div class="protocol-card">
+            <div class="card-icon">🎯</div>
+            <h3>Intention Setting</h3>
+            <div class="frequency">New Moon / Daily</div>
+            <p>Your intention is the seed. Figure out what you really want.</p>
+            <div class="protocol-steps">
+                <div class="step"><span class="step-num">1</span> Get clear on what you desire</div>
+                <div class="step"><span class="step-num">2</span> Write it down</div>
+                <div class="step"><span class="step-num">3</span> Visualize having achieved it</div>
+                <div class="step"><span class="step-num">4</span> Speak affirmations aloud</div>
+            </div>
+        </div>
+        <div class="protocol-card">
+            <div class="card-icon">🌕</div>
+            <h3>Clearing & Release</h3>
+            <div class="frequency">Full Moon</div>
+            <p>Let go of what no longer serves. Release to receive.</p>
+            <div class="protocol-steps">
+                <div class="step"><span class="step-num">1</span> Identify what's ready to release</div>
+                <div class="step"><span class="step-num">2</span> Write it down</div>
+                <div class="step"><span class="step-num">3</span> Burn, bury, or tear it up</div>
+                <div class="step"><span class="step-num">4</span> Breathe out, let it go</div>
+            </div>
+        </div>
+        <div class="protocol-card">
+            <div class="card-icon">🧘</div>
+            <h3>Return to You</h3>
+            <div class="frequency">As needed</div>
+            <p>Come home to yourself. Call your energy back.</p>
+            <div class="protocol-steps">
+                <div class="step"><span class="step-num">1</span> Pause. Take slow breaths.</div>
+                <div class="step"><span class="step-num">2</span> Feel your feet on the ground</div>
+                <div class="step"><span class="step-num">3</span> Hand on heart. What's your intention?</div>
+                <div class="step"><span class="step-num">4</span> Ask: Is this even mine?</div>
+            </div>
+        </div>
+        <div class="protocol-card">
+            <div class="card-icon">💖</div>
+            <h3>Be Nicer to Yourself</h3>
+            <div class="frequency">Always</div>
+            <p>Treat yourself with the kindness you'd offer a dear friend.</p>
+            <div class="protocol-steps">
+                <div class="step"><span class="step-num">1</span> Catch self criticism</div>
+                <div class="step"><span class="step-num">2</span> Ask: Would I say this to someone I love?</div>
+                <div class="step"><span class="step-num">3</span> Replace with truth</div>
+                <div class="step"><span class="step-num">4</span> Wink at yourself in the mirror</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BLOG -->
+<section class="section blog-section" id="blog">
+    <h2>✍️ THE MAGGIE WAY BLOG</h2>
+    <p class="section-subtitle">Teachings, stories, and wisdom from the path. Click to read.</p>
+    
+    <div class="blog-grid">
+        <div class="blog-card">
+            <div class="card-icon">🔥</div>
+            <h3>Show Up Loud, Speak Your Truth</h3>
+            <p>The art of speaking your truth, embracing authenticity, and refusing to shrink. How a pedicure changed everything.</p>
+            <a href="blog/01-show-up-loud.html" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card">
+            <div class="card-icon">💧</div>
+            <h3>Water is LIFE</h3>
+            <p>True cellular hydration supports every system in your body. The 90 day commitment that will change your entire life.</p>
+            <a href="blog/02-water-is-life.md" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card">
+            <div class="card-icon">🚧</div>
+            <h3>You HAVE to HAVE Boundaries</h3>
+            <p>Boundaries are not walls. They are bridges. Sacred structures that define where you end and others begin.</p>
+            <a href="blog/03-boundaries.md" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card">
+            <div class="card-icon">💔</div>
+            <h3>Your Body Remembers</h3>
+            <p>Trauma leaves fingerprints on your nervous system. Understanding and healing complex trauma through the body.</p>
+            <a href="blog/04-trauma-and-the-body.md" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card">
+            <div class="card-icon">🦋</div>
+            <h3>The Glow Up Gets Lonely</h3>
+            <p>What happens when you rise and not everyone can meet you there. The cost and gift of transformation.</p>
+            <a href="blog/05-glow-up-gets-lonely.md" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card">
+            <div class="card-icon">✨</div>
+            <h3>Massage = MAGIC</h3>
+            <p>The ancient art of healing touch. How bodywork transforms body, mind, emotions, and spirit across cultures and centuries.</p>
+            <a href="blog/06-massage-is-magic.md" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card">
+            <div class="card-icon">💎</div>
+            <h3>Self Care is Your #1 Job</h3>
+            <p>The foundation of all healing. Hydration, rest, nourishment, movement, boundaries, and joy. Every act is a gift to your future self.</p>
+            <a href="blog/07-self-care-is-your-job.md" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card">
+            <div class="card-icon">🧭</div>
+            <h3>Trust Your Intuition</h3>
+            <p>Your inner compass never lies. There's not a single story where I followed my intuition and it led me somewhere wrong.</p>
+            <a href="blog/08-trust-your-intuition.md" class="read-more">Read More →</a>
         </div>
     </div>
 </section>
@@ -1173,7 +1803,7 @@
 
 <!-- LOVE LETTER -->
 <div class="love-letter">
-    <a href="/cdn-cgi/l/email-protection#d5b8b4b2b2bcb0b8b4acbbb0e4e4e4e495b2b8b4bcb9fbb6bab8">💌 Send Me a Love Letter</a>
+    <a href="mailto:maggiemayne1111@gmail.com">💌 Send Me a Love Letter</a>
 </div>
 
 <footer>
@@ -1204,11 +1834,15 @@ const domains = {
         archetype: "The Queen",
         element: "Fire",
         zodiac: "Leo",
-        description: "Soul-Lit™ brand core. Where all healing begins.",
+        chakra: "Heart Chakra (Anahata)",
+        law: "Law of Love",
+        description: "Soul Lit™ brand core. Where all healing begins. The Maggie Way starts here, in the center of who you are.",
+        teaching: "The purpose of human experience is to evolve and develop consciousness, to be filled with wisdom and love. We came here to learn two things: to be happy within ourselves and to love our neighbor as ourselves. Love is the source of everything that transpires, and understanding it frees us from all events.",
+        exercise: "Place your hand on your heart. Take a deep breath. Ask yourself: What does my heart need right now? Listen. Trust what comes. Remember: you are your own BEST healer.",
         offerings: [
             { name: "Oracle Card Pull", price: "$33", link: "https://square.link/u/dIIrQUzO" },
-            { name: "30-Min Remote Session", price: "$111", link: "https://square.link/u/n9WztX2P" },
-            { name: "90-Min Soul-Lit Session", price: "$222", link: "https://square.link/u/jGBu81PX" },
+            { name: "30 Min Remote Session", price: "$111", link: "https://square.link/u/n9WztX2P" },
+            { name: "90 Min Soul Lit Session", price: "$222", link: "https://square.link/u/jGBu81PX" },
             { name: "Feed Your Soul (7 guests)", price: "$444", link: "https://square.link/u/gWrM6N89" },
             { name: "Seasonal Alignment", price: "$444", link: "https://square.link/u/pOUwWYB5" },
             { name: "An Evening with Maggie Mayne", price: "$888", link: "https://square.link/u/9jqMqRSU" }
@@ -1220,9 +1854,13 @@ const domains = {
         archetype: "The High Priestess",
         element: "Air",
         zodiac: "Aquarius",
+        chakra: "Third Eye (Ajna)",
+        law: "Law of Correspondence",
         description: "The Maggie Way™ framework. Consciousness expansion and sacred knowledge.",
+        teaching: "Every situation is a learning experience. Every circumstance is generated by oneself. We are always exactly where we are meant to be. Your brain has absorbed a lot of static over the years, but your soul knows better. We can't stop suffering unless we accept; we can't accept what we haven't understood.",
+        exercise: "When negative thoughts arise, catch them. Ask: Is this true? What would my soul say? Replace the lie with truth. Your words are your wand.",
         offerings: [
-            { name: "19-Domain Map Consultation", price: "$444", link: "https://square.link/u/9jqMqRSU" },
+            { name: "19 Domain Map Consultation", price: "$444", link: "https://square.link/u/9jqMqRSU" },
             { name: "Sacred Architecture Deep Study", price: "$333", link: "https://square.link/u/9jqMqRSU" }
         ]
     },
@@ -1232,10 +1870,14 @@ const domains = {
         archetype: "The Midwife / Sacred Healer",
         element: "Water",
         zodiac: "Cancer",
-        description: "20+ years of bodywork mastery. Touch that transforms.",
+        chakra: "Sacral Chakra (Svadhisthana)",
+        law: "Law of Nature",
+        description: "22+ years of bodywork mastery. Touch that transforms. Massage = MAGIC.",
+        teaching: "The Law of Nature governs our physical vessel. Every living being has an instinctive sense of the Law. Touch stimulates the parasympathetic nervous system, promoting relaxation and healing. The body holds wisdom. Let it speak. The best time to get a massage is before you need one.",
+        exercise: "Notice where you hold tension right now. Breathe into that space. Place your hands there if you can. Send love and warmth. Your body is always communicating. Are you listening?",
         offerings: [
-            { name: "30-Min Remote Session", price: "$111", link: "https://square.link/u/n9WztX2P" },
-            { name: "90-Min Soul-Lit Session", price: "$222", link: "https://square.link/u/jGBu81PX" }
+            { name: "30 Min Remote Session", price: "$111", link: "https://square.link/u/n9WztX2P" },
+            { name: "90 Min Soul Lit Session", price: "$222", link: "https://square.link/u/jGBu81PX" }
         ]
     },
     4: {
@@ -1244,7 +1886,11 @@ const domains = {
         archetype: "The Oracle / Divine Seer",
         element: "Aether",
         zodiac: "Pisces",
-        description: "Oracle readings and intuitive guidance. Messages from source.",
+        chakra: "Third Eye + Crown",
+        law: "Law of Warning",
+        description: "Oracle readings and intuitive guidance. Messages from source. Trust yourself and follow your intuition.",
+        teaching: "Nothing happens in our lives that has not been previously announced. Life warns us through subtle signs and sequences. There is not a single story where I followed my intuition and it led me somewhere wrong. The Law of Warning is designed to help us avoid futile suffering.",
+        exercise: "Close your eyes. Ask your inner compass: What direction feels true for me right now? Don't think the answer. Feel it. Notice where in your body your YES lives.",
         offerings: [
             { name: "Oracle Card Pull", price: "$33", link: "https://square.link/u/dIIrQUzO" }
         ]
@@ -1255,7 +1901,11 @@ const domains = {
         archetype: "The Wise Woman / Teacher",
         element: "Earth",
         zodiac: "Virgo",
-        description: "Published author. 9 books and counting.",
+        chakra: "Throat Chakra (Vishuddha)",
+        law: "Law of Sharing",
+        description: "Published author. 9 books and counting. Words as medicine. Stories as healing.",
+        teaching: "The appropriate information makes it possible to resolve all human problems. We should manage it as a loving service. When we recognize that we don't know, we can set about learning. When we share what we have verified in our own experience, it is a service of love.",
+        exercise: "What stories are you carrying that need to be told? What wisdom lives in you that the world needs? Write it down. Share your magic. Teaching what we know facilitates our own mission.",
         offerings: [
             { name: "Weathering 'They'", price: "Amazon", link: "https://www.amazon.com/Weathering-They-Surviving-Modern-Targeting/dp/B0FNCMKDYR", amazon: true },
             { name: "The Maggie Way", price: "Amazon", link: "https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH", amazon: true },
@@ -1268,7 +1918,11 @@ const domains = {
         archetype: "The Songstress / Creative Voice",
         element: "Fire",
         zodiac: "Sagittarius",
-        description: "The Fridge Song Series. Creative expression as healing.",
+        chakra: "Throat Chakra (Vishuddha)",
+        law: "Law of Manifestation",
+        description: "The Fridge Song Series. Creative expression as healing. Show up LOUD.",
+        teaching: "The Law of Manifestation allows the pre-existing to be manifested. Nothing is created, nothing disappears, all is manifest or unmanifest. When you speak your truth, you create alignment between heart and voice. Holding back creates energetic congestion. Speaking openly releases stagnant energy.",
+        exercise: "Today, say one thing you've been holding back. Speak your truth even if your voice shakes. Your voice is a healing tool, not just for yourself but for others.",
         offerings: [
             { name: "The Fridge Song", price: "Amazon", link: "https://www.amazon.com/FRIDGE-SONG-Maggie-Mayne/dp/B0FBK4HPPF", amazon: true },
             { name: "Red, White & Cool", price: "Amazon", link: "https://www.amazon.com/RED-WHITE-COOL-FRIDGE-Fridge/dp/B0FLDS885M", amazon: true },
@@ -1281,7 +1935,11 @@ const domains = {
         archetype: "The Earth Mother / Gatherer",
         element: "Earth",
         zodiac: "Taurus",
+        chakra: "Heart Chakra (Anahata)",
+        law: "Law of Compensation",
         description: "The Resiliency Garden. Where healers go to bloom. Healers supporting healers.",
+        teaching: "All actions and services entitle us to be compensated. Perfect equilibrium is governed by action and recovery. In every relationship there is a healthy mutual interest in being complementary. Giving without receiving leads to exhaustion. Receiving without giving produces poverty. Build a support system.",
+        exercise: "Who is in your support system right now? Who witnesses you? Who holds space? If you need more support, reach out. Let people love you. Let them show up.",
         offerings: [
             { name: "Founding Member", price: "$222", link: "https://square.link/u/qJQL3qjS" },
             { name: "Support the Garden", price: "Any Amount", link: "https://square.link/u/4Yna5M2G" }
@@ -1293,7 +1951,11 @@ const domains = {
         archetype: "The High Priestess / God Source",
         element: "Spirit",
         zodiac: "—",
-        description: "Divine connection. Ascended masters. The light that ignites.",
+        chakra: "Crown Chakra (Sahasrara)",
+        law: "Law of Love (Source)",
+        description: "Divine connection. Ascended masters. The light that ignites. Connection to something greater.",
+        teaching: "Love is the source of everything that transpires. In order to confer on children all the information that exists in the Absolute, the Creator creates the Universe as their school. Everything which occurs in the Universe occurs because of Love. Living in peace and joy is to live in Love.",
+        exercise: "Imagine golden light pouring down through your crown, spiraling through your spine, wrapping your entire nervous system in calm. You are connected. You are held. You are divine.",
         offerings: []
     },
     9: {
@@ -1302,7 +1964,11 @@ const domains = {
         archetype: "The Empress / Prosperity",
         element: "Earth",
         zodiac: "Taurus",
-        description: "Signature experiences. Premium transformation.",
+        chakra: "Root + Sacral Chakras",
+        law: "Law of Generation",
+        description: "Signature experiences. Premium transformation. Abundance consciousness.",
+        teaching: "Everything that happens to us in life we have generated ourselves. At each instant we are building our future. Everything created in our mind manifests in our life. When we understand that nothing can harm us, and that we generate all our circumstances, we can start creating a new life.",
+        exercise: "Ask yourself: What seeds am I sowing today in thought, word, and deed? Plant acceptance, peace, trust, commitment, enthusiasm, and joy. The harvest will be extraordinary.",
         offerings: [
             { name: "Feed Your Soul", price: "$444", link: "https://square.link/u/gWrM6N89" },
             { name: "An Evening with Maggie Mayne", price: "$888", link: "https://square.link/u/9jqMqRSU" }
@@ -1314,7 +1980,11 @@ const domains = {
         archetype: "The Songstress / Sound Healer",
         element: "Aether",
         zodiac: "Libra",
-        description: "Sound healing and music. Crystal bowls, tuning forks, frequency medicine.",
+        chakra: "Throat Chakra (Vishuddha)",
+        law: "Law of Harmony",
+        description: "Sound healing and music. Crystal bowls, tuning forks, frequency medicine. Vibration is everything.",
+        teaching: "Everything that is maintained tends towards equilibrium. The Law of Harmony permits the perfect coordinated functioning of everything that exists. It manifests in all that pleases, attracts, and produces great satisfaction. The key technique for harmony is respect.",
+        exercise: "Listen to the sounds around you right now. What do you hear? Now hum a single note. Feel the vibration in your chest. Sound is medicine. Let it move through you.",
         offerings: [
             { name: "🎵 Overkill Kulture (D's Music)", price: "Listen", link: "https://youtu.be/cVgLQEDysq4?si=7IVy4rs3jmohWUpA", listen: true }
         ]
@@ -1325,7 +1995,11 @@ const domains = {
         archetype: "The Warrior Queen / Justice",
         element: "Air",
         zodiac: "Libra",
-        description: "Justice Without Limits. Civil rights advocacy. Pro se strategy.",
+        chakra: "Solar Plexus (Manipura)",
+        law: "Law of Cause and Effect",
+        description: "Justice Without Limits. Civil rights advocacy. Pro se strategy. Pattern documentation.",
+        teaching: "Everything we do to others will come back to us multiplied. We receive the effect of everything we cause. There are no idle words, thoughts without effect, or deeds without results. Nobody should be judged by their past mistakes, but by their current behaviors.",
+        exercise: "Consider: What patterns am I seeing repeat? What am I putting out into the world? Remember that everything returns multiplied. Plant seeds of justice, truth, and love.",
         offerings: [
             { name: "Pro Se Strategy Session", price: "$111/hr", link: "https://square.link/u/n9WztX2P" },
             { name: "Case Analysis Report", price: "$222", link: "https://square.link/u/jGBu81PX" },
@@ -1338,7 +2012,11 @@ const domains = {
         archetype: "The Poetess / Prophet",
         element: "Aether",
         zodiac: "Gemini",
-        description: "Poetry, prophecy, sacred writing. Words that heal.",
+        chakra: "Throat Chakra (Vishuddha)",
+        law: "Law of Affinity",
+        description: "Poetry, prophecy, sacred writing. Words that heal. Your words are your wand.",
+        teaching: "All beings of similar character tend to convene in the same place. Our personal mental condition creates affinity that attracts what is similar to it. By thinking, we create a mental structure that is in tune with similar minds. The best always associate with the best.",
+        exercise: "What words do you speak most often? Are they words of abundance, joy, peace, and love? Speak as if your words create reality. Because they do.",
         offerings: []
     },
     13: {
@@ -1347,7 +2025,11 @@ const domains = {
         archetype: "The Fire Priestess / Transformer",
         element: "Fire",
         zodiac: "Aries",
-        description: "Justice work. Burning away what no longer serves.",
+        chakra: "Solar Plexus (Manipura)",
+        law: "Law of Evolution",
+        description: "Justice work. Burning away what no longer serves. Transformation through fire.",
+        teaching: "No one can evolve without transforming themselves. The Law of Evolution works by pitting opposites together. There are three characters: 'the bad' (unfeeling), 'the good' (sensitive), and 'the wise' (desensitized). We move from innocence to ignorance to wisdom. Suffering ends at the limit of our ignorance.",
+        exercise: "What is ready to be burned away? What beliefs, patterns, or stories no longer serve you? Write them down. Release them to the flame. Make space for the new.",
         offerings: []
     },
     14: {
@@ -1356,7 +2038,11 @@ const domains = {
         archetype: "The Crystal Keeper / Clarity",
         element: "Earth",
         zodiac: "Capricorn",
-        description: "Crystalline consciousness. Evidence documentation. Clarity.",
+        chakra: "Third Eye (Ajna)",
+        law: "Law of Two (Inquiry)",
+        description: "Crystalline consciousness. Evidence documentation. Clarity through asking.",
+        teaching: "Life always has the answers ready whenever we inquire. The Law of Two manifests through a binary language (yes or no) that is recognized in what is facilitated and what is blocked. The Universe responds to questions asked through action, not inertia.",
+        exercise: "What question do you need answered? Take action toward it. Life will respond with a clear yes (it flows) or no (it blocks). Trust the answer. Give up fighting against 'no.'",
         offerings: []
     },
     15: {
@@ -1365,7 +2051,11 @@ const domains = {
         archetype: "The Water Bearer / Purifier",
         element: "Water",
         zodiac: "Scorpio",
-        description: "Detox and purification. Lymphatic work. Release.",
+        chakra: "Sacral Chakra (Svadhisthana)",
+        law: "Law of Communicating Vessels",
+        description: "Detox and purification. Lymphatic work. Release. Love your lymph.",
+        teaching: "When a person with high energy interacts with those with low energy, vital force flows toward the lower. We must be careful selecting friendships, relationships, businesses, where we live. The biggest energy thief is inside: the ego, which feeds on suffering and ignorance.",
+        exercise: "Ask: Is this even mine? Notice where you're leaking energy. Turn off the tap of feelings that drain you. Protect your vital force. Water is LIFE.",
         offerings: []
     },
     16: {
@@ -1374,7 +2064,11 @@ const domains = {
         archetype: "The Wind Dancer / Life Force",
         element: "Air",
         zodiac: "Gemini",
-        description: "Breathwork. Prana. Life force activation.",
+        chakra: "Heart Chakra (Anahata)",
+        law: "Law of Three",
+        description: "Breathwork. Prana. Life force activation. The bridge between body and soul.",
+        teaching: "The Law of Three allows reasonable perseverance. Make at least three attempts before giving up. If progress is seen, continue. If stagnation or backward movement, desist. This Law streamlines the use of vital energy. Know the difference between perseverance and stubbornness.",
+        exercise: "Slow, deep inhale through nose. Extend exhale longer than inhale. Hold at the top when comfortable. Notice thoughts, feelings, sensations. Breath is the bridge. Return to center.",
         offerings: []
     },
     17: {
@@ -1383,9 +2077,13 @@ const domains = {
         archetype: "The Earth Mother / Physical Vessel",
         element: "Earth",
         zodiac: "Virgo",
-        description: "20+ years massage mastery. The physical vessel.",
+        chakra: "Root Chakra (Muladhara)",
+        law: "Law of Nature",
+        description: "22+ years massage mastery. The physical vessel. Grounding. Self care is your #1 job.",
+        teaching: "Everything that is born, dies. The Law of Nature provides and maintains the bodies of all species. We act within it when we follow our instinct: to generate life, maintain it, and defend it. Instinct knows what, when, and how much to eat. The body is your first home.",
+        exercise: "Feel your feet on the ground. Go outside. Touch the earth. Your body knows what it needs. Are you listening? Self care is not a luxury. It is essential.",
         offerings: [
-            { name: "90-Min Soul-Lit Session", price: "$222", link: "https://square.link/u/jGBu81PX" }
+            { name: "90 Min Soul Lit Session", price: "$222", link: "https://square.link/u/jGBu81PX" }
         ]
     },
     18: {
@@ -1394,7 +2092,11 @@ const domains = {
         archetype: "The Record Keeper / Memory",
         element: "Aether",
         zodiac: "—",
-        description: "Records and documentation. Pattern archives.",
+        chakra: "Crown Chakra (Sahasrara)",
+        law: "Law of Correspondence",
+        description: "Records and documentation. Pattern archives. Everything is recorded.",
+        teaching: "Every situation is a learning experience. All events happen to whom they are meant to happen. We come to life with what we need to live it. Only what needs to happen, happens. In each place only that which must exist and happen does. Nothing happens that is not meant to happen.",
+        exercise: "Look back at your life patterns. What keeps repeating? What is life trying to teach you? The patterns hold the wisdom. Document them. Recognize the Law.",
         offerings: []
     },
     19: {
@@ -1403,7 +2105,11 @@ const domains = {
         archetype: "The Void Priestess / Pure Potential",
         element: "Spirit",
         zodiac: "—",
-        description: "Psychic investigation. Pure potential. The unseen.",
+        chakra: "Crown Chakra (Sahasrara)",
+        law: "Law of Empty Spaces",
+        description: "Psychic investigation. Pure potential. The unseen. Where creation begins.",
+        teaching: "Any empty space tends to become filled with something new. Everything that leaves our lives will be replaced. With the exception of the Absolute, everything is replaceable and nothing is indispensable. We are always accompanied, never alone. Let go of attachments.",
+        exercise: "What needs to leave to make space for the new? By allowing ego thoughts to leave, we open space for wisdom to enter. Release. Trust that the void will fill with exactly what you need.",
         offerings: []
     }
 };
@@ -1427,6 +2133,17 @@ function showDomain(n) {
         });
         o += '</div>';
     }
+    
+    let teaching = '';
+    if (d.teaching) {
+        teaching = '<div class="panel-teaching">' + d.teaching + '</div>';
+    }
+    
+    let exercise = '';
+    if (d.exercise) {
+        exercise = '<div class="panel-exercise"><h5>✨ Practice</h5><p>' + d.exercise + '</p></div>';
+    }
+    
     document.getElementById('panelContent').innerHTML = 
         '<div class="panel-header">' +
             '<div class="panel-emoji">' + d.emoji + '</div>' +
@@ -1436,8 +2153,13 @@ function showDomain(n) {
                 '<span>' + d.element + '</span>' +
                 (d.zodiac !== '—' ? '<span>' + d.zodiac + '</span>' : '') +
             '</div>' +
+            (d.chakra ? '<div class="panel-meta" style="margin-top:0.25rem;color:#E6E6FA;"><span>🔮 ' + d.chakra + '</span></div>' : '') +
+            (d.law ? '<div class="panel-meta" style="margin-top:0.25rem;color:#FFD700;"><span>⚖️ ' + d.law + '</span></div>' : '') +
         '</div>' +
-        '<p class="panel-description">' + d.description + '</p>' + o;
+        '<p class="panel-description">' + d.description + '</p>' +
+        teaching +
+        exercise +
+        o;
     p.classList.add('active');
 }
 
