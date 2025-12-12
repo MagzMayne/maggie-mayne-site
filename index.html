@@ -3012,4 +3012,13 @@ function showDomain(n) {
         teaching +
         exercise +
         o;
-    p.classLis
+    p.classList.add('visible');
+}
+
+// Initialize first domain on load
+document.addEventListener('DOMContentLoaded', function() {
+    showDomain(1);
+});
+</script>
+</body>
+</html>
