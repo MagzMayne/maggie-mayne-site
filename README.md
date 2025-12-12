@@ -1,37 +1,18 @@
-# Maggie Mayne
+# The Maggie Way - Soul Architecture
 
-**Soul-Lit™ · The Maggie Way™ · Justice Without Limits · The Resiliency Garden**
+✨ **Maggie Mayne's holistic healing framework**
 
-Psychic Investigator · Intuitive Lightworker · Spiritual Mentor · Author · Somatic Healer · Human Rights Advocate · Constitutional Law Student · Licensed Massage Therapist
+🌐 **Live Site:** [magzmayne.github.io/maggie-mayne-site](https://magzmayne.github.io/maggie-mayne-site)
 
----
+## About
 
-## 💗 Healers Going First™
+This site contains The Maggie Way system - a comprehensive approach to holistic healing integrating body, mind, emotions, and spirit through the Soul Architecture™ framework.
 
-"We must stand in our light first to light the way for others."
+## Connect
 
----
-
-## 📚 Books
-
-- Weathering "They" — Surviving Modern Targeting
-- Pull Up Your Socks — She Tries, But Watch
-- She Tries, But Watch — Chaos, Comedy, Cosmic Truth
-- The Maggie Way — Soul-Lit MAGIC & Miracles
-- The Maggie Way Holistic — Blending Spiritual & Somatic
-- The Seed Guidebook — Oracle System
-- The Fridge Song
-- Red, White & Cool — Fridge Song Series
-- Birthday Bash — Fridge Song Series
+- 📚 [Books on Amazon](https://www.amazon.com/stores/author/B0DJBZYQF4)
+- 💌 maggiemayne1111@gmail.com
 
 ---
 
-## 🔥 The Pink Revolution
-
-Divine Feminine × Divine Masculine
-
-Part of [overkor-tek](https://github.com/overkor-tek)
-
----
-
-📧 MaggieMayne1111@gmail.com
+*Connect · Heal · Balance*
