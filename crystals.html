@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crystal Healing | The Maggie Way</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+            color: #FFF8F0;
+            min-height: 100vh;
+            line-height: 1.9;
+            font-size: 1.15rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #DDA0DD;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .back-link:hover { color: #FFD700; }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(138,43,226,0.15) 0%, rgba(0,206,209,0.1) 50%, transparent 70%);
+            border-radius: 30px;
+            margin-bottom: 3rem;
+        }
+        .hero-symbol { font-size: 5rem; margin-bottom: 1rem; }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.6rem;
+            background: linear-gradient(135deg, #DDA0DD, #00CED1, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #00CED1;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+        .tagline {
+            font-size: 1.2rem;
+            color: rgba(255,248,240,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+        
+        /* Sections */
+        .section {
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(138,43,226,0.2);
+        }
+        .section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .section p {
+            margin-bottom: 1rem;
+            line-height: 1.9;
+        }
+        
+        /* Crystal Cards */
+        .crystals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .crystal-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .crystal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(138,43,226,0.3);
+        }
+        .crystal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+        .crystal-card .icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        .crystal-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+        .crystal-card .properties {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .crystal-card .property {
+            background: rgba(255,255,255,0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+        .crystal-card p {
+            font-size: 0.95rem;
+            color: rgba(255,248,240,0.8);
+            line-height: 1.7;
+            text-align: left;
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid #DDA0DD;
+            border-right: 4px solid #00CED1;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #FFD700;
+        }
+        
+        /* Cross Links */
+        .cross-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .cross-link {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, rgba(138,43,226,0.2), rgba(0,206,209,0.2));
+            border: 1px solid rgba(138,43,226,0.4);
+            border-radius: 25px;
+            color: #DDA0DD;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .cross-link:hover {
+            background: linear-gradient(135deg, rgba(138,43,226,0.4), rgba(0,206,209,0.3));
+            transform: scale(1.05);
+        }
+        
+        /* Chakra connection */
+        .chakra-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-top: 0.75rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(138,43,226,0.2);
+        }
+        footer p { color: rgba(255,248,240,0.6); font-size: 1rem; }
+        footer a { color: #DDA0DD; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to The Maggie Way</a>
+        
+        <header class="hero">
+            <div class="hero-symbol">💎</div>
+            <h1>Crystal Healing</h1>
+            <p class="subtitle">Domain 14: The Crystal</p>
+            <p class="tagline">Ancient wisdom held in crystalline form</p>
+        </header>
+        
+        <div class="quote-box">
+            "Crystals are living beings at the beginning of creation. They hold the memory of the Earth and amplify the intentions we set."
+        </div>
+        
+        <!-- Introduction -->
+        <section class="section">
+            <h2>✨ The Power of Crystals</h2>
+            <p>Crystals have been used for healing and spiritual work for thousands of years across every culture on Earth. They are not just beautiful stones; they are organized structures of energy that vibrate at specific frequencies.</p>
+            <p>In <strong style="color:#00CED1;">Crystalline Consciousness Technique (CCT™)</strong>, we understand that the human body itself contains a crystalline matrix, the liquid crystal structure of water in our connective tissues. Crystals work in resonance with this internal crystalline system to amplify healing and transformation.</p>
+            <p>Each crystal has unique properties based on its molecular structure, color, and the conditions under which it formed. When we work with crystals intentionally, we can use their stable vibrational frequencies to entrain our own energy fields toward balance and healing.</p>
+            
+            <div class="cross-links">
+                <a href="cct.html" class="cross-link">💎 Learn about CCT™</a>
+                <a href="essential-oils.html" class="cross-link">🌸 Essential Oils</a>
+                <a href="41-sound-healing.html" class="cross-link">🎵 Sound Healing</a>
+            </div>
+        </section>
+        
+        <!-- The 9 Crystals -->
+        <section class="section">
+            <h2>💎 Crystals for Healing Work</h2>
+            
+            <div class="crystals-grid">
+                <!-- Rutile -->
+                <div class="crystal-card" style="border: 2px solid rgba(139,69,19,0.5);">
+                    <div class="icon">🟤</div>
+                    <h3 style="color: #DEB887;">Rutile</h3>
+                    <div class="properties">
+                        <span class="property">Emotional Support</span>
+                        <span class="property">Stress Relief</span>
+                    </div>
+                    <p>Rutile is a powerful stabilizer that provides emotional support during challenging times. It helps relieve stress and anxiety, creating a sense of calm and groundedness. Often found as golden needles within clear quartz, it amplifies intention and illuminates the soul's purpose.</p>
+                    <span class="chakra-tag" style="background: rgba(139,69,19,0.3); color: #DEB887;">Root & Solar Plexus</span>
+                </div>
+                
+                <!-- Red Agate -->
+                <div class="crystal-card" style="border: 2px solid rgba(178,34,34,0.5);">
+                    <div class="icon">🔴</div>
+                    <h3 style="color: #CD5C5C;">Red Agate</h3>
+                    <div class="properties">
+                        <span class="property">Balance</span>
+                        <span class="property">Grounding</span>
+                        <span class="property">Stability</span>
+                    </div>
+                    <p>Red Agate brings powerful grounding energy, connecting you deeply to the Earth. It creates emotional, physical, and intellectual balance, and helps center and stabilize physical energy. This stone is excellent for those who feel scattered or ungrounded.</p>
+                    <span class="chakra-tag" style="background: rgba(178,34,34,0.3); color: #CD5C5C;">Root Chakra</span>
+                </div>
+                
+                <!-- Rose Quartz -->
+                <div class="crystal-card" style="border: 2px solid rgba(255,182,193,0.5);">
+                    <div class="icon">🩷</div>
+                    <h3 style="color: #FFB6C1;">Rose Quartz</h3>
+                    <div class="properties">
+                        <span class="property">Self Love</span>
+                        <span class="property">Healing</span>
+                        <span class="property">Harmony</span>
+                    </div>
+                    <p>Rose Quartz is the stone of unconditional love. It opens the heart chakra to all forms of love: self-love, family love, platonic love, and romantic love. It carries a soft, gentle energy that dissolves emotional wounds, fears, and resentments, and circulates divine loving energy throughout the aura.</p>
+                    <span class="chakra-tag" style="background: rgba(255,182,193,0.3); color: #FFB6C1;">Heart Chakra</span>
+                </div>
+                
+                <!-- Citrine -->
+                <div class="crystal-card" style="border: 2px solid rgba(255,215,0,0.5);">
+                    <div class="icon">🟡</div>
+                    <h3 style="color: #FFD700;">Citrine</h3>
+                    <div class="properties">
+                        <span class="property">Wealth</span>
+                        <span class="property">Prosperity</span>
+                        <span class="property">Abundance</span>
+                    </div>
+                    <p>Citrine is known as the "Merchant's Stone" for its ability to attract abundance, prosperity, and success. It carries the power of the sun, warming, energizing, and highly creative. Citrine is one of the few crystals that never needs cleansing as it transmutes negative energy rather than absorbing it.</p>
+                    <span class="chakra-tag" style="background: rgba(255,215,0,0.3); color: #FFD700;">Solar Plexus</span>
+                </div>
+                
+                <!-- Fluorite -->
+                <div class="crystal-card" style="border: 2px solid rgba(138,43,226,0.5);">
+                    <div class="icon">🟣</div>
+                    <h3 style="color: #DDA0DD;">Fluorite</h3>
+                    <div class="properties">
+                        <span class="property">Clearing Negativity</span>
+                        <span class="property">Peace of Mind</span>
+                    </div>
+                    <p>Fluorite is highly protective, especially on a psychic level. It cleanses and stabilizes the aura, absorbing and neutralizing negative energy and stress. This crystal increases concentration, self-confidence, and helps in decision-making. It encourages positivity and balances energies.</p>
+                    <span class="chakra-tag" style="background: rgba(138,43,226,0.3); color: #DDA0DD;">Third Eye & Crown</span>
+                </div>
+                
+                <!-- Lapis Lazuli -->
+                <div class="crystal-card" style="border: 2px solid rgba(0,0,139,0.5);">
+                    <div class="icon">🔵</div>
+                    <h3 style="color: #6495ED;">Lapis Lazuli</h3>
+                    <div class="properties">
+                        <span class="property">Strength</span>
+                        <span class="property">Courage</span>
+                        <span class="property">Vitality</span>
+                    </div>
+                    <p>Lapis Lazuli is a stone of royalty and spirituality. It stimulates the desire for knowledge, truth, and understanding. This powerful crystal provides courage, confidence, and vitality. It has been prized since antiquity for its celestial blue color and golden flecks.</p>
+                    <span class="chakra-tag" style="background: rgba(0,0,139,0.3); color: #6495ED;">Throat & Third Eye</span>
+                </div>
+                
+                <!-- Sodalite -->
+                <div class="crystal-card" style="border: 2px solid rgba(65,105,225,0.5);">
+                    <div class="icon">💙</div>
+                    <h3 style="color: #87CEEB;">Sodalite</h3>
+                    <div class="properties">
+                        <span class="property">Objectivity</span>
+                        <span class="property">Fresh Perception</span>
+                        <span class="property">New Outlook</span>
+                    </div>
+                    <p>Sodalite brings order and calmness to the mind. It encourages rational thought, objectivity, truth, and intuition, along with verbalization of feelings. Sodalite brings emotional balance and calms panic attacks. It enhances self-esteem, self-acceptance, and self-trust.</p>
+                    <span class="chakra-tag" style="background: rgba(65,105,225,0.3); color: #87CEEB;">Throat Chakra</span>
+                </div>
+                
+                <!-- Amethyst -->
+                <div class="crystal-card" style="border: 2px solid rgba(148,0,211,0.5);">
+                    <div class="icon">💜</div>
+                    <h3 style="color: #DA70D6;">Amethyst</h3>
+                    <div class="properties">
+                        <span class="property">Tranquility</span>
+                        <span class="property">Intuition</span>
+                        <span class="property">Psychic Ability</span>
+                    </div>
+                    <p>Amethyst is a powerful and protective stone with high spiritual vibration. It guards against psychic attack, transmuting the energy into love. A natural tranquilizer, it relieves stress and strain, soothes irritability, and balances mood swings. Amethyst activates spiritual awareness and enhances psychic abilities.</p>
+                    <span class="chakra-tag" style="background: rgba(148,0,211,0.3); color: #DA70D6;">Third Eye & Crown</span>
+                </div>
+                
+                <!-- Alabaster -->
+                <div class="crystal-card" style="border: 2px solid rgba(255,255,255,0.5);">
+                    <div class="icon">⬜</div>
+                    <h3 style="color: #FFFFFF;">Alabaster</h3>
+                    <div class="properties">
+                        <span class="property">Manifestation</span>
+                        <span class="property">Clarity</span>
+                        <span class="property">Amplifies Crystals</span>
+                    </div>
+                    <p>Alabaster is a stone of clarity and manifestation. Its soft, gentle energy helps draw out blocked emotions and facilitates forgiveness. Alabaster has the unique property of magnifying and amplifying the energies of other crystals, making it excellent for crystal grids and healing layouts.</p>
+                    <span class="chakra-tag" style="background: rgba(255,255,255,0.2); color: #FFFFFF;">Crown & All Chakras</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- How to Use -->
+        <section class="section">
+            <h2>🔮 How to Work with Crystals</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                <div style="background: rgba(138,43,226,0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(138,43,226,0.3);">
+                    <h4 style="font-family: 'Cinzel', serif; color: #DDA0DD; margin-bottom: 0.75rem;">🧹 Cleansing</h4>
+                    <p style="font-size: 0.95rem;">Cleanse crystals with moonlight, sunlight (check if sun-safe), salt water (check if water-safe), sound, smoke, or by placing on selenite.</p>
+                </div>
+                <div style="background: rgba(0,206,209,0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(0,206,209,0.3);">
+                    <h4 style="font-family: 'Cinzel', serif; color: #00CED1; margin-bottom: 0.75rem;">✨ Programming</h4>
+                    <p style="font-size: 0.95rem;">Hold the crystal, set your intention clearly, and speak or think your intention into the crystal. Visualize the outcome.</p>
+                </div>
+                <div style="background: rgba(255,215,0,0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(255,215,0,0.3);">
+                    <h4 style="font-family: 'Cinzel', serif; color: #FFD700; margin-bottom: 0.75rem;">🧘 Meditation</h4>
+                    <p style="font-size: 0.95rem;">Hold crystals during meditation, place on chakras, or create a crystal grid around your meditation space.</p>
+                </div>
+                <div style="background: rgba(255,105,180,0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(255,105,180,0.3);">
+                    <h4 style="font-family: 'Cinzel', serif; color: #FF69B4; margin-bottom: 0.75rem;">💫 Carrying</h4>
+                    <p style="font-size: 0.95rem;">Keep crystals in your pocket, wear as jewelry, or place in your environment where you'll see them often.</p>
+                </div>
+            </div>
+            
+            <p style="text-align:center; margin-top:1.5rem; font-style:italic; color:rgba(255,248,240,0.8);">Trust your intuition when selecting crystals. You are often drawn to exactly what you need.</p>
+        </section>
+        
+        <!-- Crystal Grids -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(138,43,226,0.1)); border-color: rgba(255,215,0,0.4);">
+            <h2>🔷 Crystal Grids in CCT™</h2>
+            <p>In Crystalline Consciousness Technique™, crystal grids are used to amplify intentions and create healing chambers. The sacred geometry of the grid combined with the specific crystals creates a powerful field of transformation.</p>
+            <p>When creating a grid:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                <li style="margin-bottom: 0.5rem;">Choose a sacred geometry pattern (Flower of Life, Metatron's Cube, etc.)</li>
+                <li style="margin-bottom: 0.5rem;">Select crystals that align with your intention</li>
+                <li style="margin-bottom: 0.5rem;">Place a master crystal at the center</li>
+                <li style="margin-bottom: 0.5rem;">Arrange supporting crystals in the pattern</li>
+                <li style="margin-bottom: 0.5rem;">Activate the grid by connecting each crystal with intention</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong style="color:#FFD700;">Alabaster</strong> is particularly powerful in grids as it amplifies all the other crystals present.</p>
+            
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="cct.html" class="cross-link">💎 Learn CCT™ Crystal Grid Protocols</a>
+            </div>
+        </section>
+        
+        <!-- Cross Links -->
+        <section class="section" style="text-align: center;">
+            <h2>🔗 Related Practices</h2>
+            <p style="margin-bottom: 1.5rem;">Crystals work beautifully with these other modalities:</p>
+            
+            <div class="cross-links">
+                <a href="cct.html" class="cross-link">💎 CCT™ Healing</a>
+                <a href="essential-oils.html" class="cross-link">🌸 Essential Oils</a>
+                <a href="41-sound-healing.html" class="cross-link">🎵 Sound Healing</a>
+                <a href="affirmations-for-magic.html" class="cross-link">✨ Affirmations</a>
+                <a href="oracle-the-seed.html" class="cross-link">🔮 Ask The Oracle</a>
+            </div>
+        </section>
+        
+        <footer>
+            <p style="font-size:1.2rem; color:#DDA0DD; margin-bottom:0.5rem;">💎 Crystal Healing</p>
+            <p>Domain 14 · The Maggie Way™ · Soul Architecture™</p>
+            <p style="margin-top:1rem;"><a href="index.html">Return to The Maggie Way</a> · <a href="cct.html">CCT™</a> · <a href="oracle-the-seed.html">Ask The Oracle</a></p>
+        </footer>
+    </div>
+</body>
+</html>

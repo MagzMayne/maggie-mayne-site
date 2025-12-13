@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essential Oils for Healing | The Maggie Way</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a2a1a 50%, #0a1a0a 100%);
+            color: #FFF8F0;
+            min-height: 100vh;
+            line-height: 1.9;
+            font-size: 1.15rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #98FB98;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .back-link:hover { color: #FFD700; }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(152,251,152,0.15) 0%, rgba(34,139,34,0.1) 50%, transparent 70%);
+            border-radius: 30px;
+            margin-bottom: 3rem;
+        }
+        .hero-symbol { font-size: 5rem; margin-bottom: 1rem; }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.6rem;
+            background: linear-gradient(135deg, #98FB98, #FFD700, #FF69B4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #98FB98;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+        .tagline {
+            font-size: 1.2rem;
+            color: rgba(255,248,240,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+        
+        /* Sections */
+        .section {
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(152,251,152,0.2);
+        }
+        .section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .section p {
+            margin-bottom: 1rem;
+            line-height: 1.9;
+        }
+        
+        /* Oil Cards */
+        .oils-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .oil-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(152,251,152,0.3);
+            transition: all 0.3s;
+        }
+        .oil-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(152,251,152,0.6);
+            box-shadow: 0 10px 30px rgba(152,251,152,0.2);
+        }
+        .oil-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .oil-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .oil-card .essence {
+            text-align: center;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .oil-card p {
+            font-size: 1rem;
+            color: rgba(255,248,240,0.85);
+            line-height: 1.8;
+        }
+        .oil-card .uses {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .oil-card .uses h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: rgba(255,248,240,0.6);
+            margin-bottom: 0.5rem;
+        }
+        .oil-card .use-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 0.25rem;
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid #98FB98;
+            border-right: 4px solid #FFD700;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #FFD700;
+        }
+        
+        /* Cross Links */
+        .cross-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .cross-link {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, rgba(152,251,152,0.2), rgba(34,139,34,0.2));
+            border: 1px solid rgba(152,251,152,0.4);
+            border-radius: 25px;
+            color: #98FB98;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .cross-link:hover {
+            background: linear-gradient(135deg, rgba(152,251,152,0.4), rgba(34,139,34,0.3));
+            transform: scale(1.05);
+        }
+        
+        /* Domains */
+        .domain-tag {
+            display: inline-block;
+            background: rgba(255,215,0,0.2);
+            color: #FFD700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(152,251,152,0.2);
+        }
+        footer p { color: rgba(255,248,240,0.6); font-size: 1rem; }
+        footer a { color: #98FB98; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1.25rem; }
+            .oils-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to The Maggie Way</a>
+        
+        <header class="hero">
+            <div class="hero-symbol">🌸</div>
+            <h1>Essential Oils for Healing</h1>
+            <p class="subtitle">Aromatherapy & Spiritual Transformation</p>
+            <p class="tagline">Plant medicine for body, mind, and spirit</p>
+        </header>
+        
+        <div class="quote-box">
+            "Essential oils work on the spiritual and emotional realm as well as the physical. They release patterns, open heart centers, and transform negative energies into positive ones."
+        </div>
+        
+        <!-- Introduction -->
+        <section class="section">
+            <h2>✨ The Power of Plant Medicine</h2>
+            <p>Essential oils are concentrated plant essences that carry the vibrational frequency of the plant. When used with intention, they become powerful tools for transformation, clearing, and healing.</p>
+            <p>Each oil has its own unique properties that work on multiple levels: physical symptoms, emotional patterns, mental clarity, and spiritual connection. They can be used in diffusers, applied topically (with carrier oils), added to baths, or simply inhaled during meditation and healing work.</p>
+            <p>These oils are particularly powerful when combined with <strong style="color:#00CED1;">CCT™ (Crystalline Consciousness Technique)</strong> work, as they help shift vibrational frequencies and support the transformation process.</p>
+            
+            <div class="cross-links">
+                <a href="cct.html" class="cross-link">💎 Learn about CCT™</a>
+                <a href="crystals.html" class="cross-link">💎 Crystal Healing</a>
+                <a href="#protocols" class="cross-link">📋 Oil Protocols</a>
+            </div>
+        </section>
+        
+        <!-- The 8 Essential Oils -->
+        <section class="section">
+            <h2>🌿 Essential Oils for Transformation</h2>
+            
+            <div class="oils-grid">
+                <!-- Frankincense -->
+                <div class="oil-card" style="border-color: rgba(255,215,0,0.5);">
+                    <div class="icon">✨</div>
+                    <h3 style="color: #FFD700;">Frankincense</h3>
+                    <p class="essence" style="color: #FFD700;">Master Healer · Spiritual Awakening</p>
+                    <p>Frankincense helps release parts of the ego which hold us back from connecting with our soul, as well as feelings of unworthiness and insecurity.</p>
+                    <p>Once we are able to connect with our spiritual side, we can embrace our true purpose in the world and become more spiritually driven rather than ego driven.</p>
+                    <div class="uses">
+                        <h4>Best Used For:</h4>
+                        <span class="use-tag">Meditation</span>
+                        <span class="use-tag">Spiritual Connection</span>
+                        <span class="use-tag">Centering</span>
+                        <span class="use-tag">Releasing Ego</span>
+                    </div>
+                    <span class="domain-tag">Domain 8: Spark</span>
+                </div>
+                
+                <!-- Geranium -->
+                <div class="oil-card" style="border-color: rgba(255,105,180,0.5);">
+                    <div class="icon">🌹</div>
+                    <h3 style="color: #FF69B4;">Geranium</h3>
+                    <p class="essence" style="color: #FF69B4;">Love and Security</p>
+                    <p>Geranium helps diminish fears of abandonment, love, and commitment. It asks that one be more accepting and thus more loving of self.</p>
+                    <p>As we love ourselves more, we can fully commit to loving others. This oil opens the heart to give and receive love freely.</p>
+                    <div class="uses">
+                        <h4>Best Used For:</h4>
+                        <span class="use-tag">Self Love</span>
+                        <span class="use-tag">Heart Opening</span>
+                        <span class="use-tag">Relationships</span>
+                        <span class="use-tag">Security</span>
+                    </div>
+                    <span class="domain-tag">Domain 1: Heart Center</span>
+                </div>
+                
+                <!-- Sweet Orange -->
+                <div class="oil-card" style="border-color: rgba(255,165,0,0.5);">
+                    <div class="icon">🍊</div>
+                    <h3 style="color: #FFA500;">Sweet Orange</h3>
+                    <p class="essence" style="color: #FFA500;">Uplifting and Clearing</p>
+                    <p>Orange releases self judgment, obsessions, and fears so the emotional body can be restored and balanced. When we release these negative and highly charged emotions, we can see clearly again and make better choices.</p>
+                    <p>This oil supports by uplifting and promoting a positive attitude while calming the spirit. Helps those who tend to overwork and strive for perfection.</p>
+                    <div class="uses">
+                        <h4>Best Used For:</h4>
+                        <span class="use-tag">Mood Lifting</span>
+                        <span class="use-tag">Releasing Judgment</span>
+                        <span class="use-tag">Emotional Balance</span>
+                        <span class="use-tag">Perfectionists</span>
+                    </div>
+                    <span class="domain-tag">Domain 5: Growth</span>
+                </div>
+                
+                <!-- Lemon -->
+                <div class="oil-card" style="border-color: rgba(255,255,0,0.5);">
+                    <div class="icon">🍋</div>
+                    <h3 style="color: #FFFF00;">Lemon</h3>
+                    <p class="essence" style="color: #FFFF00;">Clearing and Focus</p>
+                    <p>Lemon is cleansing to the mind and spirit. It releases patterning and opens the heart centers.</p>
+                    <p>The result is joy and hopefulness with clear thought. Excellent for mental clarity and breaking through foggy thinking.</p>
+                    <div class="uses">
+                        <h4>Best Used For:</h4>
+                        <span class="use-tag">Mental Clarity</span>
+                        <span class="use-tag">Focus</span>
+                        <span class="use-tag">Pattern Breaking</span>
+                        <span class="use-tag">Joy</span>
+                    </div>
+                    <span class="domain-tag">Domain 2: Mind Temple</span>
+                </div>
+                
+                <!-- Lemongrass -->
+                <div class="oil-card" style="border-color: rgba(154,205,50,0.5);">
+                    <div class="icon">🌿</div>
+                    <h3 style="color: #9ACD32;">Lemongrass</h3>
+                    <p class="essence" style="color: #9ACD32;">Transformation · Courage · Protection</p>
+                    <p>Lemongrass releases resentment, regret from the "should have" statements, and pessimism by transforming these negative energies into positive energies.</p>
+                    <p>It allows the left brain to see options. Once negative energies are released, optimism, courage, and hope prevail. <strong>Lemongrass also protects the auric field from electromagnetic energy.</strong></p>
+                    <div class="uses">
+                        <h4>Best Used For:</h4>
+                        <span class="use-tag">Transformation</span>
+                        <span class="use-tag">EMF Protection</span>
+                        <span class="use-tag">Releasing Regret</span>
+                        <span class="use-tag">Courage</span>
+                    </div>
+                    <span class="domain-tag">Domain 13: Flame</span>
+                </div>
+                
+                <!-- Rosemary -->
+                <div class="oil-card" style="border-color: rgba(34,139,34,0.5);">
+                    <div class="icon">🌱</div>
+                    <h3 style="color: #32CD32;">Rosemary</h3>
+                    <p class="essence" style="color: #32CD32;">Clarity · Focus · Self Loyalty</p>
+                    <p>Rosemary keeps the mind alert and focused. It supports walking in your truth by being faithful to yourself and your own destiny or purpose.</p>
+                    <p>Even the Greeks and Romans used it to understand loyalty. <strong>Loyalty to self before others.</strong></p>
+                    <div class="uses">
+                        <h4>Best Used For:</h4>
+                        <span class="use-tag">Mental Alertness</span>
+                        <span class="use-tag">Self Loyalty</span>
+                        <span class="use-tag">Purpose</span>
+                        <span class="use-tag">Truth Speaking</span>
+                    </div>
+                    <span class="domain-tag">Domain 6: Expression</span>
+                </div>
+                
+                <!-- Peppermint -->
+                <div class="oil-card" style="border-color: rgba(0,206,209,0.5);">
+                    <div class="icon">🌿</div>
+                    <h3 style="color: #00CED1;">Peppermint</h3>
+                    <p class="essence" style="color: #00CED1;">Releasing Fear and Resistance</p>
+                    <p>Peppermint can cleanse the spiritual bodies and increase attunement with the soul so that intuitive awareness increases.</p>
+                    <p>Fears may be minimized, especially those having to do with motion (riding, skiing, flying). This is particularly good oil when there is <strong>resistance to learn a new subject or move in a new direction</strong>. It cools and calms the mind and eliminates the fear of the unknown.</p>
+                    <div class="uses">
+                        <h4>Best Used For:</h4>
+                        <span class="use-tag">Overcoming Fear</span>
+                        <span class="use-tag">New Directions</span>
+                        <span class="use-tag">Intuition</span>
+                        <span class="use-tag">Cooling</span>
+                    </div>
+                    <span class="domain-tag">Domain 19: Void</span>
+                </div>
+                
+                <!-- Lavender -->
+                <div class="oil-card" style="border-color: rgba(230,230,250,0.5);">
+                    <div class="icon">💜</div>
+                    <h3 style="color: #E6E6FA;">Lavender</h3>
+                    <p class="essence" style="color: #E6E6FA;">Calming · Relaxing · Balancing</p>
+                    <p>Lavender helps people and animals relax and take change in stride rather than getting worked up about what can't be controlled. It helps adapt to transitions by relaxing the emotional mind and body as well as opening the heart.</p>
+                    <p>It can also bring energy to stagnant situations. Lavender fosters communication of spirit, bringing clarity and intuitive insight if you are willing to open up in a relaxed manner.</p>
+                    <div class="uses">
+                        <h4>Best Used For:</h4>
+                        <span class="use-tag">Relaxation</span>
+                        <span class="use-tag">Transitions</span>
+                        <span class="use-tag">Sleep</span>
+                        <span class="use-tag">Intuitive Insight</span>
+                    </div>
+                    <span class="domain-tag">Domain 17: Body</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- How to Use -->
+        <section class="section" id="protocols">
+            <h2>📋 How to Use Essential Oils</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                <div style="background: rgba(152,251,152,0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(152,251,152,0.3);">
+                    <h4 style="font-family: 'Cinzel', serif; color: #98FB98; margin-bottom: 0.75rem;">🌬️ Diffusion</h4>
+                    <p style="font-size: 0.95rem;">Add 3-5 drops to a diffuser. Let the aroma fill your space during meditation, work, or rest.</p>
+                </div>
+                <div style="background: rgba(255,215,0,0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(255,215,0,0.3);">
+                    <h4 style="font-family: 'Cinzel', serif; color: #FFD700; margin-bottom: 0.75rem;">✋ Topical</h4>
+                    <p style="font-size: 0.95rem;">Dilute with a carrier oil (coconut, jojoba). Apply to pulse points, chakras, or bottoms of feet.</p>
+                </div>
+                <div style="background: rgba(0,206,209,0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(0,206,209,0.3);">
+                    <h4 style="font-family: 'Cinzel', serif; color: #00CED1; margin-bottom: 0.75rem;">🛁 Bath</h4>
+                    <p style="font-size: 0.95rem;">Add 5-10 drops to epsom salts, then add to bath. Soak for 20+ minutes for full absorption.</p>
+                </div>
+                <div style="background: rgba(255,105,180,0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(255,105,180,0.3);">
+                    <h4 style="font-family: 'Cinzel', serif; color: #FF69B4; margin-bottom: 0.75rem;">👃 Inhalation</h4>
+                    <p style="font-size: 0.95rem;">Place 1-2 drops in palms, rub together, cup over nose and inhale deeply 3 times.</p>
+                </div>
+            </div>
+            
+            <p style="text-align:center; margin-top:1.5rem; font-style:italic; color:rgba(255,248,240,0.8);">Always use high-quality, therapeutic-grade essential oils. Some oils require dilution before topical use. Consult with a practitioner if pregnant or nursing.</p>
+        </section>
+        
+        <!-- Cross Links -->
+        <section class="section" style="text-align: center;">
+            <h2>🔗 Related Practices</h2>
+            <p style="margin-bottom: 1.5rem;">Essential oils work beautifully with these other modalities:</p>
+            
+            <div class="cross-links">
+                <a href="cct.html" class="cross-link">💎 CCT™ Healing</a>
+                <a href="crystals.html" class="cross-link">💎 Crystal Healing</a>
+                <a href="41-sound-healing.html" class="cross-link">🎵 Sound Healing</a>
+                <a href="affirmations-for-magic.html" class="cross-link">✨ Affirmations</a>
+                <a href="index.html#protocols" class="cross-link">📋 Daily Protocols</a>
+            </div>
+        </section>
+        
+        <footer>
+            <p style="font-size:1.2rem; color:#98FB98; margin-bottom:0.5rem;">🌸 Essential Oils for Healing</p>
+            <p>The Maggie Way™ · Soul Architecture™</p>
+            <p style="margin-top:1rem;"><a href="index.html">Return to The Maggie Way</a> · <a href="cct.html">CCT™</a> · <a href="oracle-the-seed.html">Ask The Oracle</a></p>
+        </footer>
+    </div>
+</body>
+</html>

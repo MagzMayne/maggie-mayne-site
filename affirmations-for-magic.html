@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affirmations For Magic | The Maggie Way</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+            color: #FFF8F0;
+            min-height: 100vh;
+            line-height: 1.9;
+            font-size: 1.2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #DDA0DD;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .back-link:hover { color: #FFD700; }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(255,105,180,0.15) 0%, transparent 70%);
+            border-radius: 30px;
+            margin-bottom: 3rem;
+        }
+        .hero-symbol { font-size: 4rem; margin-bottom: 1rem; }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #FF69B4, #FFD700, #DDA0DD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+        .tagline {
+            font-size: 1.25rem;
+            color: rgba(255,248,240,0.9);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-style: italic;
+        }
+        
+        /* Offerings Banner */
+        .offerings-banner {
+            background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,105,180,0.1));
+            border: 2px solid rgba(255,215,0,0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .offerings-banner h2 {
+            font-family: 'Cinzel', serif;
+            color: #FFD700;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .offer-card {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 15px;
+            padding: 1.25rem;
+            transition: all 0.3s;
+        }
+        .offer-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-3px);
+        }
+        .offer-card .price {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #FF69B4;
+            margin-bottom: 0.5rem;
+        }
+        .offer-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+        .offer-card p {
+            font-size: 0.95rem;
+            color: rgba(255,248,240,0.8);
+            margin-bottom: 0.75rem;
+        }
+        .offer-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #FF69B4, #C71585);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-family: 'Cinzel', serif;
+            transition: all 0.3s;
+        }
+        .offer-btn:hover { transform: scale(1.05); }
+        .offer-btn.gold { background: linear-gradient(135deg, #FFD700, #DAA520); color: #000; }
+        .offer-btn.free { background: linear-gradient(135deg, #32CD32, #228B22); }
+        
+        /* Week Navigation */
+        .week-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+        }
+        .week-tab {
+            padding: 0.6rem 1.2rem;
+            background: rgba(255,105,180,0.15);
+            border: 1px solid rgba(255,105,180,0.3);
+            border-radius: 20px;
+            color: #FFF8F0;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .week-tab:hover, .week-tab.active {
+            background: rgba(255,105,180,0.3);
+            border-color: #FF69B4;
+        }
+        .week-tab.active {
+            background: linear-gradient(135deg, rgba(255,105,180,0.4), rgba(255,215,0,0.2));
+            color: #FFD700;
+        }
+        
+        /* Content Sections */
+        .week-content {
+            display: none;
+            padding: 2rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255,105,180,0.2);
+            margin: 2rem 0;
+        }
+        .week-content.active { display: block; }
+        .week-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .week-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: #DDA0DD;
+            margin: 2rem 0 1rem;
+        }
+        .week-content p {
+            margin-bottom: 1rem;
+            line-height: 1.9;
+        }
+        
+        /* Affirmation Cards */
+        .affirmation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .affirmation-card {
+            background: linear-gradient(135deg, rgba(255,105,180,0.1), rgba(138,43,226,0.1));
+            border: 1px solid rgba(255,105,180,0.3);
+            border-radius: 15px;
+            padding: 1.25rem;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            transition: all 0.3s;
+        }
+        .affirmation-card:hover {
+            border-color: #FF69B4;
+            transform: translateY(-2px);
+        }
+        
+        /* Mirror Mantra Box */
+        .mirror-box {
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,105,180,0.05));
+            border: 2px solid rgba(255,215,0,0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .mirror-box h3 {
+            font-family: 'Cinzel', serif;
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        .mirror-box p {
+            font-size: 1.15rem;
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Ritual Section */
+        .ritual-section {
+            background: rgba(138,43,226,0.1);
+            border: 1px solid rgba(138,43,226,0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .ritual-section h3 {
+            font-family: 'Cinzel', serif;
+            color: #DDA0DD;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        .ritual-steps {
+            list-style: none;
+            counter-reset: step;
+        }
+        .ritual-steps li {
+            counter-increment: step;
+            padding: 0.75rem 0 0.75rem 3rem;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .ritual-steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            width: 2rem;
+            height: 2rem;
+            background: rgba(255,215,0,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+        
+        /* Journaling Prompts */
+        .journal-section {
+            background: rgba(32,178,170,0.1);
+            border: 1px solid rgba(32,178,170,0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .journal-section h3 {
+            font-family: 'Cinzel', serif;
+            color: #20B2AA;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        .journal-prompt {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(32,178,170,0.2);
+            font-style: italic;
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid #FFD700;
+            border-right: 4px solid #FFD700;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #FFD700;
+        }
+        
+        /* Divider */
+        .divider {
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FF69B4, #FFD700, #FF69B4, transparent);
+            margin: 3rem auto;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,105,180,0.2);
+        }
+        footer p {
+            color: rgba(255,248,240,0.6);
+            font-size: 1rem;
+        }
+        footer a { color: #FFD700; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1.25rem; }
+            .week-tab { padding: 0.5rem 0.8rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to The Maggie Way</a>
+        
+        <header class="hero">
+            <div class="hero-symbol">✨</div>
+            <h1>Affirmations For Magic</h1>
+            <p class="subtitle">The Maggie Way</p>
+            <p class="tagline">"Your word is your wand—wield it with purpose."</p>
+            <p style="font-size: 1.15rem; color: rgba(255,248,240,0.8);">An 11-week journey of manifesting, healing, and transforming your life through the power of words.</p>
+        </header>
+        
+        <!-- OFFERINGS -->
+        <div class="offerings-banner">
+            <h2>✨ Choose Your Journey ✨</h2>
+            <div class="offerings-grid">
+                <div class="offer-card">
+                    <div class="price">FREE</div>
+                    <h3>Week 1 Sample</h3>
+                    <p>Experience the first week + Introduction. Taste the MAGIC.</p>
+                    <a href="#intro" class="offer-btn free">Start Free</a>
+                </div>
+                <div class="offer-card" style="border-color: rgba(255,105,180,0.6);">
+                    <div class="price">$11.11</div>
+                    <h3>Full 11-Week Course</h3>
+                    <p>All weeks, rituals, mantras, journaling prompts. Complete transformation.</p>
+                    <a href="https://square.link/u/AFFIRMATIONS11" class="offer-btn" target="_blank">Unlock All</a>
+                </div>
+                <div class="offer-card">
+                    <div class="price">$15-20</div>
+                    <h3>The Book</h3>
+                    <p>Physical or Kindle. Take it offline. Gift it forward.</p>
+                    <a href="https://www.amazon.com" class="offer-btn gold" target="_blank">Amazon</a>
+                </div>
+                <div class="offer-card">
+                    <div class="price">$111</div>
+                    <h3>Guided Journey</h3>
+                    <p>30-min session. Maggie guides you through YOUR personal practice.</p>
+                    <a href="https://square.link/u/n9WztX2P" class="offer-btn" target="_blank">Book</a>
+                </div>
+                <div class="offer-card" style="border-color: rgba(255,215,0,0.6);">
+                    <div class="price">$444</div>
+                    <h3>11-Week Mentorship</h3>
+                    <p>Weekly check-ins through the full course. Personalized affirmations. Deep transformation.</p>
+                    <a href="https://square.link/u/9jqMqRSU" class="offer-btn gold" target="_blank">Apply</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- WEEK NAVIGATION -->
+        <div class="week-nav">
+            <button class="week-tab active" onclick="showWeek('intro')">Introduction</button>
+            <button class="week-tab" onclick="showWeek('week1')">Week 1</button>
+            <button class="week-tab" onclick="showWeek('week2')">Week 2</button>
+            <button class="week-tab" onclick="showWeek('week3')">Week 3</button>
+            <button class="week-tab" onclick="showWeek('week4')">Week 4</button>
+            <button class="week-tab" onclick="showWeek('week5')">Week 5</button>
+            <button class="week-tab locked" onclick="showWeek('week6')">Week 6 🔒</button>
+            <button class="week-tab locked" onclick="showWeek('week7')">Week 7 🔒</button>
+            <button class="week-tab locked" onclick="showWeek('week8')">Week 8 🔒</button>
+            <button class="week-tab locked" onclick="showWeek('week9')">Week 9 🔒</button>
+            <button class="week-tab locked" onclick="showWeek('week10')">Week 10 🔒</button>
+            <button class="week-tab locked" onclick="showWeek('week11')">Week 11 🔒</button>
+            <button class="week-tab" onclick="showWeek('rituals')">11 Rituals</button>
+            <button class="week-tab" onclick="showWeek('mantras')">Mirror Mantras</button>
+        </div>
+        <!-- INTRODUCTION -->
+        <div id="intro" class="week-content active">
+            <h2>✨ Introduction: The Power of Words</h2>
+            
+            <p>Words are powerful. They shape our reality, influence our experiences, and guide the energy that surrounds us. <strong>Affirmations For Magic</strong> is a guide to manifesting, healing, and transforming your life through the power of words.</p>
+            
+            <p>This book is built on a simple yet profound truth: <strong style="color:#FFD700;">MAGIC is real.</strong> When you align your thoughts, words, and intentions, you create a powerful current that flows through every aspect of your life.</p>
+            
+            <div class="quote-box">
+                "Your word is your wand—wield it with purpose."
+            </div>
+            
+            <p>Whether you are seeking to bring your dreams into reality, heal from past wounds, or transform challenges into gifts, this journey offers practical tools and affirmations to support your path. It is designed to help you harness your voice as a tool for change and align with the highest version of yourself.</p>
+            
+            <h3>The Power of I AM</h3>
+            <p>The words "I AM" are perhaps the most powerful words in any language. Whatever follows "I AM" shapes your identity, your beliefs, and ultimately your reality. When you say "I AM worthy," you claim worthiness. When you say "I AM healing," you step into healing. The "I AM" is the bridge between thought and reality.</p>
+            
+            <div class="affirmation-grid">
+                <div class="affirmation-card">I AM a powerful creator, and my words shape my reality.</div>
+                <div class="affirmation-card">I AM aligned with MAGIC, and miracles flow into my life.</div>
+                <div class="affirmation-card">I AM worthy of love, abundance, and joy.</div>
+                <div class="affirmation-card">I AM the author of my story, and I write it with intention.</div>
+            </div>
+            
+            <h3>What You Will Learn</h3>
+            <p><strong>Part 1: Manifesting Magic</strong> — Speaking desires into existence, the language of abundance, vision and clarity, words as medicine.</p>
+            <p><strong>Part 2: Healing Through Words</strong> — Self-compassion, releasing and renewing, transforming challenges into gifts.</p>
+            <p><strong>Part 3: Transformation & Empowerment</strong> — Embodying your true self, daily rituals, manifesting with trust, divine alignment.</p>
+            
+            <div class="mirror-box">
+                <h3>🪞 Your First Mirror Mantra</h3>
+                <p>Stand in front of a mirror. Look into your own eyes. Speak this aloud:</p>
+                <p style="color:#FFD700; font-size:1.3rem;">"I AM ready to create MAGIC with my words. I AM worthy of transformation. I AM exactly where I need to be."</p>
+            </div>
+        </div>
+        
+        <!-- WEEK 1 -->
+        <div id="week1" class="week-content">
+            <h2>Week 1: Speaking Your Desires Into Existence</h2>
+            
+            <p>This week is about learning to craft affirmations that align with your goals and bring your desires into reality. Your words are not just sounds—they are energetic transmissions that ripple out into the universe and return to you as experience.</p>
+            
+            <p>When you speak your desires aloud, you give them form. You move them from the realm of thought into the realm of vibration, where they can attract matching frequencies. This is the first step in conscious creation.</p>
+            
+            <h3>Affirmations for Week 1</h3>
+            <div class="affirmation-grid">
+                <div class="affirmation-card">I speak my desires into existence with clarity and confidence.</div>
+                <div class="affirmation-card">My words are powerful creators, and I use them with intention.</div>
+                <div class="affirmation-card">I am clear about what I want, and I call it into my life.</div>
+                <div class="affirmation-card">Every word I speak is a seed planted in fertile ground.</div>
+                <div class="affirmation-card">I trust that my desires are on their way to me now.</div>
+                <div class="affirmation-card">I am worthy of everything I desire, and I receive it with gratitude.</div>
+                <div class="affirmation-card">My voice is a tool for creation, and I wield it with love.</div>
+                <div class="affirmation-card">I align my words with my highest vision for my life.</div>
+                <div class="affirmation-card">The universe responds to my spoken intentions with abundance.</div>
+                <div class="affirmation-card">I create my reality through the power of my voice.</div>
+                <div class="affirmation-card">I am a conscious creator, manifesting MAGIC with every word.</div>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>🌙 Daily Practice for Week 1</h3>
+                <ol class="ritual-steps">
+                    <li>Each morning, write down ONE specific desire in present tense (as if it has already happened)</li>
+                    <li>Speak this desire aloud three times with conviction and feeling</li>
+                    <li>Visualize the desire as already real—feel the emotions of having it</li>
+                    <li>Release attachment to the outcome and trust the universe</li>
+                    <li>Before bed, express gratitude as if the desire has manifested</li>
+                </ol>
+            </div>
+            
+            <div class="journal-section">
+                <h3>📝 Reflection & Journaling Prompts</h3>
+                <div class="journal-prompt">What do I truly desire to create in my life right now?</div>
+                <div class="journal-prompt">What beliefs about my worthiness might be blocking my desires?</div>
+                <div class="journal-prompt">How does it feel to speak my desires out loud?</div>
+                <div class="journal-prompt">What would my life look like if all my desires manifested?</div>
+                <div class="journal-prompt">How can I align my daily words with my deepest intentions?</div>
+            </div>
+            
+            <div class="mirror-box">
+                <h3>🪞 Mirror Mantras for Week 1</h3>
+                <p>I am a powerful manifestor.</p>
+                <p>My desires are valid and worthy.</p>
+                <p>I speak my dreams into reality.</p>
+                <p>The universe conspires to support me.</p>
+            </div>
+        </div>
+        
+        <!-- WEEK 2 -->
+        <div id="week2" class="week-content">
+            <h2>Week 2: The Language of Abundance</h2>
+            
+            <p>This week focuses on using words to attract prosperity, joy, and success into your life. Abundance is not just about money—it is about the overflow of love, opportunities, health, creativity, and all forms of goodness.</p>
+            
+            <p>The language of abundance shifts from scarcity ("I don't have enough") to overflow ("I always have more than I need"). This subtle shift in speech patterns rewires your brain and your energy field to attract more of what you desire.</p>
+            
+            <h3>Affirmations for Week 2</h3>
+            <div class="affirmation-grid">
+                <div class="affirmation-card">I am a magnet for ABUNDANCE, and it flows to me effortlessly.</div>
+                <div class="affirmation-card">Every day, I wake up to new opportunities and endless prosperity.</div>
+                <div class="affirmation-card">I live in a state of gratitude, and ABUNDANCE surrounds me in all forms.</div>
+                <div class="affirmation-card">My mind is aligned with ABUNDANCE, and my actions create prosperity.</div>
+                <div class="affirmation-card">I celebrate the ABUNDANCE in my life and welcome even more.</div>
+                <div class="affirmation-card">I trust in the limitless ABUNDANCE of the universe.</div>
+                <div class="affirmation-card">My words create a reality filled with joy, love, and ABUNDANCE.</div>
+                <div class="affirmation-card">I radiate a vibration of ABUNDANCE, attracting wealth and happiness.</div>
+                <div class="affirmation-card">I am worthy of all the ABUNDANCE life has to offer.</div>
+                <div class="affirmation-card">I speak the language of ABUNDANCE, and my life reflects prosperity.</div>
+                <div class="affirmation-card">Blessings flow to me in every moment.</div>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>🌙 Daily Practice for Week 2</h3>
+                <ol class="ritual-steps">
+                    <li>Start each day by listing 5 things you are abundantly grateful for</li>
+                    <li>Notice any scarcity language ("I can't afford," "There's not enough") and reframe it</li>
+                    <li>Speak abundance affirmations while looking in the mirror</li>
+                    <li>Give something away each day—money, time, a compliment, a blessing</li>
+                    <li>End each day acknowledging abundance that flowed to you</li>
+                </ol>
+            </div>
+            
+            <div class="journal-section">
+                <h3>📝 Journaling Prompts</h3>
+                <div class="journal-prompt">Where in my life do I already experience abundance?</div>
+                <div class="journal-prompt">What scarcity beliefs am I ready to release?</div>
+                <div class="journal-prompt">How would my life change if I truly believed abundance was my birthright?</div>
+                <div class="journal-prompt">What does financial freedom feel like in my body?</div>
+                <div class="journal-prompt">How can I be more generous with what I already have?</div>
+            </div>
+        </div>
+        
+        <!-- WEEK 3-5 (Sample structure - abbreviated) -->
+        <div id="week3" class="week-content">
+            <h2>Week 3: Vision and Clarity</h2>
+            <p>This week emphasizes the importance of clarity in manifestation. Vague intentions create vague results. When you speak with precision and purpose, you draw in aligned opportunities.</p>
+            
+            <div class="affirmation-grid">
+                <div class="affirmation-card">I see my path clearly, and I walk it with confidence.</div>
+                <div class="affirmation-card">My vision is focused, and my intentions are precise.</div>
+                <div class="affirmation-card">I attract opportunities that align perfectly with my purpose.</div>
+                <div class="affirmation-card">Clarity flows through me, guiding every decision I make.</div>
+                <div class="affirmation-card">I speak with clarity, and the universe responds in kind.</div>
+                <div class="affirmation-card">My purpose is clear, and I follow it with unwavering faith.</div>
+            </div>
+            
+            <div class="journal-section">
+                <h3>📝 Journaling Prompts</h3>
+                <div class="journal-prompt">What is my clearest, most specific vision for my life?</div>
+                <div class="journal-prompt">Where am I being vague about what I want?</div>
+                <div class="journal-prompt">What would total clarity feel like in my body?</div>
+            </div>
+        </div>
+        
+        <div id="week4" class="week-content">
+            <h2>Week 4: Words as Medicine</h2>
+            <p>This week explores the healing vibrations of sound and speech. Your voice carries frequency. When you speak words of healing, you literally shift the cellular structure of your body.</p>
+            
+            <div class="affirmation-grid">
+                <div class="affirmation-card">My words are medicine, healing every part of my being.</div>
+                <div class="affirmation-card">I speak to my body with love, and it responds with vitality.</div>
+                <div class="affirmation-card">Every cell in my body vibrates with health and wholeness.</div>
+                <div class="affirmation-card">I release all that does not serve my healing.</div>
+                <div class="affirmation-card">My voice carries healing frequencies that transform my life.</div>
+                <div class="affirmation-card">I am worthy of complete healing in body, mind, and spirit.</div>
+            </div>
+        </div>
+        
+        <div id="week5" class="week-content">
+            <h2>Week 5: Self-Compassion and Self-Love</h2>
+            <p>This week focuses on nurturing self-worth and inner peace through affirmations. The way you speak to yourself matters more than any other voice.</p>
+            
+            <div class="affirmation-grid">
+                <div class="affirmation-card">I speak to myself with the same love I would offer a dear friend.</div>
+                <div class="affirmation-card">I am worthy of my own compassion and understanding.</div>
+                <div class="affirmation-card">I release self-criticism and embrace self-love.</div>
+                <div class="affirmation-card">Every word I speak to myself is kind and nurturing.</div>
+                <div class="affirmation-card">I forgive myself for past mistakes and choose love now.</div>
+                <div class="affirmation-card">I am enough, exactly as I am in this moment.</div>
+            </div>
+            
+            <div class="mirror-box">
+                <h3>🪞 Mirror Mantras for L-O-V-E</h3>
+                <p>I am a vessel of pure L-O-V-E.</p>
+                <p>I radiate L-O-V-E in all that I do.</p>
+                <p>My heart is open to giving and receiving L-O-V-E.</p>
+                <p>I am worthy of deep, unconditional L-O-V-E.</p>
+                <p>I choose to see the world through the eyes of L-O-V-E.</p>
+            </div>
+        </div>
+        <!-- LOCKED WEEKS 6-11 -->
+        <div id="week6" class="week-content">
+            <h2>🔒 Week 6: Releasing and Renewing</h2>
+            <div style="text-align:center; padding:3rem;">
+                <p style="font-size:1.3rem; color:#DDA0DD; margin-bottom:1.5rem;">This content is part of the full 11-week course.</p>
+                <p style="margin-bottom:2rem;">Unlock all weeks, rituals, and mantras for just <strong style="color:#FFD700;">$11.11</strong></p>
+                <a href="https://square.link/u/AFFIRMATIONS11" class="offer-btn" style="padding:1rem 2rem; font-size:1.1rem;" target="_blank">✨ Unlock Full Course</a>
+            </div>
+        </div>
+        
+        <div id="week7" class="week-content">
+            <h2>🔒 Week 7: Alchemizing Challenges Into Gifts</h2>
+            <div style="text-align:center; padding:3rem;">
+                <p style="font-size:1.3rem; color:#DDA0DD; margin-bottom:1.5rem;">Transform your struggles into your superpowers.</p>
+                <p style="margin-bottom:2rem;">Unlock all weeks for just <strong style="color:#FFD700;">$11.11</strong></p>
+                <a href="https://square.link/u/AFFIRMATIONS11" class="offer-btn" style="padding:1rem 2rem; font-size:1.1rem;" target="_blank">✨ Unlock Full Course</a>
+            </div>
+        </div>
+        
+        <div id="week8" class="week-content">
+            <h2>🔒 Week 8: Embodying Your True Self</h2>
+            <div style="text-align:center; padding:3rem;">
+                <p style="font-size:1.3rem; color:#DDA0DD; margin-bottom:1.5rem;">Step into your power with affirmations of authenticity.</p>
+                <p style="margin-bottom:2rem;">Unlock all weeks for just <strong style="color:#FFD700;">$11.11</strong></p>
+                <a href="https://square.link/u/AFFIRMATIONS11" class="offer-btn" style="padding:1rem 2rem; font-size:1.1rem;" target="_blank">✨ Unlock Full Course</a>
+            </div>
+        </div>
+        
+        <div id="week9" class="week-content">
+            <h2>🔒 Week 9: Daily Rituals for MAGIC</h2>
+            <div style="text-align:center; padding:3rem;">
+                <p style="font-size:1.3rem; color:#DDA0DD; margin-bottom:1.5rem;">Create consistent practices that amplify your magic.</p>
+                <p style="margin-bottom:2rem;">Unlock all weeks for just <strong style="color:#FFD700;">$11.11</strong></p>
+                <a href="https://square.link/u/AFFIRMATIONS11" class="offer-btn" style="padding:1rem 2rem; font-size:1.1rem;" target="_blank">✨ Unlock Full Course</a>
+            </div>
+        </div>
+        
+        <div id="week10" class="week-content">
+            <h2>🔒 Week 10: Manifesting with Intention and Trust</h2>
+            <div style="text-align:center; padding:3rem;">
+                <p style="font-size:1.3rem; color:#DDA0DD; margin-bottom:1.5rem;">Balance action with surrender. Trust divine timing.</p>
+                <p style="margin-bottom:2rem;">Unlock all weeks for just <strong style="color:#FFD700;">$11.11</strong></p>
+                <a href="https://square.link/u/AFFIRMATIONS11" class="offer-btn" style="padding:1rem 2rem; font-size:1.1rem;" target="_blank">✨ Unlock Full Course</a>
+            </div>
+        </div>
+        
+        <div id="week11" class="week-content">
+            <h2>🔒 Week 11: Divine Alignment and Flow</h2>
+            <div style="text-align:center; padding:3rem;">
+                <p style="font-size:1.3rem; color:#DDA0DD; margin-bottom:1.5rem;">Live in harmony with the universe. Embrace the flow.</p>
+                <p style="margin-bottom:2rem;">Unlock all weeks for just <strong style="color:#FFD700;">$11.11</strong></p>
+                <a href="https://square.link/u/AFFIRMATIONS11" class="offer-btn" style="padding:1rem 2rem; font-size:1.1rem;" target="_blank">✨ Unlock Full Course</a>
+            </div>
+        </div>
+        
+        <!-- 11 RITUALS (Sample - always visible) -->
+        <div id="rituals" class="week-content">
+            <h2>🌙 11 Rituals to Amplify Affirmations</h2>
+            
+            <p>Rituals are sacred practices that anchor us to our intentions and align our energy with the life we want to create. These specific rituals serve as energetic resets, aligning your environment and your spirit with your highest intentions.</p>
+            
+            <div class="ritual-section">
+                <h3>1. 🌿 Bay Leaf Intentions</h3>
+                <p>Write your intention on a bay leaf, speak your affirmation aloud, then safely burn it, allowing the smoke to carry your intention to the universe.</p>
+                <div class="affirmation-grid" style="grid-template-columns: 1fr;">
+                    <div class="affirmation-card">"I release my intention into the universe, knowing it is already manifesting in perfect timing."</div>
+                </div>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>2. 🧡 Cinnamon Blessing</h3>
+                <p>On the first of each month, blow cinnamon into your home from the front door, visualizing abundance and positivity filling your space.</p>
+                <div class="affirmation-grid" style="grid-template-columns: 1fr;">
+                    <div class="affirmation-card">"My home is a sanctuary of love, abundance, and MAGIC."</div>
+                </div>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>3. ☕ Cinnamon in Coffee/Tea</h3>
+                <p>Stir clockwise to invite positivity. Speak your affirmations into your cup before the first sip.</p>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>4. 🚶 Intentional Walking</h3>
+                <p>With each step, speak a silent affirmation. Imagine planting seeds of intention into the earth.</p>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>5. 🕯️ Candle Gazing</h3>
+                <p>Gaze into the flame, visualize your intentions manifesting, speak affirmations into the light.</p>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>6. 😴 Sleep Affirmations</h3>
+                <p>As you drift to sleep, speak gentle affirmations to guide your dreams and set intentions for tomorrow.</p>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>7. 💧 Water Blessing</h3>
+                <p>Hold your water, set an intention, speak an affirmation into it. Visualize the water absorbing your words.</p>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>8. 🌸 Essential Oil Ritual</h3>
+                <p>Choose an oil that aligns with your goal. As you inhale, speak an affirmation that matches the energy.</p>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>9. 💎 Crystal Grid</h3>
+                <p>Arrange crystals in sacred geometry. As you place each one, speak an affirmation aloud.</p>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>10. 🔔 Sound Clearing</h3>
+                <p>Use a singing bowl, bell, or your voice. Imagine the sound clearing old energy and making space for new blessings.</p>
+            </div>
+            
+            <div class="ritual-section">
+                <h3>11. 🧂 Salt Burning Ritual</h3>
+                <p>Use Epsom salts with rubbing alcohol in a fire-safe container. As the flame burns, walk through your space speaking affirmations of clearing.</p>
+                <div class="affirmation-grid" style="grid-template-columns: 1fr;">
+                    <div class="affirmation-card">"I clear all levels, layers, systems, and structures of this space. I fill it with love, light, and MAGIC."</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MIRROR MANTRAS -->
+        <div id="mantras" class="week-content">
+            <h2>🪞 Mirror Mantras</h2>
+            <p style="text-align:center; margin-bottom:2rem;">Stand in front of a mirror. Look into your own eyes. Speak these aloud with conviction.</p>
+            
+            <div class="mirror-box">
+                <h3>✨ Mantras for MAGIC</h3>
+                <p>I am a vessel of MAGIC, and my life reflects the beauty of my soul.</p>
+                <p>I create MAGIC with every word I speak and every action I take.</p>
+                <p>My true self is a source of limitless MAGIC and inspiration.</p>
+                <p>I am aligned with the MAGIC of the universe.</p>
+                <p>My authenticity is my MAGIC, and I shine my light boldly.</p>
+                <p>I manifest MAGIC in all areas of my life.</p>
+            </div>
+            
+            <div class="mirror-box" style="border-color: rgba(50,205,50,0.5); background: linear-gradient(135deg, rgba(50,205,50,0.1), rgba(255,215,0,0.05));">
+                <h3>💰 Mantras for ABUNDANCE</h3>
+                <p>I am a magnet for ABUNDANCE, and it flows to me effortlessly.</p>
+                <p>Every day, I wake up to new opportunities and endless ABUNDANCE.</p>
+                <p>I live in a state of gratitude, and ABUNDANCE surrounds me.</p>
+                <p>My mind is aligned with ABUNDANCE, and my actions create prosperity.</p>
+                <p>I celebrate the ABUNDANCE in my life and welcome even more.</p>
+                <p>I speak the language of ABUNDANCE, and my life reflects prosperity.</p>
+            </div>
+            
+            <div class="mirror-box" style="border-color: rgba(255,105,180,0.5); background: linear-gradient(135deg, rgba(255,105,180,0.1), rgba(255,182,193,0.05));">
+                <h3>💗 Mantras for L-O-V-E</h3>
+                <p>I am a vessel of pure L-O-V-E, and my life reflects this beautiful energy.</p>
+                <p>I radiate L-O-V-E in all that I do, attracting joy and harmony.</p>
+                <p>My heart is open to giving and receiving L-O-V-E freely.</p>
+                <p>I am worthy of deep, unconditional L-O-V-E.</p>
+                <p>I choose to see the world through the eyes of L-O-V-E.</p>
+                <p>I am a beacon of L-O-V-E, and my presence brings light and healing.</p>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- FINAL CTA -->
+        <div class="offerings-banner">
+            <h2>Ready for the Full Journey?</h2>
+            <p style="font-size:1.2rem; margin-bottom:1.5rem;">Unlock all 11 weeks, 11 rituals, mirror mantras, journaling prompts, and daily practices.</p>
+            <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                <a href="https://square.link/u/AFFIRMATIONS11" class="offer-btn" style="padding:1rem 2rem; font-size:1.1rem;" target="_blank">✨ Full Course · $11.11</a>
+                <a href="https://square.link/u/n9WztX2P" class="offer-btn gold" style="padding:1rem 2rem; font-size:1.1rem;" target="_blank">🌟 Guided Journey · $111</a>
+            </div>
+        </div>
+        
+        <div class="quote-box">
+            "Your word is your wand—wield it with purpose, and let the magic of your voice create a life beyond your wildest dreams."
+        </div>
+        
+        <footer>
+            <p style="font-size:1.3rem; color:#FFD700; margin-bottom:1rem;">✨ The Maggie Way ✨</p>
+            <p>Affirmations For Magic © Maggie Mayne</p>
+            <p style="margin-top:1rem;"><a href="index.html">Return to The Maggie Way</a> · <a href="oracle-the-seed.html">Ask The Oracle</a></p>
+        </footer>
+    </div>
+    
+    <script>
+        function showWeek(weekId) {
+            // Hide all content
+            document.querySelectorAll('.week-content').forEach(el => el.classList.remove('active'));
+            // Remove active from all tabs
+            document.querySelectorAll('.week-tab').forEach(el => el.classList.remove('active'));
+            // Show selected content
+            document.getElementById(weekId).classList.add('active');
+            // Add active to clicked tab
+            event.target.classList.add('active');
+            // Scroll to content
+            document.getElementById(weekId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
