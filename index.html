@@ -50,57 +50,54 @@
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            padding: 1rem 2rem;
-            background: rgba(10, 5, 16, 0.95);
+            padding: 0.75rem 1rem;
+            background: rgba(10, 5, 16, 0.97);
             backdrop-filter: blur(10px);
             z-index: 1000;
             display: flex;
             justify-content: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
-            border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+            border-bottom: 1px solid rgba(255, 105, 180, 0.3);
         }
         nav a {
-            color: var(--cream);
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            padding: 0.4rem 0.75rem;
-            border-radius: 20px;
-        }
-        nav a:hover { color: var(--pink); }
-        nav a.active { color: var(--gold); border-bottom: 1px solid var(--gold); }
-        nav a.pink-tab {
-            background: rgba(255, 105, 180, 0.2);
-            border: 1px solid rgba(255, 105, 180, 0.4);
             color: #fff;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: all 0.3s;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            background: rgba(255, 105, 180, 0.15);
+            border: 1px solid rgba(255, 105, 180, 0.3);
         }
-        nav a.pink-tab:hover {
-            background: rgba(255, 105, 180, 0.35);
+        nav a:hover { 
+            background: rgba(255, 105, 180, 0.3);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+        }
+        nav a.active { 
+            background: rgba(255, 215, 0, 0.25);
+            border-color: rgba(255, 215, 0, 0.5);
+            color: #FFD700;
         }
         nav a.justice-tab {
-            background: linear-gradient(135deg, rgba(191, 10, 48, 0.3), rgba(0, 40, 104, 0.3));
+            background: linear-gradient(135deg, rgba(191, 10, 48, 0.25), rgba(0, 40, 104, 0.25));
             border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
+        }
+        nav a.justice-tab:hover {
+            background: linear-gradient(135deg, rgba(191, 10, 48, 0.4), rgba(0, 40, 104, 0.4));
         }
         nav a.love-letter-nav {
-            background: linear-gradient(135deg, #FFF8E7, #F5E6D3, #EDE0D4);
+            background: linear-gradient(135deg, rgba(255, 248, 231, 0.9), rgba(245, 230, 211, 0.9));
             border: 1px solid #D4C4B0;
             color: #8B4513;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 0.02em;
-            box-shadow: 0 2px 4px rgba(139, 69, 19, 0.15);
         }
         nav a.love-letter-nav:hover {
-            background: linear-gradient(135deg, #FFFAF0, #FAF0E6, #F5DEB3);
+            background: linear-gradient(135deg, #FFFAF0, #FAF0E6);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(139, 69, 19, 0.25);
             color: #6B3510;
@@ -738,28 +735,6 @@
         footer p { font-size: 0.8rem; color: rgba(255,248,240,0.5); }
         footer a { color: var(--gold); text-decoration: none; }
         
-        /* Library Nav Tab */
-        nav a.library-tab {
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.3), rgba(138, 43, 226, 0.3));
-            border: 1px solid rgba(147, 112, 219, 0.5);
-            color: #E6E6FA;
-        }
-        nav a.library-tab:hover {
-            background: rgba(147, 112, 219, 0.45);
-            transform: translateY(-2px);
-        }
-        
-        /* Protocols Nav Tab */
-        nav a.protocols-tab {
-            background: linear-gradient(135deg, rgba(32, 178, 170, 0.3), rgba(0, 139, 139, 0.3));
-            border: 1px solid rgba(32, 178, 170, 0.5);
-            color: #AFEEEE;
-        }
-        nav a.protocols-tab:hover {
-            background: rgba(32, 178, 170, 0.45);
-            transform: translateY(-2px);
-        }
-        
         /* Library Section */
         .library-section {
             background: linear-gradient(180deg, rgba(147, 112, 219, 0.05) 0%, transparent 100%);
@@ -917,17 +892,6 @@
             line-height: 1.6;
         }
         
-        /* Blog Nav Tab */
-        nav a.blog-tab {
-            background: linear-gradient(135deg, rgba(255, 165, 0, 0.3), rgba(255, 140, 0, 0.3));
-            border: 1px solid rgba(255, 165, 0, 0.5);
-            color: #FFE4B5;
-        }
-        nav a.blog-tab:hover {
-            background: rgba(255, 165, 0, 0.45);
-            transform: translateY(-2px);
-        }
-        
         /* Blog Section */
         .blog-section {
             background: linear-gradient(180deg, rgba(255, 165, 0, 0.05) 0%, transparent 100%);
@@ -978,20 +942,18 @@
         /* Responsive - Tablet */
         @media (max-width: 768px) {
             nav { 
-                gap: 0.5rem; 
-                padding: 0.75rem 1rem; 
+                gap: 0.4rem; 
+                padding: 0.6rem 0.75rem; 
                 flex-wrap: wrap;
                 justify-content: center;
             }
             nav a { 
-                font-size: 0.6rem; 
-                letter-spacing: 0.05em; 
-                padding: 0.3rem 0.5rem;
+                font-size: 0.65rem; 
+                padding: 0.3rem 0.6rem;
             }
             nav a.love-letter-nav {
                 font-size: 0.7rem;
-                padding: 0.4rem 0.8rem;
-                margin-top: 0.25rem;
+                padding: 0.35rem 0.7rem;
             }
             .header { padding: 5.5rem 1.5rem 1.5rem; }
             .header h1 { font-size: 2.2rem; }
@@ -1037,16 +999,16 @@
         /* Responsive - Mobile Small */
         @media (max-width: 480px) {
             nav { 
-                gap: 0.35rem; 
-                padding: 0.5rem 0.75rem; 
+                gap: 0.3rem; 
+                padding: 0.5rem 0.5rem; 
             }
             nav a { 
                 font-size: 0.55rem; 
-                padding: 0.25rem 0.4rem;
+                padding: 0.25rem 0.45rem;
             }
             nav a.love-letter-nav {
                 font-size: 0.6rem;
-                padding: 0.35rem 0.6rem;
+                padding: 0.3rem 0.5rem;
             }
             .header { padding: 5rem 1rem 1rem; }
             .header h1 { font-size: 1.8rem; }
@@ -1082,14 +1044,14 @@
 <div class="stars" id="stars"></div>
 
 <nav>
-    <a href="00-about-the-maggie-way.html" class="pink-tab">About</a>
+    <a href="00-about-the-maggie-way.html">About</a>
     <a href="#flower">Sacred Map</a>
     <a href="#offerings">Offerings</a>
-    <a href="#library" class="library-tab">Library</a>
+    <a href="#library">Library</a>
     <a href="#modalities">Modalities</a>
-    <a href="#protocols" class="protocols-tab">Protocols</a>
+    <a href="#protocols">Protocols</a>
     <a href="#meditations">Meditations</a>
-    <a href="#blog" class="blog-tab">Blog</a>
+    <a href="#blog">Blog</a>
     <a href="#books">Books</a>
     <a href="#shop">Shop</a>
     <a href="#justice" class="justice-tab">Justice</a>
@@ -2144,6 +2106,46 @@
                 <span class="topic-tag">Alignment</span>
             </div>
         </a>
+        <a href="51-build-a-support-system.html" class="library-card" style="border-color: rgba(32,178,170,0.5);">
+            <div class="card-icon">🤝</div>
+            <h3>Build a Support System</h3>
+            <p>Healing is your responsibility, but support is your birthright. You were never meant to walk alone.</p>
+            <div class="topics">
+                <span class="topic-tag">Community</span>
+                <span class="topic-tag">Support</span>
+                <span class="topic-tag">Connection</span>
+            </div>
+        </a>
+        <a href="52-all-things-maggie.html" class="library-card" style="border-color: rgba(255,105,180,0.5);">
+            <div class="card-icon">✨</div>
+            <h3>All Things Maggie</h3>
+            <p>A deeper look into the evolving landscape. Retreats, podcasts, ducks, gardens, and whatever magic demands next.</p>
+            <div class="topics">
+                <span class="topic-tag">About</span>
+                <span class="topic-tag">Vision</span>
+                <span class="topic-tag">Offerings</span>
+            </div>
+        </a>
+        <a href="53-what-comes-next.html" class="library-card" style="border-color: rgba(255,20,147,0.5);">
+            <div class="card-icon">🚀</div>
+            <h3>What Comes Next</h3>
+            <p>Turn the page. Light the match. The lighthouse teaching and a preview of She Tries/But Watch.</p>
+            <div class="topics">
+                <span class="topic-tag">Future</span>
+                <span class="topic-tag">Lighthouse</span>
+                <span class="topic-tag">Unleashed</span>
+            </div>
+        </a>
+        <a href="54-a-final-blessing.html" class="library-card" style="border-color: rgba(255,215,0,0.6); background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,105,180,0.08));">
+            <div class="card-icon">🙏</div>
+            <h3>A Final Blessing</h3>
+            <p>You came here looking for tools. You're leaving with your own torch. This is not the end. This is a portal.</p>
+            <div class="topics">
+                <span class="topic-tag">Blessing</span>
+                <span class="topic-tag">Closing</span>
+                <span class="topic-tag">Portal</span>
+            </div>
+        </a>
     </div>
 </section>
 
@@ -2884,6 +2886,30 @@
             <h3>The 14 Laws of Life</h3>
             <p>Universal principles. Work with the laws, they work for you.</p>
             <a href="50-laws-of-life-universe.html" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card">
+            <div class="card-icon">🤝</div>
+            <h3>Build a Support System</h3>
+            <p>Support is your birthright. You were never meant to walk alone.</p>
+            <a href="51-build-a-support-system.html" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card">
+            <div class="card-icon">✨</div>
+            <h3>All Things Maggie</h3>
+            <p>Retreats, podcasts, ducks, gardens, and magic.</p>
+            <a href="52-all-things-maggie.html" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card">
+            <div class="card-icon">🚀</div>
+            <h3>What Comes Next</h3>
+            <p>The lighthouse teaching. She Tries/But Watch is coming.</p>
+            <a href="53-what-comes-next.html" class="read-more">Read More →</a>
+        </div>
+        <div class="blog-card" style="background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(255,105,180,0.1) 100%);">
+            <div class="card-icon">🙏</div>
+            <h3>A Final Blessing</h3>
+            <p>You came for tools. You're leaving with your torch.</p>
+            <a href="54-a-final-blessing.html" class="read-more">Read More →</a>
         </div>
     </div>
 </section>
