@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crystalline Consciousness Technique™ | Maggie Mayne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #0a1a2e 50%, #1a0a2e 100%);
+            color: #FFF8F0;
+            min-height: 100vh;
+            line-height: 1.9;
+            font-size: 1.15rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #00CED1;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .back-link:hover { color: #FFD700; }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(0,206,209,0.15) 0%, rgba(138,43,226,0.1) 50%, transparent 70%);
+            border-radius: 30px;
+            margin-bottom: 3rem;
+        }
+        .hero-symbol { font-size: 5rem; margin-bottom: 1rem; }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.6rem;
+            background: linear-gradient(135deg, #00CED1, #8A2BE2, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #00CED1;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+        .tagline {
+            font-size: 1.2rem;
+            color: rgba(255,248,240,0.9);
+            max-width: 750px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+        
+        /* Sections */
+        .section {
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(0,206,209,0.2);
+        }
+        .section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: #00CED1;
+            margin: 2rem 0 1rem;
+        }
+        .section p {
+            margin-bottom: 1rem;
+            line-height: 1.9;
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid #00CED1;
+            border-right: 4px solid #8A2BE2;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #FFD700;
+        }
+        .quote-attribution {
+            font-size: 1rem;
+            color: rgba(255,248,240,0.7);
+            margin-top: 0.75rem;
+            font-style: normal;
+        }
+        
+        /* Three Phases */
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .phase-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(0,206,209,0.3);
+            transition: all 0.3s;
+        }
+        .phase-card:hover {
+            border-color: #00CED1;
+            transform: translateY(-3px);
+        }
+        .phase-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .phase-card h4 {
+            font-family: 'Cinzel', serif;
+            color: #00CED1;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+        .phase-card p {
+            font-size: 1rem;
+            color: rgba(255,248,240,0.85);
+        }
+        
+        /* Domains CCT Touches */
+        .domains-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .domain-pill {
+            background: rgba(138,43,226,0.2);
+            border: 1px solid rgba(138,43,226,0.4);
+            border-radius: 25px;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            color: #DDA0DD;
+            transition: all 0.3s;
+        }
+        .domain-pill:hover {
+            background: rgba(138,43,226,0.4);
+            transform: scale(1.05);
+        }
+        .domain-pill.primary {
+            background: linear-gradient(135deg, rgba(0,206,209,0.3), rgba(138,43,226,0.3));
+            border-color: #00CED1;
+            color: #00CED1;
+            font-weight: 600;
+        }
+        
+        /* Activation Section */
+        .activation-section {
+            background: linear-gradient(135deg, rgba(138,43,226,0.15), rgba(0,206,209,0.1));
+            border: 2px solid rgba(138,43,226,0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .activation-section h2 {
+            color: #DDA0DD;
+        }
+        
+        /* Free Sessions */
+        .free-sessions {
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(0,206,209,0.1));
+            border: 2px solid rgba(255,215,0,0.4);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .free-sessions h2 {
+            color: #FFD700;
+        }
+        .geometry-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .geometry-shape {
+            background: rgba(0,0,0,0.4);
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 15px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .geometry-shape:hover {
+            border-color: #FFD700;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255,215,0,0.3);
+        }
+        .geometry-shape .shape { font-size: 2rem; }
+        .geometry-shape p { font-size: 0.8rem; color: rgba(255,248,240,0.7); margin-top: 0.5rem; }
+        
+        /* Audio Instructions */
+        .audio-instructions {
+            background: rgba(0,206,209,0.1);
+            border: 1px solid rgba(0,206,209,0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        .audio-instructions h4 {
+            font-family: 'Cinzel', serif;
+            color: #00CED1;
+            margin-bottom: 1rem;
+        }
+        .audio-instructions ol {
+            margin-left: 1.5rem;
+        }
+        .audio-instructions li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+        
+        /* Practitioner Section */
+        .practitioner-section {
+            background: linear-gradient(135deg, rgba(255,105,180,0.1), rgba(0,206,209,0.1));
+            border: 1px solid rgba(255,105,180,0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+        }
+        .practitioner-section h2 {
+            background: linear-gradient(135deg, #FF69B4, #00CED1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Offerings */
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .offer-card {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(0,206,209,0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .offer-card:hover {
+            border-color: #00CED1;
+            transform: translateY(-3px);
+        }
+        .offer-card .emoji { font-size: 2rem; margin-bottom: 0.75rem; }
+        .offer-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #FFD700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .offer-card .price {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: #00CED1;
+            margin-bottom: 0.75rem;
+        }
+        .offer-card p {
+            font-size: 0.95rem;
+            color: rgba(255,248,240,0.8);
+            margin-bottom: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, #00CED1, #8A2BE2);
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,206,209,0.4); }
+        .btn-gold { background: linear-gradient(135deg, #FFD700, #DAA520); color: #000; }
+        .btn-purple { background: linear-gradient(135deg, #8A2BE2, #9932CC); }
+        
+        /* Memorial Section */
+        .memorial-section {
+            background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(138,43,226,0.08));
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .memorial-section h2 {
+            color: #FFD700;
+        }
+        .memorial-dates {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #DDA0DD;
+            margin-bottom: 1rem;
+        }
+        
+        /* Bullet Points */
+        ul.feature-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        ul.feature-list li {
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+        }
+        ul.feature-list li::before {
+            content: "💎";
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Divider */
+        .divider {
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00CED1, #8A2BE2, #00CED1, transparent);
+            margin: 3rem auto;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(0,206,209,0.2);
+        }
+        footer p { color: rgba(255,248,240,0.6); font-size: 1rem; }
+        footer a { color: #00CED1; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1.25rem; }
+            .geometry-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .geometry-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to The Maggie Way</a>
+        
+        <header class="hero">
+            <div class="hero-symbol">💎</div>
+            <h1>Crystalline Consciousness Technique™</h1>
+            <p class="subtitle">New Earth Transformation</p>
+            <p class="tagline">Life enhancing energy tools to live your purpose and be a change maker</p>
+        </header>
+        
+        <div class="quote-box">
+            "If you want to teach people a new way of thinking, don't bother trying to teach them. Instead, give them a tool, the use of which will lead to new ways of thinking."
+            <div class="quote-attribution">— Buckminster Fuller</div>
+        </div>
+        
+        <!-- What is CCT -->
+        <section class="section">
+            <h2>✨ About Crystalline Consciousness Technique™</h2>
+            
+            <p><strong style="color:#00CED1;">The Crystalline children began arriving in the 1980s.</strong> Also called Indigos, Starseeds, and Rainbows, they brought the ability to heal at accelerated rates and to hold tremendous amounts of light and high vibration. Crystalline Consciousness Technique is the tool to unlock that new potential for all ages.</p>
+            
+            <p>CCT™ is a system of energy healing that works with the universal phases of transformation, sacred geometry, and conscious intent. It uses what is called Energetic Transformation to help you achieve your goals, whether physical, mental, emotional, or spiritual. The technique releases the energetic root of the symptoms you are experiencing, allowing your body to receive what it needs.</p>
+        </section>
+        
+        <!-- It Starts with a New Energy System -->
+        <section class="section">
+            <h2>🌀 It Starts With A New Energy System</h2>
+            
+            <p>For as long as humans can remember, we have operated with an electromagnetic energy system. Now, to meet the rising challenges of this time, Earth has called forth a <strong style="color:#FFD700;">new energy system</strong> for all life.</p>
+            
+            <p>The <strong style="color:#00CED1;">Crystalline Energy System</strong> (CES) is made up of water, connective tissue, and mineral salts. These three components work in harmony to create a highly ordered and organized system for processing energy, information, and health.</p>
+            
+            <p>The CES is the primary system used in a CCT session for healing and transforming any discordant, misaligned, or distorted energy that exists at a cellular level, anywhere in the body. The system is incredibly dynamic and powerful... it's literally <strong>70-80% of your entire body!</strong> It touches and works with every other system on physical, mental, emotional, and spiritual planes.</p>
+            
+            <p>The Crystalline Energy System avoids the pitfalls of the electromagnetic energy system when it comes to healing and transforming. Your energy disentangles, easily releasing distortions and toxins, and holding a high vibration for protection at a time when we are experiencing energetic overload.</p>
+            
+            <div class="quote-box" style="border-color: #8A2BE2;">
+                "If you are under 35, you likely already have a Crystalline Energy System. You just need to learn how to unlock its power. If you are over 35, you can activate your Crystalline Energy System with the meditation below."
+            </div>
+        </section>
+        
+        <!-- Crystalline Energy System Activation -->
+        <div class="activation-section">
+            <h2>⚡ Activate Your Crystalline Energy System</h2>
+            <p style="font-size:1.15rem; margin-bottom:1.5rem;">This energy meditation will activate your Crystalline Energy System, preparing you to receive the full benefits of CCT™ healing and transformation.</p>
+            <a href="https://app.box.com/s/rj5urayulrxepzgxzlap" target="_blank" class="btn btn-purple" style="padding:1rem 2rem; font-size:1.1rem;">🎧 Listen to Crystalline Energy System Activation</a>
+            <p style="font-size:0.95rem; color:rgba(255,248,240,0.7); margin-top:1rem;">Allow 15-20 minutes in a quiet space</p>
+        </div>
+        
+        <!-- Sacred Geometry -->
+        <section class="section">
+            <h2>✡️ It Continues With Sacred Geometry</h2>
+            
+            <p>Energy moving through the Crystalline Energy System swirls and spirals through the golden ratio, sacred geometry, and your intentions in the beautiful dance of transformation. This has been simply organized into the protocols of Crystalline Consciousness Technique™.</p>
+            
+            <p>CCT accesses the highest potential of the Crystalline Energy System and ensures that healing and transformation stays at new levels <strong style="color:#FFD700;">without the uncomfortableness of a healing crisis</strong> or moving one step forward and then three steps back.</p>
+            
+            <ul class="feature-list">
+                <li>If you are an <strong>energy sensitive, empath, or healer</strong>, all of your biggest challenges are addressed with the CCT tools and techniques.</li>
+                <li>If you are a <strong>creative</strong>, you move beyond mental and emotional blocks and express at new levels of potential.</li>
+                <li>If you are searching for <strong>new levels of consciousness</strong> in personal and spiritual growth, you will discover a whole new system that accelerates reaching your highest potential.</li>
+                <li>If you really <strong>dislike change</strong>, this system will help you move out of resistance and embrace new spirals of growth.</li>
+                <li>If you focus on <strong>external form or outcome</strong>, you'll discover the delight of manifesting results beyond your wildest imagination.</li>
+            </ul>
+            
+            <p style="text-align:center; font-style:italic; color:#DDA0DD; margin-top:1.5rem;">CCT is taught through protocols that are easy to learn and easy to use without needing a doctorate in energy healing science. You can go as deep as you like in the science of it or just use the protocols and notice your own transformation in glorious ways.</p>
+        </section>
+        
+        <!-- Your Electromagnetic Energy Field -->
+        <section class="section">
+            <h2>⚡ Your Electromagnetic Energy Field</h2>
+            
+            <p>Every single organism has an electromagnetic field that extends into the space around it, from the simplest single-celled algae to the complex human body. This energy field protects the organism like a skin, and also assimilates information in the form of energy.</p>
+            
+            <p>This electromagnetic (EM) field is dynamic and responds to both internal as well as external stimuli. It can <strong>collapse</strong> in around you when you are lacking vital life force because of an illness. It can <strong>expand</strong> out for miles when you are in nature and feeling exuberant and joyful.</p>
+            
+            <p>Your EM field can be damaged or become less effective for many reasons including environmental, psychological, emotional, and physical factors. The EM field can appear torn, ripped, too porous, or distorted. It can become stagnant if it fails to fully assimilate or transmute toxic energies.</p>
+            
+            <h3>When Your EM Field is Compromised</h3>
+            <p>Once your EM field becomes compromised, your other body systems must do the job of the energy fields, leaving them less energy to do what they are meant to be doing. If the digestive system has to digest all the incoming energy, it won't be able to digest food that you've eaten. The integrity of your body organs and systems begins to breakdown.</p>
+            
+            <p><strong style="color:#00CED1;">Physical effects of a compromised EM field may include:</strong></p>
+            <ul class="feature-list">
+                <li>Allergies and chronic fatigue syndrome</li>
+                <li>Sleep apnea and migraines</li>
+                <li>Balance issues and bacterial growth</li>
+                <li>Seizures, convulsions, and adrenal failure</li>
+                <li>Cardiovascular and respiratory problems</li>
+                <li>Weight gain</li>
+            </ul>
+            
+            <p><strong style="color:#FFD700;">Behavioral, mental, and emotional effects include:</strong></p>
+            <ul class="feature-list">
+                <li>Increase in aggression and anxiety</li>
+                <li>Depression</li>
+                <li>Loss of attention and memory</li>
+                <li>Accidents</li>
+            </ul>
+            
+            <p style="text-align:center; margin-top:1.5rem; font-style:italic; color:#DDA0DD;">The CCT solution to protect the EM field involves a field of energy called the Crystalline Energy Field or Matrix.</p>
+        </section>
+        
+        <!-- Indra's Net -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(138,43,226,0.1), rgba(255,215,0,0.05)); border-color: rgba(255,215,0,0.3);">
+            <h2>🕸️ Indra's Net</h2>
+            
+            <div class="quote-box" style="font-size:1.1rem; line-height:2;">
+                "Far away in the heavenly abode of the great god Indra, there is a wonderful net which has been hung by some cunning creator in such a manner that it stretches out infinitely in all directions. In accordance with the extravagant tastes of deities, the creator has hung a single glittering jewel in each 'eye' of the net, and since the net itself is infinite in dimension, the jewels are infinite in number. There hang the jewels, glittering like stars of the first magnitude, a wonderful sight to behold. If we now arbitrarily select one of these jewels for inspection and look closely at it, we will discover that in its polished surface there are reflected all the other jewels in the net, infinite in number. Not only that, but each of the jewels reflected in this one jewel is also reflecting all the other jewels, so that there is an infinite reflecting process occurring."
+                <div class="quote-attribution">— Avatamsaka Sutra</div>
+            </div>
+            
+            <p style="text-align:center; margin-top:1.5rem;"><strong style="color:#FFD700;">Indra's Net IS the Crystalline Energy Field.</strong></p>
+        </section>
+        
+        <!-- The Crystalline Energy Field -->
+        <section class="section">
+            <h2>💎 The Crystalline Energy Field</h2>
+            
+            <p>When you "set up your CE field," as it is called in CCT, you are setting up this field vibrationally, which provides <strong style="color:#00CED1;">protection for your own electromagnetic fields</strong> by mirroring back to it high vibrations. Essentially you are creating an energy field of vibration to protect your energy fields.</p>
+            
+            <h3>How Vibration Helps an EM Field</h3>
+            
+            <p>Everything vibrates. Both Eastern and Western religious traditions state that sound (vibration) was present at the beginning of Creation. When vibrations are at one frequency we hear sound; when they are at higher frequencies we see light.</p>
+            
+            <p>Electromagnetic energies have different vibrational frequencies that create a spectrum. <strong style="color:#FFD700;">The higher the vibrational frequency of our electromagnetic field, the greater order, organization, and coherence is created within our body systems.</strong> With greater coherence we have greater communication throughout the whole system, an important consideration in maintaining the integrity of our health.</p>
+            
+            <p>Using high vibrational frequencies has another positive side effect. According to Freddy Silva in <em>Secrets in the Field</em>: "Since the human body itself is a set of atoms vibrating at a certain frequency, our ability to consciously distinguish other dimensions is limited, and like a radio station along the dial it only detects those vibrations which fall along its narrow bandwidth." <strong style="color:#00CED1;">When you are attuned to high vibration you automatically tune out lower frequencies.</strong></p>
+            
+            <h3>The Guitar Analogy</h3>
+            <p>Imagine a guitar lying in front of you. It's quiet and silent until you pick it up and strum a chord. The strings then vibrate according to the chord you played. Eventually, the strings will return to their resting state if no other chords are played.</p>
+            
+            <p>This is exactly how the Crystalline Energy Field works. Our version of strumming a guitar is to place a vibrational element in the field and it will vibrate to that "chord" for a certain amount of time. If you have weak or damaged electromagnetic fields, you'll have to set up the crystalline field more frequently. Doing so allows the electromagnetic field to heal and repair itself.</p>
+            
+            <h3>Entrainment and Resonation</h3>
+            <p>If there are various guitars or stringed instruments in a room and you strum a chord on one of them, the others will begin to vibrate to that chord... <strong style="color:#FFD700;">all by themselves!</strong> That's resonation or entrainment. When setting up a CE field, you make good use of this universal dynamic.</p>
+            
+            <p><strong>Two important points about the Crystalline Energy Field:</strong></p>
+            <ul class="feature-list">
+                <li>It is a high vibrational grid of energy lines and it is <strong>infinite</strong> with no discernible beginning or ending</li>
+                <li>Because it is infinite, it is neutral to all form. We need to make it specific to us for it to protect our EM field</li>
+            </ul>
+        </section>
+        
+        <!-- Laws of Vibration -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(0,206,209,0.05)); border-color: rgba(255,215,0,0.4);">
+            <h2>🔔 The Laws of Vibration</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #FFD700;">
+                    <p style="font-size: 1.15rem; font-style: italic; margin: 0;">All energy vibrates</p>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #00CED1;">
+                    <p style="font-size: 1.15rem; font-style: italic; margin: 0;">Vibration resonates and synchronizes with other vibrations</p>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #32CD32;">
+                    <p style="font-size: 1.15rem; font-style: italic; margin: 0;">High vibration creates health</p>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #FF6347;">
+                    <p style="font-size: 1.15rem; font-style: italic; margin: 0;">Low vibration creates illness</p>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #DDA0DD; grid-column: 1 / -1; text-align: center;">
+                    <p style="font-size: 1.25rem; font-style: italic; margin: 0; color: #FFD700;">Thoughts and words are vibrational</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 23 Crystal Vibrations -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(138,43,226,0.15), rgba(0,206,209,0.1)); border-color: rgba(138,43,226,0.5);">
+            <h2>✨ The 23 Crystal Vibrations</h2>
+            <p style="text-align:center; margin-bottom:2rem;">These are high vibrational words used when setting up fields to create the Crystalline Energy Field container:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; max-width: 800px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Appreciation</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Balance</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Clarity</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Connection</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Creativity</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Empathy</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Empowerment</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Enthusiasm</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Expression</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Gratitude</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Growth</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Harmony</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Leadership</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Mastery</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Openness</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Protection</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Self-Responsibility</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Serenity</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Service</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Stillpoint</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Support</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(0,206,209,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(0,206,209,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #00CED1;">Synchrony</span>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(138,43,226,0.1)); padding: 0.75rem; border-radius: 10px; text-align: center; border: 1px solid rgba(255,215,0,0.3);">
+                    <span style="font-family: 'Cinzel', serif; color: #FFD700;">Trust</span>
+                </div>
+            </div>
+            
+            <p style="text-align:center; margin-top:2rem; font-style:italic; color:rgba(255,248,240,0.8);">These 23 Crystal Vibrations are extremely high in frequency and are used in the CCT protocols to create resonation and entrainment in your energy field.</p>
+        </section>
+        
+        <!-- Individual and Group Fields -->
+        <section class="section">
+            <h2>👥 Individual and Group Fields</h2>
+            
+            <p>You have both <strong style="color:#00CED1;">individual energies</strong> and <strong style="color:#FFD700;">group energies</strong>. The first protects you while the second connects you.</p>
+            
+            <p>The CCT protocol helps you find that balance between your individual energies and your group energies. By creating a more harmonious group field, your senses are protected from overwhelm and you can begin to access the wisdom of a group and its higher potential of functioning.</p>
+            
+            <p>Because CCT works with group energy, any group can benefit: a marriage is a group of two, the immediate family can be a group, the extended family can be a group, a business, an organization, a community...</p>
+            
+            <p style="text-align:center; font-style:italic; color:#DDA0DD; margin-top:1.5rem;">The premise of CCT is that if any member of a group is presenting a problem, then that problem appears in some form throughout the other members of the group. Changing the group energy can support the individuals involved in healing and evolving.</p>
+        </section>
+        
+        <!-- The Three Phases -->
+        <section class="section">
+            <h2>🌀 The Three Phases of Transformation</h2>
+            <p style="text-align:center; margin-bottom:2rem;">CCT™ works with the universal pattern that nature uses, known as the Three Phases of Transformation.</p>
+            
+            <div class="phases-grid">
+                <div class="phase-card">
+                    <div class="icon">🌱</div>
+                    <h4>1. Opening</h4>
+                    <p>The start of something new. Creates a container of trust and safety in which healing work can occur. Fear and tension are released so a feeling of deep relaxation can appear. Think of a seed that opens to the world around itself.</p>
+                </div>
+                <div class="phase-card">
+                    <div class="icon">🌀</div>
+                    <h4>2. Healing Chambers</h4>
+                    <p>Sacred geometric configurations infused with sound vibration are introduced. This phase can feel chaotic as outmoded patterns release. The appropriate healing chambers work to clear physical, energetic, mental, emotional, and spiritual blockages.</p>
+                </div>
+                <div class="phase-card">
+                    <div class="icon">✨</div>
+                    <h4>3. Mastery / Integration</h4>
+                    <p>The intention is stated and integrated. This gives direction to the healing work. The transformation is anchored into your being at new levels, without sliding backward. You step into a new version of yourself.</p>
+                </div>
+            </div>
+            
+            <p style="text-align:center; margin-top:1.5rem;"><strong style="color:#FFD700;">Important:</strong> Intentions are stated in positive terms because the energy body does not read negatives. Instead of "I don't want fear," ask "What DO I want?"</p>
+        </section>
+        
+        <!-- Domains CCT Touches -->
+        <section class="section">
+            <h2>🌐 CCT™ Across the 19 Domains</h2>
+            <p style="text-align:center; margin-bottom:1.5rem;">CCT™ is not limited to one aspect of healing. It touches multiple domains of your Soul Architecture:</p>
+            
+            <div class="domains-grid">
+                <span class="domain-pill primary">💎 Domain 14: Crystal (PRIMARY)</span>
+                <span class="domain-pill">🌕 Domain 8: Spark (Energy)</span>
+                <span class="domain-pill">🔥 Domain 13: Flame (Transformation)</span>
+                <span class="domain-pill">🧠 Domain 2: Mind Temple (Consciousness)</span>
+                <span class="domain-pill">👁️ Domain 19: Void (Infinite Potential)</span>
+                <span class="domain-pill">🎵 Domain 10: Sound (Vibration)</span>
+                <span class="domain-pill">🌊 Domain 15: Flow (Water/Connective Tissue)</span>
+            </div>
+            
+            <p style="text-align:center; margin-top:1.5rem; font-style:italic; color:rgba(255,248,240,0.8);">This is why CCT™ creates such comprehensive transformation. It works across your entire energetic system simultaneously.</p>
+        </section>
+        
+        <!-- Free Sessions -->
+        <div class="free-sessions">
+            <h2>🎁 Experience CCT™ Free Mini Sessions</h2>
+            <p style="font-size:1.1rem; margin-bottom:1.5rem;">Try CCT™ for yourself with free audio sessions. Choose a sacred geometry shape that calls to you and receive a healing transmission.</p>
+            
+            <div class="audio-instructions">
+                <h4>📋 How to Use the Free Sessions:</h4>
+                <ol>
+                    <li><strong>Create sacred space.</strong> Choose a time without distractions. Allow at least 20 minutes.</li>
+                    <li><strong>Center yourself.</strong> Take several slow, deep breaths. Notice how you feel in your body.</li>
+                    <li><strong>Set your intention.</strong> What do you want to happen? How do you want to feel? What do you want to heal? State it in a <strong>positive</strong> format (what you DO want, not what you don't want).</li>
+                    <li><strong>Choose a shape.</strong> Look at the five geometric shapes below. Which one calls to you? Click it.</li>
+                    <li><strong>Receive the session.</strong> Listen to the audio explanation and healing transmission.</li>
+                    <li><strong>Integrate.</strong> When finished, notice how your breath moves. How do you feel about stepping back into your life?</li>
+                    <li><strong>Observe.</strong> In the next 3-5 days, notice what shifts around your intention.</li>
+                </ol>
+            </div>
+            
+            <p style="font-size:1.2rem; color:#FFD700; margin:1.5rem 0;">Choose a Sacred Geometry Shape:</p>
+            
+            <div class="geometry-grid">
+                <a href="https://app.box.com/s/uug7b8pcq6bb1dt2zap724zh5nza2q37" target="_blank" class="geometry-shape">
+                    <div class="shape">🔷</div>
+                    <p>Shape 1</p>
+                </a>
+                <a href="https://app.box.com/s/b0732pc1pm2ej51hchhignwntmvkqpan" target="_blank" class="geometry-shape">
+                    <div class="shape">🍃</div>
+                    <p>Shape 2</p>
+                </a>
+                <a href="https://app.box.com/s/7lnaqo3i5sbt9cwb1lejuu20sl5l769n" target="_blank" class="geometry-shape">
+                    <div class="shape">🌀</div>
+                    <p>Shape 3</p>
+                </a>
+                <a href="https://app.box.com/s/gw60qsn8idtbsx93575df94p540mlisd" target="_blank" class="geometry-shape">
+                    <div class="shape">💫</div>
+                    <p>Shape 4</p>
+                </a>
+                <a href="https://app.box.com/s/hy1hzd96i1n5q9d6sjjazqdnt2f7y8op" target="_blank" class="geometry-shape">
+                    <div class="shape">✨</div>
+                    <p>Shape 5</p>
+                </a>
+            </div>
+            
+            <a href="https://www.crystallineconsciousness.com/new-page-1" target="_blank" class="btn btn-gold" style="margin-top:1rem; padding:0.75rem 2rem; font-size:1rem;">🌐 Visit Official CCT™ Free Sessions Page</a>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- Maggie as Practitioner -->
+        <section class="practitioner-section">
+            <h2>✨ Maggie Mayne, Advanced CCT™ Practitioner</h2>
+            
+            <p>As an Advanced Practitioner of Crystalline Consciousness Technique™, I integrate CCT™ with over 22 years of bodywork mastery, energy healing, and intuitive guidance.</p>
+            
+            <p>My journey with CCT™ began when I was seeking tools that could accelerate the transformation I was already facilitating through massage and energy work. CCT™ gave me the crystalline framework to create rapid, lasting shifts that work across all levels of being.</p>
+            
+            <p>In every session, I use CCT™ to:</p>
+            <ul class="feature-list">
+                <li>Create a safe, sacred container for deep healing</li>
+                <li>Access the crystalline grid for accelerated transformation</li>
+                <li>Work with sacred geometry healing chambers to release old patterns</li>
+                <li>Integrate healing across body, mind, emotions, and spirit</li>
+                <li>Connect you to your highest potential and infinite possibilities</li>
+                <li>Ensure transformation holds without sliding backward</li>
+            </ul>
+            
+            <div class="quote-box" style="border-color: #FF69B4;">
+                "CCT™ enhanced everything I was already doing. It's like having a direct line to the crystalline grid of the universe. Transformation that used to take months now happens in a single session."
+                <div class="quote-attribution">— Maggie Mayne</div>
+            </div>
+        </section>
+        
+        <!-- Book with Maggie -->
+        <section class="section">
+            <h2>💎 Experience CCT™ with Maggie</h2>
+            
+            <div class="offerings-grid">
+                <div class="offer-card">
+                    <div class="emoji">✨</div>
+                    <h3>30-Min Remote Session</h3>
+                    <div class="price">$111</div>
+                    <p>Focused CCT™ energy work. Distance healing for clarity and alignment.</p>
+                    <a href="https://square.link/u/n9WztX2P" class="btn" target="_blank">Book</a>
+                </div>
+                <div class="offer-card" style="border-color: rgba(255,215,0,0.5);">
+                    <div class="emoji">💎</div>
+                    <h3>90-Min Soul-Lit Session</h3>
+                    <div class="price">$222</div>
+                    <p>Complete CCT™ integration with bodywork, energy healing, and intuitive guidance. All the things.</p>
+                    <a href="https://square.link/u/jGBu81PX" class="btn btn-gold" target="_blank">Book</a>
+                </div>
+                <div class="offer-card">
+                    <div class="emoji">🗺️</div>
+                    <h3>19-Domain CCT™ Map</h3>
+                    <div class="price">$444</div>
+                    <p>Your complete crystalline architecture mapped. See where transformation is needed across all domains.</p>
+                    <a href="https://square.link/u/9jqMqRSU" class="btn" target="_blank">Get Mapped</a>
+                </div>
+            </div>
+        </section>
+        
+        <div class="divider"></div>
+        
+        <!-- Honoring Gia -->
+        <section class="memorial-section">
+            <h2>🌟 Honoring the Founder: Gia Combs-Ramirez</h2>
+            <p class="memorial-dates">Founder of Crystalline Consciousness Technique™</p>
+            
+            <p>Gia Combs-Ramirez was a master of energy healing, transformation of consciousness, healer, soul intuitive, author, and teacher. She began her vocation studying massage at the New Mexico Academy of Healing Arts, then went on to study Craniosacral Therapy, Somatoemotional Release, Trauma Release Therapy, Reiki, Karuna Reiki, Essential Energy Balancing, Electromagnetic Field Balancing, and Co-Creative Science.</p>
+            
+            <p>In 2004, during a meditation, Crystalline Consciousness Technique™ was channeled and downloaded. Gia spent over 15 years teaching, writing, and developing the CCT™ system and organization. She held a Masters in Metaphysics from American Institute of Holistic Theology.</p>
+            
+            <p>Gia authored <em>Transformation: The Emergence of the Crystalline System</em> and <em>The Way of Transformation: Discovering the Divine Map to Unlock Your Highest Potential</em>, and maintained a worldwide private practice.</p>
+            
+            <p style="font-style:italic; color:#FFD700; margin-top:1.5rem;">"Crystalline Consciousness Technique is the accelerator tool you need for the New Earth energies."</p>
+            <p style="color:rgba(255,248,240,0.7);">— Gia Combs-Ramirez</p>
+            
+            <p style="margin-top:1.5rem;">Gia's legacy lives on through the practitioners and teachers she trained, and through the thousands of lives transformed by her channeled work.</p>
+        </section>
+        
+        <!-- Learn CCT -->
+        <section class="section">
+            <h2>📚 Learn CCT™</h2>
+            <p style="text-align:center; margin-bottom:1rem;">Interested in becoming a CCT™ practitioner yourself?</p>
+            <p style="text-align:center; margin-bottom:1.5rem;">CCT™ classes and training are now offered through <strong style="color:#00CED1;">Scott McBride</strong>, Certified CCT™ Master Teacher, continuing Gia's legacy.</p>
+            
+            <div style="text-align:center; margin-top:1.5rem;">
+                <a href="https://www.rayoflifehealing.com" target="_blank" class="btn" style="margin:0.5rem;">Scott McBride - Ray of Life Healing</a>
+                <a href="https://www.crystallineconsciousness.com" target="_blank" class="btn btn-gold" style="margin:0.5rem;">Official CCT™ Website</a>
+            </div>
+        </section>
+        
+        <footer>
+            <p style="font-size:1.2rem; color:#00CED1; margin-bottom:0.5rem;">💎 Crystalline Consciousness Technique™</p>
+            <p>CCT™ was founded by Gia Combs-Ramirez</p>
+            <p>Crystalline Consciousness Technique is a dba of Soluna, Inc.</p>
+            <p style="margin-top:1rem;"><a href="index.html">Return to The Maggie Way</a> · <a href="oracle-the-seed.html">Ask The Oracle</a> · <a href="affirmations-for-magic.html">Affirmations For Magic</a></p>
+        </footer>
+    </div>
+</body>
+</html>
