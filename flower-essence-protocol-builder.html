@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Essence Protocol Builder | The Maggie Way™</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a12;
+            --bg-card: rgba(20, 18, 30, 0.95);
+            --gold: #FFD700;
+            --gold-soft: rgba(255, 215, 0, 0.15);
+            --pink: #FF69B4;
+            --pink-soft: rgba(255, 105, 180, 0.15);
+            --lavender: #E6E6FA;
+            --green: #98FB98;
+            --green-soft: rgba(152, 251, 152, 0.15);
+            --blue: #87CEEB;
+            --cream: #FFF8F0;
+            --text: #FFF8F0;
+            --text-muted: rgba(255, 248, 240, 0.6);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--bg-deep);
+            color: var(--text);
+            min-height: 100vh;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(255, 105, 180, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255, 215, 0, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(152, 251, 152, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 2rem 0 3rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        
+        .brand {
+            margin-top: 1rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--pink);
+            letter-spacing: 0.15em;
+        }
+        
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 30px;
+            color: var(--text);
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--gold-soft), var(--pink-soft));
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-header p {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        
+        /* MODE 1: Symptom-Based Protocol Builder */
+        .symptom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .symptom-btn {
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 248, 240, 0.1);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+        
+        .symptom-btn:hover {
+            border-color: var(--pink);
+            background: var(--pink-soft);
+        }
+        
+        .symptom-btn.selected {
+            border-color: var(--gold);
+            background: var(--gold-soft);
+        }
+        
+        .symptom-btn .emoji {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* MODE 2: Intuitive Selection */
+        .essence-system-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .system-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 248, 240, 0.2);
+            border-radius: 20px;
+            color: var(--text);
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .system-btn.active {
+            background: var(--green-soft);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        
+        .essence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+        }
+        
+        .essence-btn {
+            padding: 0.75rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 248, 240, 0.1);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .essence-btn:hover {
+            border-color: var(--lavender);
+            transform: scale(1.02);
+        }
+        
+        .essence-btn.selected {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, var(--gold-soft), var(--pink-soft));
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* Selected Essences Display */
+        .selected-panel {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .selected-panel h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .selected-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            min-height: 50px;
+        }
+        
+        .selected-tag {
+            background: linear-gradient(135deg, var(--gold-soft), var(--pink-soft));
+            border: 1px solid var(--gold);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .selected-tag .remove {
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .selected-tag .remove:hover {
+            opacity: 1;
+        }
+        
+        .empty-state {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        
+        /* Generate Button */
+        .generate-btn {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 2rem auto;
+            padding: 1.25rem 2rem;
+            background: linear-gradient(135deg, #FFD700, #FF69B4);
+            border: none;
+            border-radius: 30px;
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.1em;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .generate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Results Panel */
+        .results-panel {
+            background: var(--bg-card);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .results-panel.visible {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .results-header h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .client-name-input {
+            margin-top: 1rem;
+        }
+        
+        .client-name-input input {
+            background: rgba(255, 248, 240, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: var(--text);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .client-name-input input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        /* Essence Cards in Results */
+        .essence-result {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 248, 240, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .essence-result h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .essence-result .system-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+        }
+        
+        .essence-result .system-tag.bach {
+            background: var(--pink-soft);
+            color: var(--pink);
+        }
+        
+        .essence-result .system-tag.rol {
+            background: var(--green-soft);
+            color: var(--green);
+        }
+        
+        .essence-result .negative {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        
+        .essence-result .positive {
+            color: var(--green);
+        }
+        
+        /* Synthesis Section */
+        .synthesis-section {
+            background: linear-gradient(135deg, var(--gold-soft), var(--pink-soft));
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .synthesis-section h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .synthesis-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text);
+        }
+        
+        /* Dosage Instructions */
+        .dosage-section {
+            background: rgba(135, 206, 235, 0.1);
+            border: 1px solid var(--blue);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .dosage-section h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--blue);
+            margin-bottom: 1rem;
+        }
+        
+        .dosage-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .dosage-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .dosage-section li::before {
+            content: '💧';
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Export Buttons */
+        .export-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .export-btn {
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .export-btn.pdf {
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+            color: white;
+        }
+        
+        .export-btn.email {
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            color: white;
+        }
+        
+        .export-btn.print {
+            background: linear-gradient(135deg, #2ECC71, #27AE60);
+            color: white;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* Clear Button */
+        .clear-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 248, 240, 0.3);
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .clear-btn:hover {
+            border-color: #E74C3C;
+            color: #E74C3C;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        footer .brand {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+        }
+        
+        footer .tagline {
+            color: var(--pink);
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+            .tabs { gap: 0.5rem; }
+            .tab-btn { padding: 0.75rem 1rem; font-size: 0.9rem; }
+            .symptom-grid { grid-template-columns: repeat(2, 1fr); }
+            .essence-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body { background: white; color: black; }
+            .tabs, .generate-btn, .export-buttons, .clear-btn, header, footer { display: none; }
+            .results-panel { border: 2px solid #333; }
+            .essence-result { border: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🌸</div>
+            <h1>Flower Essence Protocol Builder</h1>
+            <p class="subtitle">Custom Blends for Soul-Level Healing</p>
+            <p class="brand">THE MAGGIE WAY™ · SOUL ARCHITECTURE™</p>
+        </header>
+        
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="symptoms">🎯 Build by Symptoms</button>
+            <button class="tab-btn" data-tab="intuitive">✨ Intuitive Selection</button>
+            <button class="tab-btn" data-tab="reference">📚 Full Reference</button>
+        </div>
+        
+        <!-- TAB 1: Symptom-Based Protocol Builder -->
+        <div id="symptoms" class="tab-content active">
+            <div class="section-header">
+                <h2>What is the client experiencing?</h2>
+                <p>Select all that apply. Essences will be recommended based on patterns.</p>
+            </div>
+            
+            <div class="symptom-grid" id="symptomGrid">
+                <!-- Populated by JavaScript -->
+            </div>
+            
+            <div class="selected-panel">
+                <h3>📋 Selected Symptoms <button class="clear-btn" onclick="clearSymptoms()">Clear All</button></h3>
+                <div class="selected-list" id="selectedSymptoms">
+                    <span class="empty-state">No symptoms selected yet</span>
+                </div>
+            </div>
+            
+            <button class="generate-btn" onclick="generateFromSymptoms()" id="generateSymptomBtn" disabled>
+                ✨ Generate Protocol
+            </button>
+        </div>
+        
+        <!-- TAB 2: Intuitive Selection -->
+        <div id="intuitive" class="tab-content">
+            <div class="section-header">
+                <h2>Which essences called to them?</h2>
+                <p>Select the bottles they were drawn to. We'll reveal what their soul already knows.</p>
+            </div>
+            
+            <div class="essence-system-toggle">
+                <button class="system-btn active" data-system="bach">Bach (38)</button>
+                <button class="system-btn" data-system="rol">Range of Light (48)</button>
+                <button class="system-btn" data-system="all">Show All</button>
+            </div>
+            
+            <div class="essence-grid" id="essenceGrid">
+                <!-- Populated by JavaScript -->
+            </div>
+            
+            <div class="selected-panel">
+                <h3>🌸 Intuitively Selected <button class="clear-btn" onclick="clearEssences()">Clear All</button></h3>
+                <div class="selected-list" id="selectedEssences">
+                    <span class="empty-state">No essences selected yet</span>
+                </div>
+            </div>
+            
+            <button class="generate-btn" onclick="generateFromIntuitive()" id="generateIntuitiveBtn" disabled>
+                ✨ Reveal the Message
+            </button>
+        </div>
+        
+        <!-- TAB 3: Reference -->
+        <div id="reference" class="tab-content">
+            <div class="section-header">
+                <h2>Complete Essence Reference</h2>
+                <p>Full descriptions of all 86 essences across both systems</p>
+            </div>
+            
+            <div class="essence-system-toggle">
+                <button class="system-btn active" data-ref="bach">Bach Flower Remedies</button>
+                <button class="system-btn" data-ref="rol">Range of Light</button>
+            </div>
+            
+            <div id="referenceContent">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Results Panel -->
+        <div class="results-panel" id="resultsPanel">
+            <div class="results-header">
+                <h2>🌸 Custom Flower Essence Protocol</h2>
+                <p id="protocolDate"></p>
+                <div class="client-name-input">
+                    <input type="text" id="clientName" placeholder="Client Name (optional)">
+                </div>
+            </div>
+            
+            <div id="resultsContent">
+                <!-- Generated content goes here -->
+            </div>
+            
+            <div class="dosage-section">
+                <h4>💧 Dosage Instructions</h4>
+                <ul>
+                    <li><strong>Stock bottle:</strong> 2-4 drops under tongue, 4x daily</li>
+                    <li><strong>Dosage bottle:</strong> 2 drops of each essence in 30ml dropper bottle with spring water + brandy/vinegar preservative</li>
+                    <li><strong>In water:</strong> 4 drops in glass of water, sip throughout day</li>
+                    <li><strong>Topical:</strong> Add to bath, lotions, or spray bottles</li>
+                    <li><strong>Duration:</strong> Typically 2-4 weeks, or until shift is felt</li>
+                </ul>
+            </div>
+            
+            <div class="export-buttons">
+                <button class="export-btn print" onclick="window.print()">🖨️ Print Protocol</button>
+                <button class="export-btn email" onclick="copyForEmail()">📧 Copy for Email</button>
+                <button class="export-btn pdf" onclick="downloadPDF()">📄 Download PDF</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p class="brand">THE MAGGIE WAY™ · SOUL ARCHITECTURE™</p>
+            <p class="tagline">HEALERS GOING FIRST™</p>
+            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
+                © 2025 Maggie Mayne · <a href="mailto:MaggieMayne1111@gmail.com" style="color: var(--gold);">MaggieMayne1111@gmail.com</a>
+            </p>
+        </footer>
+    </div>
+
+<script>
+// ============================================
+// FLOWER ESSENCE DATABASE
+// ============================================
+
+const bachEssences = {
+    "Agrimony": {
+        system: "bach",
+        group: "Oversensitivity",
+        negative: "Hidden worries behind cheerful face; mental torture masked by humor; self-medicates to avoid feelings",
+        positive: "Inner peace; genuine cheerfulness; ability to face problems honestly",
+        keywords: ["hiding pain", "mask", "addiction", "avoidance", "peace-keeping"]
+    },
+    "Aspen": {
+        system: "bach",
+        group: "Fear",
+        negative: "Vague, unknown fears; feeling of dread; anxiety without cause; trembling, sweating",
+        positive: "Inner peace; trust in the unknown; fearlessness",
+        keywords: ["anxiety", "unknown fear", "dread", "apprehension", "nightmares"]
+    },
+    "Beech": {
+        system: "bach",
+        group: "Over-care for Others",
+        negative: "Intolerance; critical; judgmental; easily irritated by others",
+        positive: "Tolerance; compassion; seeing good in others despite imperfections",
+        keywords: ["criticism", "intolerance", "judgment", "irritation", "perfectionism"]
+    },
+    "Centaury": {
+        system: "bach",
+        group: "Oversensitivity",
+        negative: "Can't say no; weak-willed; easily exploited; doormat; neglects own needs",
+        positive: "Healthy boundaries; serves others while honoring self; assertiveness",
+        keywords: ["boundaries", "people-pleasing", "weak will", "exploitation", "self-sacrifice"]
+    },
+    "Cerato": {
+        system: "bach",
+        group: "Uncertainty",
+        negative: "Doesn't trust own judgment; constantly seeks advice; needs validation",
+        positive: "Trust in own wisdom; inner knowing; decisive",
+        keywords: ["self-doubt", "seeking advice", "validation", "indecision", "distrust of self"]
+    },
+    "Cherry Plum": {
+        system: "bach",
+        group: "Fear",
+        negative: "Fear of losing control; breakdown imminent; uncontrolled rage; suicidal thoughts",
+        positive: "Courage; composure; mental strength even under pressure",
+        keywords: ["losing control", "breakdown", "rage", "desperation", "mental break"]
+    },
+    "Chestnut Bud": {
+        system: "bach",
+        group: "Insufficient Interest",
+        negative: "Repeats same mistakes; doesn't learn from experience; mental blocks",
+        positive: "Wisdom from experience; observant; learns lessons first time",
+        keywords: ["repeating patterns", "not learning", "same mistakes", "stuck patterns"]
+    },
+    "Chicory": {
+        system: "bach",
+        group: "Over-care for Others",
+        negative: "Possessive love; manipulative; needs constant attention; martyrdom",
+        positive: "Selfless love; gives without expectation; nurturing without attachment",
+        keywords: ["possessiveness", "manipulation", "neediness", "smothering", "conditional love"]
+    },
+    "Clematis": {
+        system: "bach",
+        group: "Insufficient Interest",
+        negative: "Daydreaming; not present; escapes to fantasy; drowsy; spacey",
+        positive: "Grounded; present; creative inspiration rooted in reality",
+        keywords: ["daydreaming", "escapism", "not present", "spacey", "fantasy"]
+    },
+    "Crab Apple": {
+        system: "bach",
+        group: "Despondency",
+        negative: "Self-disgust; feeling unclean; obsessive about imperfections; shame",
+        positive: "Self-acceptance; proper perspective; inner cleansing",
+        keywords: ["self-hatred", "shame", "disgust", "obsessive", "cleansing", "body image"]
+    },
+    "Elm": {
+        system: "bach",
+        group: "Despondency",
+        negative: "Overwhelmed by responsibility; usually capable but suddenly inadequate",
+        positive: "Confidence in ability; capable leadership; handles responsibility well",
+        keywords: ["overwhelm", "responsibility", "inadequacy", "too much", "burnout"]
+    },
+    "Gentian": {
+        system: "bach",
+        group: "Uncertainty",
+        negative: "Discouraged after setback; pessimistic but will try again; doubt",
+        positive: "Perseverance; faith despite setbacks; positive attitude",
+        keywords: ["discouragement", "setback", "pessimism", "doubt", "giving up"]
+    },
+    "Gorse": {
+        system: "bach",
+        group: "Uncertainty",
+        negative: "Hopelessness; despair; given up; no light at end of tunnel",
+        positive: "Hope; faith; willingness to try; inner strength",
+        keywords: ["hopelessness", "despair", "given up", "no hope", "resignation"]
+    },
+    "Heather": {
+        system: "bach",
+        group: "Loneliness",
+        negative: "Self-centered; talks only about self; poor listener; needy; fear of being alone",
+        positive: "Good listener; empathetic; inner strength; interested in others",
+        keywords: ["self-absorbed", "needy", "talks too much", "lonely", "attention-seeking"]
+    },
+    "Holly": {
+        system: "bach",
+        group: "Oversensitivity",
+        negative: "Jealousy; envy; hatred; suspicion; revenge; rage",
+        positive: "Love; trust; goodwill; generosity; open heart",
+        keywords: ["jealousy", "envy", "hatred", "anger", "suspicion", "revenge"]
+    },
+    "Honeysuckle": {
+        system: "bach",
+        group: "Insufficient Interest",
+        negative: "Living in the past; nostalgia; regret; can't move on",
+        positive: "Living in present; learning from past without dwelling; moving forward",
+        keywords: ["past", "nostalgia", "regret", "homesickness", "grief", "can't let go"]
+    },
+    "Hornbeam": {
+        system: "bach",
+        group: "Uncertainty",
+        negative: "Mental weariness; Monday morning feeling; procrastination; lack of enthusiasm",
+        positive: "Mental energy; enthusiasm; certainty of strength",
+        keywords: ["procrastination", "mental fatigue", "no motivation", "tired", "putting off"]
+    },
+    "Impatiens": {
+        system: "bach",
+        group: "Loneliness",
+        negative: "Impatience; irritability; rushes everything; finishes others' sentences",
+        positive: "Patience; tolerance; relaxed pace; gentleness with slower people",
+        keywords: ["impatience", "irritability", "rushing", "frustrated", "restless"]
+    },
+    "Larch": {
+        system: "bach",
+        group: "Despondency",
+        negative: "Lack of confidence; expects failure; doesn't try; feels inferior",
+        positive: "Confidence; willingness to try; self-belief; determination",
+        keywords: ["low confidence", "fear of failure", "inferiority", "won't try", "insecurity"]
+    },
+    "Mimulus": {
+        system: "bach",
+        group: "Fear",
+        negative: "Known, specific fears (illness, pain, death, heights); shyness; timidity",
+        positive: "Courage to face fears; quiet bravery; enjoys life without worry",
+        keywords: ["specific fear", "shyness", "phobia", "anxiety", "timid", "nervous"]
+    },
+    "Mustard": {
+        system: "bach",
+        group: "Insufficient Interest",
+        negative: "Deep gloom without cause; depression; dark cloud; melancholy",
+        positive: "Inner serenity; joy; stability that can't be shaken",
+        keywords: ["depression", "gloom", "sadness", "dark cloud", "melancholy", "no reason"]
+    },
+    "Oak": {
+        system: "bach",
+        group: "Despondency",
+        negative: "Exhausted but struggles on; never gives up; overworks; ignores body signals",
+        positive: "Strength with flexibility; knows when to rest; sustainable perseverance",
+        keywords: ["exhaustion", "overwork", "won't rest", "pushing through", "stubborn strength"]
+    },
+    "Olive": {
+        system: "bach",
+        group: "Insufficient Interest",
+        negative: "Complete exhaustion - physical, mental, spiritual; drained; no energy",
+        positive: "Restored energy; renewed vitality; peace and strength",
+        keywords: ["exhaustion", "drained", "depleted", "no energy", "burned out"]
+    },
+    "Pine": {
+        system: "bach",
+        group: "Despondency",
+        negative: "Guilt; self-blame; apologizes constantly; never satisfied with efforts",
+        positive: "Self-acceptance; appropriate responsibility; self-forgiveness",
+        keywords: ["guilt", "self-blame", "sorry", "shame", "apologizing", "not good enough"]
+    },
+    "Red Chestnut": {
+        system: "bach",
+        group: "Fear",
+        negative: "Excessive worry for loved ones; overprotective; imagines worst",
+        positive: "Calm concern; positive thoughts for others; trusting",
+        keywords: ["worry for others", "overprotective", "anxious for family", "fear for loved ones"]
+    },
+    "Rock Rose": {
+        system: "bach",
+        group: "Fear",
+        negative: "Terror; panic; extreme fear; nightmares; frozen with fear",
+        positive: "Courage; presence of mind in crisis; fearlessness",
+        keywords: ["terror", "panic", "emergency", "nightmare", "frozen", "extreme fear"]
+    },
+    "Rock Water": {
+        system: "bach",
+        group: "Over-care for Others",
+        negative: "Self-denial; rigid self-discipline; perfectionism; martyr",
+        positive: "Flexibility; self-care; enjoyment; goes with the flow",
+        keywords: ["rigid", "perfectionism", "self-denial", "strict", "inflexible", "martyr"]
+    },
+    "Scleranthus": {
+        system: "bach",
+        group: "Uncertainty",
+        negative: "Indecision; mood swings; can't choose; back and forth",
+        positive: "Decisiveness; inner balance; poise; determination",
+        keywords: ["indecision", "mood swings", "can't choose", "fluctuating", "scattered"]
+    },
+    "Star of Bethlehem": {
+        system: "bach",
+        group: "Despondency",
+        negative: "Shock; trauma; grief; past trauma affecting present; numbness",
+        positive: "Comfort; healing; integration of trauma; soothing",
+        keywords: ["trauma", "shock", "grief", "PTSD", "past trauma", "accident", "loss"]
+    },
+    "Sweet Chestnut": {
+        system: "bach",
+        group: "Despondency",
+        negative: "Extreme anguish; limit of endurance; dark night of soul; utter despair",
+        positive: "Transformation; light at end of tunnel; inner strength; breakthrough",
+        keywords: ["extreme despair", "dark night", "anguish", "limit", "unbearable", "crisis"]
+    },
+    "Vervain": {
+        system: "bach",
+        group: "Over-care for Others",
+        negative: "Over-enthusiasm; fanaticism; can't relax; tense; missionary zeal",
+        positive: "Calm; moderation; ability to relax; acceptance of others' views",
+        keywords: ["over-enthusiasm", "fanatical", "tense", "can't relax", "preachy", "intense"]
+    },
+    "Vine": {
+        system: "bach",
+        group: "Over-care for Others",
+        negative: "Domineering; controlling; inflexible; tyrannical; must be in charge",
+        positive: "Wise leadership; guides without dominating; inspires",
+        keywords: ["controlling", "domineering", "bossy", "tyrant", "inflexible", "demanding"]
+    },
+    "Walnut": {
+        system: "bach",
+        group: "Oversensitivity",
+        negative: "Oversensitive to change; influenced by others; difficulty in transitions",
+        positive: "Protection from outside influence; constancy; smooth transitions",
+        keywords: ["transition", "change", "influenced", "life changes", "protection", "new beginnings"]
+    },
+    "Water Violet": {
+        system: "bach",
+        group: "Loneliness",
+        negative: "Pride; aloofness; isolation; appears unapproachable; withdrawn",
+        positive: "Connection; warmth while maintaining peace; shares wisdom",
+        keywords: ["isolation", "pride", "aloof", "withdrawn", "loner", "unapproachable"]
+    },
+    "White Chestnut": {
+        system: "bach",
+        group: "Insufficient Interest",
+        negative: "Repetitive unwanted thoughts; mental arguments; can't switch off; insomnia",
+        positive: "Peace of mind; controlled thinking; mental calm",
+        keywords: ["racing thoughts", "insomnia", "can't stop thinking", "mental chatter", "worry loop"]
+    },
+    "Wild Oat": {
+        system: "bach",
+        group: "Uncertainty",
+        negative: "Uncertainty about life direction; unfulfilled; starts many things",
+        positive: "Clarity of purpose; definite direction; meaningful work",
+        keywords: ["life purpose", "direction", "unfulfilled", "searching", "career", "path"]
+    },
+    "Wild Rose": {
+        system: "bach",
+        group: "Insufficient Interest",
+        negative: "Apathy; resignation; no motivation; accepts fate without effort",
+        positive: "Enthusiasm; vitality; interest in life; engagement",
+        keywords: ["apathy", "resignation", "no motivation", "given up", "passive", "flat"]
+    },
+    "Willow": {
+        system: "bach",
+        group: "Despondency",
+        negative: "Resentment; self-pity; bitterness; blames others; grudges",
+        positive: "Optimism; personal responsibility; forgiveness; letting go",
+        keywords: ["resentment", "bitterness", "victim", "blame", "grudge", "self-pity"]
+    }
+};
+
+const rolEssences = {
+    "Almond": {
+        system: "rol",
+        negative: "Disconnection from natural rhythms; forcing growth; impatience with process",
+        positive: "Trust in natural timing; patience with unfoldment; gentle awakening",
+        keywords: ["timing", "patience", "natural rhythm", "gentle", "awakening"]
+    },
+    "Alpine Aster": {
+        system: "rol",
+        negative: "Feeling insignificant; lost in vastness; disconnected from higher purpose",
+        positive: "Connection to cosmic perspective; finding meaning in vastness; star consciousness",
+        keywords: ["cosmic", "purpose", "vastness", "significance", "stars"]
+    },
+    "Blazing Star": {
+        system: "rol",
+        negative: "Scattered energy; inability to focus life force; diffused will",
+        positive: "Concentrated life force; radiant self-expression; magnetism",
+        keywords: ["focus", "radiance", "magnetism", "life force", "charisma"]
+    },
+    "California Peony": {
+        system: "rol",
+        negative: "Disconnection from feminine power; difficulty receiving; blocked receptivity",
+        positive: "Embracing feminine wisdom; graceful receptivity; beauty consciousness",
+        keywords: ["feminine", "receptivity", "beauty", "grace", "receiving"]
+    },
+    "California Valerian": {
+        system: "rol",
+        negative: "Nervous tension held in body; inability to release stress; hypervigilance",
+        positive: "Deep relaxation; release of held tension; calm presence",
+        keywords: ["relaxation", "tension release", "calm", "stress relief", "peace"]
+    },
+    "Cassiope": {
+        system: "rol",
+        negative: "Spiritual aridity; loss of connection to sacred; dark night experiences",
+        positive: "Spiritual renewal; connection to divine presence; inner light",
+        keywords: ["spiritual", "sacred", "renewal", "divine", "inner light"]
+    },
+    "Cherry": {
+        system: "rol",
+        negative: "Seriousness; inability to enjoy life; heaviness",
+        positive: "Lightheartedness; joy; playfulness; celebration of life",
+        keywords: ["joy", "playfulness", "lightheartedness", "celebration", "fun"]
+    },
+    "Chocolate Lily": {
+        system: "rol",
+        negative: "Difficulty accepting shadow; rejection of darker aspects; spiritual bypassing",
+        positive: "Integration of shadow; embracing wholeness; depth of soul",
+        keywords: ["shadow work", "integration", "wholeness", "depth", "acceptance"]
+    },
+    "Columbine": {
+        system: "rol",
+        negative: "Timidity in self-expression; hiding gifts; creative blocks",
+        positive: "Creative confidence; sharing unique gifts; artistic expression",
+        keywords: ["creativity", "self-expression", "gifts", "artistic", "confidence"]
+    },
+    "Corn Lily": {
+        system: "rol",
+        negative: "Disconnection from Earth wisdom; ungrounded spiritual practice",
+        positive: "Earth connection; grounded spirituality; plant consciousness",
+        keywords: ["grounding", "earth wisdom", "plants", "nature", "rooted"]
+    },
+    "Desert Lily": {
+        system: "rol",
+        negative: "Emotional drought; feeling unloved; isolation in barrenness",
+        positive: "Finding love in unexpected places; soul nourishment; inner oasis",
+        keywords: ["love", "nourishment", "oasis", "soul", "unexpected blessings"]
+    },
+    "Downy Avens": {
+        system: "rol",
+        negative: "Harshness toward self; punishing inner critic; self-cruelty",
+        positive: "Self-compassion; gentle self-treatment; tender inner parent",
+        keywords: ["self-compassion", "gentleness", "inner critic", "tenderness", "self-care"]
+    },
+    "Dune Primrose": {
+        system: "rol",
+        negative: "Fear of change; resistance to transformation; clinging to old forms",
+        positive: "Embracing transformation; flowing with change; resilience",
+        keywords: ["transformation", "change", "resilience", "adaptation", "flow"]
+    },
+    "Explorer's Gentian": {
+        system: "rol",
+        negative: "Loss of faith; spiritual discouragement; doubt of path",
+        positive: "Renewed faith; spiritual perseverance; trust in journey",
+        keywords: ["faith", "perseverance", "spiritual path", "trust", "journey"]
+    },
+    "Fiesta Flower": {
+        system: "rol",
+        negative: "Social anxiety; feeling like outsider; disconnection from community",
+        positive: "Social ease; celebration with others; community belonging",
+        keywords: ["social", "community", "belonging", "celebration", "connection"]
+    },
+    "Fireweed": {
+        system: "rol",
+        negative: "Devastation; aftermath of trauma; burned ground",
+        positive: "Recovery; new growth from ashes; phoenix rising",
+        keywords: ["recovery", "trauma healing", "rebirth", "phoenix", "new growth"]
+    },
+    "Glassy Hyacinth": {
+        system: "rol",
+        negative: "Spiritual confusion; unclear vision; foggy perception",
+        positive: "Spiritual clarity; clear seeing; transparent awareness",
+        keywords: ["clarity", "vision", "seeing", "perception", "transparency"]
+    },
+    "Green Bells of Ireland": {
+        system: "rol",
+        negative: "Disconnection from abundance; poverty consciousness; lack mentality",
+        positive: "Abundance consciousness; prosperity awareness; blessing recognition",
+        keywords: ["abundance", "prosperity", "blessings", "gratitude", "wealth"]
+    },
+    "Green Cross Gentian": {
+        system: "rol",
+        negative: "Spiritual crisis; loss of meaning; existential despair",
+        positive: "Spiritual breakthrough; finding meaning; sacred purpose",
+        keywords: ["meaning", "purpose", "spiritual crisis", "breakthrough", "existential"]
+    },
+    "Green Nicotiana": {
+        system: "rol",
+        negative: "Addiction patterns; unhealthy dependencies; escape behaviors",
+        positive: "Freedom from addiction; healthy choices; authentic peace",
+        keywords: ["addiction", "freedom", "healthy choices", "authenticity", "release"]
+    },
+    "Green Rein Orchid": {
+        system: "rol",
+        negative: "Disconnection from nature spirits; loss of elemental awareness",
+        positive: "Nature spirit connection; elemental communication; plant devas",
+        keywords: ["nature spirits", "elementals", "devas", "plant communication", "faeries"]
+    },
+    "Green Rose": {
+        system: "rol",
+        negative: "Closed heart; fear of love; protection against vulnerability",
+        positive: "Heart opening; unconditional love; green ray healing",
+        keywords: ["heart opening", "love", "vulnerability", "healing heart", "green ray"]
+    },
+    "Hawthorn": {
+        system: "rol",
+        negative: "Heartbreak; grief held in heart; cardiac stress",
+        positive: "Heart healing; emotional recovery; restored trust in love",
+        keywords: ["heartbreak", "heart healing", "grief", "trust", "love recovery"]
+    },
+    "Hyssop": {
+        system: "rol",
+        negative: "Spiritual guilt; religious shame; feeling unworthy of grace",
+        positive: "Spiritual cleansing; release of guilt; worthiness of love",
+        keywords: ["guilt", "shame", "cleansing", "worthiness", "spiritual purification"]
+    },
+    "Joshua Tree": {
+        system: "rol",
+        negative: "Ancestral trauma; family patterns; inherited wounds",
+        positive: "Ancestral healing; breaking family patterns; lineage clearing",
+        keywords: ["ancestral", "family patterns", "lineage", "inherited trauma", "generational"]
+    },
+    "Lady's Mantle": {
+        system: "rol",
+        negative: "Disconnection from moon wisdom; hormonal imbalance; feminine cycles disrupted",
+        positive: "Lunar attunement; feminine cycle harmony; moon wisdom",
+        keywords: ["moon", "feminine cycles", "hormones", "lunar", "womb wisdom"]
+    },
+    "Lemon": {
+        system: "rol",
+        negative: "Mental fog; confusion; inability to think clearly",
+        positive: "Mental clarity; clear thinking; intellectual brightness",
+        keywords: ["mental clarity", "clear thinking", "focus", "brightness", "mind"]
+    },
+    "Lewisia": {
+        system: "rol",
+        negative: "Survival mode; barely getting by; struggling to thrive",
+        positive: "Thriving in adversity; resilience; strength in harsh conditions",
+        keywords: ["survival", "resilience", "thriving", "adversity", "strength"]
+    },
+    "Lilac": {
+        system: "rol",
+        negative: "Rigidity in spine/back; held tension; inflexibility",
+        positive: "Spinal fluidity; flexibility; aligned posture; flow",
+        keywords: ["spine", "flexibility", "alignment", "posture", "flow"]
+    },
+    "Lungwort": {
+        system: "rol",
+        negative: "Grief held in lungs; breathing difficulties; respiratory distress",
+        positive: "Breath freedom; grief release through breath; lung clearing",
+        keywords: ["breath", "lungs", "grief release", "respiratory", "breathing"]
+    },
+    "Lupine": {
+        system: "rol",
+        negative: "Following the crowd; loss of individuality; pack mentality",
+        positive: "Individual path within community; unique contribution; wolf medicine",
+        keywords: ["individuality", "community", "unique path", "wolf", "pack"]
+    },
+    "Madrone": {
+        system: "rol",
+        negative: "Body shame; disconnection from physical form; body hatred",
+        positive: "Body love; physical presence; embodied consciousness",
+        keywords: ["body love", "embodiment", "physical", "body image", "presence"]
+    },
+    "Monkshood": {
+        system: "rol",
+        negative: "Fear of power; avoidance of leadership; power shadow",
+        positive: "Healthy power; spiritual authority; wise leadership",
+        keywords: ["power", "leadership", "authority", "spiritual power", "strength"]
+    },
+    "Mountain Forget-Me-Not": {
+        system: "rol",
+        negative: "Spiritual loneliness; feeling abandoned by guides; cosmic isolation",
+        positive: "Angelic connection; spiritual companionship; never alone",
+        keywords: ["angels", "guides", "spiritual connection", "companionship", "support"]
+    },
+    "Ocotillo": {
+        system: "rol",
+        negative: "Blocked chi; stagnant energy; creative drought",
+        positive: "Energy flow; creative fire; life force activation",
+        keywords: ["energy flow", "chi", "creative fire", "activation", "vitality"]
+    },
+    "Pedicularis": {
+        system: "rol",
+        negative: "Parasitic relationships; energy vampires; codependency",
+        positive: "Healthy interdependence; appropriate boundaries; mutual support",
+        keywords: ["boundaries", "codependency", "healthy relationships", "energy vampires"]
+    },
+    "Pussy Paws": {
+        system: "rol",
+        negative: "Hardened heart; defensive armor; fear of tenderness",
+        positive: "Soft strength; vulnerability as power; gentle courage",
+        keywords: ["softness", "vulnerability", "gentle strength", "tenderness", "courage"]
+    },
+    "Red Larkspur": {
+        system: "rol",
+        negative: "Leadership burnout; exhausted from guiding others; depleted teacher",
+        positive: "Renewed leadership; inspired teaching; joyful guidance",
+        keywords: ["leadership", "teaching", "guidance", "inspiration", "renewed purpose"]
+    },
+    "Red Penstemon": {
+        system: "rol",
+        negative: "Victimhood; feeling powerless; waiting to be rescued",
+        positive: "Inner warrior; self-rescue; empowered action",
+        keywords: ["empowerment", "warrior", "self-rescue", "action", "power"]
+    },
+    "Redbud": {
+        system: "rol",
+        negative: "Spring resistance; difficulty with new beginnings; stuck in winter",
+        positive: "Spring awakening; new beginnings; fresh starts",
+        keywords: ["new beginnings", "spring", "renewal", "fresh start", "awakening"]
+    },
+    "Redwood": {
+        system: "rol",
+        negative: "Disconnection from elders; loss of ancient wisdom; rootlessness",
+        positive: "Elder connection; ancient wisdom; deep roots; timelessness",
+        keywords: ["elders", "ancient wisdom", "roots", "timeless", "ancestral wisdom"]
+    },
+    "Rue": {
+        system: "rol",
+        negative: "Psychic attack; negative energies; spiritual intrusion",
+        positive: "Psychic protection; energy clearing; spiritual shielding",
+        keywords: ["protection", "psychic defense", "clearing", "shielding", "boundaries"]
+    },
+    "Scarlet Fritillary": {
+        system: "rol",
+        negative: "Sexual shame; root chakra blocks; primal fear",
+        positive: "Sexual healing; root chakra activation; primal power",
+        keywords: ["sexuality", "root chakra", "primal", "sexual healing", "life force"]
+    },
+    "Shasta Lily": {
+        system: "rol",
+        negative: "Spiritual ego; false enlightenment; superiority complex",
+        positive: "Humble spirituality; true awakening; sacred simplicity",
+        keywords: ["humility", "true spirituality", "awakening", "simplicity", "genuine"]
+    },
+    "Sierra Primrose": {
+        system: "rol",
+        negative: "Aging resistance; fear of mortality; denial of cycles",
+        positive: "Graceful aging; wisdom years; acceptance of life cycles",
+        keywords: ["aging", "wisdom", "cycles", "mortality", "grace"]
+    },
+    "Splendid Mariposa Lily": {
+        system: "rol",
+        negative: "Mother wound; maternal abandonment; lack of nurturing",
+        positive: "Divine mother connection; self-mothering; inner nurturing",
+        keywords: ["mother wound", "nurturing", "divine mother", "self-care", "maternal"]
+    },
+    "Spreading Phlox": {
+        system: "rol",
+        negative: "Isolation; inability to connect; social fragmentation",
+        positive: "Community weaving; connection creating; bringing people together",
+        keywords: ["community", "connection", "social", "weaving", "unity"]
+    },
+    "Tall Mountain Larkspur": {
+        system: "rol",
+        negative: "Spiritual pride; isolation at the top; lonely heights",
+        positive: "Humble leadership; serving from wisdom; generous teaching",
+        keywords: ["humble leadership", "wisdom", "teaching", "service", "generosity"]
+    }
+};
+
+// Symptom to essence mappings
+const symptomMappings = {
+    "anxiety_general": {
+        label: "General Anxiety",
+        emoji: "😰",
+        bach: ["Aspen", "Mimulus", "Rock Rose", "White Chestnut"],
+        rol: ["California Valerian", "Pussy Paws"]
+    },
+    "anxiety_specific": {
+        label: "Specific Fears",
+        emoji: "😨",
+        bach: ["Mimulus", "Rock Rose"],
+        rol: ["Dune Primrose"]
+    },
+    "panic": {
+        label: "Panic / Terror",
+        emoji: "😱",
+        bach: ["Rock Rose", "Cherry Plum"],
+        rol: ["California Valerian"]
+    },
+    "depression": {
+        label: "Depression / Low Mood",
+        emoji: "😔",
+        bach: ["Mustard", "Gentian", "Gorse", "Sweet Chestnut"],
+        rol: ["Fireweed", "Desert Lily"]
+    },
+    "grief": {
+        label: "Grief / Loss",
+        emoji: "💔",
+        bach: ["Star of Bethlehem", "Honeysuckle", "Sweet Chestnut"],
+        rol: ["Hawthorn", "Lungwort", "Fireweed"]
+    },
+    "trauma": {
+        label: "Trauma / Shock",
+        emoji: "⚡",
+        bach: ["Star of Bethlehem", "Rock Rose"],
+        rol: ["Fireweed", "Joshua Tree"]
+    },
+    "exhaustion": {
+        label: "Exhaustion / Burnout",
+        emoji: "😴",
+        bach: ["Olive", "Hornbeam", "Oak"],
+        rol: ["Lewisia", "Red Larkspur"]
+    },
+    "overwhelm": {
+        label: "Overwhelm",
+        emoji: "🌊",
+        bach: ["Elm", "Oak", "Cherry Plum"],
+        rol: ["California Valerian"]
+    },
+    "confidence": {
+        label: "Low Confidence",
+        emoji: "🙈",
+        bach: ["Larch", "Cerato", "Elm"],
+        rol: ["Blazing Star", "Columbine"]
+    },
+    "boundaries": {
+        label: "Weak Boundaries",
+        emoji: "🚧",
+        bach: ["Centaury", "Walnut"],
+        rol: ["Pedicularis", "Rue"]
+    },
+    "anger": {
+        label: "Anger / Rage",
+        emoji: "🔥",
+        bach: ["Holly", "Cherry Plum", "Willow", "Impatiens"],
+        rol: ["Hyssop"]
+    },
+    "resentment": {
+        label: "Resentment / Bitterness",
+        emoji: "😤",
+        bach: ["Willow", "Holly"],
+        rol: []
+    },
+    "guilt": {
+        label: "Guilt / Shame",
+        emoji: "😣",
+        bach: ["Pine", "Crab Apple"],
+        rol: ["Hyssop", "Downy Avens"]
+    },
+    "indecision": {
+        label: "Indecision",
+        emoji: "🤷",
+        bach: ["Scleranthus", "Cerato", "Wild Oat"],
+        rol: ["Glassy Hyacinth", "Lemon"]
+    },
+    "racing_thoughts": {
+        label: "Racing Thoughts",
+        emoji: "🌀",
+        bach: ["White Chestnut", "Vervain"],
+        rol: ["Lemon", "California Valerian"]
+    },
+    "insomnia": {
+        label: "Sleep Issues",
+        emoji: "🌙",
+        bach: ["White Chestnut", "Aspen", "Rock Rose"],
+        rol: ["California Valerian"]
+    },
+    "loneliness": {
+        label: "Loneliness / Isolation",
+        emoji: "🏝️",
+        bach: ["Water Violet", "Heather", "Impatiens"],
+        rol: ["Fiesta Flower", "Spreading Phlox", "Mountain Forget-Me-Not"]
+    },
+    "transition": {
+        label: "Life Transitions",
+        emoji: "🦋",
+        bach: ["Walnut", "Honeysuckle"],
+        rol: ["Dune Primrose", "Redbud"]
+    },
+    "control": {
+        label: "Control Issues",
+        emoji: "👊",
+        bach: ["Vine", "Rock Water", "Chicory"],
+        rol: ["Monkshood"]
+    },
+    "people_pleasing": {
+        label: "People Pleasing",
+        emoji: "🎭",
+        bach: ["Centaury", "Agrimony"],
+        rol: ["Downy Avens"]
+    },
+    "spiritual_crisis": {
+        label: "Spiritual Crisis",
+        emoji: "🌑",
+        bach: ["Sweet Chestnut", "Gorse"],
+        rol: ["Cassiope", "Green Cross Gentian", "Explorer's Gentian"]
+    },
+    "ancestral": {
+        label: "Ancestral Patterns",
+        emoji: "🌳",
+        bach: ["Chestnut Bud"],
+        rol: ["Joshua Tree", "Redwood"]
+    },
+    "body_image": {
+        label: "Body Image Issues",
+        emoji: "🪞",
+        bach: ["Crab Apple"],
+        rol: ["Madrone", "Scarlet Fritillary"]
+    },
+    "creativity_blocked": {
+        label: "Creative Blocks",
+        emoji: "🎨",
+        bach: ["Clematis", "Wild Oat", "Hornbeam"],
+        rol: ["Columbine", "Ocotillo"]
+    },
+    "heart_opening": {
+        label: "Heart Healing",
+        emoji: "💗",
+        bach: ["Holly", "Chicory"],
+        rol: ["Green Rose", "Hawthorn", "Pussy Paws"]
+    },
+    "protection": {
+        label: "Need Protection",
+        emoji: "🛡️",
+        bach: ["Walnut", "Centaury"],
+        rol: ["Rue", "Pedicularis"]
+    },
+    "apathy": {
+        label: "Apathy / No Motivation",
+        emoji: "😶",
+        bach: ["Wild Rose", "Hornbeam", "Olive"],
+        rol: ["Ocotillo"]
+    },
+    "perfectionism": {
+        label: "Perfectionism",
+        emoji: "✨",
+        bach: ["Rock Water", "Beech", "Crab Apple"],
+        rol: []
+    },
+    "mother_wound": {
+        label: "Mother Wound",
+        emoji: "👩",
+        bach: ["Chicory", "Red Chestnut"],
+        rol: ["Splendid Mariposa Lily", "Lady's Mantle"]
+    },
+    "addiction": {
+        label: "Addiction Patterns",
+        emoji: "🔗",
+        bach: ["Agrimony", "Cherry Plum", "Chestnut Bud"],
+        rol: ["Green Nicotiana"]
+    }
+};
+
+// ============================================
+// APPLICATION STATE
+// ============================================
+
+let selectedSymptoms = [];
+let selectedEssences = [];
+let currentEssenceSystem = 'bach';
+
+// ============================================
+// TAB NAVIGATION
+// ============================================
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+});
+
+// ============================================
+// SYMPTOM GRID INITIALIZATION
+// ============================================
+
+function initSymptomGrid() {
+    const grid = document.getElementById('symptomGrid');
+    grid.innerHTML = '';
+    
+    for (const [key, data] of Object.entries(symptomMappings)) {
+        const btn = document.createElement('button');
+        btn.className = 'symptom-btn';
+        btn.dataset.symptom = key;
+        btn.innerHTML = `<span class="emoji">${data.emoji}</span>${data.label}`;
+        btn.addEventListener('click', () => toggleSymptom(key, btn));
+        grid.appendChild(btn);
+    }
+}
+
+function toggleSymptom(key, btn) {
+    if (selectedSymptoms.includes(key)) {
+        selectedSymptoms = selectedSymptoms.filter(s => s !== key);
+        btn.classList.remove('selected');
+    } else {
+        selectedSymptoms.push(key);
+        btn.classList.add('selected');
+    }
+    updateSelectedSymptomDisplay();
+}
+
+function updateSelectedSymptomDisplay() {
+    const container = document.getElementById('selectedSymptoms');
+    const btn = document.getElementById('generateSymptomBtn');
+    
+    if (selectedSymptoms.length === 0) {
+        container.innerHTML = '<span class="empty-state">No symptoms selected yet</span>';
+        btn.disabled = true;
+    } else {
+        container.innerHTML = selectedSymptoms.map(key => {
+            const data = symptomMappings[key];
+            return `<span class="selected-tag">${data.emoji} ${data.label} <span class="remove" onclick="removeSymptom('${key}')">✕</span></span>`;
+        }).join('');
+        btn.disabled = false;
+    }
+}
+
+function removeSymptom(key) {
+    selectedSymptoms = selectedSymptoms.filter(s => s !== key);
+    document.querySelector(`[data-symptom="${key}"]`)?.classList.remove('selected');
+    updateSelectedSymptomDisplay();
+}
+
+function clearSymptoms() {
+    selectedSymptoms = [];
+    document.querySelectorAll('.symptom-btn').forEach(btn => btn.classList.remove('selected'));
+    updateSelectedSymptomDisplay();
+}
+
+// ============================================
+// ESSENCE GRID (INTUITIVE MODE)
+// ============================================
+
+function initEssenceGrid() {
+    renderEssenceGrid(currentEssenceSystem);
+    
+    document.querySelectorAll('.system-btn[data-system]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.system-btn[data-system]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentEssenceSystem = btn.dataset.system;
+            renderEssenceGrid(currentEssenceSystem);
+        });
+    });
+}
+
+function renderEssenceGrid(system) {
+    const grid = document.getElementById('essenceGrid');
+    grid.innerHTML = '';
+    
+    let essences = [];
+    
+    if (system === 'bach' || system === 'all') {
+        essences = essences.concat(Object.keys(bachEssences).map(name => ({ name, system: 'bach' })));
+    }
+    if (system === 'rol' || system === 'all') {
+        essences = essences.concat(Object.keys(rolEssences).map(name => ({ name, system: 'rol' })));
+    }
+    
+    essences.sort((a, b) => a.name.localeCompare(b.name));
+    
+    essences.forEach(({ name, system }) => {
+        const btn = document.createElement('button');
+        btn.className = 'essence-btn';
+        if (selectedEssences.some(e => e.name === name && e.system === system)) {
+            btn.classList.add('selected');
+        }
+        btn.dataset.essence = name;
+        btn.dataset.system = system;
+        btn.innerHTML = `${system === 'rol' ? '🌿' : '🌸'} ${name}`;
+        btn.addEventListener('click', () => toggleEssence(name, system, btn));
+        grid.appendChild(btn);
+    });
+}
+
+function toggleEssence(name, system, btn) {
+    const existing = selectedEssences.findIndex(e => e.name === name && e.system === system);
+    
+    if (existing >= 0) {
+        selectedEssences.splice(existing, 1);
+        btn.classList.remove('selected');
+    } else {
+        if (selectedEssences.length < 7) {
+            selectedEssences.push({ name, system });
+            btn.classList.add('selected');
+        } else {
+            alert('Maximum 7 essences recommended per blend');
+        }
+    }
+    updateSelectedEssenceDisplay();
+}
+
+function updateSelectedEssenceDisplay() {
+    const container = document.getElementById('selectedEssences');
+    const btn = document.getElementById('generateIntuitiveBtn');
+    
+    if (selectedEssences.length === 0) {
+        container.innerHTML = '<span class="empty-state">No essences selected yet</span>';
+        btn.disabled = true;
+    } else {
+        container.innerHTML = selectedEssences.map(e => {
+            const emoji = e.system === 'rol' ? '🌿' : '🌸';
+            return `<span class="selected-tag">${emoji} ${e.name} <span class="remove" onclick="removeEssence('${e.name}', '${e.system}')">✕</span></span>`;
+        }).join('');
+        btn.disabled = false;
+    }
+}
+
+function removeEssence(name, system) {
+    selectedEssences = selectedEssences.filter(e => !(e.name === name && e.system === system));
+    document.querySelector(`[data-essence="${name}"][data-system="${system}"]`)?.classList.remove('selected');
+    updateSelectedEssenceDisplay();
+}
+
+function clearEssences() {
+    selectedEssences = [];
+    document.querySelectorAll('.essence-btn').forEach(btn => btn.classList.remove('selected'));
+    updateSelectedEssenceDisplay();
+}
+
+// ============================================
+// PROTOCOL GENERATION
+// ============================================
+
+function generateFromSymptoms() {
+    // Collect all recommended essences based on symptoms
+    const recommendations = {};
+    
+    selectedSymptoms.forEach(symptomKey => {
+        const mapping = symptomMappings[symptomKey];
+        
+        mapping.bach.forEach(name => {
+            if (!recommendations[name]) {
+                recommendations[name] = { system: 'bach', symptoms: [], data: bachEssences[name] };
+            }
+            recommendations[name].symptoms.push(mapping.label);
+        });
+        
+        mapping.rol.forEach(name => {
+            if (!recommendations[name]) {
+                recommendations[name] = { system: 'rol', symptoms: [], data: rolEssences[name] };
+            }
+            recommendations[name].symptoms.push(mapping.label);
+        });
+    });
+    
+    // Sort by number of matching symptoms (most relevant first)
+    const sorted = Object.entries(recommendations)
+        .sort((a, b) => b[1].symptoms.length - a[1].symptoms.length)
+        .slice(0, 7); // Top 7
+    
+    displayResults(sorted, 'symptom');
+}
+
+function generateFromIntuitive() {
+    const results = selectedEssences.map(e => {
+        const data = e.system === 'bach' ? bachEssences[e.name] : rolEssences[e.name];
+        return [e.name, { system: e.system, data, symptoms: [] }];
+    });
+    
+    displayResults(results, 'intuitive');
+}
+
+function displayResults(essenceData, mode) {
+    const panel = document.getElementById('resultsPanel');
+    const content = document.getElementById('resultsContent');
+    
+    // Set date
+    document.getElementById('protocolDate').textContent = new Date().toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    
+    let html = '';
+    
+    // Individual essence cards
+    html += '<div class="essence-results">';
+    essenceData.forEach(([name, info]) => {
+        const systemLabel = info.system === 'bach' ? 'Bach Flower Remedy' : 'Range of Light';
+        const systemClass = info.system === 'bach' ? 'bach' : 'rol';
+        
+        html += `
+            <div class="essence-result">
+                <h4>${info.system === 'bach' ? '🌸' : '🌿'} ${name}</h4>
+                <span class="system-tag ${systemClass}">${systemLabel}</span>
+                ${info.symptoms.length > 0 ? `<p style="color: var(--gold); font-size: 0.85rem; margin-bottom: 0.5rem;">Addresses: ${info.symptoms.join(', ')}</p>` : ''}
+                <p class="negative"><strong>Transforms:</strong> ${info.data.negative}</p>
+                <p class="positive"><strong>Into:</strong> ${info.data.positive}</p>
+            </div>
+        `;
+    });
+    html += '</div>';
+    
+    // Synthesis - the soul reading
+    html += generateSynthesis(essenceData, mode);
+    
+    content.innerHTML = html;
+    panel.classList.add('visible');
+    panel.scrollIntoView({ behavior: 'smooth' });
+}
+
+function generateSynthesis(essenceData, mode) {
+    const essenceNames = essenceData.map(([name]) => name);
+    
+    // Gather all keywords and themes
+    const allKeywords = [];
+    const allNegative = [];
+    const allPositive = [];
+    
+    essenceData.forEach(([name, info]) => {
+        if (info.data.keywords) allKeywords.push(...info.data.keywords);
+        allNegative.push(info.data.negative);
+        allPositive.push(info.data.positive);
+    });
+    
+    let synthesisText = '';
+    
+    if (mode === 'intuitive') {
+        synthesisText = `
+            <p><strong>The Soul's Message:</strong></p>
+            <p>By intuitively selecting <strong>${essenceNames.join(', ')}</strong>, ${essenceNames.length > 1 ? 'a profound pattern emerges' : 'a clear message appears'}.</p>
+            <p>This combination speaks to a soul journey involving: <em>${allNegative.slice(0, 3).join('; ')}</em>.</p>
+            <p>The medicine being called for will support: <em>${allPositive.slice(0, 3).join('; ')}</em>.</p>
+            <p>This selection reveals deep inner wisdom - the body and soul already know what they need. Trust this guidance.</p>
+        `;
+    } else {
+        synthesisText = `
+            <p><strong>Protocol Summary:</strong></p>
+            <p>Based on the presenting symptoms, this ${essenceData.length}-essence protocol addresses multiple interconnected patterns.</p>
+            <p>The core themes being addressed: <em>${[...new Set(allKeywords)].slice(0, 8).join(', ')}</em>.</p>
+            <p>This blend works synergistically to transform ${allNegative.length > 1 ? 'these patterns' : 'this pattern'} into ${allPositive.slice(0, 2).join(' and ')}.</p>
+        `;
+    }
+    
+    return `
+        <div class="synthesis-section">
+            <h3>✨ ${mode === 'intuitive' ? 'What Their Soul Already Knows' : 'Protocol Synthesis'}</h3>
+            <div class="synthesis-text">
+                ${synthesisText}
+            </div>
+        </div>
+    `;
+}
+
+// ============================================
+// EXPORT FUNCTIONS
+// ============================================
+
+function copyForEmail() {
+    const clientName = document.getElementById('clientName').value || 'Client';
+    const date = document.getElementById('protocolDate').textContent;
+    
+    let text = `FLOWER ESSENCE PROTOCOL\n`;
+    text += `Prepared for: ${clientName}\n`;
+    text += `Date: ${date}\n`;
+    text += `Practitioner: Maggie Mayne | The Maggie Way™\n\n`;
+    text += `---\n\n`;
+    
+    document.querySelectorAll('.essence-result').forEach(card => {
+        const name = card.querySelector('h4').textContent;
+        const negative = card.querySelector('.negative')?.textContent || '';
+        const positive = card.querySelector('.positive')?.textContent || '';
+        text += `${name}\n${negative}\n${positive}\n\n`;
+    });
+    
+    text += `---\n\n`;
+    text += `DOSAGE INSTRUCTIONS:\n`;
+    text += `• Stock bottle: 2-4 drops under tongue, 4x daily\n`;
+    text += `• Or: 4 drops in glass of water, sip throughout day\n`;
+    text += `• Duration: 2-4 weeks, or until shift is felt\n\n`;
+    text += `---\n`;
+    text += `Soul-Lit™ | The Maggie Way™ | Soul Architecture™\n`;
+    text += `MaggieMayne1111@gmail.com\n`;
+    
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Protocol copied to clipboard! Ready to paste into email.');
+    });
+}
+
+function downloadPDF() {
+    // For now, trigger print which can save as PDF
+    alert('Use your browser\'s "Save as PDF" option in the print dialog.');
+    window.print();
+}
+
+// ============================================
+// REFERENCE TAB
+// ============================================
+
+function initReferenceTab() {
+    renderReference('bach');
+    
+    document.querySelectorAll('.system-btn[data-ref]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.system-btn[data-ref]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderReference(btn.dataset.ref);
+        });
+    });
+}
+
+function renderReference(system) {
+    const container = document.getElementById('referenceContent');
+    const essences = system === 'bach' ? bachEssences : rolEssences;
+    
+    let html = '<div style="margin-top: 2rem;">';
+    
+    if (system === 'bach') {
+        // Group by Bach categories
+        const groups = {};
+        for (const [name, data] of Object.entries(essences)) {
+            if (!groups[data.group]) groups[data.group] = [];
+            groups[data.group].push({ name, ...data });
+        }
+        
+        for (const [group, items] of Object.entries(groups)) {
+            html += `<h3 style="color: var(--pink); font-family: 'Cinzel', serif; margin: 2rem 0 1rem; border-bottom: 1px solid var(--pink-soft); padding-bottom: 0.5rem;">For ${group}</h3>`;
+            items.forEach(item => {
+                html += `
+                    <div class="essence-result">
+                        <h4>🌸 ${item.name}</h4>
+                        <p class="negative"><strong>Negative State:</strong> ${item.negative}</p>
+                        <p class="positive"><strong>Positive Potential:</strong> ${item.positive}</p>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;"><strong>Keywords:</strong> ${item.keywords.join(', ')}</p>
+                    </div>
+                `;
+            });
+        }
+    } else {
+        // Alphabetical for Range of Light
+        const sorted = Object.entries(essences).sort((a, b) => a[0].localeCompare(b[0]));
+        sorted.forEach(([name, data]) => {
+            html += `
+                <div class="essence-result">
+                    <h4>🌿 ${name}</h4>
+                    <p class="negative"><strong>Transforms:</strong> ${data.negative}</p>
+                    <p class="positive"><strong>Into:</strong> ${data.positive}</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;"><strong>Keywords:</strong> ${data.keywords.join(', ')}</p>
+                </div>
+            `;
+        });
+    }
+    
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    initSymptomGrid();
+    initEssenceGrid();
+    initReferenceTab();
+});
+</script>
+</body>
+</html>
