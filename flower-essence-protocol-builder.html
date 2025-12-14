@@ -302,6 +302,70 @@
             font-style: italic;
         }
         
+        /* Client Info Section */
+        .client-info-section {
+            background: var(--bg-card);
+            border: 1px solid var(--gold);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .client-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .start-new-btn {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: rgba(255, 107, 107, 0.5);
+            color: #FF6B6B;
+        }
+        
+        .start-new-btn:hover {
+            background: rgba(255, 107, 107, 0.3);
+            border-color: #FF6B6B;
+        }
+        
+        .client-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .info-field label {
+            display: block;
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-field input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 248, 240, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+        }
+        
+        .info-field input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .info-field input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+        
         /* Realm Tabs for Assessment */
         .realm-tabs {
             display: flex;
@@ -723,7 +787,29 @@
         <div id="assessment" class="tab-content active">
             <div class="section-header">
                 <h2>Guided Soul Assessment</h2>
-                <p>Answer questions across all four realms to reveal the perfect essence protocol.</p>
+                <p>Answer questions across all five realms to reveal the perfect essence protocol.</p>
+            </div>
+            
+            <!-- Client Info -->
+            <div class="client-info-section">
+                <div class="client-info-header">
+                    <span style="font-family: 'Cinzel', serif; color: var(--gold);">📋 Session Info</span>
+                    <button class="clear-btn start-new-btn" onclick="startNewSession()">🔄 Start New Session</button>
+                </div>
+                <div class="client-info-grid">
+                    <div class="info-field">
+                        <label for="assessmentClientName">👤 Client Name</label>
+                        <input type="text" id="assessmentClientName" placeholder="Enter name...">
+                    </div>
+                    <div class="info-field">
+                        <label for="assessmentClientEmail">📧 Email</label>
+                        <input type="email" id="assessmentClientEmail" placeholder="Enter email...">
+                    </div>
+                    <div class="info-field">
+                        <label for="assessmentDate">📅 Date</label>
+                        <input type="date" id="assessmentDate">
+                    </div>
+                </div>
             </div>
             
             <!-- Realm Tabs -->
@@ -2034,6 +2120,11 @@ document.querySelectorAll('.realm-tab').forEach(btn => {
 // ============================================
 
 function initAssessment() {
+    // Auto-populate today's date
+    const today = new Date().toISOString().split('T')[0];
+    const dateField = document.getElementById('assessmentDate');
+    if (dateField) dateField.value = today;
+    
     // Add change listeners to all checkboxes and radios in assessment
     document.querySelectorAll('#assessment input[type="checkbox"], #assessment input[type="radio"]').forEach(input => {
         input.addEventListener('change', updateAssessment);
@@ -2108,13 +2199,50 @@ function updateAssessment() {
 }
 
 function clearAssessment() {
-    document.querySelectorAll('#assessment input').forEach(input => {
+    document.querySelectorAll('#assessment input[type="checkbox"], #assessment input[type="radio"]').forEach(input => {
         input.checked = false;
     });
     document.querySelectorAll('.realm-tab').forEach(tab => {
         tab.classList.remove('completed');
     });
     updateAssessment();
+}
+
+function startNewSession() {
+    if (confirm('Start a new session? This will clear all current data.')) {
+        // Clear assessment
+        clearAssessment();
+        
+        // Clear client info fields
+        document.getElementById('assessmentClientName').value = '';
+        document.getElementById('assessmentClientEmail').value = '';
+        
+        // Reset date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('assessmentDate').value = today;
+        
+        // Clear symptoms
+        clearSymptoms();
+        
+        // Clear intuitive selections
+        clearEssences();
+        
+        // Hide results panel
+        document.getElementById('resultsPanel').classList.remove('visible');
+        
+        // Clear results client name field too
+        const resultsClientName = document.getElementById('clientName');
+        if (resultsClientName) resultsClientName.value = '';
+        
+        // Reset to first realm tab
+        document.querySelectorAll('.realm-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.realm-content').forEach(c => c.classList.remove('active'));
+        document.querySelector('.realm-tab[data-realm="physical"]').classList.add('active');
+        document.getElementById('realm-physical').classList.add('active');
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 }
 
 function generateFromAssessment() {
@@ -2436,12 +2564,18 @@ function generateSynthesis(essenceData, mode) {
 // ============================================
 
 function copyForEmail() {
-    const clientName = document.getElementById('clientName').value || 'Client';
+    // Check both possible client name fields (results panel and assessment form)
+    const resultsClientName = document.getElementById('clientName')?.value;
+    const assessmentClientName = document.getElementById('assessmentClientName')?.value;
+    const clientName = resultsClientName || assessmentClientName || 'Client';
+    
+    const clientEmail = document.getElementById('assessmentClientEmail')?.value || '';
     const date = document.getElementById('protocolDate').textContent;
     
     let text = `✨ FLOWER ESSENCE PROTOCOL ✨\n`;
     text += `═══════════════════════════════════════\n\n`;
     text += `Prepared for: ${clientName}\n`;
+    if (clientEmail) text += `Email: ${clientEmail}\n`;
     text += `Date: ${date}\n`;
     text += `Practitioner: Maggie Mayne | The Maggie Way™\n\n`;
     text += `═══════════════════════════════════════\n\n`;
@@ -2484,7 +2618,10 @@ function copyForEmail() {
     text += `🌐 magzmayne.github.io/maggie-mayne-site\n`;
     
     navigator.clipboard.writeText(text).then(() => {
-        alert('Protocol copied to clipboard! Ready to paste into email.');
+        const startNew = confirm('✅ Protocol copied to clipboard!\n\nReady to paste into email.\n\nWould you like to start a new session?');
+        if (startNew) {
+            startNewSession();
+        }
     });
 }
 
