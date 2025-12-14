@@ -450,8 +450,39 @@
         .panel-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
         .panel-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold); margin-bottom: 0.25rem; }
         .panel-archetype { font-style: italic; color: var(--pink); font-size: 0.95rem; }
-        .panel-desc { text-align: center; margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7; color: rgba(255,248,240,0.9); }
-        .panel-links { margin-top: 1.5rem; }
+        .panel-meta { display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem; }
+        .panel-element { background: rgba(255,215,0,0.2); color: var(--gold); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-family: 'Cinzel', serif; }
+        .panel-zodiac { background: rgba(138,43,226,0.2); color: #DDA0DD; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-family: 'Cinzel', serif; }
+        .panel-chakra { background: rgba(255,105,180,0.2); color: var(--pink); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-family: 'Cinzel', serif; }
+        .panel-desc { text-align: center; margin-bottom: 1rem; font-size: 1rem; line-height: 1.7; color: rgba(255,248,240,0.9); }
+        .panel-wisdom { background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.2); border-radius: 15px; padding: 1.25rem; margin: 1rem 0; }
+        .panel-law { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem; margin-bottom: 0.75rem; text-align: center; }
+        .panel-teaching { font-style: italic; color: rgba(255,248,240,0.9); margin-bottom: 0.75rem; line-height: 1.6; }
+        .panel-practice { background: rgba(255,105,180,0.1); padding: 0.75rem; border-radius: 10px; font-size: 0.9rem; color: rgba(255,248,240,0.85); }
+        .panel-practice strong { color: var(--pink); }
+        .panel-links { margin-top: 1rem; }
+        .panel-offerings { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,215,0,0.2); }
+        .panel-offerings h4 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 0.75rem; text-align: center; font-size: 0.9rem; }
+        .offering-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .offering-link:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
+            transform: translateY(-2px);
+        }
+        .offering-name { color: var(--cream); }
+        .offering-price { color: var(--pink); font-family: 'Cinzel', serif; font-weight: 600; }
         .panel-links h4 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 0.75rem; text-align: center; font-size: 0.9rem; }
         .domain-link {
             display: block;
@@ -538,7 +569,7 @@
 <div class="top-bar">
     <a href="https://instagram.com/MaggieMayne1111" target="_blank">📸 @MaggieMayne1111</a>
     <a href="https://facebook.com/MaggiesMAGIC" target="_blank">📘 Facebook</a>
-    <a href="/cdn-cgi/l/email-protection#7815191f1f111d151901161d49494949381f15191114561b1715" class="love-letter-top">💌 Send a Love Letter</a>
+    <a href="mailto:MaggieMayne1111@gmail.com" class="love-letter-top">💌 Send a Love Letter</a>
 </div>
 
 <nav>
@@ -1144,11 +1175,12 @@
 
 <footer>
     <p class="mantra">HEALERS GOING FIRST™</p>
-    <p>Soul Architecture™ by Maggie Mayne</p>
-    <p style="margin-top: 0.5rem;"><a href="/cdn-cgi/l/email-protection#e885898f8f818d858991868dd9d9d9d9a88f85898184c68b8785"><span class="__cf_email__" data-cfemail="e38e8284848a868e829a8d86d2d2d2d2a3848e828a8fcd808c8e">[email&#160;protected]</span></a></p>
+    <p style="font-family: 'Cinzel', serif; color: #FFD700; font-size: 1rem; margin-bottom: 0.5rem;">The Maggie Way™ · Soul Architecture™</p>
+    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6);">© 2025 Maggie Mayne</p>
+    <p style="margin-top: 0.75rem;"><a href="mailto:MaggieMayne1111@gmail.com" style="color: #FFD700;">MaggieMayne1111@gmail.com</a></p>
+    <p style="margin-top: 0.75rem;"><a href="https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH" target="_blank" style="color: #FF9900;">📚 The Maggie Way on Amazon</a></p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Stars
 const s = document.getElementById('stars');
 for (let i = 0; i < 80; i++) {
@@ -1167,128 +1199,172 @@ const style = document.createElement('style');
 style.textContent = '@keyframes pulse-heart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }';
 document.head.appendChild(style);
 
-// Domain data with linked content
+// Domain data with linked content - COMPLETE with archetypes, elements, zodiac, chakra, law, offerings
 const domains = {
-    1: { name: "Heart Center", emoji: "💗", archetype: "The Queen", element: "Fire", description: "Soul Lit™ brand core. Where all healing begins. The center of your sacred architecture.", links: [
+    1: { name: "Heart Center", emoji: "💗", archetype: "The Queen", element: "Fire", zodiac: "Leo", chakra: "Heart (Anahata)", law: "Law of Love", teaching: "Love is the source of everything. We came here to be happy within ourselves and to love our neighbor as ourselves.", practice: "Place your hand on your heart. Ask: What does my heart need right now? Listen. Trust what comes.", description: "Soul Lit™ brand core. Where all healing begins. The center of your sacred architecture.", links: [
         { title: "🔮 Ask The Oracle", url: "oracle-the-seed.html" },
         { title: "About The Maggie Way", url: "00-about-the-maggie-way.html" },
         { title: "Connect · Heal · Balance", url: "10-connect-heal-balance.html" }
-    ]},
-    2: { name: "Mind Temple", emoji: "🧠", archetype: "The High Priestess", element: "Air", description: "Consciousness expansion and nervous system healing. Cranial Sacral Therapy. CCT™ works here to settle the nervous system and access higher awareness.", links: [
+    ], offerings: []},
+    2: { name: "Mind Temple", emoji: "🧠", archetype: "The High Priestess", element: "Air", zodiac: "Aquarius", chakra: "Third Eye (Ajna)", law: "Law of Correspondence", teaching: "As above, so below. As within, so without. Every situation is a learning experience. We are always exactly where we are meant to be.", practice: "When facing a challenge, ask: What is this teaching me? What pattern in me is this reflecting?", description: "Consciousness expansion and nervous system healing. Cranial Sacral Therapy. CCT™ works here to settle the nervous system and access higher awareness.", links: [
         { title: "💎 Crystalline Consciousness Technique", url: "cct.html" },
         { title: "Cranial Sacral Therapy", url: "38-cranial-sacral-therapy.html" },
         { title: "Architecture of Consciousness", url: "49-architecture-of-consciousness.html" },
         { title: "Who Are YOU?", url: "11-who-are-you.html" }
-    ]},
-    3: { name: "Healing", emoji: "💆", archetype: "The Sacred Healer", element: "Water", description: "22+ years of bodywork mastery. Massage = MAGIC. All modalities integrated.", links: [
+    ], offerings: []},
+    3: { name: "Healing", emoji: "💆", archetype: "The Midwife / Sacred Healer", element: "Water", zodiac: "Cancer", chakra: "Sacral (Svadhisthana)", law: "Law of Nature", teaching: "The body knows. Every living being has an instinctive sense of this law. Trust your body's wisdom.", practice: "Place both hands on your belly. Breathe deeply. Ask your body: What do you need? Listen without judgment.", description: "22+ years of bodywork mastery. Massage = MAGIC. Touch that transforms body, mind, emotions, and spirit.", links: [
         { title: "Massage = MAGIC", url: "06-massage-is-magic.html" },
         { title: "Love Your Lymph", url: "39-love-your-lymph.html" },
-        { title: "Embrace Multiple Modalities", url: "25-embrace-multiple-modalities.html" },
-        { title: "Book 90-Min Session · $222", url: "https://square.link/u/jGBu81PX" }
+        { title: "Embrace Multiple Modalities", url: "25-embrace-multiple-modalities.html" }
+    ], offerings: [
+        { name: "90-Min Soul-Lit Session", price: "$222", link: "https://square.link/u/jGBu81PX" },
+        { name: "30-Min Remote Session", price: "$111", link: "https://square.link/u/n9WztX2P" }
     ]},
-    4: { name: "Oracle", emoji: "🔮", archetype: "The Oracle", element: "Aether", description: "Oracle readings and intuitive guidance. Messages from source. The Maggie Way Oracle system.", links: [
+    4: { name: "Oracle", emoji: "🔮", archetype: "The Oracle / Divine Seer", element: "Aether", zodiac: "Pisces", chakra: "Third Eye + Crown", law: "Law of Warning", teaching: "Life warns us 3 times before anything happens. Nothing happens unannounced. Signs speak to those who listen.", practice: "Ask for a sign. Be specific. Then pay attention. The universe is always communicating.", description: "Oracle readings and intuitive guidance. Messages from source. The Maggie Way Oracle system.", links: [
         { title: "🔮 The Maggie Way Oracle", url: "oracle-the-seed.html" },
-        { title: "Oracle Card Pull · $33", url: "https://square.link/u/dIIrQUzO" },
         { title: "Trust Your Intuition", url: "08-trust-your-intuition.html" },
         { title: "Inner Compass Meditation", url: "30-inner-compass-meditation.html" }
+    ], offerings: [
+        { name: "Oracle Card Pull by Maggie", price: "$33", link: "https://square.link/u/dIIrQUzO" }
     ]},
-    5: { name: "Education", emoji: "📚", archetype: "The Wise Woman", element: "Earth", description: "Published author. 9 books. Courses and teachings. Affirmations For Magic.", links: [
+    5: { name: "Education", emoji: "📚", archetype: "The Wise Woman / Teacher", element: "Earth", zodiac: "Virgo", chakra: "Throat (Vishuddha)", law: "Law of Sharing", teaching: "Those who know should tell with love. Teaching is healing. Share what you know.", practice: "What wisdom have you gained that could help someone else? Find a way to share it today.", description: "Published author. 9 books on Amazon. Courses and teachings. Affirmations For Magic.", links: [
         { title: "✨ Affirmations For Magic", url: "affirmations-for-magic.html" },
         { title: "The Seed Guidebook", url: "https://www.amazon.com/Maggie-Way-Oracle-SEED/dp/B0F8V3S8ZJ" },
         { title: "The Maggie Way Book", url: "https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH" },
         { title: "Weathering They", url: "https://www.amazon.com/Weathering-They-Surviving-Modern-Targeting/dp/B0FNCMKDYR" }
-    ]},
-    6: { name: "Expression", emoji: "🎭", archetype: "The Songstress", element: "Fire", description: "The Fridge Song Series. Creative expression as healing. Your voice as your wand.", links: [
+    ], offerings: []},
+    6: { name: "Expression", emoji: "🎭", archetype: "The Songstress / Creative Voice", element: "Fire", zodiac: "Sagittarius", chakra: "Throat (Vishuddha)", law: "Law of Manifestation", teaching: "Thoughts become words become reality. Your voice is your wand. Speak your truth.", practice: "Speak aloud what you want to create. Say it as if it already exists. Your words create your world.", description: "The Fridge Song Series. Creative expression as healing. Your voice as your wand.", links: [
         { title: "Show Up Loud", url: "01-show-up-loud.html" },
         { title: "Authenticity is Weird", url: "09-authenticity-is-weird.html" },
         { title: "✨ Affirmations For Magic", url: "affirmations-for-magic.html" }
-    ]},
-    7: { name: "Community", emoji: "🌐", archetype: "The Earth Mother", element: "Earth", description: "The Resiliency Garden. Where healers go to bloom. Building support systems.", links: [
-        { title: "🌿 Resiliency Garden · $222", url: "https://square.link/u/qJQL3qjS" },
+    ], offerings: []},
+    7: { name: "Community", emoji: "🌐", archetype: "The Earth Mother / Gatherer", element: "Earth", zodiac: "Taurus", chakra: "Heart (Anahata)", law: "Law of Compensation", teaching: "All service entitles us to compensation. Give and receive in balance. Healers supporting healers.", practice: "Where are you giving without receiving? Where are you receiving without giving? Find balance.", description: "The Resiliency Garden. Where healers go to bloom. 12 gardens, 5 seasons, infinite resilience.", links: [
         { title: "Build a Support System", url: "51-build-a-support-system.html" },
         { title: "Boundaries", url: "03-boundaries.html" },
         { title: "Care About Other People", url: "24-care-about-other-people.html" }
+    ], offerings: [
+        { name: "🌿 Founding Member", price: "$222", link: "https://square.link/u/qJQL3qjS" },
+        { name: "Support the Garden", price: "Any Amount", link: "https://square.link/u/4Yna5M2G" }
     ]},
-    8: { name: "The Spark", emoji: "🌕", archetype: "The Light Bearer", element: "Spirit", description: "Energy work, Reiki, and life force activation. CCT™ works here to ignite transformation and connect to source.", links: [
+    8: { name: "The Spark", emoji: "🌕", archetype: "The Light Bearer / God Source", element: "Spirit", zodiac: "—", chakra: "Crown (Sahasrara)", law: "Law of Love (Source)", teaching: "Divine connection. The light that ignites all things. You ARE the spark.", practice: "Close your eyes. Visualize golden light pouring in through your crown. You are connected to source.", description: "Energy work, Reiki, and life force activation. CCT™ works here to ignite transformation and connect to source.", links: [
         { title: "💎 Crystalline Consciousness Technique", url: "cct.html" },
-        { title: "Energy Work & Reiki", url: "#modalities" },
         { title: "The Lighthouse", url: "55-the-lighthouse.html" },
         { title: "Is It MAGIC?", url: "20-is-it-magic.html" }
+    ], offerings: []},
+    9: { name: "Abundance", emoji: "💰", archetype: "The Empress / Prosperity", element: "Earth", zodiac: "Taurus", chakra: "Root + Sacral", law: "Law of Generation", teaching: "We generate our circumstances. Prosperity comes from valuing ourselves and what we offer.", practice: "Write down 10 things you are grateful for. Gratitude is the frequency of abundance.", description: "Signature experiences. Abundance consciousness. Premium transformation.", links: [], offerings: [
+        { name: "19-Domain Map", price: "$444", link: "https://square.link/u/9jqMqRSU" },
+        { name: "An Evening with Maggie", price: "$888", link: "https://square.link/u/9jqMqRSU" },
+        { name: "Feed Your Soul", price: "$444", link: "https://square.link/u/gWrM6N89" }
     ]},
-    9: { name: "Abundance", emoji: "💰", archetype: "The Empress", element: "Earth", description: "Signature experiences. Abundance consciousness. Flower of Life Blueprint.", links: [
-        { title: "Flower of Life Blueprint · $444", url: "https://square.link/u/n9WztX2P" },
-        { title: "Evening with Maggie · $888", url: "https://square.link/u/9jqMqRSU" },
-        { title: "Feed Your Soul · $444", url: "https://square.link/u/gWrM6N89" }
-    ]},
-    10: { name: "Sound", emoji: "🎵", archetype: "The Sound Healer", element: "Aether", description: "Sound healing and vibration. Crystal bowls, tuning forks, Solfeggio frequencies. CCT™ uses sound vibration in healing chambers.", links: [
+    10: { name: "Sound", emoji: "🎵", archetype: "The Sound Healer", element: "Aether", zodiac: "Libra", chakra: "Throat (Vishuddha)", law: "Law of Harmony", teaching: "Everything maintained tends toward equilibrium. Sound restores balance. Vibration heals.", practice: "Hum. Tone. Sing. Let sound move through you. Your voice is medicine.", description: "Sound healing and vibration. Crystal bowls, tuning forks, Solfeggio frequencies. CCT™ uses sound vibration in healing chambers.", links: [
         { title: "Sound Healing", url: "41-sound-healing.html" },
         { title: "💎 CCT™ Healing Chambers", url: "cct.html" }
+    ], offerings: []},
+    11: { name: "Bridge", emoji: "🌉", archetype: "The Warrior Queen / Justice", element: "Air", zodiac: "Libra", chakra: "Solar Plexus (Manipura)", law: "Law of Cause and Effect", teaching: "Everything returns multiplied. What you put out comes back. Pattern recognition reveals truth.", practice: "What patterns keep repeating in your life? What are they trying to teach you?", description: "Justice Without Limits. Civil rights advocacy. Pro se strategy and case mapping.", links: [
+        { title: "⚖️ Justice Without Limits", url: "#justice" }
+    ], offerings: [
+        { name: "Pro Se Strategy Session", price: "$111/hr", link: "https://square.link/u/n9WztX2P" },
+        { name: "Full Case Strategy", price: "$444", link: "https://square.link/u/9jqMqRSU" }
     ]},
-    11: { name: "Bridge", emoji: "🌉", archetype: "The Warrior Queen", element: "Air", description: "Justice Without Limits. Civil rights advocacy. Pro se strategy and case mapping.", links: [
-        { title: "⚖️ Justice Without Limits", url: "https://justicewithoutlimits.org/" },
-        { title: "Pro Se Strategy · $111/hr", url: "https://square.link/u/n9WztX2P" },
-        { title: "Full Case Strategy · $444", url: "https://square.link/u/9jqMqRSU" }
-    ]},
-    12: { name: "The Word", emoji: "📿", archetype: "The Poetess", element: "Aether", description: "Poetry, prophecy, sacred writing. Affirmations For Magic. Your word is your wand.", links: [
+    12: { name: "The Word", emoji: "📿", archetype: "The Poetess / Prophet", element: "Aether", zodiac: "Gemini", chakra: "Throat (Vishuddha)", law: "Law of Affinity", teaching: "Similar attracts similar. The best associate with the best. Your words create your tribe.", practice: "What words do you speak most often? Speak your desired reality into existence.", description: "Poetry, prophecy, sacred writing. Affirmations For Magic. Your word is your wand.", links: [
         { title: "✨ Affirmations For Magic", url: "affirmations-for-magic.html" },
         { title: "She Tries / But Watch", url: "56-she-tries-but-watch.html" },
         { title: "Mirror Mantras", url: "affirmations-for-magic.html#mantras" }
-    ]},
-    13: { name: "The Flame", emoji: "🔥", archetype: "The Fire Priestess", element: "Fire", description: "Transformation through fire. Shadow work and trauma healing. CCT™ works here to release old patterns and transmute energy.", links: [
+    ], offerings: []},
+    13: { name: "The Flame", emoji: "🔥", archetype: "The Fire Priestess / Transformer", element: "Fire", zodiac: "Aries", chakra: "Solar Plexus (Manipura)", law: "Law of Evolution", teaching: "No one evolves without transforming. We move from innocent to ignorant to wise. Fire transmutes.", practice: "What is ready to be burned away? Write it down. Release it to the flame.", description: "Transformation through fire. Shadow work and trauma healing. CCT™ works here to release old patterns and transmute energy.", links: [
         { title: "💎 CCT™ Transformation", url: "cct.html" },
         { title: "Trauma and the Body", url: "04-trauma-and-the-body.html" },
         { title: "The Glow Up Gets Lonely", url: "05-glow-up-gets-lonely.html" },
         { title: "When They Can't Love the Glowed-Up You", url: "28-when-they-cant-love-the-glowed-up-you.html" }
-    ]},
-    14: { name: "The Crystal", emoji: "💎", archetype: "The Crystal Keeper", element: "Earth", description: "Crystalline Consciousness Technique™. Sacred geometry, crystalline grid, light codes. The PRIMARY domain of CCT™.", links: [
+    ], offerings: []},
+    14: { name: "The Crystal", emoji: "💎", archetype: "The Crystal Keeper / Clarity", element: "Earth", zodiac: "Capricorn", chakra: "Third Eye (Ajna)", law: "Law of Two (Inquiry)", teaching: "Life always has answers ready when we inquire. Ask yes/no questions. Clarity comes through asking.", practice: "Hold a crystal. Ask a clear yes/no question. Notice what you feel. Trust the answer.", description: "Crystalline Consciousness Technique™. Sacred geometry, crystalline grid, light codes. The PRIMARY domain of CCT™.", links: [
         { title: "💎 CCT™ Full Experience", url: "cct.html" },
+        { title: "💎 Crystal Healing", url: "crystals.html" },
         { title: "🎁 Free CCT™ Sessions", url: "https://www.crystallineconsciousness.com/new-page-1" },
-        { title: "CCT™ Session · $222", url: "https://square.link/u/jGBu81PX" },
         { title: "Use Crystals", url: "43-use-crystals.html" }
+    ], offerings: [
+        { name: "CCT™ Session", price: "$222", link: "https://square.link/u/jGBu81PX" }
     ]},
-    15: { name: "The Flow", emoji: "🌊", archetype: "The Water Bearer", element: "Water", description: "Detox and purification. Lymphatic drainage. Water protocols.", links: [
+    15: { name: "The Flow", emoji: "🌊", archetype: "The Water Bearer / Purifier", element: "Water", zodiac: "Scorpio", chakra: "Sacral (Svadhisthana)", law: "Law of Communicating Vessels", teaching: "Energy flows where attention goes. Don't leak vital force. Manage your energy consciously.", practice: "Where is your energy leaking? Plug the holes. Return to yourself.", description: "Detox and purification. Lymphatic drainage. Water protocols. Release.", links: [
         { title: "Water is LIFE", url: "02-water-is-life.html" },
         { title: "Love Your Lymph", url: "39-love-your-lymph.html" }
-    ]},
-    16: { name: "The Breath", emoji: "🌬️", archetype: "The Wind Dancer", element: "Air", description: "Breathwork. Prana. Life force activation. The bridge between physical and spiritual.", links: [
-        { title: "Find Breath", url: "17-find-breath.html" },
-        { title: "Breathwork Protocol", url: "#protocols" }
-    ]},
-    17: { name: "The Body", emoji: "🌍", archetype: "The Earth Mother", element: "Earth", description: "22+ years massage mastery. Self care is your #1 job. Movement, rest, nourishment.", links: [
+    ], offerings: []},
+    16: { name: "The Breath", emoji: "🌬️", archetype: "The Wind Dancer / Life Force", element: "Air", zodiac: "Gemini", chakra: "Heart (Anahata)", law: "Law of Three", teaching: "Try three times before giving up. Breath is the bridge between body and spirit. Life force activation.", practice: "4-7-8 breath: Inhale 4, hold 7, exhale 8. Return to center with every breath.", description: "Breathwork. Prana. Life force activation. The bridge between physical and spiritual.", links: [
+        { title: "Find Breath", url: "17-find-breath.html" }
+    ], offerings: []},
+    17: { name: "The Body", emoji: "🌍", archetype: "The Earth Mother / Physical Vessel", element: "Earth", zodiac: "Virgo", chakra: "Root (Muladhara)", law: "Law of Nature", teaching: "The body knows. Self care is your #1 job. Every act of self care is a gift to your future self.", practice: "What does your body need right now? Water? Movement? Rest? Give it that.", description: "22+ years massage mastery. Self care is your #1 job. Movement, rest, nourishment.", links: [
         { title: "Self Care is Your #1 Job", url: "07-self-care-is-your-job.html" },
         { title: "Move Your Magic", url: "16-move-your-magic.html" },
         { title: "Rest is Essential", url: "12-rest-is-essential.html" },
         { title: "Go Outside Already", url: "18-go-outside.html" },
-        { title: "Eat the Good Food", url: "13-eat-the-good-food.html" }
+        { title: "Eat the Good Food", url: "13-eat-the-good-food.html" },
+        { title: "🌸 Essential Oils", url: "essential-oils.html" }
+    ], offerings: [
+        { name: "90-Min Soul-Lit Session", price: "$222", link: "https://square.link/u/jGBu81PX" }
     ]},
-    18: { name: "Akashic", emoji: "📜", archetype: "The Record Keeper", element: "Aether", description: "Records and documentation. Pattern archives. Your body remembers what the mind forgets.", links: [
+    18: { name: "Akashic", emoji: "📜", archetype: "The Record Keeper / Memory", element: "Aether", zodiac: "—", chakra: "Crown (Sahasrara)", law: "Law of Correspondence", teaching: "Everything happens to whom it's meant to happen. Your body remembers what the mind forgets.", practice: "Journal. Document. Record. Your story matters. Your patterns hold wisdom.", description: "Records and documentation. Pattern archives. Your body remembers what the mind forgets.", links: [
         { title: "Your Body Remembers", url: "34-your-body-remembers.html" },
         { title: "Pattern Documentation", url: "#justice" }
-    ]},
-    19: { name: "The Void", emoji: "👁️", archetype: "The Void Priestess", element: "Spirit", description: "Psychic investigation. Pure potential. Accessing the unknown. CCT™ works here to connect to infinite potentiality.", links: [
+    ], offerings: []},
+    19: { name: "The Void", emoji: "👁️", archetype: "The Void Priestess / Pure Potential", element: "Spirit", zodiac: "—", chakra: "Crown (Sahasrara)", law: "Law of Empty Spaces", teaching: "Pure potential. The void is not empty—it is full of possibility. Psychic investigation reveals the unseen.", practice: "Sit in stillness. Empty your mind. In the void, everything becomes possible.", description: "Psychic investigation. Pure potential. Accessing the unknown. CCT™ works here to connect to infinite potentiality.", links: [
         { title: "💎 CCT™ Consciousness Expansion", url: "cct.html" },
         { title: "Clearing, Releasing, Letting Go", url: "31-clearing-releasing-letting-go.html" },
-        { title: "🔮 Ask The Oracle", url: "oracle-the-seed.html" },
-        { title: "Psychic Investigation", url: "#offerings" }
-    ]}
+        { title: "🔮 Ask The Oracle", url: "oracle-the-seed.html" }
+    ], offerings: []}
 };
 
 function showDomain(n) {
     const d = domains[n];
     const p = document.getElementById('infoPanel');
+    
+    // Build links HTML
     let links = '';
     if (d.links && d.links.length > 0) {
         links = '<div class="panel-links"><h4>📖 Explore This Domain</h4>';
         d.links.forEach(x => { links += '<a href="' + x.url + '" class="domain-link">' + x.title + ' →</a>'; });
         links += '</div>';
     }
+    
+    // Build offerings HTML
+    let offerings = '';
+    if (d.offerings && d.offerings.length > 0) {
+        offerings = '<div class="panel-offerings"><h4>✨ Offerings</h4>';
+        d.offerings.forEach(o => {
+            offerings += '<a href="' + o.link + '" class="offering-link" target="_blank"><span class="offering-name">' + o.name + '</span><span class="offering-price">' + o.price + '</span></a>';
+        });
+        offerings += '</div>';
+    }
+    
+    // Build teaching & practice section
+    let wisdom = '';
+    if (d.teaching || d.practice) {
+        wisdom = '<div class="panel-wisdom">';
+        if (d.law) wisdom += '<div class="panel-law">⚖️ ' + d.law + '</div>';
+        if (d.teaching) wisdom += '<div class="panel-teaching">' + d.teaching + '</div>';
+        if (d.practice) wisdom += '<div class="panel-practice"><strong>✨ Practice:</strong> ' + d.practice + '</div>';
+        wisdom += '</div>';
+    }
+    
+    // Navigation
     const prevDomain = n === 1 ? 19 : n - 1;
     const nextDomain = n === 19 ? 1 : n + 1;
     const navigation = '<div class="panel-nav"><button onclick="showDomain(' + prevDomain + ')" class="nav-btn">← ' + domains[prevDomain].emoji + ' ' + domains[prevDomain].name + '</button><button onclick="showDomain(' + nextDomain + ')" class="nav-btn">' + domains[nextDomain].emoji + ' ' + domains[nextDomain].name + ' →</button></div>';
+    
+    // Zodiac & Chakra display
+    const zodiacDisplay = d.zodiac && d.zodiac !== '—' ? '<span class="panel-zodiac">♈ ' + d.zodiac + '</span>' : '';
+    const chakraDisplay = d.chakra ? '<span class="panel-chakra">🔮 ' + d.chakra + '</span>' : '';
+    
     document.getElementById('panelContent').innerHTML = 
-        '<div class="panel-header"><div class="panel-emoji">' + d.emoji + '</div><div class="panel-title">Domain ' + n + ': ' + d.name + '</div><div class="panel-archetype">' + d.archetype + ' · ' + d.element + '</div></div>' +
+        '<div class="panel-header">' +
+            '<div class="panel-emoji">' + d.emoji + '</div>' +
+            '<div class="panel-title">Domain ' + n + ': ' + d.name + '</div>' +
+            '<div class="panel-archetype">' + d.archetype + '</div>' +
+            '<div class="panel-meta"><span class="panel-element">' + d.element + '</span>' + zodiacDisplay + chakraDisplay + '</div>' +
+        '</div>' +
         '<div class="panel-desc">' + d.description + '</div>' +
+        wisdom +
         links +
+        offerings +
         navigation;
     p.classList.add('active');
 }
