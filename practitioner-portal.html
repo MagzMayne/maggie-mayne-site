@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul-Lit™ Practitioner Studio | The Maggie Way™</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(30, 20, 40, 0.8);
+            --gold: #FFD700;
+            --gold-soft: rgba(255, 215, 0, 0.15);
+            --pink: #FF69B4;
+            --pink-soft: rgba(255, 105, 180, 0.15);
+            --lavender: #E6E6FA;
+            --green: #98FB98;
+            --green-soft: rgba(152, 251, 152, 0.15);
+            --text: #FFF8F0;
+            --text-muted: rgba(255, 248, 240, 0.6);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        /* ===== PASSWORD GATE ===== */
+        .password-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1025 50%, #0a0a0f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .password-gate.hidden {
+            display: none;
+        }
+        
+        .password-box {
+            background: var(--bg-card);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.2);
+        }
+        
+        .password-box .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .password-box h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .password-box .subtitle {
+            color: var(--pink);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
+        .password-box input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 248, 240, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .password-box input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .password-box input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .password-box button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--gold), var(--pink));
+            border: none;
+            border-radius: 25px;
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .password-box button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 30px rgba(255, 215, 0, 0.4);
+        }
+        
+        .password-error {
+            color: #FF6B6B;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .password-error.show {
+            display: block;
+        }
+        
+        /* ===== MAIN PORTAL ===== */
+        .portal {
+            display: none;
+            min-height: 100vh;
+        }
+        
+        .portal.visible {
+            display: block;
+        }
+        
+        /* Header */
+        .portal-header {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 105, 180, 0.1));
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .portal-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .portal-brand .logo {
+            font-size: 2.5rem;
+        }
+        
+        .portal-brand h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        
+        .portal-brand .tagline {
+            font-size: 0.9rem;
+            color: var(--pink);
+            font-style: italic;
+        }
+        
+        .portal-user {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .portal-user span {
+            color: var(--text-muted);
+        }
+        
+        .logout-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid rgba(255, 107, 107, 0.5);
+            border-radius: 20px;
+            color: #FF6B6B;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 107, 107, 0.3);
+        }
+        
+        /* Dashboard Container */
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .dashboard-welcome {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .dashboard-welcome h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dashboard-welcome p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        /* Tool Cards Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 248, 240, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .tool-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.15);
+        }
+        
+        .tool-card.active {
+            border-color: var(--green);
+            box-shadow: 0 0 20px rgba(152, 251, 152, 0.2);
+        }
+        
+        .tool-card.coming-soon {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .tool-card.coming-soon:hover {
+            transform: none;
+            border-color: rgba(255, 248, 240, 0.1);
+            box-shadow: none;
+        }
+        
+        .tool-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tool-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-card .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-family: 'Cinzel', serif;
+        }
+        
+        .tool-card .status.ready {
+            background: var(--green-soft);
+            color: var(--green);
+            border: 1px solid rgba(152, 251, 152, 0.3);
+        }
+        
+        .tool-card .status.building {
+            background: var(--gold-soft);
+            color: var(--gold);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .tool-card .status.planned {
+            background: rgba(255, 248, 240, 0.1);
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 248, 240, 0.2);
+        }
+        
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .section-header h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--lavender);
+            font-size: 1.2rem;
+        }
+        
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 248, 240, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+        
+        .stat-card .label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        .portal-footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 248, 240, 0.1);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .portal-footer .brand-marks {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .portal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .dashboard {
+                padding: 1rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PASSWORD GATE -->
+    <div class="password-gate" id="passwordGate">
+        <div class="password-box">
+            <div class="logo">🔮</div>
+            <h1>Soul-Lit™ Practitioner Studio</h1>
+            <p class="subtitle">The Maggie Way™ · Soul Architecture™</p>
+            <input type="password" id="passwordInput" placeholder="Enter access code..." onkeypress="if(event.key === 'Enter') checkPassword()">
+            <button onclick="checkPassword()">Enter the Portal</button>
+            <p class="password-error" id="passwordError">Incorrect access code. Please try again.</p>
+        </div>
+    </div>
+    
+    <!-- MAIN PORTAL -->
+    <div class="portal" id="mainPortal">
+        <header class="portal-header">
+            <div class="portal-brand">
+                <div class="logo">🔮</div>
+                <div>
+                    <h1>Soul-Lit™ Practitioner Studio</h1>
+                    <p class="tagline">Where Healing Becomes Art</p>
+                </div>
+            </div>
+            <div class="portal-user">
+                <span>Welcome, Maggie</span>
+                <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+            </div>
+        </header>
+        
+        <main class="dashboard">
+            <div class="dashboard-welcome">
+                <h2>✨ Your Healing Workspace ✨</h2>
+                <p>Build protocols, create treatment plans, and serve your clients with soul-level precision.</p>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="number">86</div>
+                    <div class="label">Flower Essences</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">19</div>
+                    <div class="label">Soul Domains</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">5</div>
+                    <div class="label">Assessment Realms</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">∞</div>
+                    <div class="label">Healing Possibilities</div>
+                </div>
+            </div>
+            
+            <!-- Protocol Builders -->
+            <div class="section-header">
+                <span>🌿</span>
+                <h3>Protocol Builders</h3>
+            </div>
+            
+            <div class="tools-grid">
+                <a href="flower-essence-protocol-builder.html" class="tool-card active">
+                    <div class="icon">🌸</div>
+                    <h3>Flower Essence Builder</h3>
+                    <p>Bach Flowers + Range of Light. Guided assessment across 5 realms, intuitive selection, and symptom matching.</p>
+                    <span class="status ready">✓ Ready</span>
+                </a>
+                
+                <div class="tool-card coming-soon">
+                    <div class="icon">🫒</div>
+                    <h3>Essential Oils Builder</h3>
+                    <p>Aromatic medicine protocols. Single oils and blends for physical, emotional, and spiritual support.</p>
+                    <span class="status building">🔨 Building Next</span>
+                </div>
+                
+                <div class="tool-card coming-soon">
+                    <div class="icon">💎</div>
+                    <h3>Crystal Protocols</h3>
+                    <p>Stone medicine prescriptions. Grids, layouts, and carry stones for energetic alignment.</p>
+                    <span class="status planned">📋 Planned</span>
+                </div>
+                
+                <div class="tool-card coming-soon">
+                    <div class="icon">🎵</div>
+                    <h3>Sound & Frequency</h3>
+                    <p>Vibrational healing protocols. Tuning forks, singing bowls, and frequency prescriptions.</p>
+                    <span class="status planned">📋 Planned</span>
+                </div>
+            </div>
+            
+            <!-- Assessment Systems -->
+            <div class="section-header">
+                <span>🌀</span>
+                <h3>Assessment Systems</h3>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card coming-soon">
+                    <div class="icon">🗺️</div>
+                    <h3>Soul Architecture™ 19-Domain Assessment</h3>
+                    <p>Comprehensive evaluation across all 19 Sacred Map domains. Maps to ALL modalities for complete treatment planning.</p>
+                    <span class="status building">🔨 Building Next</span>
+                </div>
+                
+                <div class="tool-card coming-soon">
+                    <div class="icon">📋</div>
+                    <h3>Client Intake Integration</h3>
+                    <p>Connect your JotForm intake. Auto-populate assessments and generate initial protocol recommendations.</p>
+                    <span class="status planned">📋 Planned</span>
+                </div>
+            </div>
+            
+            <!-- Bodywork & Sessions -->
+            <div class="section-header">
+                <span>✋</span>
+                <h3>Bodywork & Sessions</h3>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card coming-soon">
+                    <div class="icon">💿</div>
+                    <h3>CCT™ Session Planner</h3>
+                    <p>Cranial & cellular transformation protocols. Session structures and treatment sequences.</p>
+                    <span class="status planned">📋 Planned</span>
+                </div>
+                
+                <div class="tool-card coming-soon">
+                    <div class="icon">🌺</div>
+                    <h3>Floral Acupuncture</h3>
+                    <p>Flower essence + meridian protocols. Point prescriptions with essence applications.</p>
+                    <span class="status planned">📋 Planned</span>
+                </div>
+                
+                <div class="tool-card coming-soon">
+                    <div class="icon">⚡</div>
+                    <h3>Applied Kinesiology</h3>
+                    <p>Muscle testing protocols and Touch for Health integrations.</p>
+                    <span class="status planned">📋 Planned</span>
+                </div>
+            </div>
+            
+            <!-- Client Management -->
+            <div class="section-header">
+                <span>👥</span>
+                <h3>Client Management</h3>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card coming-soon">
+                    <div class="icon">📊</div>
+                    <h3>Treatment Plan Generator</h3>
+                    <p>Combine all modalities into unified treatment plans. Calculate costs, generate client PDFs.</p>
+                    <span class="status planned">📋 Planned</span>
+                </div>
+                
+                <div class="tool-card coming-soon">
+                    <div class="icon">📱</div>
+                    <h3>Client Portal</h3>
+                    <p>Client-facing dashboard. Protocol tracking, daily check-offs, reorders, and session booking.</p>
+                    <span class="status planned">📋 Planned</span>
+                </div>
+                
+                <div class="tool-card coming-soon">
+                    <div class="icon">🌙</div>
+                    <h3>Seasonal Sessions</h3>
+                    <p>Quarterly/seasonal protocol templates. Aligned with natural cycles and client journeys.</p>
+                    <span class="status planned">📋 Planned</span>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="portal-footer">
+            <p class="brand-marks">Soul-Lit™ · The Maggie Way™ · Soul Architecture™ · HEALERS GOING FIRST™</p>
+            <p>© 2024 Maggie Mayne · All Rights Reserved</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Simple password protection
+        // Change this password to whatever you want
+        const ACCESS_CODE = 'Infinity1111';
+        
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('passwordError');
+            
+            if (input.value === ACCESS_CODE) {
+                // Store session
+                sessionStorage.setItem('portalAccess', 'granted');
+                
+                // Hide gate, show portal
+                document.getElementById('passwordGate').classList.add('hidden');
+                document.getElementById('mainPortal').classList.add('visible');
+                
+                // Clear input
+                input.value = '';
+                error.classList.remove('show');
+            } else {
+                error.classList.add('show');
+                input.value = '';
+                input.focus();
+            }
+        }
+        
+        function logout() {
+            sessionStorage.removeItem('portalAccess');
+            document.getElementById('mainPortal').classList.remove('visible');
+            document.getElementById('passwordGate').classList.remove('hidden');
+        }
+        
+        // Check if already logged in this session
+        document.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('portalAccess') === 'granted') {
+                document.getElementById('passwordGate').classList.add('hidden');
+                document.getElementById('mainPortal').classList.add('visible');
+            }
+        });
+    </script>
+</body>
+</html>
