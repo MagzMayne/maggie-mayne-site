@@ -33,10 +33,6 @@
             overflow-x: hidden;
         }
         
-        /* ═══════════════════════════════════════════════════════════════
-           MAGICAL BACKGROUND EFFECTS
-        ═══════════════════════════════════════════════════════════════ */
-        
         /* Stars Background */
         .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
         .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle var(--duration) ease-in-out infinite; }
@@ -79,9 +75,7 @@
             100% { transform: translateY(-100vh) translateX(var(--drift)) scale(1); opacity: 0; }
         }
         
-        /* ═══════════════════════════════════════════════════════════════
-           TOP BAR WITH CONTACT & SOCIALS
-        ═══════════════════════════════════════════════════════════════ */
+        /* TOP BAR */
         .top-bar {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -113,21 +107,9 @@
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
             font-weight: 600;
-            animation: letter-glow 3s ease-in-out infinite;
-        }
-        @keyframes letter-glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
-            50% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
-        }
-        .top-bar .love-letter-top:hover {
-            background: #FFFAF0;
-            color: #6B3510;
-            transform: translateY(-2px) scale(1.05);
         }
         
-        /* ═══════════════════════════════════════════════════════════════
-           NAVIGATION
-        ═══════════════════════════════════════════════════════════════ */
+        /* NAVIGATION */
         nav {
             position: fixed;
             top: 36px;
@@ -158,31 +140,9 @@
         nav a:hover { 
             background: rgba(255, 105, 180, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
-        }
-        nav a.oracle-tab {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(255, 215, 0, 0.3));
-            border: 1px solid rgba(138, 43, 226, 0.6);
-            animation: oracle-glow 2s ease-in-out infinite;
-        }
-        @keyframes oracle-glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(138, 43, 226, 0.3); }
-            50% { box-shadow: 0 0 15px rgba(138, 43, 226, 0.5), 0 0 25px rgba(255, 215, 0, 0.3); }
-        }
-        nav a.oracle-tab:hover {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.6), rgba(255, 215, 0, 0.4));
-        }
-        nav a.justice-tab {
-            background: linear-gradient(135deg, rgba(191, 10, 48, 0.25), rgba(0, 40, 104, 0.25));
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        nav a.justice-tab:hover {
-            background: linear-gradient(135deg, rgba(191, 10, 48, 0.4), rgba(0, 40, 104, 0.4));
         }
         
-        /* ═══════════════════════════════════════════════════════════════
-           HEADER
-        ═══════════════════════════════════════════════════════════════ */
+        /* HEADER */
         .header {
             text-align: center;
             padding: 9rem 2rem 2rem;
@@ -200,7 +160,6 @@
             background-clip: text;
             animation: shimmer 5s ease infinite;
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
         }
         @keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
         .header .subtitle {
@@ -212,11 +171,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: subtitle-glow 4s ease-in-out infinite;
-        }
-        @keyframes subtitle-glow {
-            0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3)); }
-            50% { filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6)); }
         }
         .header .titles {
             font-size: 0.85rem;
@@ -243,7 +197,6 @@
         }
         .header .title-tag:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
         }
         .header .intro {
             font-size: 1.35rem;
@@ -265,14 +218,9 @@
             font-size: 0.85rem;
             color: var(--pink);
             letter-spacing: 0.2em;
-            animation: mantra-pulse 3s ease-in-out infinite;
-        }
-        @keyframes mantra-pulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; text-shadow: 0 0 10px var(--pink); }
         }
         
-        /* Ask The Oracle Button */
+        /* Ask Oracle Button */
         .ask-oracle-btn {
             display: inline-block;
             padding: 1rem 2.5rem;
@@ -286,24 +234,9 @@
             letter-spacing: 0.1em;
             border-radius: 30px;
             border: 2px solid rgba(255, 215, 0, 0.5);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4), 0 0 40px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
             transition: all 0.3s;
             margin: 1rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .ask-oracle-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: btn-shine 3s linear infinite;
-        }
-        @keyframes btn-shine {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
         }
         @keyframes oracle-gradient {
             0% { background-position: 0% 50%; }
@@ -312,12 +245,10 @@
         }
         .ask-oracle-btn:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.6), 0 0 60px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
         }
         
-        /* ═══════════════════════════════════════════════════════════════
-           SECTIONS
-        ═══════════════════════════════════════════════════════════════ */
+        /* SECTIONS */
         .section { padding: 3rem 2rem; position: relative; z-index: 10; }
         .container { max-width: 1000px; margin: 0 auto; }
         h2 {
@@ -359,9 +290,7 @@
             padding: 0 0.5rem;
         }
         
-        /* ═══════════════════════════════════════════════════════════════
-           FLOWER OF LIFE SECTION
-        ═══════════════════════════════════════════════════════════════ */
+        /* FLOWER CONTAINER */
         .flower-section {
             padding: 2rem;
             position: relative;
@@ -397,35 +326,15 @@
             margin: 0 auto;
             z-index: 50;
         }
-        .flower-container svg {
-            position: relative;
-            z-index: 51;
-        }
         .domain-group {
             cursor: pointer;
             transition: all 0.3s ease;
-            -webkit-tap-highlight-color: rgba(255,105,180,0.3);
-            touch-action: manipulation;
-        }
-        .domain-group circle {
-            pointer-events: all;
         }
         .domain-group:hover circle {
             filter: drop-shadow(0 0 15px currentColor);
         }
-        .domain-group:active {
-            transform: scale(0.95);
-        }
-        /* Touch feedback for mobile */
-        @media (hover: none) {
-            .domain-group:active circle {
-                filter: drop-shadow(0 0 20px currentColor);
-            }
-        }
         
-        /* ═══════════════════════════════════════════════════════════════
-           LIBRARY CARD STYLE
-        ═══════════════════════════════════════════════════════════════ */
+        /* LIBRARY CARDS */
         .library-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -440,18 +349,7 @@
             text-decoration: none;
             color: inherit;
             display: block;
-            position: relative;
-            overflow: hidden;
         }
-        .library-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transition: left 0.5s;
-        }
-        .library-card:hover::before { left: 100%; }
         .library-card:hover {
             transform: translateY(-5px);
             border-color: rgba(147, 112, 219, 0.5);
@@ -491,15 +389,6 @@
             margin-top: 0.5rem;
             display: inline-block;
         }
-        a.library-card::after {
-            content: "→";
-            display: block;
-            margin-top: 0.75rem;
-            color: #DDA0DD;
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-        }
-        a.library-card:hover::after { transform: translateX(5px); }
         
         /* Modalities Section */
         .modalities-section { background: linear-gradient(180deg, rgba(32, 178, 170, 0.05) 0%, transparent 100%); }
@@ -509,7 +398,6 @@
         }
         .modalities-section .library-card:hover {
             border-color: rgba(32, 178, 170, 0.5);
-            box-shadow: 0 10px 30px rgba(32, 178, 170, 0.2);
         }
         .modalities-section .library-card h3 { color: #AFEEEE; }
         .modalities-section .library-card .topic-tag {
@@ -517,9 +405,7 @@
             color: #20B2AA;
         }
         
-        /* ═══════════════════════════════════════════════════════════════
-           OFFERINGS GRID
-        ═══════════════════════════════════════════════════════════════ */
+        /* OFFERINGS */
         .offerings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -532,18 +418,7 @@
             padding: 1.25rem;
             text-align: center;
             transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
         }
-        .offering-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 0%, rgba(255,105,180,0.1) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .offering-card:hover::after { opacity: 1; }
         .offering-card:hover {
             transform: translateY(-4px);
             border-color: var(--pink);
@@ -552,7 +427,7 @@
         .offering-card .emoji { font-size: 1.8rem; margin-bottom: 0.5rem; }
         .offering-card h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 0.4rem; }
         .offering-card .price { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--pink); margin-bottom: 0.5rem; }
-        .offering-card p { font-size: 0.85rem; margin-bottom: 0.75rem; color: rgba(255,248,240,0.8); position: relative; z-index: 1; }
+        .offering-card p { font-size: 0.85rem; margin-bottom: 0.75rem; color: rgba(255,248,240,0.8); }
         .btn {
             display: inline-block;
             padding: 0.5rem 1.25rem;
@@ -565,8 +440,6 @@
             text-transform: uppercase;
             border-radius: 20px;
             transition: all 0.3s;
-            position: relative;
-            z-index: 1;
         }
         .btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4); }
         .btn-gold { background: linear-gradient(135deg, var(--gold-soft), var(--gold)); color: var(--deep); }
@@ -574,9 +447,7 @@
         .btn-amazon { background: linear-gradient(135deg, #FF9900, #FFB84D); color: #000; }
         .btn-free { background: linear-gradient(135deg, #32CD32, #228B22); }
         
-        /* ═══════════════════════════════════════════════════════════════
-           PROTOCOLS SECTION
-        ═══════════════════════════════════════════════════════════════ */
+        /* PROTOCOLS */
         .protocols-section { background: linear-gradient(180deg, rgba(255, 165, 0, 0.05) 0%, transparent 100%); }
         .protocols-grid {
             display: grid;
@@ -596,7 +467,6 @@
         .protocol-card:hover {
             transform: translateY(-5px);
             border-color: rgba(255, 165, 0, 0.5);
-            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.2);
         }
         .protocol-card .card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
         .protocol-card h3 { font-family: 'Cinzel', serif; color: #FFE4B5; font-size: 1rem; margin-bottom: 0.5rem; }
@@ -612,7 +482,6 @@
         }
         .blog-section .library-card:hover {
             border-color: rgba(255, 105, 180, 0.5);
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
         }
         .blog-section .library-card h3 { color: #FFB6C1; }
         
@@ -624,34 +493,14 @@
             padding: 2.5rem;
             margin: 2rem auto;
             max-width: 900px;
-            position: relative;
-            overflow: hidden;
-        }
-        .cct-section::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(0, 206, 209, 0.1) 0%, transparent 30%),
-                        radial-gradient(circle at 70% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 30%);
-            animation: cct-bg-rotate 20s linear infinite;
-        }
-        @keyframes cct-bg-rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
         .cct-section h2 {
             background: linear-gradient(135deg, #00CED1, #8A2BE2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            position: relative;
-            z-index: 1;
         }
-        .cct-section > * { position: relative; z-index: 1; }
         
-        /* ═══════════════════════════════════════════════════════════════
-           INFO PANEL (Domain Popup)
-        ═══════════════════════════════════════════════════════════════ */
+        /* INFO PANEL */
         .info-panel {
             position: fixed;
             top: 50%; left: 50%;
@@ -707,9 +556,9 @@
         .panel-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold); margin-bottom: 0.25rem; }
         .panel-archetype { font-style: italic; color: var(--pink); font-size: 0.95rem; }
         .panel-meta { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
-        .panel-element { background: rgba(255,215,0,0.2); color: var(--gold); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-family: 'Cinzel', serif; }
-        .panel-zodiac { background: rgba(138,43,226,0.2); color: #DDA0DD; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-family: 'Cinzel', serif; }
-        .panel-chakra { background: rgba(255,105,180,0.2); color: var(--pink); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-family: 'Cinzel', serif; }
+        .panel-element { background: rgba(255,215,0,0.2); color: var(--gold); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; }
+        .panel-zodiac { background: rgba(138,43,226,0.2); color: #DDA0DD; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; }
+        .panel-chakra { background: rgba(255,105,180,0.2); color: var(--pink); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; }
         .panel-desc { text-align: center; margin-bottom: 1rem; font-size: 1rem; line-height: 1.7; color: rgba(255,248,240,0.9); }
         .panel-wisdom { background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.2); border-radius: 15px; padding: 1.25rem; margin: 1rem 0; }
         .panel-law { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem; margin-bottom: 0.75rem; text-align: center; }
@@ -793,9 +642,7 @@
             -webkit-text-fill-color: transparent;
         }
         
-        /* ═══════════════════════════════════════════════════════════════
-           FOOTER
-        ═══════════════════════════════════════════════════════════════ */
+        /* FOOTER */
         footer {
             text-align: center;
             padding: 3rem 2rem;
@@ -832,9 +679,7 @@
             color: var(--gold);
         }
         
-        /* ═══════════════════════════════════════════════════════════════
-           RESPONSIVE
-        ═══════════════════════════════════════════════════════════════ */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .top-bar { justify-content: center; padding: 0.4rem 1rem; gap: 0.5rem; }
             .top-bar a { font-size: 0.7rem; }
@@ -843,18 +688,8 @@
             .header { padding: 7rem 1.5rem 1.5rem; }
             .header h1 { font-size: 2rem; }
             .header .subtitle { font-size: 1.2rem; letter-spacing: 0.15em; }
-            .header .title-tag { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
-            .ask-oracle-btn { font-size: 1rem; padding: 0.75rem 1.5rem; }
             .info-panel { padding: 1.5rem; width: 95%; }
             .panel-nav { flex-direction: column; }
-            .nav-btn { font-size: 0.7rem; }
-        }
-        @media (max-width: 480px) {
-            .top-bar { gap: 0.4rem; }
-            .top-bar a { font-size: 0.65rem; }
-            nav { top: 28px; }
-            nav a { font-size: 0.6rem; padding: 0.25rem 0.5rem; }
-            .header { padding: 6rem 1rem 1rem; }
         }
     </style>
 </head>
@@ -864,7 +699,7 @@
 <div class="aurora"></div>
 <div class="particles" id="particles"></div>
 
-<!-- TOP BAR WITH CONTACT & SOCIALS - FIXED LINKS -->
+<!-- TOP BAR -->
 <div class="top-bar">
     <a href="https://instagram.com/MaggieMayne1111" target="_blank"><span class="social-icon">📸</span> @MaggieMayne1111</a>
     <a href="https://instagram.com/littletonmassage_maggiemagic" target="_blank"><span class="social-icon">✨</span> @MaggieMagic</a>
@@ -878,20 +713,20 @@
     <a href="00-about-the-maggie-way.html">About</a>
     <a href="#flower">Sacred Map</a>
     <a href="#offerings">Offerings</a>
-    <a href="oracle-the-seed.html" class="oracle-tab">🔮 Oracle</a>
+    <a href="oracle-the-seed.html">🔮 Oracle</a>
     <a href="affirmations-for-magic.html">✨ Affirmations</a>
-    <a href="cct.html" style="background: linear-gradient(135deg, rgba(0,206,209,0.3), rgba(138,43,226,0.3)); border-color: rgba(0,206,209,0.5);">💎 CCT™</a>
-    <a href="#gemstones" style="background: linear-gradient(135deg, rgba(138,43,226,0.3), rgba(0,206,209,0.3)); border-color: rgba(138,43,226,0.5);">💎 Gemstones</a>
-    <a href="#elixir" style="background: linear-gradient(135deg, rgba(139,69,19,0.3), rgba(218,165,32,0.3)); border-color: rgba(218,165,32,0.5);">🍄 Elixir</a>
-    <a href="soul-architecture-assessment.html" style="background: linear-gradient(135deg, rgba(255,105,180,0.3), rgba(255,215,0,0.3)); border-color: rgba(255,105,180,0.5);">🌸 Assessment</a>
-    <a href="flower-essence-protocol-builder.html" style="background: linear-gradient(135deg, rgba(152,251,152,0.3), rgba(255,105,180,0.3)); border-color: rgba(152,251,152,0.5);">🌸 Essences</a>
+    <a href="cct.html">💎 CCT™</a>
+    <a href="#gemstones">💎 Gemstones</a>
+    <a href="#elixir">🍄 Elixir</a>
+    <a href="soul-architecture-assessment.html">🌸 Assessment</a>
+    <a href="flower-essence-protocol-builder.html">🌸 Essences</a>
     <a href="#library">Library</a>
     <a href="#modalities">Modalities</a>
     <a href="#protocols">Protocols</a>
     <a href="#meditations">Meditations</a>
     <a href="#blog">Blog</a>
     <a href="#books">Books</a>
-    <a href="#justice" class="justice-tab">⚖️ Justice</a>
+    <a href="#justice">⚖️ Justice</a>
     <a href="#garden">🌿 Garden</a>
 </nav>
 
@@ -899,36 +734,32 @@
     <h1>Maggie Mayne</h1>
     <p class="subtitle">SOUL ARCHITECTURE™</p>
     <div class="titles">
-        <a href="#offerings" class="title-tag" style="background: rgba(153, 50, 204, 0.3); border-color: rgba(153, 50, 204, 0.6);">🔮 Psychic Investigator</a>
-        <a href="#modalities" class="title-tag" style="background: rgba(255, 105, 180, 0.3); border-color: rgba(255, 105, 180, 0.6);">✨ Intuitive Lightworker</a>
-        <a href="#maggie-way" class="title-tag" style="background: rgba(255, 215, 0, 0.25); border-color: rgba(255, 215, 0, 0.5); color: #FFD700;">🌟 Spiritual Mentor</a>
-        <a href="#books" class="title-tag" style="background: rgba(230, 230, 250, 0.25); border-color: rgba(230, 230, 250, 0.5);">📚 Author</a>
-        <a href="#modalities" class="title-tag" style="background: rgba(32, 178, 170, 0.3); border-color: rgba(32, 178, 170, 0.6);">💆 Somatic Healer</a>
-        <a href="#justice" class="title-tag" style="background: rgba(191, 10, 48, 0.3); border-color: rgba(191, 10, 48, 0.6);">⚖️ Civil Rights Advocate</a>
-        <a href="#protocols" class="title-tag" style="background: rgba(255, 140, 0, 0.3); border-color: rgba(255, 140, 0, 0.6);">🙌 Licensed Massage Therapist</a>
-        <a href="#cct" class="title-tag" style="background: rgba(0, 206, 209, 0.3); border-color: rgba(0, 206, 209, 0.6);">💎 CCT™ Practitioner</a>
+        <a href="#offerings" class="title-tag">🔮 Psychic Investigator</a>
+        <a href="#modalities" class="title-tag">✨ Intuitive Lightworker</a>
+        <a href="#maggie-way" class="title-tag">🌟 Spiritual Mentor</a>
+        <a href="#books" class="title-tag">📚 Author</a>
+        <a href="#modalities" class="title-tag">💆 Somatic Healer</a>
+        <a href="#justice" class="title-tag">⚖️ Civil Rights Advocate</a>
+        <a href="#protocols" class="title-tag">🙌 Licensed Massage Therapist</a>
+        <a href="#cct" class="title-tag">💎 CCT™ Practitioner</a>
     </div>
     <p class="intro">A journey of self discovery and transformation designed to empower you to reclaim your physical, emotional, mental, and spiritual well being.</p>
-    
-    <!-- ASK THE ORACLE BUTTON -->
     <a href="oracle-the-seed.html" class="ask-oracle-btn">🔮 Ask The Oracle ✨</a>
-    
     <p class="tagline">"Always notice what you notice, and remember how MAGIC you are."</p>
     <p class="mantra">HEALERS GOING FIRST™</p>
 </div>
 
-<!-- FLOWER OF LIFE SECTION -->
+<!-- SACRED MAP -->
 <section class="flower-section" id="flower">
     <h2>✧ THE SACRED MAP ✧</h2>
     <p class="section-subtitle">Click any domain to explore its wisdom</p>
     <div class="legend">
-        <div class="legend-item"><span class="legend-dot" style="background:#FF69B4; color:#FF69B4;"></span> The Seed (1-7)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#FFD700; color:#FFD700;"></span> Root & Bloom (8-11)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#9932CC; color:#9932CC;"></span> The Legacy (12-19)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#FF69B4;"></span> The Seed (1-7)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#FFD700;"></span> Root & Bloom (8-11)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#9932CC;"></span> The Legacy (12-19)</div>
     </div>
     <div class="flower-container">
         <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
-            <!-- Sacred Geometry Background -->
             <defs>
                 <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
                     <stop offset="0%" style="stop-color:#FF69B4;stop-opacity:0.3"/>
@@ -936,159 +767,154 @@
                 </radialGradient>
                 <filter id="glow">
                     <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
+                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
             </defs>
             
-            <!-- Outer rings -->
+            <!-- Rings -->
             <circle cx="250" cy="250" r="240" fill="none" stroke="rgba(255,105,180,0.25)" stroke-width="1"/>
             <circle cx="250" cy="250" r="190" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="1"/>
             <circle cx="250" cy="250" r="140" fill="none" stroke="rgba(153,50,204,0.2)" stroke-width="1"/>
             <circle cx="250" cy="250" r="90" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="1"/>
-            
-            <!-- Center glow -->
             <circle cx="250" cy="250" r="100" fill="url(#centerGlow)"/>
             
-            <!-- Flower of Life pattern -->
+            <!-- Flower Pattern -->
             <g fill="none" stroke="rgba(255,105,180,0.15)" stroke-width="1">
                 <circle cx="250" cy="250" r="60"/><circle cx="250" cy="190" r="60"/><circle cx="302" cy="220" r="60"/>
                 <circle cx="302" cy="280" r="60"/><circle cx="250" cy="310" r="60"/><circle cx="198" cy="280" r="60"/><circle cx="198" cy="220" r="60"/>
             </g>
             
             <!-- Domain 1: Heart Center -->
-            <g class="domain-group" data-domain="1" transform="translate(250,250)" style="cursor:pointer;" onclick="showDomain(1)">
-                <circle r="32" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2.5" filter="url(#glow)">
+            <g class="domain-group" data-domain="1" transform="translate(250,250)">
+                <circle r="32" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2.5" filter="url(#glow)" style="cursor:pointer;">
                     <animate attributeName="r" values="32;34;32" dur="2s" repeatCount="indefinite"/>
                 </circle>
                 <text y="5" text-anchor="middle" style="font-size:20px;pointer-events:none;">💗</text>
-                <text y="22" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;font-family:Cinzel;pointer-events:none;">Heart Center</text>
+                <text y="22" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Heart Center</text>
             </g>
             
-            <!-- Domain 2: Mind Temple -->
-            <g class="domain-group" data-domain="2" transform="translate(250,168)" style="cursor:pointer;" onclick="showDomain(2)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
+            <!-- Domain 2 -->
+            <g class="domain-group" data-domain="2" transform="translate(250,168)">
+                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🧠</text>
                 <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Mind Temple</text>
             </g>
             
-            <!-- Domain 3: Healing -->
-            <g class="domain-group" data-domain="3" transform="translate(320,209)" style="cursor:pointer;" onclick="showDomain(3)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
+            <!-- Domain 3 -->
+            <g class="domain-group" data-domain="3" transform="translate(320,209)">
+                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💆</text>
                 <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Healing</text>
             </g>
             
-            <!-- Domain 4: Oracle -->
-            <g class="domain-group" data-domain="4" transform="translate(320,291)" style="cursor:pointer;" onclick="showDomain(4)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
+            <!-- Domain 4 -->
+            <g class="domain-group" data-domain="4" transform="translate(320,291)">
+                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🔮</text>
                 <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Oracle</text>
             </g>
             
-            <!-- Domain 5: Education -->
-            <g class="domain-group" data-domain="5" transform="translate(250,332)" style="cursor:pointer;" onclick="showDomain(5)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
+            <!-- Domain 5 -->
+            <g class="domain-group" data-domain="5" transform="translate(250,332)">
+                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📚</text>
                 <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Education</text>
             </g>
             
-            <!-- Domain 6: Expression -->
-            <g class="domain-group" data-domain="6" transform="translate(180,291)" style="cursor:pointer;" onclick="showDomain(6)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
+            <!-- Domain 6 -->
+            <g class="domain-group" data-domain="6" transform="translate(180,291)">
+                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🎭</text>
                 <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Expression</text>
             </g>
             
-            <!-- Domain 7: Community -->
-            <g class="domain-group" data-domain="7" transform="translate(180,209)" style="cursor:pointer;" onclick="showDomain(7)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2"/>
+            <!-- Domain 7 -->
+            <g class="domain-group" data-domain="7" transform="translate(180,209)">
+                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌐</text>
                 <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Community</text>
             </g>
             
-            <!-- Domain 8: Spark (Gold ring) -->
-            <g class="domain-group" data-domain="8" transform="translate(250,98)" style="cursor:pointer;" onclick="showDomain(8)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2"/>
+            <!-- Domain 8 (Gold) -->
+            <g class="domain-group" data-domain="8" transform="translate(250,98)">
+                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌕</text>
                 <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Spark</text>
             </g>
             
-            <!-- Domain 9: Abundance -->
-            <g class="domain-group" data-domain="9" transform="translate(380,178)" style="cursor:pointer;" onclick="showDomain(9)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2"/>
+            <!-- Domain 9 -->
+            <g class="domain-group" data-domain="9" transform="translate(380,178)">
+                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💰</text>
                 <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Abundance</text>
             </g>
             
-            <!-- Domain 10: Sound -->
-            <g class="domain-group" data-domain="10" transform="translate(380,322)" style="cursor:pointer;" onclick="showDomain(10)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2"/>
+            <!-- Domain 10 -->
+            <g class="domain-group" data-domain="10" transform="translate(380,322)">
+                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🎵</text>
                 <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Sound</text>
             </g>
             
-            <!-- Domain 11: Bridge -->
-            <g class="domain-group" data-domain="11" transform="translate(250,402)" style="cursor:pointer;" onclick="showDomain(11)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2"/>
+            <!-- Domain 11 -->
+            <g class="domain-group" data-domain="11" transform="translate(250,402)">
+                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌉</text>
                 <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Bridge</text>
             </g>
             
-            <!-- Domain 12: Word (Purple ring) -->
-            <g class="domain-group" data-domain="12" transform="translate(120,178)" style="cursor:pointer;" onclick="showDomain(12)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
+            <!-- Domain 12 (Purple) -->
+            <g class="domain-group" data-domain="12" transform="translate(120,178)">
+                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📿</text>
                 <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Word</text>
             </g>
             
-            <!-- Domain 13: Flame -->
-            <g class="domain-group" data-domain="13" transform="translate(120,322)" style="cursor:pointer;" onclick="showDomain(13)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
+            <!-- Domain 13 -->
+            <g class="domain-group" data-domain="13" transform="translate(120,322)">
+                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🔥</text>
                 <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Flame</text>
             </g>
             
-            <!-- Domain 14: Crystal -->
-            <g class="domain-group" data-domain="14" transform="translate(178,98)" style="cursor:pointer;" onclick="showDomain(14)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
+            <!-- Domain 14 -->
+            <g class="domain-group" data-domain="14" transform="translate(178,98)">
+                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💎</text>
                 <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Crystal</text>
             </g>
             
-            <!-- Domain 15: Flow -->
-            <g class="domain-group" data-domain="15" transform="translate(322,98)" style="cursor:pointer;" onclick="showDomain(15)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
+            <!-- Domain 15 -->
+            <g class="domain-group" data-domain="15" transform="translate(322,98)">
+                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌊</text>
                 <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Flow</text>
             </g>
             
-            <!-- Domain 16: Breath -->
-            <g class="domain-group" data-domain="16" transform="translate(425,250)" style="cursor:pointer;" onclick="showDomain(16)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
+            <!-- Domain 16 -->
+            <g class="domain-group" data-domain="16" transform="translate(425,250)">
+                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌬️</text>
                 <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Breath</text>
             </g>
             
-            <!-- Domain 17: Body -->
-            <g class="domain-group" data-domain="17" transform="translate(322,402)" style="cursor:pointer;" onclick="showDomain(17)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
+            <!-- Domain 17 -->
+            <g class="domain-group" data-domain="17" transform="translate(322,402)">
+                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌍</text>
                 <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Body</text>
             </g>
             
-            <!-- Domain 18: Akashic -->
-            <g class="domain-group" data-domain="18" transform="translate(178,402)" style="cursor:pointer;" onclick="showDomain(18)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
+            <!-- Domain 18 -->
+            <g class="domain-group" data-domain="18" transform="translate(178,402)">
+                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📜</text>
                 <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Akashic</text>
             </g>
             
-            <!-- Domain 19: Void -->
-            <g class="domain-group" data-domain="19" transform="translate(75,250)" style="cursor:pointer;" onclick="showDomain(19)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2"/>
+            <!-- Domain 19 -->
+            <g class="domain-group" data-domain="19" transform="translate(75,250)">
+                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
                 <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">👁️</text>
                 <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Void</text>
             </g>
@@ -1098,8 +924,8 @@
 
 <!-- CTA BUTTONS -->
 <div style="text-align:center; padding:2rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; position:relative; z-index:10;">
-    <a href="oracle-the-seed.html" class="btn btn-oracle" style="padding:0.75rem 1.5rem; font-size:0.9rem;">🔮 Pull Oracle Cards</a>
-    <a href="https://square.link/u/dIIrQUzO" target="_blank" class="btn btn-gold">Oracle Reading by Maggie · $33</a>
+    <a href="oracle-the-seed.html" class="btn btn-oracle" style="padding:0.75rem 1.5rem;">🔮 Pull Oracle Cards</a>
+    <a href="https://square.link/u/dIIrQUzO" target="_blank" class="btn btn-gold">Oracle Reading · $33</a>
     <a href="https://square.link/u/n9WztX2P" target="_blank" class="btn">Book Remote Session · $111</a>
 </div>
 
@@ -1120,484 +946,88 @@
         <h2>💗 Work With Maggie</h2>
         <p class="section-subtitle">Healing, guidance, transformation — from FREE to immersive</p>
         
-        <!-- FREE OFFERINGS -->
         <h3 style="font-family: 'Cinzel', serif; color: #32CD32; text-align: center; margin: 2rem 0 1rem;">🎁 Free Offerings</h3>
         <div class="offerings-grid" style="margin-bottom: 2rem;">
-            <div class="offering-card" style="border-color: rgba(50,205,50,0.5); background: linear-gradient(145deg, rgba(50,205,50,0.1), rgba(34,139,34,0.05));">
+            <div class="offering-card" style="border-color: rgba(50,205,50,0.5);">
                 <div class="emoji">🔮</div>
                 <h3>Pull Your Own Oracle Cards</h3>
                 <div class="price" style="color: #32CD32;">FREE</div>
-                <p>Interactive digital oracle. Pull from The Seed deck anytime you need guidance.</p>
+                <p>Interactive digital oracle. Pull from The Seed deck anytime.</p>
                 <a href="oracle-the-seed.html" class="btn btn-free">Pull Cards</a>
             </div>
-            <div class="offering-card" style="border-color: rgba(50,205,50,0.5); background: linear-gradient(145deg, rgba(50,205,50,0.1), rgba(34,139,34,0.05));">
+            <div class="offering-card" style="border-color: rgba(50,205,50,0.5);">
                 <div class="emoji">✨</div>
                 <h3>Affirmations For Magic</h3>
                 <div class="price" style="color: #32CD32;">FREE</div>
-                <p>Introduction + Weeks 1-5 + 11 Rituals + Mirror Mantras. Taste the MAGIC.</p>
+                <p>Introduction + Weeks 1-5 + 11 Rituals + Mirror Mantras.</p>
                 <a href="affirmations-for-magic.html" class="btn btn-free">Start Free</a>
             </div>
-            <div class="offering-card" style="border-color: rgba(50,205,50,0.5); background: linear-gradient(145deg, rgba(50,205,50,0.1), rgba(34,139,34,0.05));">
+            <div class="offering-card" style="border-color: rgba(50,205,50,0.5);">
                 <div class="emoji">💎</div>
                 <h3>CCT™ Free Mini Sessions</h3>
                 <div class="price" style="color: #32CD32;">FREE</div>
-                <p>5 sacred geometry healing audios from CCT™. Choose a shape, receive a transmission.</p>
+                <p>5 sacred geometry healing audios from CCT™.</p>
                 <a href="cct.html" class="btn btn-free">Experience</a>
             </div>
         </div>
         
-        <!-- PAID OFFERINGS -->
         <h3 style="font-family: 'Cinzel', serif; color: #FFD700; text-align: center; margin: 2rem 0 1rem;">✨ Sessions & Experiences</h3>
         <div class="offerings-grid">
-            <div class="offering-card" style="border-color: rgba(138, 43, 226, 0.5); background: linear-gradient(145deg, rgba(138, 43, 226, 0.15), rgba(255, 215, 0, 0.1));">
-                <div class="emoji">🔮</div>
-                <h3>Oracle Card Pull by Maggie</h3>
-                <div class="price">$33</div>
-                <p>One intuitively chosen card from The Maggie Way Oracle sent to you with a <strong>personal channeled message from Maggie</strong>.</p>
-                <a href="https://square.link/u/dIIrQUzO" class="btn btn-oracle" target="_blank">Get Your Reading</a>
-            </div>
-            <div class="offering-card"><div class="emoji">📞</div><h3>30-Min Remote Session</h3><div class="price">$111</div><p>Energy work knows no distance. Focused remote healing for clarity and alignment.</p><a href="https://square.link/u/n9WztX2P" class="btn" target="_blank">Connect</a></div>
-            <div class="offering-card"><div class="emoji">🌊</div><h3>90-Min Soul-Lit Session</h3><div class="price">$222</div><p>All the things. Bodywork, energy work, healing. Your body knows what it needs.</p><a href="https://square.link/u/jGBu81PX" class="btn" target="_blank">Book</a></div>
-            <div class="offering-card"><div class="emoji">🗺️</div><h3>19-Domain Map</h3><div class="price">$444</div><p>Your complete sacred architecture mapped. See where you are and where you're going.</p><a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Get Mapped</a></div>
-            <div class="offering-card"><div class="emoji">🌟</div><h3>An Evening with Maggie Mayne</h3><div class="price">$888</div><p>Book reading, signing, live experience. Story, truth, transformation.</p><a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Reserve</a></div>
+            <div class="offering-card"><div class="emoji">🔮</div><h3>Oracle Card Pull by Maggie</h3><div class="price">$33</div><p>One intuitively chosen card with a personal channeled message.</p><a href="https://square.link/u/dIIrQUzO" class="btn btn-oracle" target="_blank">Get Reading</a></div>
+            <div class="offering-card"><div class="emoji">📞</div><h3>30-Min Remote Session</h3><div class="price">$111</div><p>Energy work knows no distance.</p><a href="https://square.link/u/n9WztX2P" class="btn" target="_blank">Connect</a></div>
+            <div class="offering-card"><div class="emoji">🌊</div><h3>90-Min Soul-Lit Session</h3><div class="price">$222</div><p>All the things. Bodywork, energy work, healing.</p><a href="https://square.link/u/jGBu81PX" class="btn" target="_blank">Book</a></div>
+            <div class="offering-card"><div class="emoji">🗺️</div><h3>19-Domain Map</h3><div class="price">$444</div><p>Your complete sacred architecture mapped.</p><a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Get Mapped</a></div>
+            <div class="offering-card"><div class="emoji">🌟</div><h3>An Evening with Maggie</h3><div class="price">$888</div><p>Book reading, signing, live experience.</p><a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Reserve</a></div>
         </div>
     </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- HEALING MODALITIES -->
+<!-- MODALITIES -->
 <section class="section modalities-section" id="modalities">
     <div class="container">
         <h2>✨ HEALING MODALITIES</h2>
         <p class="section-subtitle">The ancient arts of bodywork, energy medicine, and somatic healing</p>
         <div class="library-grid">
-            <a href="oracle-the-seed.html" class="library-card" style="border-color: rgba(138,43,226,0.6); background: linear-gradient(135deg, rgba(138,43,226,0.15), rgba(255,215,0,0.1));">
-                <div class="card-icon">🔮</div>
-                <h3>The Maggie Way Oracle</h3>
-                <p>Intuitive card readings from The Seed deck. Pull a card. Trust the message. 31 cards plus full Affirmations For Magic course.</p>
-                <div class="topics"><span class="topic-tag">Oracle</span><span class="topic-tag">Intuition</span><span class="topic-tag">MAGIC</span></div>
-                <span class="domain-tag">Domain 4: Oracle</span>
-            </a>
-            <a href="06-massage-is-magic.html" class="library-card">
-                <div class="card-icon">💆</div>
-                <h3>Massage = MAGIC</h3>
-                <p>22+ years of bodywork mastery. The ancient art of healing touch transforms body, mind, emotions, and spirit.</p>
-                <div class="topics"><span class="topic-tag">Bodywork</span><span class="topic-tag">Touch</span><span class="topic-tag">Healing</span></div>
-                <span class="domain-tag">Domain 3: Healing</span>
-            </a>
-            <a href="38-cranial-sacral-therapy.html" class="library-card">
-                <div class="card-icon">🧠</div>
-                <h3>Cranial Sacral Therapy</h3>
-                <p>Gentle hands-on healing for the nervous system. The rhythm of cerebrospinal fluid and deep release.</p>
-                <div class="topics"><span class="topic-tag">CST</span><span class="topic-tag">Nervous System</span><span class="topic-tag">Rhythm</span></div>
-                <span class="domain-tag">Domain 2: Mind Temple</span>
-            </a>
-            <a href="39-love-your-lymph.html" class="library-card">
-                <div class="card-icon">🌊</div>
-                <h3>Lymphatic Drainage</h3>
-                <p>Your body's river system. Responsible for filtering toxins, supporting immunity, and maintaining fluid balance.</p>
-                <div class="topics"><span class="topic-tag">Lymphatic</span><span class="topic-tag">Detox</span><span class="topic-tag">Flow</span></div>
-                <span class="domain-tag">Domain 15: Flow</span>
-            </a>
-            <a href="cct.html" class="library-card" style="border-color: rgba(0, 206, 209, 0.5); background: rgba(0, 206, 209, 0.1);">
-                <div class="card-icon">💎</div>
-                <h3>Crystalline Consciousness Technique (CCT™)</h3>
-                <p>Advanced energy healing integrating crystalline frequencies, light codes, and consciousness expansion.</p>
-                <div class="topics"><span class="topic-tag">CCT™</span><span class="topic-tag">Crystalline</span><span class="topic-tag">Light Work</span></div>
-                <span class="domain-tag">Domain 14: Crystal</span>
-            </a>
-            <a href="08-trust-your-intuition.html" class="library-card">
-                <div class="card-icon">⚡</div>
-                <h3>Energy Work & Reiki</h3>
-                <p>Universal life force energy. Chakras, energy centers, and the art of clearing and balancing.</p>
-                <div class="topics"><span class="topic-tag">Reiki</span><span class="topic-tag">Chakras</span><span class="topic-tag">Energy</span></div>
-                <span class="domain-tag">Domain 8: Spark</span>
-            </a>
-            <a href="41-sound-healing.html" class="library-card">
-                <div class="card-icon">🎵</div>
-                <h3>Sound Healing</h3>
-                <p>Vibration is everything. Crystal bowls, tuning forks, Solfeggio frequencies, and the medicine of sound.</p>
-                <div class="topics"><span class="topic-tag">Sound</span><span class="topic-tag">Frequency</span><span class="topic-tag">Vibration</span></div>
-                <span class="domain-tag">Domain 10: Sound</span>
-            </a>
-            <a href="04-trauma-and-the-body.html" class="library-card">
-                <div class="card-icon">💔</div>
-                <h3>Trauma & The Body</h3>
-                <p>Your body remembers what the mind tries to forget. Understanding and healing complex trauma.</p>
-                <div class="topics"><span class="topic-tag">Trauma</span><span class="topic-tag">Somatic</span><span class="topic-tag">CPTSD</span></div>
-                <span class="domain-tag">Domain 13: Flame</span>
-            </a>
-            <a href="affirmations-for-magic.html" class="library-card" style="border-color: rgba(255,105,180,0.6); background: linear-gradient(135deg, rgba(255,105,180,0.15), rgba(255,215,0,0.1));">
-                <div class="card-icon">✨</div>
-                <h3>Affirmations For Magic</h3>
-                <p>11 week course in manifesting, healing, and transforming through the power of words. Your word is your wand.</p>
-                <div class="topics"><span class="topic-tag">Affirmations</span><span class="topic-tag">Manifesting</span><span class="topic-tag">Words</span></div>
-                <span class="domain-tag">Domain 12: Word</span>
-            </a>
-            <a href="17-find-breath.html" class="library-card">
-                <div class="card-icon">🌬️</div>
-                <h3>Breathwork</h3>
-                <p>Breath is the bridge between the physical and spiritual. The thing we return to again and again.</p>
-                <div class="topics"><span class="topic-tag">Breath</span><span class="topic-tag">Prana</span><span class="topic-tag">Life Force</span></div>
-                <span class="domain-tag">Domain 16: Breath</span>
-            </a>
-            <a href="31-clearing-releasing-letting-go.html" class="library-card">
-                <div class="card-icon">👁️</div>
-                <h3>Psychic Investigation & Clearing</h3>
-                <p>Accessing hidden information. Seeing patterns not yet visible. Releasing what no longer serves.</p>
-                <div class="topics"><span class="topic-tag">Psychic</span><span class="topic-tag">Clearing</span><span class="topic-tag">Intuitive</span></div>
-                <span class="domain-tag">Domain 19: Void</span>
-            </a>
-            <a href="crystals.html" class="library-card" style="border-color: rgba(138,43,226,0.6); background: linear-gradient(135deg, rgba(138,43,226,0.15), rgba(0,206,209,0.1));">
-                <div class="card-icon">💎</div>
-                <h3>Crystal Healing</h3>
-                <p>Ancient wisdom held in crystalline form. 9 crystals for transformation, protection, and amplification.</p>
-                <div class="topics"><span class="topic-tag">Crystals</span><span class="topic-tag">Grids</span><span class="topic-tag">Vibration</span></div>
-                <span class="domain-tag">Domain 14: Crystal</span>
-            </a>
-            <a href="essential-oils.html" class="library-card" style="border-color: rgba(152,251,152,0.6); background: linear-gradient(135deg, rgba(152,251,152,0.15), rgba(34,139,34,0.1));">
-                <div class="card-icon">🌸</div>
-                <h3>Essential Oils</h3>
-                <p>Plant medicine for body, mind, and spirit. 8 oils for spiritual awakening and emotional transformation.</p>
-                <div class="topics"><span class="topic-tag">Aromatherapy</span><span class="topic-tag">Plant Medicine</span><span class="topic-tag">Healing</span></div>
-                <span class="domain-tag">Domain 17: Body</span>
-            </a>
+            <a href="oracle-the-seed.html" class="library-card"><div class="card-icon">🔮</div><h3>The Maggie Way Oracle</h3><p>31 cards for MAGIC, clarity, and new growth.</p><span class="domain-tag">Domain 4: Oracle</span></a>
+            <a href="06-massage-is-magic.html" class="library-card"><div class="card-icon">💆</div><h3>Massage = MAGIC</h3><p>22+ years of bodywork mastery.</p><span class="domain-tag">Domain 3: Healing</span></a>
+            <a href="cct.html" class="library-card"><div class="card-icon">💎</div><h3>CCT™</h3><p>Crystalline Consciousness Technique.</p><span class="domain-tag">Domain 14: Crystal</span></a>
+            <a href="08-trust-your-intuition.html" class="library-card"><div class="card-icon">⚡</div><h3>Energy Work & Reiki</h3><p>Universal life force energy.</p><span class="domain-tag">Domain 8: Spark</span></a>
+            <a href="41-sound-healing.html" class="library-card"><div class="card-icon">🎵</div><h3>Sound Healing</h3><p>Crystal bowls, tuning forks, Solfeggio.</p><span class="domain-tag">Domain 10: Sound</span></a>
+            <a href="04-trauma-and-the-body.html" class="library-card"><div class="card-icon">💔</div><h3>Trauma & The Body</h3><p>Your body remembers what the mind forgets.</p><span class="domain-tag">Domain 13: Flame</span></a>
         </div>
     </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- CRYSTALLINE CONSCIOUSNESS TECHNIQUE -->
+<!-- CCT -->
 <section class="cct-section" id="cct">
     <h2>💎 Crystalline Consciousness Technique™</h2>
     <p class="section-subtitle">Advanced Energy Healing & Consciousness Expansion</p>
-    
-    <div style="max-width: 900px; margin: 0 auto;">
-        <!-- About CCT -->
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 1.5rem;">
-                CCT™ is a system of energy healing that works with the universal phases of transformation, sacred geometry, and conscious intent. It connects you to your deepest self, tapping into the realm of infinite potentiality. By creating a safe container and optimal healing frequencies, CCT™ allows you to transcend limitations and access higher states of consciousness.
-            </p>
-            <p style="font-style: italic; color: var(--gold); font-size: 1.1rem;">
-                "Crystalline Consciousness Technique is the accelerator tool you need for the New Earth energies."
-            </p>
-            <p style="color: rgba(255,248,240,0.7); font-size: 0.95rem; margin-top: 0.5rem;">
-                — Gia Combs-Ramirez, Founder of CCT™
-            </p>
-        </div>
-        
-        <!-- The Three Phases -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
-            <div style="background: rgba(0, 206, 209, 0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(0, 206, 209, 0.3); text-align: center;">
-                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔷</div>
-                <h4 style="color: #00CED1; font-family: 'Cinzel', serif; font-size: 1rem;">Opening</h4>
-                <p style="font-size: 0.9rem; color: rgba(255,248,240,0.8);">Establishes safety and connectivity to higher consciousness.</p>
-            </div>
-            <div style="background: rgba(138, 43, 226, 0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(138, 43, 226, 0.3); text-align: center;">
-                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💫</div>
-                <h4 style="color: #8A2BE2; font-family: 'Cinzel', serif; font-size: 1rem;">Healing Chambers</h4>
-                <p style="font-size: 0.9rem; color: rgba(255,248,240,0.8);">Sacred geometric configurations infused with sound vibration.</p>
-            </div>
-            <div style="background: rgba(255, 215, 0, 0.1); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(255, 215, 0, 0.3); text-align: center;">
-                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌀</div>
-                <h4 style="color: #FFD700; font-family: 'Cinzel', serif; font-size: 1rem;">Integration</h4>
-                <p style="font-size: 0.9rem; color: rgba(255,248,240,0.8);">Accessing higher dimensional awareness and anchoring transformation.</p>
-            </div>
-        </div>
-        
-        <!-- Maggie's CCT Credentials -->
-        <div style="background: linear-gradient(135deg, rgba(255,105,180,0.1), rgba(0,206,209,0.1)); border: 1px solid rgba(255,105,180,0.3); border-radius: 15px; padding: 1.5rem; margin: 2rem 0; text-align: center;">
-            <h3 style="font-family: 'Cinzel', serif; color: #FF69B4; font-size: 1.2rem; margin-bottom: 1rem;">✨ Maggie Mayne, Advanced CCT™ Practitioner</h3>
-            <p style="font-size: 1rem; color: rgba(255,248,240,0.9); line-height: 1.8;">
-                As an Advanced Practitioner of Crystalline Consciousness Technique™, I integrate CCT™ with 22+ years of bodywork mastery, energy healing, and intuitive guidance.
-            </p>
-        </div>
-        
-        <!-- Free Mini Sessions -->
-        <div style="background: rgba(255,215,0,0.08); border: 2px solid rgba(255,215,0,0.4); border-radius: 15px; padding: 2rem; margin: 2rem 0; text-align: center;">
-            <h3 style="font-family: 'Cinzel', serif; color: #FFD700; font-size: 1.3rem; margin-bottom: 1rem;">🎁 Experience CCT™ Free Mini Sessions</h3>
-            <p style="font-size: 1.05rem; color: rgba(255,248,240,0.9); margin-bottom: 1rem;">
-                Try CCT™ for yourself with free audio sessions from founder Gia Combs-Ramirez.
-            </p>
-            <a href="https://www.crystallineconsciousness.com/new-page-1" target="_blank" class="btn btn-gold" style="padding: 0.75rem 1.5rem; font-size: 1rem;">🔮 Free CCT™ Sessions</a>
-        </div>
-        
-        <!-- CCT Session with Maggie -->
-        <div style="text-align: center; margin-top: 2rem;">
-            <p style="font-size: 1.1rem; color: var(--cream); margin-bottom: 1rem;">Ready for a personalized CCT™ session with Maggie?</p>
-            <a href="https://square.link/u/jGBu81PX" class="btn" style="padding: 0.75rem 1.5rem; font-size: 1rem; background: linear-gradient(135deg, #00CED1, #8A2BE2);" target="_blank">💎 CCT™ Soul-Lit Session · $222</a>
-        </div>
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <p style="font-size: 1.15rem; line-height: 1.9;">CCT™ works with sacred geometry, crystalline frequencies, and conscious intent to access higher states of consciousness.</p>
     </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- HEALING GEMSTONES -->
-<section class="section" id="gemstones" style="background: linear-gradient(180deg, rgba(138, 43, 226, 0.08) 0%, rgba(0, 206, 209, 0.05) 50%, transparent 100%);">
-    <div class="container">
-        <h2>💎 HEALING GEMSTONES</h2>
-        <p class="section-subtitle">Gemstones embody concentrated energy. With their powerful energies and profound resonance with the human body, they are the perfect energy medicine tools.</p>
-        
-        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; font-size: 1.1rem; line-height: 1.8; color: rgba(255,248,240,0.9);">
-            Like other forms of energy medicine, gemstone and crystal energy medicine uses the body's inherent healing force to nourish and heal us in multiple ways. Each type of gemstone embodies a unique energy that can focus and amplify this healing force and produce specific therapeutic effects.
-        </p>
-        
-        <div class="library-grid">
-            <!-- Howlite -->
-            <div class="library-card" style="border-color: rgba(255, 255, 255, 0.4); background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(200, 200, 200, 0.05));">
-                <div class="card-icon">🤍</div>
-                <h3>Howlite</h3>
-                <p style="font-style: italic; color: var(--gold); margin-bottom: 0.5rem;">♥ Inspiration ♥ Creativity ♥ Artistic Expression</p>
-                <p>An aid to insomnia, especially when caused by an overactive mind. Formulates ambitions and aids in achieving them. Strengthens memory and stimulates desire for knowledge. Teaches patience and helps eliminate rage, pain and stress. A calming stone that facilitates awareness and encourages emotional expression.</p>
-                <div class="topics"><span class="topic-tag">Calm</span><span class="topic-tag">Memory</span><span class="topic-tag">Patience</span></div>
-                <span class="domain-tag">Bones • Teeth • Soft Tissue</span>
-            </div>
-            
-            <!-- Larvikite -->
-            <div class="library-card" style="border-color: rgba(70, 70, 90, 0.6); background: linear-gradient(135deg, rgba(70, 70, 90, 0.2), rgba(30, 30, 40, 0.1));">
-                <div class="card-icon">🖤</div>
-                <h3>Larvikite</h3>
-                <p style="font-style: italic; color: var(--gold); margin-bottom: 0.5rem;">♥ Grounding ♥ Protective ♥ Patience</p>
-                <p>A protective and grounding stone. Cleansing to the subtle bodies and facilitates a strong connection with the energies of Earth. Stimulates inner visions and enhances psychic abilities. Allows us to see the past, providing clarity to visions of past life recall. Can neutralize and cancel spells/intentions that are no longer wanted. Repels negative energy.</p>
-                <div class="topics"><span class="topic-tag">Protection</span><span class="topic-tag">Grounding</span><span class="topic-tag">Psychic</span></div>
-                <span class="domain-tag">Brain • Learning • Metabolism</span>
-            </div>
-            
-            <!-- Chrysocolla -->
-            <div class="library-card" style="border-color: rgba(0, 206, 209, 0.5); background: linear-gradient(135deg, rgba(0, 206, 209, 0.15), rgba(72, 209, 204, 0.1));">
-                <div class="card-icon">💙</div>
-                <h3>Chrysocolla</h3>
-                <p style="font-style: italic; color: var(--gold); margin-bottom: 0.5rem;">♥ Tranquility ♥ Peace ♥ Unconditional Love ♥ Hope</p>
-                <p>Calms, cleanses and re-energises all the chakras. Draws out guilt, heals heartache and increases the capacity to love. Improves communication and opens psychic vision. Encourages self-awareness and inner balance. Imparts confidence and sensitivity. Enhances personal power and inspires creativity.</p>
-                <div class="topics"><span class="topic-tag">All Chakras</span><span class="topic-tag">Love</span><span class="topic-tag">Communication</span></div>
-                <span class="domain-tag">Arthritis • Blood • Lungs • Liver</span>
-            </div>
-            
-            <!-- Jasper -->
-            <div class="library-card" style="border-color: rgba(139, 69, 19, 0.5); background: linear-gradient(135deg, rgba(139, 69, 19, 0.15), rgba(210, 105, 30, 0.1));">
-                <div class="card-icon">🧡</div>
-                <h3>Jasper</h3>
-                <p style="font-style: italic; color: var(--gold); margin-bottom: 0.5rem;">♥ Nurturing ♥ Tranquility ♥ Completion ♥ Healing</p>
-                <p>Known as the "supreme nurturer". Sustains and supports through times of stress, and brings tranquility and wholeness. Provides protection and absorbs negative energy. Balances yin and yang. Clears electromagnetic and environmental pollution, including radiation. Encourages honesty with one's self and provides courage.</p>
-                <div class="topics"><span class="topic-tag">Protection</span><span class="topic-tag">Balance</span><span class="topic-tag">Courage</span></div>
-                <span class="domain-tag">Ocean Jasper: Digestion • Detox</span>
-            </div>
-            
-            <!-- Red Agate -->
-            <div class="library-card" style="border-color: rgba(178, 34, 34, 0.5); background: linear-gradient(135deg, rgba(178, 34, 34, 0.15), rgba(139, 0, 0, 0.1));">
-                <div class="card-icon">❤️</div>
-                <h3>Red Agate</h3>
-                <p style="font-style: italic; color: var(--gold); margin-bottom: 0.5rem;">♥ Strength ♥ Victory ♥ Good Luck ♥ Harmony</p>
-                <p>A stone of strength. Used by the Ancients on breastplates of armor to give warriors strength and make them victorious in battle. Enhances creativity and strengthens the intellect, making it beneficial for students and artists. Balances yin/yang energy. Enables bursts of energy as needed while promoting longevity. Especially protective for children.</p>
-                <div class="topics"><span class="topic-tag">Strength</span><span class="topic-tag">Protection</span><span class="topic-tag">Children</span></div>
-                <span class="domain-tag">Warriors • Students • Artists</span>
-            </div>
-            
-            <!-- Amazonite -->
-            <div class="library-card" style="border-color: rgba(0, 191, 255, 0.5); background: linear-gradient(135deg, rgba(0, 191, 255, 0.15), rgba(127, 255, 212, 0.1));">
-                <div class="card-icon">💚</div>
-                <h3>Amazonite</h3>
-                <p style="font-style: italic; color: var(--gold); margin-bottom: 0.5rem;">♥ Hope ♥ Inner Strength ♥ Truth ♥ Intention</p>
-                <p>The "Hope Stone." Lined the shields of Amazonian warrior princesses and adorned the tomb of Tutankhamun. Calls on the spirit of inner strength, magnified intention and a commitment to getting what you want. Deep connections to the heart and throat chakras. Soothes anxiety and brings clarity. Live deeper, stand strong and proud in your authentic light.</p>
-                <div class="topics"><span class="topic-tag">Heart Chakra</span><span class="topic-tag">Throat Chakra</span><span class="topic-tag">Warriors</span></div>
-                <span class="domain-tag">Anxiety • Clarity • Manifestation</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- VITALITY MUSHROOM ELIXIR -->
-<section class="section" id="elixir" style="background: linear-gradient(180deg, rgba(139, 69, 19, 0.08) 0%, rgba(218, 165, 32, 0.05) 50%, transparent 100%);">
-    <div class="container">
-        <h2>🍄 VITALITY MUSHROOM ELIXIR</h2>
-        <p class="section-subtitle">Maggie's Magic · Ancient Wisdom in Every Drop</p>
-        
-        <div style="max-width: 900px; margin: 0 auto;">
-            <!-- Main Elixir Description -->
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <p style="font-size: 1.15rem; line-height: 1.9; color: rgba(255,248,240,0.95);">
-                    A powerful blend of adaptogenic mushrooms, healing herbs, and carrier oils designed for cognitive support, immune boosting, and cellular rejuvenation.
-                </p>
-            </div>
-            
-            <!-- Mushroom Grid -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 2rem 0;">
-                <div style="background: rgba(139, 69, 19, 0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(218, 165, 32, 0.3); text-align: center;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🧠</div>
-                    <h4 style="color: var(--gold); font-size: 0.95rem;">Lion's Mane</h4>
-                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Cognitive Support</p>
-                </div>
-                <div style="background: rgba(139, 69, 19, 0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(218, 165, 32, 0.3); text-align: center;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🛡️</div>
-                    <h4 style="color: var(--gold); font-size: 0.95rem;">Reishi</h4>
-                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Immune Support</p>
-                </div>
-                <div style="background: rgba(139, 69, 19, 0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(218, 165, 32, 0.3); text-align: center;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">✨</div>
-                    <h4 style="color: var(--gold); font-size: 0.95rem;">Chaga</h4>
-                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Antioxidant</p>
-                </div>
-                <div style="background: rgba(139, 69, 19, 0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(218, 165, 32, 0.3); text-align: center;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌀</div>
-                    <h4 style="color: var(--gold); font-size: 0.95rem;">Shiitake</h4>
-                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Digestion</p>
-                </div>
-                <div style="background: rgba(139, 69, 19, 0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(218, 165, 32, 0.3); text-align: center;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💗</div>
-                    <h4 style="color: var(--gold); font-size: 0.95rem;">Oyster</h4>
-                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Heart Health</p>
-                </div>
-                <div style="background: rgba(139, 69, 19, 0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(218, 165, 32, 0.3); text-align: center;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🦋</div>
-                    <h4 style="color: var(--gold); font-size: 0.95rem;">Turkey Tail</h4>
-                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Immune Support</p>
-                </div>
-                <div style="background: rgba(139, 69, 19, 0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(218, 165, 32, 0.3); text-align: center;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
-                    <h4 style="color: var(--gold); font-size: 0.95rem;">Cordyceps</h4>
-                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Performance Boosting</p>
-                </div>
-                <div style="background: rgba(139, 69, 19, 0.15); padding: 1rem; border-radius: 12px; border: 1px solid rgba(218, 165, 32, 0.3); text-align: center;">
-                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🍫</div>
-                    <h4 style="color: var(--gold); font-size: 0.95rem;">Cacao</h4>
-                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">High Polyphenols</p>
-                </div>
-            </div>
-            
-            <!-- Additional Ingredients -->
-            <div style="background: rgba(218, 165, 32, 0.1); border: 1px solid rgba(218, 165, 32, 0.3); border-radius: 15px; padding: 1.5rem; margin: 2rem 0;">
-                <h3 style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 1rem; text-align: center;">✨ Herbal Synergy Blend</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; text-align: center;">
-                    <div>
-                        <strong style="color: #FFD700;">Turmeric</strong>
-                        <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Anti-inflammatory</p>
-                    </div>
-                    <div>
-                        <strong style="color: #FFD700;">Ginger</strong>
-                        <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Digestive support</p>
-                    </div>
-                    <div>
-                        <strong style="color: #FFD700;">Cloves</strong>
-                        <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Aromatic healing</p>
-                    </div>
-                    <div>
-                        <strong style="color: #FFD700;">Raw Honey</strong>
-                        <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Restorative health</p>
-                    </div>
-                    <div>
-                        <strong style="color: #FFD700;">Olive Oil</strong>
-                        <p style="font-size: 0.85rem; color: rgba(255,248,240,0.8);">Liver & gallbladder support</p>
-                    </div>
-                </div>
-                <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: rgba(255,248,240,0.7);">
-                    Contains naturally occurring menthol, citrol, and zingibere for healthy digestion and overall wellness.
-                </p>
-            </div>
-            
-            <!-- Usage Instructions -->
-            <div style="background: rgba(255, 215, 0, 0.08); border-left: 3px solid var(--gold); padding: 1.5rem; margin: 2rem 0; border-radius: 0 12px 12px 0;">
-                <h4 style="color: var(--gold); margin-bottom: 1rem;">📜 How to Use</h4>
-                <ul style="list-style: none; padding: 0; color: rgba(255,248,240,0.9); line-height: 1.8;">
-                    <li>🔄 Shake well and warm to mix (blend will separate when cool)</li>
-                    <li>💧 Use directly under the tongue (intense!) or add to warm water or tea</li>
-                    <li>🌱 Start with 2-4 drops and increase as tolerated</li>
-                    <li>☀️ Energizing blend — best taken in the morning</li>
-                </ul>
-            </div>
-            
-            <!-- Spiritual Benefits -->
-            <div style="text-align: center; margin: 2rem 0;">
-                <h3 style="color: var(--pink); font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 1.5rem;">🔮 Spiritual Healing Properties</h3>
-                <p style="font-size: 1rem; color: rgba(255,248,240,0.85); margin-bottom: 1.5rem;">
-                    Herbs and constituents of this elixir have been used for centuries in healing practices and are believed to support:
-                </p>
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
-                    <span style="background: rgba(255,105,180,0.2); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid rgba(255,105,180,0.4);">💕 Love & Passion</span>
-                    <span style="background: rgba(255,215,0,0.2); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid rgba(255,215,0,0.4);">⚡ Personal Power</span>
-                    <span style="background: rgba(138,43,226,0.2); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid rgba(138,43,226,0.4);">🛡️ Spiritual Protection</span>
-                    <span style="background: rgba(0,206,209,0.2); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid rgba(0,206,209,0.4);">💰 Prosperity</span>
-                    <span style="background: rgba(144,238,144,0.2); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid rgba(144,238,144,0.4);">💚 Healing & Repair</span>
-                </div>
-            </div>
-        </div>
+    <div style="text-align: center;">
+        <a href="cct.html" class="btn" style="background: linear-gradient(135deg, #00CED1, #8A2BE2); padding: 0.75rem 1.5rem;">💎 Explore CCT™</a>
     </div>
 </section>
 
 <div class="divider"></div>
 
 <!-- LIBRARY -->
-<section class="section" id="library" style="background: linear-gradient(180deg, rgba(147, 112, 219, 0.05) 0%, transparent 100%);">
+<section class="section" id="library">
     <div class="container">
         <h2>📚 THE MAGGIE WAY LIBRARY</h2>
         <p class="section-subtitle">Sacred teachings organized by theme</p>
         <div class="library-grid">
-            <a href="00-about-the-maggie-way.html" class="library-card">
-                <div class="card-icon">✨</div>
-                <h3>About The Maggie Way</h3>
-                <p>The full introduction. The dedication. Are you ALL-IN?</p>
-                <div class="topics"><span class="topic-tag">Welcome</span><span class="topic-tag">Introduction</span></div>
-                <span class="domain-tag">Domain 1: Heart Center</span>
-            </a>
-            <a href="oracle-the-seed.html" class="library-card" style="border-color: rgba(138,43,226,0.6); background: linear-gradient(135deg, rgba(138,43,226,0.15), rgba(255,215,0,0.1));">
-                <div class="card-icon">🔮</div>
-                <h3>The Maggie Way Oracle</h3>
-                <p>Pull a card. Trust the message. Interactive oracle with 31 cards.</p>
-                <div class="topics"><span class="topic-tag">Oracle</span><span class="topic-tag">Intuition</span></div>
-                <span class="domain-tag">Domain 4: Oracle</span>
-            </a>
-            <a href="01-show-up-loud.html" class="library-card">
-                <div class="card-icon">🔥</div>
-                <h3>Show Up Loud</h3>
-                <p>The art of speaking your truth and refusing to shrink.</p>
-                <div class="topics"><span class="topic-tag">Authenticity</span><span class="topic-tag">Voice</span></div>
-                <span class="domain-tag">Domain 6: Expression</span>
-            </a>
-            <a href="08-trust-your-intuition.html" class="library-card">
-                <div class="card-icon">🧭</div>
-                <h3>Trust Your Intuition</h3>
-                <p>Your inner compass never lies. Follow the sacred whispers.</p>
-                <div class="topics"><span class="topic-tag">Intuition</span><span class="topic-tag">Discernment</span></div>
-                <span class="domain-tag">Domain 4: Oracle</span>
-            </a>
-            <a href="07-self-care-is-your-job.html" class="library-card">
-                <div class="card-icon">💎</div>
-                <h3>Self Care is Your #1 Job</h3>
-                <p>The foundation of all healing. Hydration, rest, nourishment, movement.</p>
-                <div class="topics"><span class="topic-tag">Self Care</span><span class="topic-tag">Foundation</span></div>
-                <span class="domain-tag">Domain 17: Body</span>
-            </a>
-            <a href="02-water-is-life.html" class="library-card">
-                <div class="card-icon">💧</div>
-                <h3>Water is LIFE</h3>
-                <p>Your body's river system. True cellular hydration.</p>
-                <div class="topics"><span class="topic-tag">Hydration</span><span class="topic-tag">Flow</span></div>
-                <span class="domain-tag">Domain 15: Flow</span>
-            </a>
-            <a href="affirmations-for-magic.html" class="library-card" style="border-color: rgba(255,105,180,0.5);">
-                <div class="card-icon">✨</div>
-                <h3>Affirmations For Magic</h3>
-                <p>11 week journey of manifesting, healing, and transformation through words.</p>
-                <div class="topics"><span class="topic-tag">Affirmations</span><span class="topic-tag">MAGIC</span></div>
-                <span class="domain-tag">Domain 12: Word</span>
-            </a>
-            <a href="03-boundaries.html" class="library-card">
-                <div class="card-icon">🚧</div>
-                <h3>Boundaries</h3>
-                <p>Sacred structures that define where you end and others begin.</p>
-                <div class="topics"><span class="topic-tag">Boundaries</span><span class="topic-tag">Protection</span></div>
-                <span class="domain-tag">Domain 7: Community</span>
-            </a>
-            <a href="11-who-are-you.html" class="library-card">
-                <div class="card-icon">✨</div>
-                <h3>Who Are You?</h3>
-                <p>Cultivating your unique gifts. Is this even mine?</p>
-                <div class="topics"><span class="topic-tag">Identity</span><span class="topic-tag">Gifts</span></div>
-                <span class="domain-tag">Domain 2: Mind Temple</span>
-            </a>
+            <a href="00-about-the-maggie-way.html" class="library-card"><div class="card-icon">✨</div><h3>About The Maggie Way</h3><p>The full introduction. Are you ALL-IN?</p><span class="domain-tag">Domain 1</span></a>
+            <a href="oracle-the-seed.html" class="library-card"><div class="card-icon">🔮</div><h3>The Maggie Way Oracle</h3><p>Pull a card. Trust the message.</p><span class="domain-tag">Domain 4</span></a>
+            <a href="01-show-up-loud.html" class="library-card"><div class="card-icon">🔥</div><h3>Show Up Loud</h3><p>Speaking your truth.</p><span class="domain-tag">Domain 6</span></a>
+            <a href="08-trust-your-intuition.html" class="library-card"><div class="card-icon">🧭</div><h3>Trust Your Intuition</h3><p>Your inner compass never lies.</p><span class="domain-tag">Domain 4</span></a>
+            <a href="07-self-care-is-your-job.html" class="library-card"><div class="card-icon">💎</div><h3>Self Care is Your #1 Job</h3><p>The foundation of all healing.</p><span class="domain-tag">Domain 17</span></a>
+            <a href="02-water-is-life.html" class="library-card"><div class="card-icon">💧</div><h3>Water is LIFE</h3><p>True cellular hydration.</p><span class="domain-tag">Domain 15</span></a>
         </div>
     </div>
 </section>
@@ -1608,106 +1038,12 @@
 <section class="section protocols-section" id="protocols">
     <div class="container">
         <h2>🌀 DAILY PROTOCOLS</h2>
-        <p class="section-subtitle">Practical exercises and rituals from The Maggie Way</p>
+        <p class="section-subtitle">Practical exercises and rituals</p>
         <div class="protocols-grid">
-            <a href="02-water-is-life.html" class="protocol-card">
-                <div class="card-icon">💧</div>
-                <h3>Hydration Protocol</h3>
-                <div class="frequency">Daily Foundation</div>
-                <p>Water is LIFE. True cellular hydration supports every system in your body.</p>
-                <span class="domain-tag">Domain 15: Flow</span>
-            </a>
-            <a href="17-find-breath.html" class="protocol-card">
-                <div class="card-icon">🌬️</div>
-                <h3>Find Breath Protocol</h3>
-                <div class="frequency">Daily Practice</div>
-                <p>Breath is the bridge between the physical and spiritual.</p>
-                <span class="domain-tag">Domain 16: Breath</span>
-            </a>
-            <a href="16-move-your-magic.html" class="protocol-card">
-                <div class="card-icon">🏃</div>
-                <h3>Move Your Magic</h3>
-                <div class="frequency">30 min daily</div>
-                <p>Movement clears stuck energy and reconnects you to your body.</p>
-                <span class="domain-tag">Domain 17: Body</span>
-            </a>
-            <a href="18-go-outside.html" class="protocol-card">
-                <div class="card-icon">🌳</div>
-                <h3>Go Outside Already</h3>
-                <div class="frequency">Daily</div>
-                <p>Nature provides peace and presence. Get your feet in the dirt.</p>
-                <span class="domain-tag">Domain 17: Body</span>
-            </a>
-            <a href="12-rest-is-essential.html" class="protocol-card">
-                <div class="card-icon">😴</div>
-                <h3>Rest Protocol</h3>
-                <div class="frequency">8 hrs nightly</div>
-                <p>Rest is not weakness. It is wisdom.</p>
-                <span class="domain-tag">Domain 17: Body</span>
-            </a>
-            <a href="31-clearing-releasing-letting-go.html" class="protocol-card">
-                <div class="card-icon">🌕</div>
-                <h3>Clearing & Release</h3>
-                <div class="frequency">Full Moon</div>
-                <p>Release what no longer serves. We repeat what we don't repair.</p>
-                <span class="domain-tag">Domain 19: Void</span>
-            </a>
-            <a href="43-use-crystals.html" class="protocol-card">
-                <div class="card-icon">💎</div>
-                <h3>Crystal Foundations</h3>
-                <div class="frequency">Daily</div>
-                <p>Crystals hold and amplify energy. Earth's vibrational allies.</p>
-                <span class="domain-tag">Domain 14: Crystal</span>
-            </a>
-            <a href="41-sound-healing.html" class="protocol-card">
-                <div class="card-icon">🎵</div>
-                <h3>Sound Healing</h3>
-                <div class="frequency">Weekly</div>
-                <p>Vibration is everything. Sound healing uses specific frequencies.</p>
-                <span class="domain-tag">Domain 10: Sound</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- MEDITATIONS -->
-<section class="section" id="meditations" style="background: linear-gradient(180deg, rgba(255,105,180,0.03) 0%, transparent 100%);">
-    <div class="container">
-        <h2>🧘 MEDITATIONS & EXERCISES</h2>
-        <p class="section-subtitle">Guided practices for returning to yourself</p>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;">
-            <a href="30-inner-compass-meditation.html" style="text-decoration:none; color:inherit; display:block; background: rgba(255,105,180,0.08); padding:1.5rem; border-radius:15px; border:1px solid rgba(255,105,180,0.2); transition:all 0.3s;">
-                <h3 style="color:#FF69B4; font-family:'Cinzel',serif; margin-bottom:0.75rem;">🧭 Inner Compass Meditation</h3>
-                <p style="color:rgba(255,248,240,0.8); font-size:0.95rem; line-height:1.7;">Place your hand over your heart and ask: "What direction feels true for me right now?"</p>
-                <span class="domain-tag" style="background:rgba(255,105,180,0.2); color:#FF69B4;">Domain 4: Oracle</span>
-            </a>
-            <a href="31-clearing-releasing-letting-go.html" style="text-decoration:none; color:inherit; display:block; background: rgba(255,215,0,0.08); padding:1.5rem; border-radius:15px; border:1px solid rgba(255,215,0,0.2); transition:all 0.3s;">
-                <h3 style="color:#FFD700; font-family:'Cinzel',serif; margin-bottom:0.75rem;">🌕 Clearing & Letting Go</h3>
-                <p style="color:rgba(255,248,240,0.8); font-size:0.95rem; line-height:1.7;">Give yourself full permission to clear, release, and let go of anything that no longer serves you.</p>
-                <span class="domain-tag" style="background:rgba(255,215,0,0.2); color:#FFD700;">Domain 19: Void</span>
-            </a>
-            <a href="10-connect-heal-balance.html" style="text-decoration:none; color:inherit; display:block; background: rgba(153,50,204,0.08); padding:1.5rem; border-radius:15px; border:1px solid rgba(153,50,204,0.2); transition:all 0.3s;">
-                <h3 style="color:#DDA0DD; font-family:'Cinzel',serif; margin-bottom:0.75rem;">🌬️ Return to You Practice</h3>
-                <p style="color:rgba(255,248,240,0.8); font-size:0.95rem; line-height:1.7;">Come home to yourself. Is this even mine? Call your energy back from everywhere you've left it.</p>
-                <span class="domain-tag" style="background:rgba(153,50,204,0.2); color:#DDA0DD;">Domain 1: Heart Center</span>
-            </a>
-            <a href="17-find-breath.html" style="text-decoration:none; color:inherit; display:block; background: rgba(0,206,209,0.08); padding:1.5rem; border-radius:15px; border:1px solid rgba(0,206,209,0.2); transition:all 0.3s;">
-                <h3 style="color:#00CED1; font-family:'Cinzel',serif; margin-bottom:0.75rem;">🌬️ Find Breath</h3>
-                <p style="color:rgba(255,248,240,0.8); font-size:0.95rem; line-height:1.7;">The thing we return to again and again. Breath is the bridge between the physical and spiritual.</p>
-                <span class="domain-tag" style="background:rgba(0,206,209,0.2); color:#00CED1;">Domain 16: Breath</span>
-            </a>
-            <a href="cct.html#activation" style="text-decoration:none; color:inherit; display:block; background: rgba(138,43,226,0.08); padding:1.5rem; border-radius:15px; border:1px solid rgba(138,43,226,0.2); transition:all 0.3s;">
-                <h3 style="color:#DDA0DD; font-family:'Cinzel',serif; margin-bottom:0.75rem;">💎 Crystalline Energy System Activation</h3>
-                <p style="color:rgba(255,248,240,0.8); font-size:0.95rem; line-height:1.7;">Activate your crystalline matrix. Unlock your full CCT™ potential.</p>
-                <span class="domain-tag" style="background:rgba(138,43,226,0.2); color:#DDA0DD;">Domain 14: Crystal</span>
-            </a>
-            <a href="cct.html" style="text-decoration:none; color:inherit; display:block; background: rgba(255,215,0,0.08); padding:1.5rem; border-radius:15px; border:1px solid rgba(255,215,0,0.2); transition:all 0.3s;">
-                <h3 style="color:#FFD700; font-family:'Cinzel',serif; margin-bottom:0.75rem;">🔮 CCT™ Free Mini Sessions</h3>
-                <p style="color:rgba(255,248,240,0.8); font-size:0.95rem; line-height:1.7;">5 sacred geometry healing audios. Choose a shape that calls to you and receive a transmission.</p>
-                <span class="domain-tag" style="background:rgba(255,215,0,0.2); color:#FFD700;">Domain 14: Crystal</span>
-            </a>
+            <a href="02-water-is-life.html" class="protocol-card"><div class="card-icon">💧</div><h3>Hydration Protocol</h3><div class="frequency">Daily</div><p>Water is LIFE.</p></a>
+            <a href="17-find-breath.html" class="protocol-card"><div class="card-icon">🌬️</div><h3>Find Breath</h3><div class="frequency">Daily</div><p>Breath is the bridge.</p></a>
+            <a href="16-move-your-magic.html" class="protocol-card"><div class="card-icon">🏃</div><h3>Move Your Magic</h3><div class="frequency">30 min daily</div><p>Movement clears stuck energy.</p></a>
+            <a href="12-rest-is-essential.html" class="protocol-card"><div class="card-icon">😴</div><h3>Rest Protocol</h3><div class="frequency">8 hrs nightly</div><p>Rest is wisdom.</p></a>
         </div>
     </div>
 </section>
@@ -1718,22 +1054,13 @@
 <section class="section blog-section" id="blog">
     <div class="container">
         <h2>✍️ THE MAGGIE WAY BLOG</h2>
-        <p class="section-subtitle">Teachings, stories, and wisdom from the path</p>
+        <p class="section-subtitle">Teachings, stories, and wisdom</p>
         <div class="library-grid">
-            <a href="00-about-the-maggie-way.html" class="library-card"><div class="card-icon">✨</div><h3>About The Maggie Way</h3><p>The full introduction. Are you ALL-IN?</p><span class="domain-tag">Domain 1: Heart</span></a>
-            <a href="01-show-up-loud.html" class="library-card"><div class="card-icon">🔥</div><h3>Show Up Loud</h3><p>The art of speaking your truth.</p><span class="domain-tag">Domain 6: Expression</span></a>
-            <a href="02-water-is-life.html" class="library-card"><div class="card-icon">💧</div><h3>Water is LIFE</h3><p>Hydration, flow, and the medicine of water.</p><span class="domain-tag">Domain 15: Flow</span></a>
-            <a href="03-boundaries.html" class="library-card"><div class="card-icon">🛡️</div><h3>Boundaries</h3><p>Sacred containers for your energy.</p><span class="domain-tag">Domain 7: Community</span></a>
-            <a href="04-trauma-and-the-body.html" class="library-card"><div class="card-icon">💔</div><h3>Trauma & The Body</h3><p>Your body remembers what the mind forgets.</p><span class="domain-tag">Domain 13: Flame</span></a>
-            <a href="05-glow-up-gets-lonely.html" class="library-card"><div class="card-icon">🦋</div><h3>The Glow Up Gets Lonely</h3><p>What happens when you rise.</p><span class="domain-tag">Domain 13: Flame</span></a>
-            <a href="06-massage-is-magic.html" class="library-card"><div class="card-icon">💆</div><h3>Massage = MAGIC</h3><p>22+ years of bodywork wisdom.</p><span class="domain-tag">Domain 3: Healing</span></a>
-            <a href="07-self-care-is-your-job.html" class="library-card"><div class="card-icon">🌸</div><h3>Self Care is Your #1 Job</h3><p>Not optional. Not selfish. Essential.</p><span class="domain-tag">Domain 17: Body</span></a>
-            <a href="08-trust-your-intuition.html" class="library-card"><div class="card-icon">🔮</div><h3>Trust Your Intuition</h3><p>The whisper that knows.</p><span class="domain-tag">Domain 4: Oracle</span></a>
-            <a href="49-architecture-of-consciousness.html" class="library-card"><div class="card-icon">🧠</div><h3>Architecture of Consciousness</h3><p>From fragmentation to wholeness.</p><span class="domain-tag">Domain 2: Mind</span></a>
-            <a href="55-the-lighthouse.html" class="library-card"><div class="card-icon">🏠</div><h3>The Lighthouse</h3><p>Even the lighthouse needs tending.</p><span class="domain-tag">Domain 8: Spark</span></a>
-            <a href="56-she-tries-but-watch.html" class="library-card"><div class="card-icon">⚡</div><h3>She Tries / But Watch</h3><p>She's not unhinged. She's unleashed.</p><span class="domain-tag">Domain 12: Word</span></a>
+            <a href="00-about-the-maggie-way.html" class="library-card"><div class="card-icon">✨</div><h3>About The Maggie Way</h3><p>The full introduction.</p></a>
+            <a href="01-show-up-loud.html" class="library-card"><div class="card-icon">🔥</div><h3>Show Up Loud</h3><p>Speaking your truth.</p></a>
+            <a href="04-trauma-and-the-body.html" class="library-card"><div class="card-icon">💔</div><h3>Trauma & The Body</h3><p>Your body remembers.</p></a>
+            <a href="05-glow-up-gets-lonely.html" class="library-card"><div class="card-icon">🦋</div><h3>The Glow Up Gets Lonely</h3><p>What happens when you rise.</p></a>
         </div>
-        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: rgba(255,248,240,0.7);">More teachings available through the 19 domains — click any domain in the Sacred Map above to explore.</p>
     </div>
 </section>
 
@@ -1744,46 +1071,10 @@
     <div class="container">
         <h2>📚 Books & Oracle</h2>
         <p class="section-subtitle">9 published works on Amazon</p>
-        
-        <!-- Featured Books -->
-        <div class="offerings-grid" style="margin-bottom: 2rem;">
-            <div class="offering-card" style="border-color: rgba(255,215,0,0.5);"><div class="emoji">📖</div><h3>Weathering "They"</h3><p>Surviving Modern Targeting. Part testimony, part survival manual, part spiritual map.</p><a href="https://www.amazon.com/Weathering-They-Surviving-Modern-Targeting/dp/B0FNCMKDYR" class="btn btn-amazon" target="_blank">Amazon</a></div>
-            <div class="offering-card"><div class="emoji">🌱</div><h3>The Seed Guidebook</h3><p>The Maggie Way Oracle companion. 31 cards for MAGIC, clarity, and new growth.</p><a href="https://www.amazon.com/Maggie-Way-Oracle-SEED/dp/B0F8V3S8ZJ" class="btn btn-amazon" target="_blank">Amazon</a></div>
-            <div class="offering-card"><div class="emoji">✨</div><h3>The Maggie Way</h3><p>Soul-Lit MAGIC & Miracles. The complete holistic healing framework.</p><a href="https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH" class="btn btn-amazon" target="_blank">Amazon</a></div>
-        </div>
-        
-        <!-- All Books Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
-            <a href="https://www.amazon.com/Maggie-Way-Holistic-Blending-Spiritual/dp/B0F58CDNZT" target="_blank" style="text-decoration:none; background: rgba(255,153,0,0.1); border: 1px solid rgba(255,153,0,0.3); border-radius: 12px; padding: 1rem; text-align: center; transition: all 0.3s;">
-                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💆</div>
-                <h4 style="color: #FFD700; font-family: 'Cinzel', serif; font-size: 0.95rem; margin-bottom: 0.25rem;">The Maggie Way: Holistic</h4>
-                <p style="color: rgba(255,248,240,0.7); font-size: 0.8rem; margin: 0;">Blending Spiritual & Somatic</p>
-            </a>
-            <a href="https://www.amazon.com/Pull-Your-Socks-Tries-Watch/dp/B0G3KZNV9Q" target="_blank" style="text-decoration:none; background: rgba(255,153,0,0.1); border: 1px solid rgba(255,153,0,0.3); border-radius: 12px; padding: 1rem; text-align: center; transition: all 0.3s;">
-                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🧦</div>
-                <h4 style="color: #FFD700; font-family: 'Cinzel', serif; font-size: 0.95rem; margin-bottom: 0.25rem;">Pull Up Your Socks</h4>
-                <p style="color: rgba(255,248,240,0.7); font-size: 0.8rem; margin: 0;">She Tries / But Watch</p>
-            </a>
-            <a href="https://www.amazon.com/She-Tries-But-Watch-Comedy/dp/B0G3GV7SQN" target="_blank" style="text-decoration:none; background: rgba(255,153,0,0.1); border: 1px solid rgba(255,153,0,0.3); border-radius: 12px; padding: 1rem; text-align: center; transition: all 0.3s;">
-                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
-                <h4 style="color: #FFD700; font-family: 'Cinzel', serif; font-size: 0.95rem; margin-bottom: 0.25rem;">She Tries / But Watch</h4>
-                <p style="color: rgba(255,248,240,0.7); font-size: 0.8rem; margin: 0;">Chaos, Comedy, Cosmic Truth</p>
-            </a>
-            <a href="https://www.amazon.com/FRIDGE-SONG-Maggie-Mayne/dp/B0FBK4HPPF" target="_blank" style="text-decoration:none; background: rgba(255,153,0,0.1); border: 1px solid rgba(255,153,0,0.3); border-radius: 12px; padding: 1rem; text-align: center; transition: all 0.3s;">
-                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎵</div>
-                <h4 style="color: #FFD700; font-family: 'Cinzel', serif; font-size: 0.95rem; margin-bottom: 0.25rem;">The Fridge Song</h4>
-                <p style="color: rgba(255,248,240,0.7); font-size: 0.8rem; margin: 0;">Original Children's Book</p>
-            </a>
-            <a href="https://www.amazon.com/Fridge-Song-Red-White-Cool/dp/B0FLDS885M" target="_blank" style="text-decoration:none; background: rgba(255,153,0,0.1); border: 1px solid rgba(255,153,0,0.3); border-radius: 12px; padding: 1rem; text-align: center; transition: all 0.3s;">
-                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🇺🇸</div>
-                <h4 style="color: #FFD700; font-family: 'Cinzel', serif; font-size: 0.95rem; margin-bottom: 0.25rem;">Red, White & Cool</h4>
-                <p style="color: rgba(255,248,240,0.7); font-size: 0.8rem; margin: 0;">Fridge Song Series</p>
-            </a>
-            <a href="https://www.amazon.com/Fridge-Song-Birthday-Bash-Maggie/dp/B0FBKJYSYC" target="_blank" style="text-decoration:none; background: rgba(255,153,0,0.1); border: 1px solid rgba(255,153,0,0.3); border-radius: 12px; padding: 1rem; text-align: center; transition: all 0.3s;">
-                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎂</div>
-                <h4 style="color: #FFD700; font-family: 'Cinzel', serif; font-size: 0.95rem; margin-bottom: 0.25rem;">Birthday Bash</h4>
-                <p style="color: rgba(255,248,240,0.7); font-size: 0.8rem; margin: 0;">Fridge Song Series</p>
-            </a>
+        <div class="offerings-grid">
+            <div class="offering-card"><div class="emoji">📖</div><h3>Weathering "They"</h3><p>Surviving Modern Targeting.</p><a href="https://www.amazon.com/Weathering-They-Surviving-Modern-Targeting/dp/B0FNCMKDYR" class="btn btn-amazon" target="_blank">Amazon</a></div>
+            <div class="offering-card"><div class="emoji">🌱</div><h3>The Seed Guidebook</h3><p>Oracle companion. 31 cards for MAGIC.</p><a href="https://www.amazon.com/Maggie-Way-Oracle-SEED/dp/B0F8V3S8ZJ" class="btn btn-amazon" target="_blank">Amazon</a></div>
+            <div class="offering-card"><div class="emoji">✨</div><h3>The Maggie Way</h3><p>Soul-Lit MAGIC & Miracles.</p><a href="https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH" class="btn btn-amazon" target="_blank">Amazon</a></div>
         </div>
     </div>
 </section>
@@ -1796,8 +1087,8 @@
         <h2>⚖️ Justice Without Limits</h2>
         <p class="section-subtitle">Civil rights advocacy for those fighting systems</p>
         <div class="offerings-grid" style="max-width: 700px; margin: 0 auto;">
-            <div class="offering-card"><div class="emoji">📊</div><h3>Pro Se Strategy Session</h3><div class="price">$111/hr</div><p>When you're representing yourself and need someone who gets it.</p><a href="https://square.link/u/n9WztX2P" class="btn" target="_blank">Book</a></div>
-            <div class="offering-card"><div class="emoji">🗺️</div><h3>Full Case Strategy</h3><div class="price">$444</div><p>Comprehensive case mapping and strategy development.</p><a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Strategy</a></div>
+            <div class="offering-card"><div class="emoji">📊</div><h3>Pro Se Strategy Session</h3><div class="price">$111/hr</div><p>When you're representing yourself.</p><a href="https://square.link/u/n9WztX2P" class="btn" target="_blank">Book</a></div>
+            <div class="offering-card"><div class="emoji">🗺️</div><h3>Full Case Strategy</h3><div class="price">$444</div><p>Comprehensive case mapping.</p><a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Strategy</a></div>
         </div>
     </div>
 </section>
@@ -1810,7 +1101,7 @@
         <h2>🌿 The Resiliency Garden</h2>
         <p class="section-subtitle">Where healers go to bloom</p>
         <div class="offerings-grid" style="max-width: 550px; margin: 0 auto;">
-            <div class="offering-card"><div class="emoji">🌱</div><h3>Founding Member</h3><div class="price">$222</div><p>Join the movement. Healers supporting healers.</p><a href="https://square.link/u/qJQL3qjS" class="btn btn-gold" target="_blank">Join</a></div>
+            <div class="offering-card"><div class="emoji">🌱</div><h3>Founding Member</h3><div class="price">$222</div><p>Join the movement.</p><a href="https://square.link/u/qJQL3qjS" class="btn btn-gold" target="_blank">Join</a></div>
             <div class="offering-card"><div class="emoji">💝</div><h3>Support the Garden</h3><div class="price">Any Amount</div><p>Every seed matters.</p><a href="https://square.link/u/4Yna5M2G" class="btn" target="_blank">Give</a></div>
         </div>
     </div>
@@ -1823,11 +1114,8 @@
     <p style="font-family: 'Cinzel', serif; color: #FFD700; font-size: 1.1rem; margin-bottom: 0.75rem;">The Maggie Way™ · Soul Architecture™</p>
     <p style="font-style: italic; color: rgba(255,248,240,0.8); margin-bottom: 1rem;">"We must stand in our light first to light the way for others."</p>
     
-    <!-- Footer Socials -->
     <div class="footer-socials">
         <a href="https://instagram.com/MaggieMayne1111" target="_blank" class="footer-social-link">📸 @MaggieMayne1111</a>
-        <a href="https://instagram.com/littletonmassage_maggiemagic" target="_blank" class="footer-social-link">✨ @MaggieMagic</a>
-        <a href="https://instagram.com/weatheringthy" target="_blank" class="footer-social-link">📖 @WeatheringThy</a>
         <a href="https://www.facebook.com/share/1FzHyu1qid/" target="_blank" class="footer-social-link">📘 Maggie Mayne</a>
         <a href="https://www.facebook.com/MaggieMAGIC1111" target="_blank" class="footer-social-link">💗 Maggie's MAGIC</a>
         <a href="https://www.facebook.com/share/1KhNt6tTd2/" target="_blank" class="footer-social-link">🌿 Resiliency Garden</a>
@@ -1835,18 +1123,13 @@
     
     <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6);">© 2025 Maggie Mayne</p>
     <p style="margin-top: 0.75rem;"><a href="mailto:soullit1111@gmail.com" style="color: #FFD700;">💌 soullit1111@gmail.com</a></p>
-    <p style="margin-top: 0.75rem;"><a href="https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH" target="_blank" style="color: #FF9900;">📚 The Maggie Way on Amazon</a></p>
 </footer>
 
 <script>
-// ═══════════════════════════════════════════════════════════════
-// STARS & PARTICLES GENERATION
-// ═══════════════════════════════════════════════════════════════
-
 // Stars
-const starsContainer = document.getElementById('stars');
-for (let i = 0; i < 100; i++) {
-    const star = document.createElement('div');
+var starsContainer = document.getElementById('stars');
+for (var i = 0; i < 100; i++) {
+    var star = document.createElement('div');
     star.className = 'star';
     star.style.left = Math.random() * 100 + '%';
     star.style.top = Math.random() * 100 + '%';
@@ -1856,10 +1139,10 @@ for (let i = 0; i < 100; i++) {
     starsContainer.appendChild(star);
 }
 
-// Floating Particles
-const particlesContainer = document.getElementById('particles');
-for (let i = 0; i < 20; i++) {
-    const particle = document.createElement('div');
+// Particles
+var particlesContainer = document.getElementById('particles');
+for (var i = 0; i < 20; i++) {
+    var particle = document.createElement('div');
     particle.className = 'particle';
     particle.style.left = Math.random() * 100 + '%';
     particle.style.setProperty('--float-duration', (Math.random() * 15 + 10) + 's');
@@ -1868,175 +1151,65 @@ for (let i = 0; i < 20; i++) {
     particlesContainer.appendChild(particle);
 }
 
-// ═══════════════════════════════════════════════════════════════
-// DOMAIN DATA - COMPLETE WITH ALL 19 DOMAINS
-// ═══════════════════════════════════════════════════════════════
-
-const domains = {
-    1: { name: "Heart Center", emoji: "💗", archetype: "The Queen", element: "Fire", zodiac: "Leo", chakra: "Heart (Anahata)", law: "Law of Love", teaching: "Love is the source of everything. We came here to be happy within ourselves and to love our neighbor as ourselves.", practice: "Place your hand on your heart. Ask: What does my heart need right now? Listen. Trust what comes.", description: "Soul Lit™ brand core. Where all healing begins. The center of your sacred architecture.", links: [
-        { title: "🔮 Ask The Oracle", url: "oracle-the-seed.html" },
-        { title: "About The Maggie Way", url: "00-about-the-maggie-way.html" },
-        { title: "Connect · Heal · Balance", url: "10-connect-heal-balance.html" }
-    ], offerings: []},
-    2: { name: "Mind Temple", emoji: "🧠", archetype: "The High Priestess", element: "Air", zodiac: "Aquarius", chakra: "Third Eye (Ajna)", law: "Law of Correspondence", teaching: "As above, so below. As within, so without. Every situation is a learning experience. We are always exactly where we are meant to be.", practice: "When facing a challenge, ask: What is this teaching me? What pattern in me is this reflecting?", description: "Consciousness expansion and nervous system healing. Cranial Sacral Therapy. CCT™ works here to settle the nervous system and access higher awareness.", links: [
-        { title: "💎 Crystalline Consciousness Technique", url: "cct.html" },
-        { title: "Cranial Sacral Therapy", url: "38-cranial-sacral-therapy.html" },
-        { title: "Architecture of Consciousness", url: "49-architecture-of-consciousness.html" },
-        { title: "Who Are YOU?", url: "11-who-are-you.html" }
-    ], offerings: []},
-    3: { name: "Healing", emoji: "💆", archetype: "The Midwife / Sacred Healer", element: "Water", zodiac: "Cancer", chakra: "Sacral (Svadhisthana)", law: "Law of Nature", teaching: "The body knows. Every living being has an instinctive sense of this law. Trust your body's wisdom.", practice: "Place both hands on your belly. Breathe deeply. Ask your body: What do you need? Listen without judgment.", description: "22+ years of bodywork mastery. Massage = MAGIC. Touch that transforms body, mind, emotions, and spirit.", links: [
-        { title: "Massage = MAGIC", url: "06-massage-is-magic.html" },
-        { title: "Love Your Lymph", url: "39-love-your-lymph.html" },
-        { title: "Embrace Multiple Modalities", url: "25-embrace-multiple-modalities.html" }
-    ], offerings: [
-        { name: "90-Min Soul-Lit Session", price: "$222", link: "https://square.link/u/jGBu81PX" },
-        { name: "30-Min Remote Session", price: "$111", link: "https://square.link/u/n9WztX2P" }
-    ]},
-    4: { name: "Oracle", emoji: "🔮", archetype: "The Oracle / Divine Seer", element: "Aether", zodiac: "Pisces", chakra: "Third Eye + Crown", law: "Law of Warning", teaching: "Life warns us 3 times before anything happens. Nothing happens unannounced. Signs speak to those who listen.", practice: "Ask for a sign. Be specific. Then pay attention. The universe is always communicating.", description: "Oracle readings and intuitive guidance. Messages from source. The Maggie Way Oracle system.", links: [
-        { title: "🔮 The Maggie Way Oracle", url: "oracle-the-seed.html" },
-        { title: "Trust Your Intuition", url: "08-trust-your-intuition.html" },
-        { title: "Inner Compass Meditation", url: "30-inner-compass-meditation.html" }
-    ], offerings: [
-        { name: "Oracle Card Pull by Maggie", price: "$33", link: "https://square.link/u/dIIrQUzO" }
-    ]},
-    5: { name: "Education", emoji: "📚", archetype: "The Wise Woman / Teacher", element: "Earth", zodiac: "Virgo", chakra: "Throat (Vishuddha)", law: "Law of Sharing", teaching: "Those who know should tell with love. Teaching is healing. Share what you know.", practice: "What wisdom have you gained that could help someone else? Find a way to share it today.", description: "Published author. 9 books on Amazon. Courses and teachings. Affirmations For Magic.", links: [
-        { title: "✨ Affirmations For Magic", url: "affirmations-for-magic.html" },
-        { title: "The Seed Guidebook", url: "https://www.amazon.com/Maggie-Way-Oracle-SEED/dp/B0F8V3S8ZJ" },
-        { title: "The Maggie Way Book", url: "https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH" },
-        { title: "Weathering They", url: "https://www.amazon.com/Weathering-They-Surviving-Modern-Targeting/dp/B0FNCMKDYR" }
-    ], offerings: []},
-    6: { name: "Expression", emoji: "🎭", archetype: "The Songstress / Creative Voice", element: "Fire", zodiac: "Sagittarius", chakra: "Throat (Vishuddha)", law: "Law of Manifestation", teaching: "Thoughts become words become reality. Your voice is your wand. Speak your truth.", practice: "Speak aloud what you want to create. Say it as if it already exists. Your words create your world.", description: "The Fridge Song Series. Creative expression as healing. Your voice as your wand.", links: [
-        { title: "Show Up Loud", url: "01-show-up-loud.html" },
-        { title: "Authenticity is Weird", url: "09-authenticity-is-weird.html" },
-        { title: "✨ Affirmations For Magic", url: "affirmations-for-magic.html" }
-    ], offerings: []},
-    7: { name: "Community", emoji: "🌐", archetype: "The Earth Mother / Gatherer", element: "Earth", zodiac: "Taurus", chakra: "Heart (Anahata)", law: "Law of Compensation", teaching: "All service entitles us to compensation. Give and receive in balance. Healers supporting healers.", practice: "Where are you giving without receiving? Where are you receiving without giving? Find balance.", description: "The Resiliency Garden. Where healers go to bloom. 12 gardens, 5 seasons, infinite resilience.", links: [
-        { title: "Build a Support System", url: "51-build-a-support-system.html" },
-        { title: "Boundaries", url: "03-boundaries.html" },
-        { title: "Care About Other People", url: "24-care-about-other-people.html" }
-    ], offerings: [
-        { name: "🌿 Founding Member", price: "$222", link: "https://square.link/u/qJQL3qjS" },
-        { name: "Support the Garden", price: "Any Amount", link: "https://square.link/u/4Yna5M2G" }
-    ]},
-    8: { name: "The Spark", emoji: "🌕", archetype: "The Light Bearer / God Source", element: "Spirit", zodiac: "—", chakra: "Crown (Sahasrara)", law: "Law of Love (Source)", teaching: "Divine connection. The light that ignites all things. You ARE the spark.", practice: "Close your eyes. Visualize golden light pouring in through your crown. You are connected to source.", description: "Energy work, Reiki, and life force activation. CCT™ works here to ignite transformation and connect to source.", links: [
-        { title: "💎 Crystalline Consciousness Technique", url: "cct.html" },
-        { title: "The Lighthouse", url: "55-the-lighthouse.html" },
-        { title: "Is It MAGIC?", url: "20-is-it-magic.html" }
-    ], offerings: []},
-    9: { name: "Abundance", emoji: "💰", archetype: "The Empress / Prosperity", element: "Earth", zodiac: "Taurus", chakra: "Root + Sacral", law: "Law of Generation", teaching: "We generate our circumstances. Prosperity flows from valuing ourselves and what we offer. You are worthy of receiving. Gratitude is the frequency of abundance.", practice: "Write 10 things you're grateful for RIGHT NOW. Then ask: What would I do if I knew I couldn't fail? Take one step toward that today.", description: "Signature experiences. Abundance consciousness. Premium transformation. The Universe is infinitely abundant — and so are you.", links: [
-        { title: "💎 Figure Out What You Really Want", url: "14-what-you-really-want.html" },
-        { title: "✨ Is It MAGIC?", url: "15-is-it-magic.html" },
-        { title: "🌟 Celebrate Your Wins", url: "49-celebrate.html" },
-        { title: "💫 Never Stop Growing", url: "48-never-stop-growing.html" },
-        { title: "🌊 Notice the Ripple", url: "50-notice-the-ripple.html" }
-    ], offerings: [
-        { name: "19-Domain Soul Map", price: "$444", link: "https://square.link/u/9jqMqRSU" },
-        { name: "An Evening with Maggie", price: "$888", link: "https://square.link/u/9jqMqRSU" },
-        { name: "Feed Your Soul Retreat", price: "$444", link: "https://square.link/u/gWrM6N89" },
-        { name: "The Full Maggie Experience", price: "$222", link: "https://square.link/u/9jqMqRSU" }
-    ]},
-    10: { name: "Sound", emoji: "🎵", archetype: "The Sound Healer", element: "Aether", zodiac: "Libra", chakra: "Throat (Vishuddha)", law: "Law of Harmony", teaching: "Everything maintained tends toward equilibrium. Sound restores balance. Vibration heals.", practice: "Hum. Tone. Sing. Let sound move through you. Your voice is medicine.", description: "Sound healing and vibration. Crystal bowls, tuning forks, Solfeggio frequencies. CCT™ uses sound vibration in healing chambers.", links: [
-        { title: "Sound Healing", url: "41-sound-healing.html" },
-        { title: "💎 CCT™ Healing Chambers", url: "cct.html" }
-    ], offerings: []},
-    11: { name: "Bridge", emoji: "🌉", archetype: "The Warrior Queen / Justice", element: "Air", zodiac: "Libra", chakra: "Solar Plexus (Manipura)", law: "Law of Cause and Effect", teaching: "Everything returns multiplied. What you put out comes back. Pattern recognition reveals truth.", practice: "What patterns keep repeating in your life? What are they trying to teach you?", description: "Justice Without Limits. Civil rights advocacy. Pro se strategy and case mapping.", links: [
-        { title: "⚖️ Justice Without Limits", url: "#justice" }
-    ], offerings: [
-        { name: "Pro Se Strategy Session", price: "$111/hr", link: "https://square.link/u/n9WztX2P" },
-        { name: "Full Case Strategy", price: "$444", link: "https://square.link/u/9jqMqRSU" }
-    ]},
-    12: { name: "The Word", emoji: "📿", archetype: "The Poetess / Prophet", element: "Aether", zodiac: "Gemini", chakra: "Throat (Vishuddha)", law: "Law of Affinity", teaching: "Similar attracts similar. The best associate with the best. Your words create your tribe.", practice: "What words do you speak most often? Speak your desired reality into existence.", description: "Poetry, prophecy, sacred writing. Affirmations For Magic. Your word is your wand.", links: [
-        { title: "✨ Affirmations For Magic", url: "affirmations-for-magic.html" },
-        { title: "She Tries / But Watch", url: "56-she-tries-but-watch.html" },
-        { title: "Mirror Mantras", url: "affirmations-for-magic.html#mantras" }
-    ], offerings: []},
-    13: { name: "The Flame", emoji: "🔥", archetype: "The Fire Priestess / Transformer", element: "Fire", zodiac: "Aries", chakra: "Solar Plexus (Manipura)", law: "Law of Evolution", teaching: "No one evolves without transforming. We move from innocent to ignorant to wise. Fire transmutes.", practice: "What is ready to be burned away? Write it down. Release it to the flame.", description: "Transformation through fire. Shadow work and trauma healing. CCT™ works here to release old patterns and transmute energy.", links: [
-        { title: "💎 CCT™ Transformation", url: "cct.html" },
-        { title: "Trauma and the Body", url: "04-trauma-and-the-body.html" },
-        { title: "The Glow Up Gets Lonely", url: "05-glow-up-gets-lonely.html" },
-        { title: "When They Can't Love the Glowed-Up You", url: "28-when-they-cant-love-the-glowed-up-you.html" }
-    ], offerings: []},
-    14: { name: "The Crystal", emoji: "💎", archetype: "The Crystal Keeper / Clarity", element: "Earth", zodiac: "Capricorn", chakra: "Third Eye (Ajna)", law: "Law of Two (Inquiry)", teaching: "Life always has answers ready when we inquire. Ask yes/no questions. Clarity comes through asking.", practice: "Hold a crystal. Ask a clear yes/no question. Notice what you feel. Trust the answer.", description: "Crystalline Consciousness Technique™. Sacred geometry, crystalline grid, light codes. The PRIMARY domain of CCT™.", links: [
-        { title: "💎 CCT™ Full Experience", url: "cct.html" },
-        { title: "💎 Crystal Healing", url: "crystals.html" },
-        { title: "🎁 Free CCT™ Sessions", url: "https://www.crystallineconsciousness.com/new-page-1" },
-        { title: "Use Crystals", url: "43-use-crystals.html" }
-    ], offerings: [
-        { name: "CCT™ Session", price: "$222", link: "https://square.link/u/jGBu81PX" }
-    ]},
-    15: { name: "The Flow", emoji: "🌊", archetype: "The Water Bearer / Purifier", element: "Water", zodiac: "Scorpio", chakra: "Sacral (Svadhisthana)", law: "Law of Communicating Vessels", teaching: "Energy flows where attention goes. Don't leak vital force. Manage your energy consciously.", practice: "Where is your energy leaking? Plug the holes. Return to yourself.", description: "Detox and purification. Lymphatic drainage. Water protocols. Release.", links: [
-        { title: "Water is LIFE", url: "02-water-is-life.html" },
-        { title: "Love Your Lymph", url: "39-love-your-lymph.html" }
-    ], offerings: []},
-    16: { name: "The Breath", emoji: "🌬️", archetype: "The Wind Dancer / Life Force", element: "Air", zodiac: "Gemini", chakra: "Heart (Anahata)", law: "Law of Three", teaching: "Try three times before giving up. Breath is the bridge between body and spirit. Life force activation.", practice: "4-7-8 breath: Inhale 4, hold 7, exhale 8. Return to center with every breath.", description: "Breathwork. Prana. Life force activation. The bridge between physical and spiritual.", links: [
-        { title: "Find Breath", url: "17-find-breath.html" }
-    ], offerings: []},
-    17: { name: "The Body", emoji: "🌍", archetype: "The Earth Mother / Physical Vessel", element: "Earth", zodiac: "Virgo", chakra: "Root (Muladhara)", law: "Law of Nature", teaching: "The body knows. Self care is your #1 job. Every act of self care is a gift to your future self.", practice: "What does your body need right now? Water? Movement? Rest? Give it that.", description: "22+ years massage mastery. Self care is your #1 job. Movement, rest, nourishment.", links: [
-        { title: "Self Care is Your #1 Job", url: "07-self-care-is-your-job.html" },
-        { title: "Move Your Magic", url: "16-move-your-magic.html" },
-        { title: "Rest is Essential", url: "12-rest-is-essential.html" },
-        { title: "Go Outside Already", url: "18-go-outside.html" },
-        { title: "Eat the Good Food", url: "13-eat-the-good-food.html" },
-        { title: "🌸 Essential Oils", url: "essential-oils.html" }
-    ], offerings: [
-        { name: "90-Min Soul-Lit Session", price: "$222", link: "https://square.link/u/jGBu81PX" }
-    ]},
-    18: { name: "Akashic", emoji: "📜", archetype: "The Record Keeper / Memory", element: "Aether", zodiac: "—", chakra: "Crown (Sahasrara)", law: "Law of Correspondence", teaching: "Everything happens to whom it's meant to happen. Your body remembers what the mind forgets.", practice: "Journal. Document. Record. Your story matters. Your patterns hold wisdom.", description: "Records and documentation. Pattern archives. Your body remembers what the mind forgets.", links: [
-        { title: "Your Body Remembers", url: "34-your-body-remembers.html" },
-        { title: "Pattern Documentation", url: "#justice" }
-    ], offerings: []},
-    19: { name: "The Void", emoji: "👁️", archetype: "The Void Priestess / Pure Potential", element: "Spirit", zodiac: "—", chakra: "Crown (Sahasrara)", law: "Law of Empty Spaces", teaching: "Pure potential. The void is not empty—it is full of possibility. Psychic investigation reveals the unseen.", practice: "Sit in stillness. Empty your mind. In the void, everything becomes possible.", description: "Psychic investigation. Pure potential. Accessing the unknown. CCT™ works here to connect to infinite potentiality.", links: [
-        { title: "💎 CCT™ Consciousness Expansion", url: "cct.html" },
-        { title: "Clearing, Releasing, Letting Go", url: "31-clearing-releasing-letting-go.html" },
-        { title: "🔮 Ask The Oracle", url: "oracle-the-seed.html" }
-    ], offerings: []}
+// Domain Data
+var domains = {
+    1: { name: "Heart Center", emoji: "💗", archetype: "The Queen", element: "Fire", zodiac: "Leo", chakra: "Heart", law: "Law of Love", teaching: "Love is the source of everything.", practice: "Place your hand on your heart. Ask: What does my heart need?", description: "Where all healing begins. The center of your sacred architecture.", links: [{title:"🔮 Ask The Oracle",url:"oracle-the-seed.html"},{title:"About The Maggie Way",url:"00-about-the-maggie-way.html"}], offerings: []},
+    2: { name: "Mind Temple", emoji: "🧠", archetype: "The High Priestess", element: "Air", zodiac: "Aquarius", chakra: "Third Eye", law: "Law of Correspondence", teaching: "As above, so below. As within, so without.", practice: "What is this teaching me? What pattern is this reflecting?", description: "Consciousness expansion and nervous system healing.", links: [{title:"💎 CCT™",url:"cct.html"},{title:"Cranial Sacral",url:"38-cranial-sacral-therapy.html"}], offerings: []},
+    3: { name: "Healing", emoji: "💆", archetype: "The Sacred Healer", element: "Water", zodiac: "Cancer", chakra: "Sacral", law: "Law of Nature", teaching: "The body knows. Trust your body's wisdom.", practice: "Ask your body: What do you need?", description: "22+ years of bodywork mastery. Massage = MAGIC.", links: [{title:"Massage = MAGIC",url:"06-massage-is-magic.html"}], offerings: [{name:"90-Min Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
+    4: { name: "Oracle", emoji: "🔮", archetype: "The Divine Seer", element: "Aether", zodiac: "Pisces", chakra: "Third Eye + Crown", law: "Law of Warning", teaching: "Life warns us 3 times before anything happens.", practice: "Ask for a sign. Be specific. Then pay attention.", description: "Oracle readings and intuitive guidance.", links: [{title:"🔮 The Maggie Way Oracle",url:"oracle-the-seed.html"},{title:"Trust Your Intuition",url:"08-trust-your-intuition.html"}], offerings: [{name:"Oracle Reading",price:"$33",link:"https://square.link/u/dIIrQUzO"}]},
+    5: { name: "Education", emoji: "📚", archetype: "The Wise Woman", element: "Earth", zodiac: "Virgo", chakra: "Throat", law: "Law of Sharing", teaching: "Those who know should tell with love.", practice: "What wisdom can you share today?", description: "9 books on Amazon. Courses and teachings.", links: [{title:"✨ Affirmations For Magic",url:"affirmations-for-magic.html"}], offerings: []},
+    6: { name: "Expression", emoji: "🎭", archetype: "The Songstress", element: "Fire", zodiac: "Sagittarius", chakra: "Throat", law: "Law of Manifestation", teaching: "Thoughts become words become reality.", practice: "Speak aloud what you want to create.", description: "Creative expression as healing.", links: [{title:"Show Up Loud",url:"01-show-up-loud.html"}], offerings: []},
+    7: { name: "Community", emoji: "🌐", archetype: "The Earth Mother", element: "Earth", zodiac: "Taurus", chakra: "Heart", law: "Law of Compensation", teaching: "Give and receive in balance.", practice: "Where are you giving without receiving?", description: "The Resiliency Garden. Healers supporting healers.", links: [{title:"Boundaries",url:"03-boundaries.html"}], offerings: [{name:"🌿 Founding Member",price:"$222",link:"https://square.link/u/qJQL3qjS"}]},
+    8: { name: "The Spark", emoji: "🌕", archetype: "The Light Bearer", element: "Spirit", zodiac: "—", chakra: "Crown", law: "Law of Love (Source)", teaching: "You ARE the spark.", practice: "Visualize golden light through your crown.", description: "Energy work, Reiki, and life force activation.", links: [{title:"💎 CCT™",url:"cct.html"}], offerings: []},
+    9: { name: "Abundance", emoji: "💰", archetype: "The Empress", element: "Earth", zodiac: "Taurus", chakra: "Root + Sacral", law: "Law of Generation", teaching: "We generate our circumstances. Gratitude is the frequency of abundance.", practice: "Write 10 things you're grateful for RIGHT NOW.", description: "Signature experiences. Premium transformation.", links: [{title:"Figure Out What You Want",url:"14-what-you-really-want.html"}], offerings: [{name:"19-Domain Map",price:"$444",link:"https://square.link/u/9jqMqRSU"},{name:"Evening with Maggie",price:"$888",link:"https://square.link/u/9jqMqRSU"}]},
+    10: { name: "Sound", emoji: "🎵", archetype: "The Sound Healer", element: "Aether", zodiac: "Libra", chakra: "Throat", law: "Law of Harmony", teaching: "Sound restores balance. Vibration heals.", practice: "Hum. Tone. Sing. Your voice is medicine.", description: "Sound healing. Crystal bowls, Solfeggio frequencies.", links: [{title:"Sound Healing",url:"41-sound-healing.html"}], offerings: []},
+    11: { name: "Bridge", emoji: "🌉", archetype: "The Warrior Queen", element: "Air", zodiac: "Libra", chakra: "Solar Plexus", law: "Law of Cause and Effect", teaching: "Everything returns multiplied.", practice: "What patterns keep repeating?", description: "Justice Without Limits. Civil rights advocacy.", links: [], offerings: [{name:"Pro Se Strategy",price:"$111/hr",link:"https://square.link/u/n9WztX2P"}]},
+    12: { name: "The Word", emoji: "📿", archetype: "The Poetess", element: "Aether", zodiac: "Gemini", chakra: "Throat", law: "Law of Affinity", teaching: "Your words create your tribe.", practice: "What words do you speak most often?", description: "Poetry, prophecy, sacred writing.", links: [{title:"✨ Affirmations",url:"affirmations-for-magic.html"}], offerings: []},
+    13: { name: "The Flame", emoji: "🔥", archetype: "The Fire Priestess", element: "Fire", zodiac: "Aries", chakra: "Solar Plexus", law: "Law of Evolution", teaching: "Fire transmutes. No one evolves without transforming.", practice: "What is ready to be burned away?", description: "Transformation through fire. Shadow work.", links: [{title:"Trauma and the Body",url:"04-trauma-and-the-body.html"},{title:"The Glow Up Gets Lonely",url:"05-glow-up-gets-lonely.html"}], offerings: []},
+    14: { name: "The Crystal", emoji: "💎", archetype: "The Crystal Keeper", element: "Earth", zodiac: "Capricorn", chakra: "Third Eye", law: "Law of Inquiry", teaching: "Clarity comes through asking.", practice: "Hold a crystal. Ask a yes/no question.", description: "CCT™. Sacred geometry, crystalline grid, light codes.", links: [{title:"💎 CCT™",url:"cct.html"},{title:"💎 Crystal Healing",url:"crystals.html"}], offerings: [{name:"CCT™ Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
+    15: { name: "The Flow", emoji: "🌊", archetype: "The Water Bearer", element: "Water", zodiac: "Scorpio", chakra: "Sacral", law: "Law of Communicating Vessels", teaching: "Don't leak vital force.", practice: "Where is your energy leaking?", description: "Detox and purification. Lymphatic drainage.", links: [{title:"Water is LIFE",url:"02-water-is-life.html"},{title:"Love Your Lymph",url:"39-love-your-lymph.html"}], offerings: []},
+    16: { name: "The Breath", emoji: "🌬️", archetype: "The Wind Dancer", element: "Air", zodiac: "Gemini", chakra: "Heart", law: "Law of Three", teaching: "Breath is the bridge between body and spirit.", practice: "4-7-8 breath: Inhale 4, hold 7, exhale 8.", description: "Breathwork. Prana. Life force activation.", links: [{title:"Find Breath",url:"17-find-breath.html"}], offerings: []},
+    17: { name: "The Body", emoji: "🌍", archetype: "The Earth Mother", element: "Earth", zodiac: "Virgo", chakra: "Root", law: "Law of Nature", teaching: "Self care is your #1 job.", practice: "What does your body need right now?", description: "22+ years massage mastery. Movement, rest, nourishment.", links: [{title:"Self Care",url:"07-self-care-is-your-job.html"},{title:"Move Your Magic",url:"16-move-your-magic.html"}], offerings: [{name:"90-Min Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
+    18: { name: "Akashic", emoji: "📜", archetype: "The Record Keeper", element: "Aether", zodiac: "—", chakra: "Crown", law: "Law of Correspondence", teaching: "Your body remembers what the mind forgets.", practice: "Journal. Document. Your story matters.", description: "Records and documentation. Pattern archives.", links: [{title:"Your Body Remembers",url:"34-your-body-remembers.html"}], offerings: []},
+    19: { name: "The Void", emoji: "👁️", archetype: "The Void Priestess", element: "Spirit", zodiac: "—", chakra: "Crown", law: "Law of Empty Spaces", teaching: "The void is full of possibility.", practice: "Sit in stillness. Everything becomes possible.", description: "Psychic investigation. Pure potential.", links: [{title:"💎 CCT™",url:"cct.html"},{title:"Clearing & Releasing",url:"31-clearing-releasing-letting-go.html"}], offerings: []}
 };
 
-// ═══════════════════════════════════════════════════════════════
-// PANEL FUNCTIONS
-// ═══════════════════════════════════════════════════════════════
-
 function showDomain(n) {
-    const d = domains[n];
-    const panel = document.getElementById('infoPanel');
-    const overlay = document.getElementById('panelOverlay');
+    var d = domains[n];
+    var panel = document.getElementById('infoPanel');
+    var overlay = document.getElementById('panelOverlay');
     
-    // Build links HTML
-    let links = '';
+    var links = '';
     if (d.links && d.links.length > 0) {
         links = '<div class="panel-links"><h4>📖 Explore This Domain</h4>';
-        d.links.forEach(x => { links += '<a href="' + x.url + '" class="domain-link">' + x.title + ' →</a>'; });
+        for (var i = 0; i < d.links.length; i++) {
+            links += '<a href="' + d.links[i].url + '" class="domain-link">' + d.links[i].title + ' →</a>';
+        }
         links += '</div>';
     }
     
-    // Build offerings HTML
-    let offerings = '';
+    var offerings = '';
     if (d.offerings && d.offerings.length > 0) {
         offerings = '<div class="panel-offerings"><h4>✨ Offerings</h4>';
-        d.offerings.forEach(o => {
+        for (var i = 0; i < d.offerings.length; i++) {
+            var o = d.offerings[i];
             offerings += '<a href="' + o.link + '" class="offering-link" target="_blank"><span class="offering-name">' + o.name + '</span><span class="offering-price">' + o.price + '</span></a>';
-        });
+        }
         offerings += '</div>';
     }
     
-    // Build teaching & practice section
-    let wisdom = '';
-    if (d.teaching || d.practice) {
-        wisdom = '<div class="panel-wisdom">';
-        if (d.law) wisdom += '<div class="panel-law">⚖️ ' + d.law + '</div>';
-        if (d.teaching) wisdom += '<div class="panel-teaching">' + d.teaching + '</div>';
-        if (d.practice) wisdom += '<div class="panel-practice"><strong>✨ Practice:</strong> ' + d.practice + '</div>';
-        wisdom += '</div>';
-    }
+    var wisdom = '<div class="panel-wisdom">';
+    if (d.law) wisdom += '<div class="panel-law">⚖️ ' + d.law + '</div>';
+    if (d.teaching) wisdom += '<div class="panel-teaching">' + d.teaching + '</div>';
+    if (d.practice) wisdom += '<div class="panel-practice"><strong>✨ Practice:</strong> ' + d.practice + '</div>';
+    wisdom += '</div>';
     
-    // Navigation
-    const prevDomain = n === 1 ? 19 : n - 1;
-    const nextDomain = n === 19 ? 1 : n + 1;
-    const navigation = '<div class="panel-nav"><button onclick="showDomain(' + prevDomain + ')" class="nav-btn">← ' + domains[prevDomain].emoji + ' ' + domains[prevDomain].name + '</button><button onclick="showDomain(' + nextDomain + ')" class="nav-btn">' + domains[nextDomain].emoji + ' ' + domains[nextDomain].name + ' →</button></div>';
+    var prevDomain = n === 1 ? 19 : n - 1;
+    var nextDomain = n === 19 ? 1 : n + 1;
+    var navigation = '<div class="panel-nav"><button onclick="showDomain(' + prevDomain + ')" class="nav-btn">← ' + domains[prevDomain].emoji + ' ' + domains[prevDomain].name + '</button><button onclick="showDomain(' + nextDomain + ')" class="nav-btn">' + domains[nextDomain].emoji + ' ' + domains[nextDomain].name + ' →</button></div>';
     
-    // Zodiac & Chakra display
-    const zodiacDisplay = d.zodiac && d.zodiac !== '—' ? '<span class="panel-zodiac">♈ ' + d.zodiac + '</span>' : '';
-    const chakraDisplay = d.chakra ? '<span class="panel-chakra">🔮 ' + d.chakra + '</span>' : '';
+    var zodiacDisplay = d.zodiac && d.zodiac !== '—' ? '<span class="panel-zodiac">♈ ' + d.zodiac + '</span>' : '';
+    var chakraDisplay = d.chakra ? '<span class="panel-chakra">🔮 ' + d.chakra + '</span>' : '';
     
     document.getElementById('panelContent').innerHTML = 
         '<div class="panel-header">' +
@@ -2046,10 +1219,7 @@ function showDomain(n) {
             '<div class="panel-meta"><span class="panel-element">' + d.element + '</span>' + zodiacDisplay + chakraDisplay + '</div>' +
         '</div>' +
         '<div class="panel-desc">' + d.description + '</div>' +
-        wisdom +
-        links +
-        offerings +
-        navigation;
+        wisdom + links + offerings + navigation;
     
     panel.classList.add('active');
     overlay.classList.add('active');
@@ -2062,57 +1232,26 @@ function closePanel() {
     document.body.style.overflow = '';
 }
 
-// ═══════════════════════════════════════════════════════════════
-// EVENT LISTENERS - CLICK AND TOUCH SUPPORT
-// ═══════════════════════════════════════════════════════════════
+// Close panel handlers
+document.getElementById('panelOverlay').onclick = closePanel;
+document.getElementById('panelClose').onclick = closePanel;
+document.onkeydown = function(e) { if (e.key === 'Escape') closePanel(); };
 
-// Close panel on overlay click
-document.getElementById('panelOverlay').addEventListener('click', closePanel);
-
-// Close button
-document.getElementById('panelClose').addEventListener('click', closePanel);
-
-// Close panel on escape key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closePanel();
-});
-
-// Domain circle click/touch handlers
-document.querySelectorAll('.domain-group').forEach(function(group) {
-    const domainNum = parseInt(group.getAttribute('data-domain'));
-    
-    // Click handler (works for both mouse and touch)
-    group.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        showDomain(domainNum);
-    });
-    
-    // Touch handler for mobile
-    group.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        showDomain(domainNum);
-    });
-});
-
-// ═══════════════════════════════════════════════════════════════
-// SMOOTH SCROLL FOR NAV LINKS
-// ═══════════════════════════════════════════════════════════════
-
-document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href.startsWith('#')) {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+// Add click handlers to domain circles
+var domainGroups = document.querySelectorAll('.domain-group');
+for (var i = 0; i < domainGroups.length; i++) {
+    (function(group) {
+        var domainNum = parseInt(group.getAttribute('data-domain'));
+        group.onclick = function() { showDomain(domainNum); };
+        var circle = group.querySelector('circle');
+        if (circle) {
+            circle.onclick = function(e) {
+                e.stopPropagation();
+                showDomain(domainNum);
+            };
         }
-    });
-});
-
+    })(domainGroups[i]);
+}
 </script>
 </body>
 </html>
