@@ -1,0 +1,2524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Soul Architecture™ 19-Domain Assessment | Maggie Mayne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --pink: #FF69B4;
+            --pink-dark: #C71585;
+            --pink-light: #FFB6C1;
+            --gold: #FFD700;
+            --gold-soft: #DAA520;
+            --purple: #9932CC;
+            --purple-light: #DDA0DD;
+            --lavender: #E6E6FA;
+            --cream: #FFF8F0;
+            --deep: #0a0510;
+            --teal: #00CED1;
+            --fire: #FF4500;
+            --earth: #8B4513;
+            --water: #4169E1;
+            --air: #87CEEB;
+            --wood: #228B22;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--deep);
+            color: var(--cream);
+            line-height: 1.7;
+            font-size: 17px;
+            min-height: 100vh;
+        }
+        
+        /* Background Effects */
+        .bg-effects {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255, 105, 180, 0.08), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(138, 43, 226, 0.06), transparent),
+                radial-gradient(ellipse 70% 50% at 50% 80%, rgba(255, 215, 0, 0.04), transparent);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+        header .logo { font-size: 3rem; margin-bottom: 0.5rem; }
+        header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+        }
+        header .subtitle {
+            font-size: 1.1rem;
+            color: var(--pink-light);
+            font-style: italic;
+        }
+        header .brand {
+            font-size: 0.85rem;
+            color: rgba(255,248,240,0.6);
+            margin-top: 0.5rem;
+            letter-spacing: 2px;
+        }
+        header .certifications {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        header .cert-badge {
+            background: rgba(0, 206, 209, 0.2);
+            border: 1px solid rgba(0, 206, 209, 0.4);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--teal);
+        }
+        
+        /* Main Tabs */
+        .main-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+        .main-tab {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,215,0,0.3);
+            color: var(--cream);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .main-tab:hover {
+            background: rgba(255,215,0,0.15);
+            transform: translateY(-2px);
+        }
+        .main-tab.active {
+            background: linear-gradient(135deg, rgba(255,105,180,0.3), rgba(255,215,0,0.3));
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
+        /* Tab Content */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .section-header p {
+            color: rgba(255,248,240,0.7);
+            font-style: italic;
+        }
+        
+        /* Client Info Form */
+        .client-info {
+            background: rgba(255,215,0,0.05);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .client-info h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .form-group { margin-bottom: 0.75rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: rgba(255,248,240,0.8);
+            margin-bottom: 0.3rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.6rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 8px;
+            color: var(--cream);
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(255,215,0,0.2);
+        }
+        .form-group textarea { min-height: 80px; resize: vertical; }
+        
+        /* Progress Bar */
+        .progress-section {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .progress-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--pink-light);
+        }
+        .progress-count {
+            font-size: 0.9rem;
+            color: var(--gold);
+        }
+        .progress-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink), var(--gold));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        /* Domain Navigation */
+        .domain-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.4rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 15px;
+        }
+        .domain-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,215,0,0.3);
+            background: rgba(255,255,255,0.05);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .domain-btn:hover {
+            transform: scale(1.1);
+            border-color: var(--gold);
+        }
+        .domain-btn.active {
+            border-color: var(--gold);
+            background: rgba(255,215,0,0.2);
+            box-shadow: 0 0 15px rgba(255,215,0,0.3);
+        }
+        .domain-btn.completed::after {
+            content: '✓';
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            font-size: 0.7rem;
+            background: var(--teal);
+            color: #000;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .domain-btn.seed { border-color: rgba(255,105,180,0.5); }
+        .domain-btn.bloom { border-color: rgba(255,215,0,0.5); }
+        .domain-btn.legacy { border-color: rgba(153,50,204,0.5); }
+        
+        /* Domain Section */
+        .domain-section {
+            display: none;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,215,0,0.15);
+        }
+        .domain-section.active { display: block; }
+        
+        .domain-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+        .domain-header .emoji { font-size: 3rem; margin-bottom: 0.5rem; }
+        .domain-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .domain-header .archetype {
+            font-style: italic;
+            color: var(--pink-light);
+            margin-bottom: 0.75rem;
+        }
+        .domain-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .meta-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+        }
+        .meta-badge.element { background: rgba(255,215,0,0.2); color: var(--gold); }
+        .meta-badge.zodiac { background: rgba(153,50,204,0.2); color: var(--purple-light); }
+        .meta-badge.chakra { background: rgba(255,105,180,0.2); color: var(--pink-light); }
+        .meta-badge.meridian { background: rgba(0,206,209,0.2); color: var(--teal); }
+        .meta-badge.season { background: rgba(34,139,34,0.2); color: #90EE90; }
+        .meta-badge.mineral { background: rgba(139,69,19,0.2); color: #DEB887; }
+        
+        .domain-description {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            color: rgba(255,248,240,0.9);
+            line-height: 1.8;
+        }
+        
+        /* Touch For Health Info */
+        .tfh-info {
+            background: rgba(0,206,209,0.08);
+            border: 1px solid rgba(0,206,209,0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        .tfh-info h4 {
+            color: var(--teal);
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+        .tfh-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+        .tfh-item {
+            background: rgba(0,0,0,0.2);
+            padding: 0.6rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .tfh-item .label {
+            font-size: 0.7rem;
+            color: rgba(255,248,240,0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .tfh-item .value {
+            font-size: 0.9rem;
+            color: var(--cream);
+            margin-top: 0.25rem;
+        }
+        
+        /* Questions */
+        .question-group {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+        }
+        .question-group > label {
+            display: block;
+            font-size: 1rem;
+            color: var(--cream);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+        
+        /* Scale Questions */
+        .scale-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .scale-label {
+            font-size: 0.8rem;
+            color: rgba(255,248,240,0.6);
+            min-width: 80px;
+        }
+        .scale-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .scale-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,215,0,0.3);
+            background: rgba(255,255,255,0.05);
+            color: var(--cream);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .scale-btn:hover { border-color: var(--gold); transform: scale(1.1); }
+        .scale-btn.selected {
+            background: linear-gradient(135deg, var(--pink), var(--gold));
+            border-color: var(--gold);
+            color: #000;
+        }
+        
+        /* Checkbox/Radio Groups */
+        .checkbox-group, .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .check-option, .radio-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.6rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .check-option:hover, .radio-option:hover {
+            background: rgba(255,215,0,0.08);
+        }
+        .check-option input, .radio-option input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--gold);
+        }
+        .check-option span, .radio-option span {
+            flex: 1;
+            font-size: 0.95rem;
+            color: rgba(255,248,240,0.9);
+        }
+        
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,215,0,0.2);
+        }
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .nav-btn.prev {
+            background: rgba(255,255,255,0.1);
+            color: var(--cream);
+        }
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--pink), var(--gold));
+            color: #000;
+        }
+        .nav-btn:hover { transform: translateY(-2px); }
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Results Panel */
+        .results-panel {
+            display: none;
+            background: rgba(255,255,255,0.03);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .results-panel.show { display: block; }
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .results-header h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+        
+        .priority-domains {
+            margin-bottom: 2rem;
+        }
+        .priority-domains h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--pink-light);
+            margin-bottom: 1rem;
+        }
+        .priority-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+        }
+        .priority-item .rank {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--pink), var(--gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+        }
+        .priority-item .emoji { font-size: 1.5rem; }
+        .priority-item .info { flex: 1; }
+        .priority-item .name { font-weight: 600; color: var(--cream); }
+        .priority-item .score { font-size: 0.85rem; color: rgba(255,248,240,0.6); }
+        
+        .essence-section, .kinesiology-section, .treatment-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,215,0,0.2);
+        }
+        .essence-section h3, .kinesiology-section h3, .treatment-section h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--teal);
+            margin-bottom: 1rem;
+        }
+        .essence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+        .essence-card {
+            background: rgba(152,251,152,0.1);
+            border: 1px solid rgba(152,251,152,0.3);
+            border-radius: 10px;
+            padding: 0.75rem;
+            text-align: center;
+        }
+        .essence-card .name {
+            font-weight: 600;
+            color: #90EE90;
+            font-size: 0.9rem;
+        }
+        .essence-card .source {
+            font-size: 0.75rem;
+            color: rgba(255,248,240,0.5);
+        }
+        
+        /* Export Buttons */
+        .export-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .export-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .export-btn.print { background: var(--teal); color: #000; }
+        .export-btn.email { background: var(--gold); color: #000; }
+        .export-btn.portal { background: linear-gradient(135deg, var(--pink), var(--purple)); color: #fff; }
+        .export-btn:hover { transform: translateY(-2px); }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,215,0,0.2);
+        }
+        footer .brand-marks {
+            font-size: 0.85rem;
+            color: var(--pink-light);
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        footer p {
+            font-size: 0.8rem;
+            color: rgba(255,248,240,0.5);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.5rem; }
+            .domain-btn { width: 38px; height: 38px; font-size: 1rem; }
+            .domain-section { padding: 1rem; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body { background: #fff; color: #000; }
+            .main-tabs, .domain-nav, .nav-buttons, .export-buttons { display: none; }
+            .domain-section { display: block !important; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-effects"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">🌸</div>
+            <h1>Soul Architecture™ Assessment</h1>
+            <p class="subtitle">Comprehensive 19-Domain Evaluation</p>
+            <p class="brand">THE MAGGIE WAY™ · SOUL-LIT™ · HEALERS GOING FIRST™</p>
+            <div class="certifications">
+                <span class="cert-badge">☯️ TCM Trained</span>
+                <span class="cert-badge">✋ Applied Kinesiology Certified</span>
+                <span class="cert-badge">⚡ Touch For Health</span>
+                <span class="cert-badge">💆 LMT 22+ Years</span>
+                <span class="cert-badge">💎 CCT™ Practitioner</span>
+                <span class="cert-badge">🌸 Flower Essence Alchemy</span>
+            </div>
+        </header>
+        
+        <!-- Main Tabs -->
+        <div class="main-tabs">
+            <button class="main-tab active" data-tab="intake">📋 Client Intake</button>
+            <button class="main-tab" data-tab="tcm">☯️ TCM/AK Diagnostic</button>
+            <button class="main-tab" data-tab="assessment">🌸 19-Domain Assessment</button>
+            <button class="main-tab" data-tab="results">✨ Results & Protocol</button>
+        </div>
+        
+        <!-- TAB 1: CLIENT INTAKE -->
+        <div id="intake" class="tab-content active">
+            <div class="section-header">
+                <h2>📋 Client Information & History</h2>
+                <p>The foundation for your personalized protocol</p>
+            </div>
+            
+            <!-- Basic Info -->
+            <div class="client-info">
+                <h3>✨ Basic Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="clientName" placeholder="First and Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" id="clientDOB">
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="clientEmail" placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="clientPhone" placeholder="(555) 123-4567">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Occupation</label>
+                        <input type="text" id="clientOccupation" placeholder="What do you do?">
+                    </div>
+                    <div class="form-group">
+                        <label>How were you referred?</label>
+                        <input type="text" id="clientReferral" placeholder="Friend, social media, etc.">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Emergency Contact (Name & Phone)</label>
+                        <input type="text" id="emergencyContact" placeholder="Name and phone number">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Health History -->
+            <div class="client-info">
+                <h3>🩺 Health & Medical History</h3>
+                <div class="form-group">
+                    <label>Current medications/supplements (ALL including aspirin, herbs, blood thinners)</label>
+                    <textarea id="medications" placeholder="List all prescriptions, medications, and supplements"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Previous surgeries, car accidents, illnesses, or injuries (with dates)</label>
+                    <textarea id="surgeries" placeholder="List and date any significant medical history"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Current medical conditions or symptoms</label>
+                    <textarea id="conditions" placeholder="Physical, mental, or emotional conditions you feel may be supported with bodywork and energy work"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Do you have an autoimmune disorder?</label>
+                        <select id="autoimmune">
+                            <option value="">Select...</option>
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>If yes, please specify:</label>
+                        <input type="text" id="autoimmuneDetails" placeholder="Type of autoimmune condition">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Currently pregnant or trying to conceive?</label>
+                        <select id="pregnant">
+                            <option value="">Select...</option>
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                            <option value="na">N/A</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Women's Health concerns?</label>
+                        <select id="womensHealth">
+                            <option value="">Select...</option>
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>If yes, please list women's health concerns:</label>
+                    <textarea id="womensHealthDetails" placeholder="Painful periods, PMS, night sweats, breast health, fibroids, ovarian cysts, endometriosis, etc."></textarea>
+                </div>
+            </div>
+            
+            <!-- Current State -->
+            <div class="client-info">
+                <h3>💫 Current State & Lifestyle</h3>
+                
+                <div class="question-group">
+                    <label>Where do you hold tension/stress in your body?</label>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" value="neck-shoulders"> <span>Neck/Shoulders</span></label>
+                        <label class="check-option"><input type="checkbox" value="upper-back"> <span>Upper Back</span></label>
+                        <label class="check-option"><input type="checkbox" value="lower-back"> <span>Lower Back</span></label>
+                        <label class="check-option"><input type="checkbox" value="jaw"> <span>Jaw (TMJ/clenching/grinding)</span></label>
+                        <label class="check-option"><input type="checkbox" value="hips"> <span>Hips/Pelvis</span></label>
+                        <label class="check-option"><input type="checkbox" value="stomach"> <span>Stomach/Gut</span></label>
+                        <label class="check-option"><input type="checkbox" value="chest"> <span>Chest/Heart</span></label>
+                        <label class="check-option"><input type="checkbox" value="head"> <span>Head (headaches)</span></label>
+                        <label class="check-option"><input type="checkbox" value="legs-feet"> <span>Legs/Feet</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>Do you experience frequent headaches?</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="headaches" value="no"> <span>No</span></label>
+                        <label class="radio-option"><input type="radio" name="headaches" value="sometimes"> <span>Sometimes</span></label>
+                        <label class="radio-option"><input type="radio" name="headaches" value="frequently"> <span>Frequently</span></label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>If frequent headaches, describe type, location, frequency, relief methods:</label>
+                    <input type="text" id="headacheDetails" placeholder="Example: Tension, forehead, bi-weekly, hydration/NSAIDs">
+                </div>
+                
+                <div class="question-group">
+                    <label>Digestion issues (heartburn, constipation, diarrhea)?</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="digestion" value="no"> <span>No issues</span></label>
+                        <label class="radio-option"><input type="radio" name="digestion" value="occasional"> <span>Occasional</span></label>
+                        <label class="radio-option"><input type="radio" name="digestion" value="frequent"> <span>Frequent</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>Do you experience anxiety/depression?</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="anxiety" value="no"> <span>No</span></label>
+                        <label class="radio-option"><input type="radio" name="anxiety" value="mild"> <span>Mild/manageable</span></label>
+                        <label class="radio-option"><input type="radio" name="anxiety" value="moderate"> <span>Moderate</span></label>
+                        <label class="radio-option"><input type="radio" name="anxiety" value="severe"> <span>Severe/debilitating</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>Do you see a therapist/mental health practitioner?</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="therapist" value="no"> <span>No</span></label>
+                        <label class="radio-option"><input type="radio" name="therapist" value="yes"> <span>Yes, currently</span></label>
+                        <label class="radio-option"><input type="radio" name="therapist" value="past"> <span>In the past</span></label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scale Ratings -->
+            <div class="client-info">
+                <h3>📊 Self-Assessment Scales (1-5)</h3>
+                
+                <div class="question-group">
+                    <label>How would you rate your SLEEP?</label>
+                    <div class="scale-group">
+                        <span class="scale-label">Needs Support</span>
+                        <div class="scale-options">
+                            <button class="scale-btn" data-scale="sleep" data-value="1">1</button>
+                            <button class="scale-btn" data-scale="sleep" data-value="2">2</button>
+                            <button class="scale-btn" data-scale="sleep" data-value="3">3</button>
+                            <button class="scale-btn" data-scale="sleep" data-value="4">4</button>
+                            <button class="scale-btn" data-scale="sleep" data-value="5">5</button>
+                        </div>
+                        <span class="scale-label">Fantastic</span>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>How would you rate your current STATE OF HEALTH?</label>
+                    <div class="scale-group">
+                        <span class="scale-label">Worst</span>
+                        <div class="scale-options">
+                            <button class="scale-btn" data-scale="health" data-value="1">1</button>
+                            <button class="scale-btn" data-scale="health" data-value="2">2</button>
+                            <button class="scale-btn" data-scale="health" data-value="3">3</button>
+                            <button class="scale-btn" data-scale="health" data-value="4">4</button>
+                            <button class="scale-btn" data-scale="health" data-value="5">5</button>
+                        </div>
+                        <span class="scale-label">Best</span>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>How would you rate your SELF-CARE?</label>
+                    <div class="scale-group">
+                        <span class="scale-label">Needs Focus</span>
+                        <div class="scale-options">
+                            <button class="scale-btn" data-scale="selfcare" data-value="1">1</button>
+                            <button class="scale-btn" data-scale="selfcare" data-value="2">2</button>
+                            <button class="scale-btn" data-scale="selfcare" data-value="3">3</button>
+                            <button class="scale-btn" data-scale="selfcare" data-value="4">4</button>
+                            <button class="scale-btn" data-scale="selfcare" data-value="5">5</button>
+                        </div>
+                        <span class="scale-label">Fantastic</span>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>How would you rate your DIET/EXERCISE?</label>
+                    <div class="scale-group">
+                        <span class="scale-label">Needs Support</span>
+                        <div class="scale-options">
+                            <button class="scale-btn" data-scale="diet" data-value="1">1</button>
+                            <button class="scale-btn" data-scale="diet" data-value="2">2</button>
+                            <button class="scale-btn" data-scale="diet" data-value="3">3</button>
+                            <button class="scale-btn" data-scale="diet" data-value="4">4</button>
+                            <button class="scale-btn" data-scale="diet" data-value="5">5</button>
+                        </div>
+                        <span class="scale-label">Fantastic</span>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>How would you rate your WATER INTAKE?</label>
+                    <div class="scale-group">
+                        <span class="scale-label">None</span>
+                        <div class="scale-options">
+                            <button class="scale-btn" data-scale="water" data-value="1">1</button>
+                            <button class="scale-btn" data-scale="water" data-value="2">2</button>
+                            <button class="scale-btn" data-scale="water" data-value="3">3</button>
+                            <button class="scale-btn" data-scale="water" data-value="4">4</button>
+                            <button class="scale-btn" data-scale="water" data-value="5">5</button>
+                        </div>
+                        <span class="scale-label">Super Hydrated</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experience & Goals -->
+            <div class="client-info">
+                <h3>🌟 Experience & Intentions</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Previous experience with Massage/Energy Work?</label>
+                        <textarea id="priorExperience" placeholder="Prior experience is not required, but helps us know where you're coming from"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>When was your last massage?</label>
+                        <input type="text" id="lastMassage" placeholder="e.g., 6 months ago, never, weekly">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Type of regular exercise</label>
+                        <input type="text" id="exercise" placeholder="Walking, yoga, weights, none, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label>Hobbies</label>
+                        <input type="text" id="hobbies" placeholder="What do you enjoy?">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>What are your long-term wellness goals?</label>
+                    <textarea id="goals" placeholder="What are you hoping to achieve?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Is there anything else you'd like us to know? (Include recent/major life changes, losses, current challenges)</label>
+                    <textarea id="additional" placeholder="This is your space to share whatever feels important..."></textarea>
+                </div>
+                <div class="question-group">
+                    <label>Are you "ALL-IN"? Ready to take next steps in your life, work, relationships, physical, mental, emotional, and spiritual well-being?</label>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="allIn" value="yes"> <span>YES! I'm ALL-IN 🔥</span></label>
+                        <label class="radio-option"><input type="radio" name="allIn" value="ready"> <span>I'm ready to explore</span></label>
+                        <label class="radio-option"><input type="radio" name="allIn" value="curious"> <span>I'm curious but cautious</span></label>
+                        <label class="radio-option"><input type="radio" name="allIn" value="unsure"> <span>I'm not sure yet</span></label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sensitivities -->
+            <div class="client-info">
+                <h3>⚠️ Sensitivities & Preferences</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Allergies or sensitivities to scents/lotions?</label>
+                        <select id="allergies">
+                            <option value="">Select...</option>
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>If yes, please list:</label>
+                        <input type="text" id="allergyDetails" placeholder="Specific allergies or sensitivities">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Knowledge of essential oils?</label>
+                        <select id="oilsKnowledge">
+                            <option value="">Select...</option>
+                            <option value="none">None</option>
+                            <option value="basic">Basic</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Oils to avoid or prefer?</label>
+                        <input type="text" id="oilPreferences" placeholder="Any specific oils you wish to avoid?">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Do you see a Chiropractor?</label>
+                        <input type="text" id="chiropractor" placeholder="Name if applicable">
+                    </div>
+                    <div class="form-group">
+                        <label>Do you see an Acupuncturist?</label>
+                        <input type="text" id="acupuncturist" placeholder="Name if applicable">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <div></div>
+                <button class="nav-btn next" onclick="switchTab('tcm')">Continue to TCM/AK Diagnostic →</button>
+            </div>
+        </div>
+        
+        <!-- TAB 2: TCM / APPLIED KINESIOLOGY DIAGNOSTIC -->
+        <div id="tcm" class="tab-content">
+            <div class="section-header">
+                <h2>☯️ Traditional Chinese Medicine & Applied Kinesiology</h2>
+                <p>Assess constitutional patterns, pathogenic factors, and energetic imbalances</p>
+            </div>
+            
+            <!-- The Six Evils -->
+            <div class="client-info" style="border-color: rgba(255,0,0,0.3); background: rgba(255,0,0,0.05);">
+                <h3>👹 The Six Evils (Liu Yin) - External Pathogenic Factors</h3>
+                <p style="color: rgba(255,248,240,0.7); margin-bottom: 1rem; font-style: italic;">Which pathogenic influences are affecting the client? These external factors invade the body and create disease patterns.</p>
+                
+                <div class="question-group">
+                    <label>🌬️ WIND (Feng) - Sudden, moving, upper body</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Symptoms appear suddenly, move around the body, affect the head/upper body</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-evil="wind"> <span>Sudden onset symptoms</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="wind"> <span>Symptoms that move around (wandering pain)</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="wind"> <span>Tremors, tics, spasms, convulsions</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="wind"> <span>Headaches, dizziness, vertigo</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="wind"> <span>Stiff neck, facial paralysis</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="wind"> <span>Itching that moves around</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="wind"> <span>Aversion to wind, catches cold easily</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>❄️ COLD (Han) - Stagnation, contraction, pain</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Cold causes contraction, slows movement, creates sharp fixed pain relieved by warmth</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-evil="cold"> <span>Aversion to cold, seeks warmth</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="cold"> <span>Cold limbs, cold abdomen</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="cold"> <span>Sharp, fixed pain (worse with cold, better with heat)</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="cold"> <span>Stiffness and contraction in muscles/joints</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="cold"> <span>Pale face, pale tongue</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="cold"> <span>Watery/clear discharges</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="cold"> <span>Slow digestion, loose stools</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>☀️ SUMMER HEAT (Shu) - Exhaustion, heat stroke</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Only occurs in summer, causes sudden collapse, thirst, sweating, exhaustion</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-evil="summerheat"> <span>Heat exhaustion / heat stroke history</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="summerheat"> <span>Excessive thirst</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="summerheat"> <span>Profuse sweating</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="summerheat"> <span>Sudden collapse, fainting</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="summerheat"> <span>Mental confusion in heat</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="summerheat"> <span>Sunburns easily, sensitive to sun</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>💧 DAMPNESS (Shi) - Heavy, sticky, foggy</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Creates heaviness, swelling, cloudiness; lingers and is hard to resolve</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-evil="damp"> <span>Heavy feeling in body/limbs</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="damp"> <span>Foggy thinking, mental cloudiness</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="damp"> <span>Swelling, edema, water retention</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="damp"> <span>Sticky/greasy tongue coating</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="damp"> <span>Mucus, phlegm, discharge</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="damp"> <span>Sluggish digestion, bloating</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="damp"> <span>Yeast/fungal issues</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="damp"> <span>Symptoms worse in humid weather</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="damp"> <span>Dull, achy pain (not sharp)</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>🏜️ DRYNESS (Zao) - Dehydration, withering</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Depletes fluids, affects Lung and skin, creates dryness and cracking</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-evil="dry"> <span>Dry skin, cracking, flaking</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="dry"> <span>Dry eyes, nose, throat, lips</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="dry"> <span>Dry cough, little or no phlegm</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="dry"> <span>Constipation (dry stools)</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="dry"> <span>Thirst but not for large amounts</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="dry"> <span>Brittle hair, nails</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="dry"> <span>Symptoms worse in autumn/dry climates</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>🔥 FIRE / HEAT (Huo) - Inflammation, agitation</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Creates inflammation, redness, fever, agitation, rises upward</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-evil="heat"> <span>Fever, feeling hot, hot flashes</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="heat"> <span>Red face, red eyes, red tongue</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="heat"> <span>Inflammation, swelling with redness</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="heat"> <span>Irritability, anger, agitation</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="heat"> <span>Thirst for cold drinks</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="heat"> <span>Dark/scanty urine, constipation</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="heat"> <span>Bleeding, blood in stool/urine</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="heat"> <span>Skin eruptions, acne, boils</span></label>
+                        <label class="check-option"><input type="checkbox" data-evil="heat"> <span>Insomnia, restlessness, vivid dreams</span></label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Five Elements -->
+            <div class="client-info" style="border-color: rgba(0,206,209,0.3); background: rgba(0,206,209,0.05);">
+                <h3>🌲 Five Element Constitutional Assessment</h3>
+                <p style="color: rgba(255,248,240,0.7); margin-bottom: 1rem; font-style: italic;">Which element(s) are out of balance? Rate each element 1-5 (1 = severely depleted/excess, 5 = balanced)</p>
+                
+                <div class="question-group">
+                    <label>🌲 WOOD Element (Liver/Gallbladder) - Spring</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Vision, planning, decision-making, anger/frustration, flexibility</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-element="wood"> <span>Easily frustrated or angry</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="wood"> <span>Difficulty making decisions</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="wood"> <span>Lack of vision/direction</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="wood"> <span>Muscle tension, especially shoulders/neck</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="wood"> <span>Eye problems, headaches at temples</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="wood"> <span>PMS, menstrual irregularities</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="wood"> <span>Inflexibility (physical or mental)</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="wood"> <span>Wakes between 1-3am</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>🔥 FIRE Element (Heart/Small Intestine) - Summer</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Joy, connection, love, speech, circulation, spirit (Shen)</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-element="fire"> <span>Lack of joy, difficulty feeling happiness</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="fire"> <span>Anxiety, panic, restlessness</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="fire"> <span>Difficulty with intimacy/connection</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="fire"> <span>Speech issues (too fast, stuttering, scattered)</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="fire"> <span>Heart palpitations</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="fire"> <span>Insomnia, disturbed sleep</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="fire"> <span>Poor circulation, cold hands</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="fire"> <span>Red-tipped tongue</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>🌍 EARTH Element (Spleen/Stomach) - Late Summer</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Nourishment, digestion, worry, boundaries, feeling centered</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-element="earth"> <span>Chronic worry, overthinking</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="earth"> <span>Digestive issues, bloating, gas</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="earth"> <span>Fatigue after eating</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="earth"> <span>Sugar/carb cravings</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="earth"> <span>Difficulty being nourished (giving too much)</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="earth"> <span>Feeling ungrounded, scattered</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="earth"> <span>Bruising easily</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="earth"> <span>Muscle weakness, prolapse</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>⚪ METAL Element (Lung/Large Intestine) - Autumn</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Grief, letting go, boundaries, skin, respiration, elimination</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-element="metal"> <span>Unresolved grief, prolonged sadness</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="metal"> <span>Difficulty letting go (people, things, past)</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="metal"> <span>Respiratory issues, shortness of breath</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="metal"> <span>Skin problems (eczema, dry skin)</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="metal"> <span>Constipation or IBS</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="metal"> <span>Weak boundaries</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="metal"> <span>Allergies, frequent colds</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="metal"> <span>Wakes between 3-5am</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>💧 WATER Element (Kidney/Bladder) - Winter</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Fear, willpower, bones, reproductive system, essence (Jing)</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-element="water"> <span>Chronic fear, anxiety, phobias</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="water"> <span>Low back pain, knee problems</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="water"> <span>Urinary issues, frequent urination</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="water"> <span>Reproductive/fertility issues</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="water"> <span>Bone/tooth problems</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="water"> <span>Premature aging, gray hair</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="water"> <span>Hearing loss, tinnitus</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="water"> <span>Lack of willpower, drive depleted</span></label>
+                        <label class="check-option"><input type="checkbox" data-element="water"> <span>Cold, especially lower body</span></label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Applied Kinesiology -->
+            <div class="client-info" style="border-color: rgba(255,215,0,0.3); background: rgba(255,215,0,0.05);">
+                <h3>⚡ Applied Kinesiology Assessment</h3>
+                <p style="color: rgba(255,248,240,0.7); margin-bottom: 1rem; font-style: italic;">Muscle-organ-meridian relationships for targeted treatment</p>
+                
+                <div class="question-group">
+                    <label>🦴 Structural Indicators (Observable)</label>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-ak="structural"> <span>Head tilt (left/right)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="structural"> <span>Shoulder height imbalance</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="structural"> <span>Hip height imbalance</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="structural"> <span>Spinal curvature visible</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="structural"> <span>Foot pronation/supination</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="structural"> <span>Leg length discrepancy</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="structural"> <span>Forward head posture</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="structural"> <span>Kyphosis (rounded upper back)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="structural"> <span>Lordosis (excessive low back curve)</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>💪 Muscle Weakness Patterns (For muscle testing)</label>
+                    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem;">Note: Each muscle relates to a specific organ/meridian</p>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="stomach"> <span>Neck Flexors / Extensors → Stomach</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="lung"> <span>Deltoid / Serratus Anterior → Lung</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="heart"> <span>Subscapularis → Heart</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="spleen"> <span>Latissimus Dorsi / Trapezius → Spleen</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="liver"> <span>Pectoralis Major Sternal / Rhomboids → Liver</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="kidney"> <span>Psoas / Iliacus → Kidney</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="bladder"> <span>Peroneus / Sacrospinalis → Bladder</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="gallbladder"> <span>Popliteus / Anterior Deltoid → Gallbladder</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="small-intestine"> <span>Quadriceps / Abdominals → Small Intestine</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="large-intestine"> <span>Fascia Lata / Hamstrings → Large Intestine</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="triple-warmer"> <span>Teres Minor / Sartorius → Triple Warmer</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="muscle" data-meridian="circulation-sex"> <span>Gluteus Medius / Adductors → Circulation-Sex</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>🧪 Nutritional Indicators</label>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-ak="nutrition"> <span>White spots on nails (Zinc)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="nutrition"> <span>Cracks at corners of mouth (B vitamins)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="nutrition"> <span>Pale inner eyelids (Iron)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="nutrition"> <span>Bleeding gums (Vitamin C)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="nutrition"> <span>Night blindness (Vitamin A)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="nutrition"> <span>Muscle cramps (Calcium/Magnesium)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="nutrition"> <span>Hair loss (Protein/Iron/Biotin)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="nutrition"> <span>Fatigue despite sleep (B12/Iron)</span></label>
+                    </div>
+                </div>
+                
+                <div class="question-group">
+                    <label>🧠 Emotional/Mental Patterns (Per Element)</label>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-ak="emotional" data-element="wood"> <span>Anger / Frustration / Resentment → WOOD (Liver)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="emotional" data-element="fire"> <span>Anxiety / Lack of Joy / Scattered → FIRE (Heart)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="emotional" data-element="earth"> <span>Worry / Overthinking / Obsession → EARTH (Spleen)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="emotional" data-element="metal"> <span>Grief / Sadness / Stuck in Past → METAL (Lung)</span></label>
+                        <label class="check-option"><input type="checkbox" data-ak="emotional" data-element="water"> <span>Fear / Phobias / Willpower Depleted → WATER (Kidney)</span></label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Meridian Clock -->
+            <div class="client-info" style="border-color: rgba(153,50,204,0.3); background: rgba(153,50,204,0.05);">
+                <h3>🕐 Meridian Clock - Time-Based Symptoms</h3>
+                <p style="color: rgba(255,248,240,0.7); margin-bottom: 1rem; font-style: italic;">When do symptoms occur? Each 2-hour window relates to a specific meridian.</p>
+                
+                <div class="question-group">
+                    <label>What times do you experience symptoms or wake?</label>
+                    <div class="checkbox-group">
+                        <label class="check-option"><input type="checkbox" data-clock="lung"> <span>3am-5am → LUNG (grief, respiratory)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="large-intestine"> <span>5am-7am → LARGE INTESTINE (letting go, elimination)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="stomach"> <span>7am-9am → STOMACH (digestion, nourishment)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="spleen"> <span>9am-11am → SPLEEN (worry, energy)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="heart"> <span>11am-1pm → HEART (joy, connection)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="small-intestine"> <span>1pm-3pm → SMALL INTESTINE (sorting, discernment)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="bladder"> <span>3pm-5pm → BLADDER (fear, storage)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="kidney"> <span>5pm-7pm → KIDNEY (willpower, essence)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="pericardium"> <span>7pm-9pm → PERICARDIUM (protection, intimacy)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="triple-warmer"> <span>9pm-11pm → TRIPLE WARMER (metabolism, immunity)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="gallbladder"> <span>11pm-1am → GALLBLADDER (decision, courage)</span></label>
+                        <label class="check-option"><input type="checkbox" data-clock="liver"> <span>1am-3am → LIVER (anger, planning, detox)</span></label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tongue & Pulse (Practitioner Notes) -->
+            <div class="client-info" style="border-color: rgba(255,105,180,0.3); background: rgba(255,105,180,0.05);">
+                <h3>👅 Tongue & Pulse Observations (Practitioner)</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tongue Body Color</label>
+                        <select id="tongueColor">
+                            <option value="">Select...</option>
+                            <option value="pale">Pale (Qi/Blood deficiency, Cold)</option>
+                            <option value="normal">Normal Pink</option>
+                            <option value="red">Red (Heat)</option>
+                            <option value="dark-red">Dark Red (Severe Heat)</option>
+                            <option value="purple">Purple/Bluish (Blood Stasis)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tongue Coating</label>
+                        <select id="tongueCoating">
+                            <option value="">Select...</option>
+                            <option value="thin-white">Thin White (Normal)</option>
+                            <option value="thick-white">Thick White (Cold/Damp)</option>
+                            <option value="yellow">Yellow (Heat)</option>
+                            <option value="thick-yellow">Thick Yellow (Damp-Heat)</option>
+                            <option value="gray-black">Gray/Black (Severe condition)</option>
+                            <option value="peeled">Peeled/Geographic (Yin deficiency)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tongue Shape</label>
+                        <select id="tongueShape">
+                            <option value="">Select...</option>
+                            <option value="normal">Normal</option>
+                            <option value="swollen">Swollen (Damp, Qi deficiency)</option>
+                            <option value="thin">Thin (Blood/Yin deficiency)</option>
+                            <option value="teeth-marks">Teeth Marks (Spleen Qi deficiency)</option>
+                            <option value="cracked">Cracked (Yin deficiency, Heat)</option>
+                            <option value="pointed">Pointed tip (Heart Fire)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Pulse Quality (Primary)</label>
+                        <select id="pulseQuality">
+                            <option value="">Select...</option>
+                            <option value="normal">Normal</option>
+                            <option value="weak">Weak/Empty (Qi/Blood deficiency)</option>
+                            <option value="strong">Strong/Full (Excess)</option>
+                            <option value="rapid">Rapid (Heat)</option>
+                            <option value="slow">Slow (Cold)</option>
+                            <option value="wiry">Wiry/Tight (Liver Qi stagnation)</option>
+                            <option value="slippery">Slippery (Damp, Phlegm)</option>
+                            <option value="choppy">Choppy (Blood stasis)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Additional Observations</label>
+                    <textarea id="tcmNotes" placeholder="Note any additional findings: sublingual veins, tongue movement, pulse depth, etc."></textarea>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="switchTab('intake')">← Back to Intake</button>
+                <button class="nav-btn next" onclick="switchTab('assessment')">Continue to 19-Domain Assessment →</button>
+            </div>
+        </div>
+        
+        <!-- TAB 2: 19-DOMAIN ASSESSMENT -->
+        <div id="assessment" class="tab-content">
+            <div class="section-header">
+                <h2>🌸 Soul Architecture™ 19-Domain Assessment</h2>
+                <p>Explore each domain to reveal where support is needed most</p>
+            </div>
+            
+            <!-- Progress -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <h3>Assessment Progress</h3>
+                    <span class="progress-count"><span id="completedCount">0</span> of 19 Domains</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            
+            <!-- Domain Navigation -->
+            <div class="domain-nav" id="domainNav">
+                <!-- Generated by JavaScript -->
+            </div>
+            
+            <!-- Domain Sections -->
+            <div id="domainSections">
+                <!-- Generated by JavaScript -->
+            </div>
+            
+            <!-- Generate Results Button -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="nav-btn next" id="generateResults" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                    ✨ Generate Soul Architecture™ Protocol ✨
+                </button>
+            </div>
+        </div>
+        
+        <!-- TAB 3: RESULTS -->
+        <div id="results" class="tab-content">
+            <div class="section-header">
+                <h2>✨ Soul Architecture™ Protocol</h2>
+                <p>Your personalized treatment recommendations</p>
+            </div>
+            
+            <div id="resultsContent">
+                <p style="text-align: center; color: rgba(255,248,240,0.6); padding: 3rem;">
+                    Complete the intake and 19-domain assessment to generate your personalized protocol.
+                </p>
+            </div>
+        </div>
+        
+        <footer>
+            <p class="brand-marks">Soul-Lit™ · The Maggie Way™ · Soul Architecture™ · HEALERS GOING FIRST™</p>
+            <p>© 2024-2025 Maggie Mayne · All Rights Reserved</p>
+            <p style="margin-top: 0.5rem;"><a href="practitioner-portal.html" style="color: var(--teal);">🔐 Practitioner Portal</a></p>
+        </footer>
+    </div>
+
+<script>
+// ============================================
+// 19 DOMAINS DATA WITH TOUCH FOR HEALTH
+// ============================================
+
+const domains = [
+    {
+        id: 1,
+        name: "Heart Center",
+        emoji: "💗",
+        category: "seed",
+        archetype: "The Queen",
+        element: "Fire",
+        zodiac: "Leo",
+        chakra: "Heart (Anahata)",
+        meridian: "Heart",
+        muscle: "Subscapularis",
+        mineral: "Calcium",
+        season: "Summer",
+        law: "Law of Love",
+        description: "The Heart Center is where all 19 domains converge. It is the seat of your sovereignty, the pulse of your purpose, and the compass that guides every decision.",
+        questions: [
+            {
+                text: "How open does your heart feel right now?",
+                type: "scale",
+                maps: { low: ["Holly", "Willow", "Star of Bethlehem"], medium: ["Chicory", "Red Chestnut"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Difficulty giving or receiving love", maps: ["Chicory", "Water Violet", "Hawthorn"] },
+                    { text: "Heartbreak or grief", maps: ["Star of Bethlehem", "Honeysuckle", "Bleeding Heart"] },
+                    { text: "Jealousy or resentment", maps: ["Holly", "Willow"] },
+                    { text: "Feeling unloved or unworthy", maps: ["Pine", "Larch", "Pink Monkeyflower"] },
+                    { text: "Closed off / guarded heart", maps: ["Water Violet", "Holly", "Hawthorn"] },
+                    { text: "Codependency", maps: ["Chicory", "Centaury", "Red Chestnut"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 2,
+        name: "Mind Temple",
+        emoji: "🧠",
+        category: "seed",
+        archetype: "The High Priestess",
+        element: "Air",
+        zodiac: "Aquarius",
+        chakra: "Third Eye (Ajna)",
+        meridian: "Bladder / Governing Vessel",
+        muscle: "Peroneus / Sacrospinalis",
+        mineral: "Zinc",
+        season: "Winter",
+        law: "Law of Correspondence",
+        description: "Consciousness expansion and nervous system healing. CCT™ works here to settle the nervous system and access higher awareness.",
+        questions: [
+            {
+                text: "How clear is your thinking?",
+                type: "scale",
+                maps: { low: ["White Chestnut", "Clematis", "Scleranthus"], medium: ["Cerato"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Racing thoughts / can't turn off mind", maps: ["White Chestnut", "Impatiens", "Lemon"] },
+                    { text: "Brain fog / confusion", maps: ["Clematis", "Wild Oat", "Cosmos"] },
+                    { text: "Difficulty making decisions", maps: ["Scleranthus", "Cerato", "Wild Oat"] },
+                    { text: "Negative self-talk / inner critic", maps: ["Pine", "Crab Apple", "Buttercup"] },
+                    { text: "Worry / anxious thoughts", maps: ["White Chestnut", "Aspen", "Mimulus"] },
+                    { text: "Disconnected from intuition", maps: ["Cerato", "Star Tulip", "Queen Anne's Lace"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 3,
+        name: "Healing",
+        emoji: "💆",
+        category: "seed",
+        archetype: "The Midwife / Sacred Healer",
+        element: "Water",
+        zodiac: "Cancer",
+        chakra: "Sacral (Svadhisthana)",
+        meridian: "Small Intestine / Triple Warmer",
+        muscle: "Quadriceps / Teres Minor",
+        mineral: "Selenium",
+        season: "Summer",
+        law: "Law of Nature",
+        description: "22+ years of bodywork mastery. Massage = MAGIC. Touch that transforms body, mind, emotions, and spirit.",
+        questions: [
+            {
+                text: "How receptive are you to healing touch?",
+                type: "scale",
+                maps: { low: ["Mimulus", "Water Violet", "Rock Water"], medium: ["Scleranthus"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Resistant to receiving help", maps: ["Water Violet", "Oak", "Vine"] },
+                    { text: "Physical touch feels unsafe", maps: ["Mimulus", "Star of Bethlehem", "Mariposa Lily"] },
+                    { text: "Chronic physical holding patterns", maps: ["Rock Water", "Oak", "Dandelion"] },
+                    { text: "Don't prioritize body care", maps: ["Wild Rose", "Hornbeam", "Olive"] },
+                    { text: "Body shame / disconnection", maps: ["Crab Apple", "Madrone", "Buttercup"] },
+                    { text: "History of medical trauma", maps: ["Star of Bethlehem", "Rock Rose", "Echinacea"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 4,
+        name: "Oracle",
+        emoji: "🔮",
+        category: "seed",
+        archetype: "The Seer / Divine Channel",
+        element: "Aether",
+        zodiac: "Pisces",
+        chakra: "Third Eye + Crown",
+        meridian: "Gallbladder",
+        muscle: "Popliteus",
+        mineral: "Vitamin A",
+        season: "Spring",
+        law: "Law of Warning",
+        description: "Intuitive guidance, psychic gifts, oracle wisdom. Life warns three times. Learn to listen.",
+        questions: [
+            {
+                text: "How connected to your intuition do you feel?",
+                type: "scale",
+                maps: { low: ["Cerato", "Star Tulip", "Clematis"], medium: ["Wild Oat"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Doubt my inner knowing", maps: ["Cerato", "Larch", "Buttercup"] },
+                    { text: "Ignore intuitive hits", maps: ["Cerato", "Gentian", "Tansy"] },
+                    { text: "Overwhelmed by psychic sensitivity", maps: ["Walnut", "Yarrow", "Pink Yarrow"] },
+                    { text: "Fear of my gifts", maps: ["Mimulus", "Aspen", "Mugwort"] },
+                    { text: "Dreams feel significant but confusing", maps: ["Star Tulip", "Mugwort", "Clematis"] },
+                    { text: "Seeking external validation constantly", maps: ["Cerato", "Centaury", "Buttercup"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 5,
+        name: "Education",
+        emoji: "📚",
+        category: "seed",
+        archetype: "The Wise Woman / Teacher",
+        element: "Earth",
+        zodiac: "Virgo",
+        chakra: "Throat (Vishuddha)",
+        meridian: "Stomach",
+        muscle: "Pectoralis Major Clavicular / Neck Muscles",
+        mineral: "B Vitamins",
+        season: "Late Summer",
+        law: "Law of Sharing",
+        description: "Those who know, tell with love. Teaching, learning, wisdom transmission.",
+        questions: [
+            {
+                text: "How freely do you share your knowledge?",
+                type: "scale",
+                maps: { low: ["Mimulus", "Larch", "Water Violet"], medium: ["Cerato"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Fear of being seen as an expert", maps: ["Mimulus", "Larch", "Buttercup"] },
+                    { text: "Hoarding knowledge / not sharing", maps: ["Chicory", "Water Violet"] },
+                    { text: "Difficulty learning new things", maps: ["Chestnut Bud", "Clematis", "Lemon"] },
+                    { text: "Imposter syndrome", maps: ["Larch", "Elm", "Buttercup"] },
+                    { text: "Fear of speaking / teaching", maps: ["Mimulus", "Larch", "Trumpet Vine"] },
+                    { text: "Perfectionism blocking sharing", maps: ["Rock Water", "Beech", "Crab Apple"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 6,
+        name: "Expression",
+        emoji: "🎭",
+        category: "seed",
+        archetype: "The Songstress / Creative",
+        element: "Fire",
+        zodiac: "Sagittarius",
+        chakra: "Throat (Vishuddha)",
+        meridian: "Lung",
+        muscle: "Serratus Anterior / Deltoid",
+        mineral: "Copper",
+        season: "Autumn",
+        law: "Law of Manifestation",
+        description: "Thoughts become words become reality. Creative expression, voice, art, communication.",
+        questions: [
+            {
+                text: "How freely do you express yourself?",
+                type: "scale",
+                maps: { low: ["Agrimony", "Mimulus", "Larch"], medium: ["Scleranthus"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Suppressing true feelings", maps: ["Agrimony", "Cherry Plum", "Scarlet Monkeyflower"] },
+                    { text: "Fear of speaking my truth", maps: ["Mimulus", "Larch", "Trumpet Vine"] },
+                    { text: "Creative blocks", maps: ["Wild Rose", "Hornbeam", "Iris"] },
+                    { text: "Throat issues / voice problems", maps: ["Trumpet Vine", "Cosmos", "Larch"] },
+                    { text: "People-pleasing instead of honesty", maps: ["Centaury", "Agrimony", "Buttercup"] },
+                    { text: "Fear of judgment", maps: ["Mimulus", "Larch", "Goldenrod"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 7,
+        name: "Community",
+        emoji: "🌐",
+        category: "seed",
+        archetype: "The Earth Mother / Connector",
+        element: "Earth",
+        zodiac: "Taurus",
+        chakra: "Heart (Anahata)",
+        meridian: "Spleen",
+        muscle: "Latissimus Dorsi / Trapezius",
+        mineral: "Vitamin C",
+        season: "Late Summer",
+        law: "Law of Compensation",
+        description: "Give and receive in balance. Boundaries, belonging, tribe, connection.",
+        questions: [
+            {
+                text: "How supported do you feel by your community?",
+                type: "scale",
+                maps: { low: ["Water Violet", "Heather", "Chicory"], medium: ["Walnut"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Isolated / no tribe", maps: ["Water Violet", "Wild Rose", "Mallow"] },
+                    { text: "Poor boundaries with others", maps: ["Centaury", "Walnut", "Yarrow"] },
+                    { text: "Difficulty asking for help", maps: ["Water Violet", "Oak", "Pink Monkeyflower"] },
+                    { text: "Over-giving / depleted", maps: ["Centaury", "Oak", "Alpine Lily"] },
+                    { text: "Betrayed by community/groups", maps: ["Star of Bethlehem", "Willow", "Oregon Grape"] },
+                    { text: "Don't belong anywhere", maps: ["Wild Rose", "Water Violet", "Shooting Star"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 8,
+        name: "The Spark",
+        emoji: "🌕",
+        category: "bloom",
+        archetype: "The Light Bearer",
+        element: "Spirit",
+        zodiac: "All",
+        chakra: "Crown (Sahasrara)",
+        meridian: "Central / Governing",
+        muscle: "All Core Muscles",
+        mineral: "Full Spectrum",
+        season: "All Seasons",
+        law: "Law of Divine Connection",
+        description: "God Source. Divine connection. The light within that cannot be extinguished.",
+        questions: [
+            {
+                text: "How connected to Source/Spirit do you feel?",
+                type: "scale",
+                maps: { low: ["Wild Rose", "Sweet Chestnut", "Gorse"], medium: ["Wild Oat"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Lost faith / spiritual disconnection", maps: ["Sweet Chestnut", "Gorse", "Wild Rose"] },
+                    { text: "Dark night of the soul", maps: ["Sweet Chestnut", "Mustard", "Star of Bethlehem"] },
+                    { text: "Forgotten my divine nature", maps: ["Wild Oat", "Buttercup", "Lotus"] },
+                    { text: "Spiritual bypassing", maps: ["Clematis", "Rock Water", "California Poppy"] },
+                    { text: "Religious trauma", maps: ["Star of Bethlehem", "Willow", "Fuchsia"] },
+                    { text: "Seeking outside instead of within", maps: ["Cerato", "California Poppy", "Buttercup"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 9,
+        name: "Abundance",
+        emoji: "💰",
+        category: "bloom",
+        archetype: "The Empress",
+        element: "Earth",
+        zodiac: "Taurus",
+        chakra: "Root + Sacral",
+        meridian: "Kidney",
+        muscle: "Psoas / Iliacus",
+        mineral: "Iron",
+        season: "Winter",
+        law: "Law of Generation",
+        description: "We generate our circumstances. Money, worth, prosperity, receiving.",
+        questions: [
+            {
+                text: "How abundant do you feel?",
+                type: "scale",
+                maps: { low: ["Pine", "Larch", "Gorse"], medium: ["Wild Oat"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Scarcity mindset / poverty consciousness", maps: ["Pine", "Gorse", "Blackberry"] },
+                    { text: "Undercharging / undervaluing self", maps: ["Larch", "Centaury", "Buttercup"] },
+                    { text: "Money shame or guilt", maps: ["Pine", "Crab Apple", "Goldenrod"] },
+                    { text: "Fear around finances", maps: ["Mimulus", "Aspen", "Rock Rose"] },
+                    { text: "Survival mode constantly", maps: ["Oak", "Rock Rose", "Indian Pink"] },
+                    { text: "Blocking receiving", maps: ["Pine", "Chicory", "Buttercup"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 10,
+        name: "Sound",
+        emoji: "🎵",
+        category: "bloom",
+        archetype: "The Sound Healer",
+        element: "Aether",
+        zodiac: "Libra",
+        chakra: "Throat (Vishuddha)",
+        meridian: "Triple Warmer",
+        muscle: "Teres Minor / Sartorius",
+        mineral: "Iodine",
+        season: "All Seasons",
+        law: "Law of Vibration",
+        description: "Everything vibrates. Sound healing, frequency, music as medicine.",
+        questions: [
+            {
+                text: "How does sound/music affect you?",
+                type: "scale",
+                maps: { low: ["Wild Rose", "Clematis"], medium: ["Scleranthus"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Noise sensitivity / overwhelm", maps: ["Walnut", "Mimulus", "Pink Yarrow"] },
+                    { text: "Using music to escape/numb", maps: ["Agrimony", "Clematis", "California Poppy"] },
+                    { text: "Unable to find my voice literally", maps: ["Larch", "Mimulus", "Trumpet Vine"] },
+                    { text: "Sound triggers me negatively", maps: ["Star of Bethlehem", "Aspen", "Mimulus"] },
+                    { text: "Craving silence constantly", maps: ["Impatiens", "Vervain", "White Chestnut"] },
+                    { text: "Disconnected from music/sound", maps: ["Wild Rose", "Hornbeam", "Clematis"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 11,
+        name: "Bridge",
+        emoji: "🌉",
+        category: "bloom",
+        archetype: "The Warrior Queen",
+        element: "Air",
+        zodiac: "Libra",
+        chakra: "Solar Plexus (Manipura)",
+        meridian: "Liver",
+        muscle: "Pectoralis Major Sternal / Rhomboids",
+        mineral: "Vitamin A",
+        season: "Spring",
+        law: "Law of Cause & Effect",
+        description: "Everything returns multiplied. Justice, advocacy, bridging worlds.",
+        questions: [
+            {
+                text: "How balanced does your giving/receiving feel?",
+                type: "scale",
+                maps: { low: ["Centaury", "Oak", "Pine"], medium: ["Scleranthus"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Fighting injustice is exhausting me", maps: ["Oak", "Elm", "Indian Pink"] },
+                    { text: "Carrying others' burdens", maps: ["Red Chestnut", "Centaury", "Yarrow"] },
+                    { text: "Boundary violations", maps: ["Centaury", "Walnut", "Yarrow"] },
+                    { text: "Advocating but not for self", maps: ["Centaury", "Larch", "Goldenrod"] },
+                    { text: "Burning bridges / isolation", maps: ["Beech", "Willow", "Holly"] },
+                    { text: "Difficulty connecting different worlds", maps: ["Walnut", "Wild Oat", "Shooting Star"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 12,
+        name: "The Word",
+        emoji: "📿",
+        category: "legacy",
+        archetype: "The Poetess / Prophet",
+        element: "Aether",
+        zodiac: "Gemini",
+        chakra: "Throat (Vishuddha)",
+        meridian: "Large Intestine",
+        muscle: "Fascia Lata / Hamstrings",
+        mineral: "Vitamin C",
+        season: "Autumn",
+        law: "Law of Affinity",
+        description: "Similar attracts similar. Sacred words, affirmations, the power of language.",
+        questions: [
+            {
+                text: "How powerful do your words feel?",
+                type: "scale",
+                maps: { low: ["Larch", "Mimulus", "Cerato"], medium: ["Scleranthus"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Negative self-talk patterns", maps: ["Pine", "Crab Apple", "Buttercup"] },
+                    { text: "Words used against me", maps: ["Star of Bethlehem", "Willow", "Oregon Grape"] },
+                    { text: "Afraid to speak my truth", maps: ["Mimulus", "Larch", "Trumpet Vine"] },
+                    { text: "Writer's block / can't find words", maps: ["Wild Rose", "Hornbeam", "Iris"] },
+                    { text: "Gossip / harmful speech patterns", maps: ["Beech", "Willow", "Holly"] },
+                    { text: "My word means nothing to others", maps: ["Larch", "Centaury", "Buttercup"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 13,
+        name: "The Flame",
+        emoji: "🔥",
+        category: "legacy",
+        archetype: "The Fire Priestess",
+        element: "Fire",
+        zodiac: "Aries",
+        chakra: "Solar Plexus (Manipura)",
+        meridian: "Small Intestine",
+        muscle: "Quadriceps / Abdominals",
+        mineral: "Vitamin E",
+        season: "Summer",
+        law: "Law of Evolution",
+        description: "No evolution without transformation. Power, will, taking action.",
+        questions: [
+            {
+                text: "How strong is your inner fire?",
+                type: "scale",
+                maps: { low: ["Wild Rose", "Hornbeam", "Gorse"], medium: ["Scleranthus"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Lost my passion / drive", maps: ["Wild Rose", "Hornbeam", "Cayenne"] },
+                    { text: "Anger issues / rage", maps: ["Cherry Plum", "Holly", "Scarlet Monkeyflower"] },
+                    { text: "Burned out", maps: ["Olive", "Oak", "Indian Pink"] },
+                    { text: "Fear of my own power", maps: ["Mimulus", "Larch", "Sunflower"] },
+                    { text: "Suppressed anger", maps: ["Agrimony", "Cherry Plum", "Fuchsia"] },
+                    { text: "Unable to take action", maps: ["Hornbeam", "Wild Rose", "Blackberry"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 14,
+        name: "The Crystal",
+        emoji: "💎",
+        category: "legacy",
+        archetype: "The Crystal Keeper",
+        element: "Earth",
+        zodiac: "Capricorn",
+        chakra: "Third Eye (Ajna)",
+        meridian: "Stomach",
+        muscle: "Pectoralis Major Clavicular / Neck",
+        mineral: "Silica",
+        season: "Late Summer",
+        law: "Law of Two (Inquiry)",
+        description: "Life always has answers. Clarity, structure, seeing through to truth.",
+        questions: [
+            {
+                text: "How clear is your vision/direction?",
+                type: "scale",
+                maps: { low: ["Wild Oat", "Scleranthus", "Cerato"], medium: ["Clematis"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Confused about life direction", maps: ["Wild Oat", "Scleranthus", "Cerato"] },
+                    { text: "Can't see the truth clearly", maps: ["Clematis", "Beech", "Queen Anne's Lace"] },
+                    { text: "Too rigid / inflexible", maps: ["Rock Water", "Vine", "Beech"] },
+                    { text: "Scattered / no structure", maps: ["Clematis", "Scleranthus", "Indian Pink"] },
+                    { text: "Overthinking everything", maps: ["White Chestnut", "Cerato", "Lemon"] },
+                    { text: "Difficulty manifesting vision", maps: ["Clematis", "Wild Oat", "Blackberry"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 15,
+        name: "The Flow",
+        emoji: "🌊",
+        category: "legacy",
+        archetype: "The Water Bearer",
+        element: "Water",
+        zodiac: "Scorpio",
+        chakra: "Sacral (Svadhisthana)",
+        meridian: "Kidney / Bladder",
+        muscle: "Psoas / Peroneus",
+        mineral: "Potassium",
+        season: "Winter",
+        law: "Law of Communicating Vessels",
+        description: "Energy flows where attention goes. Emotional release, letting go, lymphatic flow.",
+        questions: [
+            {
+                text: "How easily do emotions flow through you?",
+                type: "scale",
+                maps: { low: ["Rock Water", "Agrimony", "Cherry Plum"], medium: ["Scleranthus"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Emotions stuck / can't cry", maps: ["Rock Water", "Agrimony", "Fuchsia"] },
+                    { text: "Overwhelmed by emotions", maps: ["Cherry Plum", "Rock Rose", "Pink Yarrow"] },
+                    { text: "Holding on to the past", maps: ["Honeysuckle", "Willow", "Bleeding Heart"] },
+                    { text: "Lymphatic congestion / swelling", maps: ["Crab Apple", "Olive", "Hornbeam"] },
+                    { text: "Resistance to change", maps: ["Walnut", "Rock Water", "Chestnut Bud"] },
+                    { text: "Control issues", maps: ["Vine", "Rock Water", "Chicory"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 16,
+        name: "The Breath",
+        emoji: "🌬️",
+        category: "legacy",
+        archetype: "The Wind Dancer",
+        element: "Air",
+        zodiac: "Gemini",
+        chakra: "Heart (Anahata)",
+        meridian: "Lung",
+        muscle: "Deltoid / Serratus Anterior",
+        mineral: "Oxygen / Iron",
+        season: "Autumn",
+        law: "Law of Three",
+        description: "Try three times before giving up. Breath is life. The bridge between worlds.",
+        questions: [
+            {
+                text: "How conscious are you of your breathing?",
+                type: "scale",
+                maps: { low: ["Clematis", "Impatiens", "White Chestnut"], medium: ["Scleranthus"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Shallow breathing / breath holding", maps: ["Impatiens", "Rock Water", "Dandelion"] },
+                    { text: "Anxiety / panic attacks", maps: ["Rock Rose", "Cherry Plum", "Aspen"] },
+                    { text: "Can't slow down", maps: ["Impatiens", "Vervain", "Indian Pink"] },
+                    { text: "Respiratory issues", maps: ["Olive", "Oak", "Yarrow"] },
+                    { text: "Give up too easily", maps: ["Gentian", "Gorse", "Larch"] },
+                    { text: "Disconnected from body", maps: ["Clematis", "Corn Lily", "Madrone"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 17,
+        name: "The Body",
+        emoji: "🌍",
+        category: "legacy",
+        archetype: "The Earth Mother",
+        element: "Earth",
+        zodiac: "Virgo",
+        chakra: "Root (Muladhara)",
+        meridian: "Spleen / Stomach",
+        muscle: "All Postural Muscles",
+        mineral: "All Minerals",
+        season: "Late Summer",
+        law: "Law of Nature",
+        description: "Self-care is your #1 job. The temple that carries you through this life.",
+        questions: [
+            {
+                text: "How well do you care for your physical body?",
+                type: "scale",
+                maps: { low: ["Wild Rose", "Crab Apple", "Oak"], medium: ["Scleranthus"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Neglecting physical needs", maps: ["Wild Rose", "Oak", "Hornbeam"] },
+                    { text: "Body shame / hatred", maps: ["Crab Apple", "Pine", "Buttercup"] },
+                    { text: "Chronic exhaustion", maps: ["Olive", "Oak", "Hornbeam"] },
+                    { text: "Poor diet / hydration", maps: ["Wild Rose", "Hornbeam", "Olive"] },
+                    { text: "Not enough movement", maps: ["Wild Rose", "Hornbeam", "Blackberry"] },
+                    { text: "Ignoring symptoms / pain", maps: ["Oak", "Rock Water", "Dandelion"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 18,
+        name: "Akashic",
+        emoji: "📜",
+        category: "legacy",
+        archetype: "The Record Keeper",
+        element: "Aether",
+        zodiac: "All",
+        chakra: "Crown (Sahasrara)",
+        meridian: "Governing Vessel",
+        muscle: "Teres Major",
+        mineral: "Gold (Energetic)",
+        season: "All Seasons",
+        law: "Law of Correspondence",
+        description: "Everything happens to whom it's meant. Past lives, soul contracts, ancestral patterns.",
+        questions: [
+            {
+                text: "How connected do you feel to your soul's history?",
+                type: "scale",
+                maps: { low: ["Clematis", "Honeysuckle", "Chestnut Bud"], medium: ["Wild Oat"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Repeating family patterns", maps: ["Chestnut Bud", "Honeysuckle", "Sagebrush"] },
+                    { text: "Ancestral trauma showing up", maps: ["Star of Bethlehem", "Honeysuckle", "Joshua Tree"] },
+                    { text: "Past life bleed-through", maps: ["Honeysuckle", "Clematis", "Forget-Me-Not"] },
+                    { text: "Can't let go of the past", maps: ["Honeysuckle", "Willow", "Bleeding Heart"] },
+                    { text: "Karmic relationship patterns", maps: ["Chicory", "Willow", "Bleeding Heart"] },
+                    { text: "Soul contract confusion", maps: ["Wild Oat", "Cerato", "Sagebrush"] }
+                ]
+            }
+        ]
+    },
+    {
+        id: 19,
+        name: "The Void",
+        emoji: "👁️",
+        category: "legacy",
+        archetype: "The Void Priestess",
+        element: "Spirit",
+        zodiac: "All",
+        chakra: "Crown + Beyond",
+        meridian: "Central Vessel",
+        muscle: "Supraspinatus",
+        mineral: "Platinum (Energetic)",
+        season: "Transition Points",
+        law: "Law of Empty Spaces",
+        description: "Pure potential. The fertile darkness before creation. Sovereignty and freedom.",
+        questions: [
+            {
+                text: "How comfortable are you in the unknown?",
+                type: "scale",
+                maps: { low: ["Aspen", "Rock Rose", "Mimulus"], medium: ["Scleranthus"], high: [] }
+            },
+            {
+                text: "Select any that apply:",
+                type: "checkbox",
+                options: [
+                    { text: "Fear of the unknown", maps: ["Aspen", "Mimulus", "Rock Rose"] },
+                    { text: "Terrified of emptiness / being alone", maps: ["Heather", "Aspen", "Mariposa Lily"] },
+                    { text: "Filling every moment to avoid stillness", maps: ["Impatiens", "Agrimony", "White Chestnut"] },
+                    { text: "Loss of sovereignty / agency", maps: ["Centaury", "Walnut", "Goldenrod"] },
+                    { text: "Waiting for someone to save me", maps: ["Cerato", "Centaury", "Buttercup"] },
+                    { text: "Afraid of my own power", maps: ["Mimulus", "Larch", "Sunflower"] }
+                ]
+            }
+        ]
+    }
+];
+
+// ============================================
+// STATE MANAGEMENT
+// ============================================
+
+let state = {
+    currentDomain: 1,
+    completed: new Set(),
+    responses: {},
+    scales: {}
+};
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    initTabs();
+    initDomainNav();
+    initDomainSections();
+    initScaleButtons();
+    initGenerateResults();
+});
+
+function initTabs() {
+    document.querySelectorAll('.main-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+}
+
+function switchTab(tabId) {
+    document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+}
+
+function initDomainNav() {
+    const nav = document.getElementById('domainNav');
+    domains.forEach(d => {
+        const btn = document.createElement('button');
+        btn.className = `domain-btn ${d.category}`;
+        btn.innerHTML = d.emoji;
+        btn.title = `Domain ${d.id}: ${d.name}`;
+        btn.onclick = () => showDomain(d.id);
+        nav.appendChild(btn);
+    });
+}
+
+function initDomainSections() {
+    const container = document.getElementById('domainSections');
+    
+    domains.forEach(d => {
+        const section = document.createElement('div');
+        section.className = 'domain-section';
+        section.id = `domain-${d.id}`;
+        if (d.id === 1) section.classList.add('active');
+        
+        section.innerHTML = `
+            <div class="domain-header">
+                <div class="emoji">${d.emoji}</div>
+                <h2>Domain ${d.id}: ${d.name}</h2>
+                <p class="archetype">${d.archetype}</p>
+                <div class="domain-meta">
+                    <span class="meta-badge element">${d.element}</span>
+                    <span class="meta-badge zodiac">♈ ${d.zodiac}</span>
+                    <span class="meta-badge chakra">🔮 ${d.chakra}</span>
+                </div>
+                <p class="domain-description">${d.description}</p>
+            </div>
+            
+            <div class="tfh-info">
+                <h4>⚡ Touch For Health / Applied Kinesiology</h4>
+                <div class="tfh-grid">
+                    <div class="tfh-item">
+                        <div class="label">Meridian</div>
+                        <div class="value">${d.meridian}</div>
+                    </div>
+                    <div class="tfh-item">
+                        <div class="label">Associated Muscle</div>
+                        <div class="value">${d.muscle}</div>
+                    </div>
+                    <div class="tfh-item">
+                        <div class="label">Season</div>
+                        <div class="value">${d.season}</div>
+                    </div>
+                    <div class="tfh-item">
+                        <div class="label">Mineral/Nutrient</div>
+                        <div class="value">${d.mineral}</div>
+                    </div>
+                </div>
+            </div>
+            
+            ${generateQuestions(d)}
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" onclick="prevDomain()" ${d.id === 1 ? 'disabled' : ''}>← Previous</button>
+                <button class="nav-btn next" onclick="nextDomain()">${d.id === 19 ? 'Complete Assessment' : 'Next Domain →'}</button>
+            </div>
+        `;
+        
+        container.appendChild(section);
+    });
+}
+
+function generateQuestions(domain) {
+    let html = '';
+    domain.questions.forEach((q, i) => {
+        if (q.type === 'scale') {
+            html += `
+                <div class="question-group">
+                    <label>${q.text}</label>
+                    <div class="scale-group">
+                        <span class="scale-label">Low</span>
+                        <div class="scale-options">
+                            ${[1,2,3,4,5].map(v => `<button class="scale-btn" data-domain="${domain.id}" data-q="${i}" data-value="${v}">${v}</button>`).join('')}
+                        </div>
+                        <span class="scale-label">High</span>
+                    </div>
+                </div>
+            `;
+        } else if (q.type === 'checkbox') {
+            html += `
+                <div class="question-group">
+                    <label>${q.text}</label>
+                    <div class="checkbox-group">
+                        ${q.options.map((opt, j) => `
+                            <label class="check-option">
+                                <input type="checkbox" data-domain="${domain.id}" data-q="${i}" data-opt="${j}" data-maps="${opt.maps.join(',')}">
+                                <span>${opt.text}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+    });
+    return html;
+}
+
+function initScaleButtons() {
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('scale-btn') && e.target.dataset.domain) {
+            const domain = e.target.dataset.domain;
+            const q = e.target.dataset.q;
+            const value = e.target.dataset.value;
+            
+            // Remove selected from siblings
+            e.target.parentElement.querySelectorAll('.scale-btn').forEach(btn => btn.classList.remove('selected'));
+            e.target.classList.add('selected');
+            
+            // Store response
+            if (!state.scales[domain]) state.scales[domain] = {};
+            state.scales[domain][q] = parseInt(value);
+            
+            checkDomainCompletion(parseInt(domain));
+        }
+    });
+    
+    // Handle checkbox changes
+    document.addEventListener('change', (e) => {
+        if (e.target.type === 'checkbox' && e.target.dataset.domain) {
+            const domain = parseInt(e.target.dataset.domain);
+            checkDomainCompletion(domain);
+        }
+    });
+}
+
+function checkDomainCompletion(domainId) {
+    // Simple check: if any question answered, mark as completed
+    const section = document.getElementById(`domain-${domainId}`);
+    const hasScale = section.querySelector('.scale-btn.selected');
+    const hasChecked = section.querySelector('input[type="checkbox"]:checked');
+    
+    if (hasScale || hasChecked) {
+        state.completed.add(domainId);
+        document.querySelectorAll('.domain-btn')[domainId - 1].classList.add('completed');
+        updateProgress();
+    }
+}
+
+function updateProgress() {
+    const count = state.completed.size;
+    document.getElementById('completedCount').textContent = count;
+    document.getElementById('progressFill').style.width = `${(count / 19) * 100}%`;
+}
+
+function showDomain(id) {
+    state.currentDomain = id;
+    document.querySelectorAll('.domain-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.domain-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(`domain-${id}`).classList.add('active');
+    document.querySelectorAll('.domain-btn')[id - 1].classList.add('active');
+}
+
+function prevDomain() {
+    if (state.currentDomain > 1) {
+        showDomain(state.currentDomain - 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function nextDomain() {
+    if (state.currentDomain < 19) {
+        showDomain(state.currentDomain + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+        generateProtocol();
+    }
+}
+
+function initGenerateResults() {
+    document.getElementById('generateResults').addEventListener('click', generateProtocol);
+}
+
+function generateProtocol() {
+    // Collect all responses
+    const allEssences = new Map();
+    const domainScores = [];
+    
+    // Collect TCM data
+    const sixEvils = {
+        wind: document.querySelectorAll('[data-evil="wind"]:checked').length,
+        cold: document.querySelectorAll('[data-evil="cold"]:checked').length,
+        summerheat: document.querySelectorAll('[data-evil="summerheat"]:checked').length,
+        damp: document.querySelectorAll('[data-evil="damp"]:checked').length,
+        dry: document.querySelectorAll('[data-evil="dry"]:checked').length,
+        heat: document.querySelectorAll('[data-evil="heat"]:checked').length
+    };
+    
+    const fiveElements = {
+        wood: document.querySelectorAll('[data-element="wood"]:checked').length,
+        fire: document.querySelectorAll('[data-element="fire"]:checked').length,
+        earth: document.querySelectorAll('[data-element="earth"]:checked').length,
+        metal: document.querySelectorAll('[data-element="metal"]:checked').length,
+        water: document.querySelectorAll('[data-element="water"]:checked').length
+    };
+    
+    const meridianClock = [];
+    document.querySelectorAll('[data-clock]:checked').forEach(cb => {
+        meridianClock.push(cb.dataset.clock);
+    });
+    
+    const akMuscles = [];
+    document.querySelectorAll('[data-ak="muscle"]:checked').forEach(cb => {
+        akMuscles.push({ muscle: cb.parentElement.textContent.trim(), meridian: cb.dataset.meridian });
+    });
+    
+    domains.forEach(d => {
+        let score = 0;
+        const section = document.getElementById(`domain-${d.id}`);
+        
+        // Get scale values (lower = more need)
+        const scaleBtn = section.querySelector('.scale-btn.selected');
+        if (scaleBtn) {
+            const val = parseInt(scaleBtn.dataset.value);
+            score += (6 - val);
+            
+            const qIndex = parseInt(scaleBtn.dataset.q);
+            const question = d.questions[qIndex];
+            if (val <= 2 && question.maps.low) {
+                question.maps.low.forEach(e => {
+                    allEssences.set(e, (allEssences.get(e) || 0) + 2);
+                });
+            } else if (val <= 3 && question.maps.medium) {
+                question.maps.medium.forEach(e => {
+                    allEssences.set(e, (allEssences.get(e) || 0) + 1);
+                });
+            }
+        }
+        
+        section.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+            if (cb.dataset.maps) {
+                score += 1;
+                const maps = cb.dataset.maps.split(',');
+                maps.forEach(e => {
+                    if (e) allEssences.set(e, (allEssences.get(e) || 0) + 1);
+                });
+            }
+        });
+        
+        domainScores.push({ id: d.id, name: d.name, emoji: d.emoji, score, domain: d });
+    });
+    
+    domainScores.sort((a, b) => b.score - a.score);
+    const sortedEssences = [...allEssences.entries()].sort((a, b) => b[1] - a[1]);
+    const sortedEvils = Object.entries(sixEvils).sort((a, b) => b[1] - a[1]).filter(e => e[1] > 0);
+    const sortedElements = Object.entries(fiveElements).sort((a, b) => b[1] - a[1]).filter(e => e[1] > 0);
+    
+    const evilEmojis = { wind: '🌬️', cold: '❄️', summerheat: '☀️', damp: '💧', dry: '🏜️', heat: '🔥' };
+    const evilNames = { wind: 'Wind (Feng)', cold: 'Cold (Han)', summerheat: 'Summer Heat (Shu)', damp: 'Dampness (Shi)', dry: 'Dryness (Zao)', heat: 'Fire/Heat (Huo)' };
+    const elementEmojis = { wood: '🌲', fire: '🔥', earth: '🌍', metal: '⚪', water: '💧' };
+    const elementOrgans = { wood: 'Liver/Gallbladder', fire: 'Heart/Small Intestine', earth: 'Spleen/Stomach', metal: 'Lung/Large Intestine', water: 'Kidney/Bladder' };
+    
+    const resultsContent = document.getElementById('resultsContent');
+    const clientName = document.getElementById('clientName').value || 'Client';
+    
+    resultsContent.innerHTML = `
+        <div class="results-header">
+            <h2>✨ Soul Architecture™ Protocol for ${clientName}</h2>
+            <p style="color: rgba(255,248,240,0.7);">Generated ${new Date().toLocaleDateString()}</p>
+        </div>
+        
+        ${sortedEvils.length > 0 ? `
+        <div style="background: rgba(255,0,0,0.08); border: 1px solid rgba(255,0,0,0.3); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+            <h3 style="color: #ff6b6b; font-family: 'Cinzel', serif; margin-bottom: 1rem;">👹 Pathogenic Factors (Six Evils)</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                ${sortedEvils.map(([evil, count]) => `
+                    <div style="background: rgba(0,0,0,0.2); padding: 0.75rem 1rem; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 1.5rem;">${evilEmojis[evil]}</div>
+                        <div style="font-weight: 600; color: #ff6b6b;">${evilNames[evil]}</div>
+                        <div style="font-size: 0.8rem; color: rgba(255,248,240,0.6);">${count} indicators</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        ` : ''}
+        
+        ${sortedElements.length > 0 ? `
+        <div style="background: rgba(0,206,209,0.08); border: 1px solid rgba(0,206,209,0.3); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+            <h3 style="color: var(--teal); font-family: 'Cinzel', serif; margin-bottom: 1rem;">🌲 Five Element Imbalances</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                ${sortedElements.map(([element, count]) => `
+                    <div style="background: rgba(0,0,0,0.2); padding: 0.75rem 1rem; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 1.5rem;">${elementEmojis[element]}</div>
+                        <div style="font-weight: 600; color: var(--teal);">${element.toUpperCase()}</div>
+                        <div style="font-size: 0.85rem; color: var(--cream);">${elementOrgans[element]}</div>
+                        <div style="font-size: 0.8rem; color: rgba(255,248,240,0.6);">${count} indicators</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        ` : ''}
+        
+        ${meridianClock.length > 0 ? `
+        <div style="background: rgba(153,50,204,0.08); border: 1px solid rgba(153,50,204,0.3); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+            <h3 style="color: var(--purple-light); font-family: 'Cinzel', serif; margin-bottom: 1rem;">🕐 Meridian Clock Findings</h3>
+            <p style="color: rgba(255,248,240,0.8);">Symptoms/waking at: ${meridianClock.map(m => m.replace('-', ' ').toUpperCase()).join(', ')}</p>
+        </div>
+        ` : ''}
+        
+        ${akMuscles.length > 0 ? `
+        <div style="background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+            <h3 style="color: var(--gold); font-family: 'Cinzel', serif; margin-bottom: 1rem;">💪 Applied Kinesiology Muscle-Meridian Focus</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+                ${akMuscles.map(m => `
+                    <div style="background: rgba(0,0,0,0.2); padding: 0.75rem; border-radius: 8px;">
+                        <div style="font-size: 0.9rem; color: var(--cream);">${m.muscle}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        ` : ''}
+        
+        <div class="priority-domains">
+            <h3>🎯 Priority Domains (Top 5)</h3>
+            ${domainScores.slice(0, 5).map((d, i) => `
+                <div class="priority-item">
+                    <div class="rank">${i + 1}</div>
+                    <div class="emoji">${d.emoji}</div>
+                    <div class="info">
+                        <div class="name">Domain ${d.id}: ${d.name}</div>
+                        <div class="score">${d.domain.archetype} • ${d.domain.element} • ${d.domain.meridian}</div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+        
+        <div class="kinesiology-section">
+            <h3>⚡ Touch For Health / Applied Kinesiology Focus</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                ${domainScores.slice(0, 5).map(d => `
+                    <div style="background: rgba(0,206,209,0.1); border: 1px solid rgba(0,206,209,0.3); border-radius: 10px; padding: 1rem;">
+                        <h4 style="color: var(--teal); margin-bottom: 0.5rem;">${d.emoji} ${d.name}</h4>
+                        <p style="font-size: 0.85rem;"><strong>Meridian:</strong> ${d.domain.meridian}</p>
+                        <p style="font-size: 0.85rem;"><strong>Muscle:</strong> ${d.domain.muscle}</p>
+                        <p style="font-size: 0.85rem;"><strong>Mineral:</strong> ${d.domain.mineral}</p>
+                        <p style="font-size: 0.85rem;"><strong>Season:</strong> ${d.domain.season}</p>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        
+        <div class="essence-section">
+            <h3>🌸 Recommended Flower Essences (Top 12)</h3>
+            <div class="essence-grid">
+                ${sortedEssences.slice(0, 12).map(([name, count]) => `
+                    <div class="essence-card">
+                        <div class="name">${name}</div>
+                        <div class="source">Frequency: ${count}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        
+        <div class="treatment-section">
+            <h3>📋 Comprehensive Treatment Plan</h3>
+            <div style="background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 1.5rem;">
+                ${sortedEvils.length > 0 ? `
+                <div style="margin-bottom: 1rem; padding: 1rem; background: rgba(255,0,0,0.1); border-radius: 8px;">
+                    <strong style="color: #ff6b6b;">TCM Pattern:</strong> 
+                    ${sortedEvils.slice(0, 2).map(([evil]) => evilNames[evil]).join(' + ')}
+                    ${sortedElements.length > 0 ? ` affecting ${sortedElements.slice(0, 2).map(([el]) => el.toUpperCase()).join(' and ')} element(s)` : ''}
+                </div>
+                ` : ''}
+                
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0;">💆</span>
+                        <strong>Bodywork Focus:</strong> ${domainScores[0]?.domain.muscle || 'TBD'} / ${domainScores[1]?.domain.muscle || 'TBD'}
+                    </li>
+                    <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0;">⚡</span>
+                        <strong>Meridian Balancing:</strong> ${domainScores[0]?.domain.meridian || 'TBD'}, ${domainScores[1]?.domain.meridian || 'TBD'}
+                    </li>
+                    <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0;">🌸</span>
+                        <strong>Custom Essence Blend:</strong> ${sortedEssences.slice(0, 5).map(e => e[0]).join(', ') || 'Complete assessment for recommendations'}
+                    </li>
+                    <li style="margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0;">💎</span>
+                        <strong>Mineral Support:</strong> ${domainScores.slice(0, 3).map(d => d.domain.mineral).join(', ') || 'TBD'}
+                    </li>
+                    <li style="padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0;">🌙</span>
+                        <strong>Seasonal Consideration:</strong> ${domainScores[0]?.domain.season || 'TBD'}
+                    </li>
+                </ul>
+                
+                ${sortedEvils.some(([evil]) => evil === 'damp') ? `
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(0,206,209,0.1); border-radius: 8px;">
+                    <strong style="color: var(--teal);">🍄 Recommended:</strong> Vitality Mushroom Elixir for Dampness clearing, detoxification, and cellular support
+                </div>
+                ` : ''}
+            </div>
+        </div>
+        
+        <div class="export-buttons">
+            <button class="export-btn print" onclick="window.print()">🖨️ Print Protocol</button>
+            <button class="export-btn email" onclick="copyProtocol()">📧 Copy for Email</button>
+            <button class="export-btn portal" onclick="window.location.href='practitioner-portal.html'">🔐 Practitioner Portal</button>
+        </div>
+    `;
+    
+    switchTab('results');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function copyProtocol() {
+    const content = document.getElementById('resultsContent').innerText;
+    navigator.clipboard.writeText(content).then(() => {
+        alert('Protocol copied to clipboard!');
+    });
+}
+</script>
+</body>
+</html>
