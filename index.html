@@ -395,10 +395,20 @@
             width: 100%;
             max-width: 650px;
             margin: 0 auto;
+            z-index: 50;
+        }
+        .flower-container svg {
+            position: relative;
+            z-index: 51;
         }
         .domain-group {
             cursor: pointer;
             transition: all 0.3s ease;
+            -webkit-tap-highlight-color: rgba(255,105,180,0.3);
+            touch-action: manipulation;
+        }
+        .domain-group circle {
+            pointer-events: all;
         }
         .domain-group:hover circle {
             filter: drop-shadow(0 0 15px currentColor);
@@ -1913,10 +1923,17 @@ const domains = {
         { title: "The Lighthouse", url: "55-the-lighthouse.html" },
         { title: "Is It MAGIC?", url: "20-is-it-magic.html" }
     ], offerings: []},
-    9: { name: "Abundance", emoji: "💰", archetype: "The Empress / Prosperity", element: "Earth", zodiac: "Taurus", chakra: "Root + Sacral", law: "Law of Generation", teaching: "We generate our circumstances. Prosperity comes from valuing ourselves and what we offer.", practice: "Write down 10 things you are grateful for. Gratitude is the frequency of abundance.", description: "Signature experiences. Abundance consciousness. Premium transformation.", links: [], offerings: [
-        { name: "19-Domain Map", price: "$444", link: "https://square.link/u/9jqMqRSU" },
+    9: { name: "Abundance", emoji: "💰", archetype: "The Empress / Prosperity", element: "Earth", zodiac: "Taurus", chakra: "Root + Sacral", law: "Law of Generation", teaching: "We generate our circumstances. Prosperity flows from valuing ourselves and what we offer. You are worthy of receiving. Gratitude is the frequency of abundance.", practice: "Write 10 things you're grateful for RIGHT NOW. Then ask: What would I do if I knew I couldn't fail? Take one step toward that today.", description: "Signature experiences. Abundance consciousness. Premium transformation. The Universe is infinitely abundant — and so are you.", links: [
+        { title: "💎 Figure Out What You Really Want", url: "14-what-you-really-want.html" },
+        { title: "✨ Is It MAGIC?", url: "15-is-it-magic.html" },
+        { title: "🌟 Celebrate Your Wins", url: "49-celebrate.html" },
+        { title: "💫 Never Stop Growing", url: "48-never-stop-growing.html" },
+        { title: "🌊 Notice the Ripple", url: "50-notice-the-ripple.html" }
+    ], offerings: [
+        { name: "19-Domain Soul Map", price: "$444", link: "https://square.link/u/9jqMqRSU" },
         { name: "An Evening with Maggie", price: "$888", link: "https://square.link/u/9jqMqRSU" },
-        { name: "Feed Your Soul", price: "$444", link: "https://square.link/u/gWrM6N89" }
+        { name: "Feed Your Soul Retreat", price: "$444", link: "https://square.link/u/gWrM6N89" },
+        { name: "The Full Maggie Experience", price: "$222", link: "https://square.link/u/9jqMqRSU" }
     ]},
     10: { name: "Sound", emoji: "🎵", archetype: "The Sound Healer", element: "Aether", zodiac: "Libra", chakra: "Throat (Vishuddha)", law: "Law of Harmony", teaching: "Everything maintained tends toward equilibrium. Sound restores balance. Vibration heals.", practice: "Hum. Tone. Sing. Let sound move through you. Your voice is medicine.", description: "Sound healing and vibration. Crystal bowls, tuning forks, Solfeggio frequencies. CCT™ uses sound vibration in healing chambers.", links: [
         { title: "Sound Healing", url: "41-sound-healing.html" },
