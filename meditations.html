@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guided Meditations | Maggie Mayne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-purple: #1a0a2e;
+            --purple: #2d1b4e;
+            --plum: #4a2c6a;
+            --coral: #e8846b;
+            --salmon: #f4a293;
+            --gold: #d4a853;
+            --gold-light: #e8c87a;
+            --cream: #fdf8f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(180deg, #1a0a2e 0%, #2d1b4e 30%, #3d2160 60%, #2d1b4e 100%);
+            min-height: 100vh;
+            color: var(--cream);
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            background: linear-gradient(180deg, var(--coral) 0%, var(--salmon) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-header .tagline {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--salmon);
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: rgba(45, 27, 78, 0.5);
+            border: 1px solid rgba(212, 168, 83, 0.4);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .intro-box p {
+            color: var(--cream);
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .intro-box .quote {
+            font-style: italic;
+            color: var(--gold);
+            margin-top: 1rem;
+        }
+
+        /* Meditation Cards Grid */
+        .meditations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .meditation-card {
+            background: rgba(74, 44, 106, 0.4);
+            border: 1px solid rgba(212, 168, 83, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .meditation-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 40px rgba(212, 168, 83, 0.2);
+        }
+
+        .meditation-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .meditation-card h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .meditation-card p {
+            color: var(--cream);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .meditation-card .duration {
+            font-size: 0.9rem;
+            color: var(--salmon);
+            font-style: italic;
+        }
+
+        .meditation-card .play-hint {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--plum) 0%, var(--purple) 100%);
+            border: 1px solid var(--gold);
+            border-radius: 25px;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: rgba(45, 27, 78, 0.5);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tips-section h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .tips-section ul {
+            list-style: none;
+            color: var(--cream);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .tips-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .tips-section li::before {
+            content: "✧";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            margin-top: 2rem;
+            background: rgba(74, 44, 106, 0.4);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            border-radius: 20px;
+        }
+
+        .cta-section p {
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--salmon) 100%);
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(232, 132, 107, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .meditations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1>Guided Meditations</h1>
+        <p class="tagline">Journey inward. Find your light.</p>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+
+        <!-- Intro -->
+        <div class="intro-box">
+            <p>
+                These guided meditations are designed to help you connect with your inner wisdom, 
+                find stillness, and remember who you truly are. Each journey offers a unique pathway 
+                to healing and self-discovery.
+            </p>
+            <p class="quote">"We must stand in our light first to light the way for others."</p>
+        </div>
+
+        <!-- Meditations Grid -->
+        <div class="meditations-grid">
+            <!-- Lightship Meditation -->
+            <a href="meditation-lightship.html" class="meditation-card">
+                <div class="icon">🏠</div>
+                <h2>Lightship Meditation</h2>
+                <p>A guided journey to your inner sanctuary, a place of safety, wisdom, and deep connection with your higher self.</p>
+                <span class="duration">Duration: ~15 minutes</span>
+                <span class="play-hint">Listen Now</span>
+            </a>
+
+            <!-- The Healing Light -->
+            <a href="meditation-healing-light.html" class="meditation-card">
+                <div class="icon">✨</div>
+                <h2>The Healing Light</h2>
+                <p>Allow healing energy to flow through every cell of your being. Release what no longer serves you and welcome renewal.</p>
+                <span class="duration">Duration: ~12 minutes</span>
+                <span class="play-hint">Listen Now</span>
+            </a>
+        </div>
+
+        <!-- Tips -->
+        <div class="tips-section">
+            <h3>For the Best Experience</h3>
+            <ul>
+                <li>Find a quiet, comfortable space where you will not be disturbed</li>
+                <li>Use headphones for the full immersive experience</li>
+                <li>Sit or lie down in a relaxed position</li>
+                <li>Take three deep breaths before pressing play</li>
+                <li>Allow yourself to receive whatever comes through</li>
+            </ul>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <p>Want personalized guided meditation or healing sessions?</p>
+            <a href="services.html" class="cta-btn">Explore Healing Services</a>
+        </div>
+    </div>
+</body>
+</html>

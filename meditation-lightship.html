@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightship Meditation | Maggie Mayne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-purple: #1a0a2e;
+            --purple: #2d1b4e;
+            --plum: #4a2c6a;
+            --coral: #e8846b;
+            --salmon: #f4a293;
+            --gold: #d4a853;
+            --gold-light: #e8c87a;
+            --cream: #fdf8f3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(180deg, #1a0a2e 0%, #2d1b4e 30%, #3d2160 60%, #2d1b4e 100%);
+            min-height: 100vh;
+            color: var(--cream);
+        }
+
+        /* Header */
+        .meditation-header {
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .lighthouse-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 10px rgba(212, 168, 83, 0.5));
+            }
+            50% { 
+                filter: drop-shadow(0 0 30px rgba(212, 168, 83, 0.9));
+            }
+        }
+
+        .meditation-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            background: linear-gradient(180deg, var(--coral) 0%, var(--salmon) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+        }
+
+        .meditation-header .tagline {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        /* Container */
+        .meditation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        /* Back Link */
+        .back-link {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            z-index: 10;
+            transition: color 0.3s ease;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.05em;
+        }
+
+        .back-link:hover {
+            color: var(--salmon);
+        }
+
+        /* Player Card */
+        .player-card {
+            background: rgba(74, 44, 106, 0.4);
+            border: 1px solid rgba(212, 168, 83, 0.4);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+        }
+
+        /* Visualization */
+        .visualization {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+            margin-bottom: 2rem;
+        }
+
+        .wave-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .wave-bar {
+            width: 5px;
+            height: 20px;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--coral) 100%);
+            border-radius: 3px;
+            transition: height 0.1s ease;
+        }
+
+        .playing .wave-bar {
+            animation: wave 0.8s ease-in-out infinite;
+        }
+
+        .wave-bar:nth-child(1) { animation-delay: 0s; }
+        .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+        .wave-bar:nth-child(6) { animation-delay: 0.5s; }
+        .wave-bar:nth-child(7) { animation-delay: 0.4s; }
+        .wave-bar:nth-child(8) { animation-delay: 0.3s; }
+        .wave-bar:nth-child(9) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(10) { animation-delay: 0.1s; }
+        .wave-bar:nth-child(11) { animation-delay: 0s; }
+
+        @keyframes wave {
+            0%, 100% { height: 20px; }
+            50% { height: 70px; }
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 3px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--coral) 100%);
+            width: 0%;
+            transition: width 0.1s linear;
+            border-radius: 3px;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .control-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--plum) 0%, var(--purple) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(212, 168, 83, 0.2);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(212, 168, 83, 0.4);
+        }
+
+        .play-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--gold);
+            margin-left: 4px;
+        }
+
+        .play-btn.playing svg {
+            margin-left: 0;
+        }
+
+        .skip-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Volume */
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .volume-slider {
+            width: 120px;
+            height: 4px;
+            -webkit-appearance: none;
+            background: rgba(212, 168, 83, 0.3);
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: var(--gold);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .volume-icon {
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        /* Sacred Box */
+        .sacred-box {
+            background: rgba(45, 27, 78, 0.5);
+            border: 1px solid rgba(212, 168, 83, 0.4);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .sacred-box h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .sacred-box p {
+            color: var(--cream);
+            line-height: 1.9;
+            font-size: 1.1rem;
+        }
+
+        .sacred-box .quote {
+            font-style: italic;
+            color: var(--gold);
+            margin-top: 1rem;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: rgba(45, 27, 78, 0.5);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tips-section h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .tips-section ul {
+            list-style: none;
+            color: var(--cream);
+            font-size: 1rem;
+        }
+
+        .tips-section li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .tips-section li::before {
+            content: "✧";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            margin-top: 2rem;
+            background: rgba(74, 44, 106, 0.4);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            border-radius: 20px;
+        }
+
+        .cta-section p {
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--salmon) 100%);
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(232, 132, 107, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .meditation-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .player-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .controls {
+                gap: 1.5rem;
+            }
+
+            .play-btn {
+                width: 70px;
+                height: 70px;
+            }
+
+            .back-link {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 1rem;
+                display: inline-flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="meditations.html" class="back-link">← All Meditations</a>
+
+    <header class="meditation-header">
+        <div class="lighthouse-icon">🏠</div>
+        <h1>Lightship Meditation</h1>
+        <p class="tagline">A guided journey to your inner sanctuary</p>
+    </header>
+
+    <div class="meditation-container">
+        <div class="player-card">
+            <!-- Visualization -->
+            <div class="visualization" id="visualization">
+                <div class="wave-container">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="time-display">
+                    <span id="current-time">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button class="control-btn skip-btn" id="rewind" title="Rewind 10s">
+                    <svg viewBox="0 0 24 24"><path d="M12.5 3C17.15 3 21.08 6.03 22.47 10.22L20.1 11C19.05 7.81 16.04 5.5 12.5 5.5C10.54 5.5 8.77 6.22 7.38 7.38L10 10H3V3L5.6 5.6C7.45 4 9.85 3 12.5 3M10 12V22H8V14H6V12H10M18 14V20C18 21.11 17.11 22 16 22H14C12.9 22 12 21.1 12 20V14C12 12.9 12.9 12 14 12H16C17.11 12 18 12.9 18 14M14 14V20H16V14H14Z"/></svg>
+                </button>
+
+                <button class="control-btn play-btn" id="play-btn" title="Play">
+                    <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                </button>
+
+                <button class="control-btn skip-btn" id="forward" title="Forward 10s">
+                    <svg viewBox="0 0 24 24"><path d="M11.5 3C6.85 3 2.92 6.03 1.53 10.22L3.9 11C4.95 7.81 7.96 5.5 11.5 5.5C13.46 5.5 15.23 6.22 16.62 7.38L14 10H21V3L18.4 5.6C16.55 4 14.15 3 11.5 3M10 12V22H8V14H6V12H10M18 14V20C18 21.11 17.11 22 16 22H14C12.9 22 12 21.1 12 20V14C12 12.9 12.9 12 14 12H16C17.11 12 18 12.9 18 14M14 14V20H16V14H14Z"/></svg>
+                </button>
+            </div>
+
+            <!-- Volume -->
+            <div class="volume-container">
+                <span class="volume-icon">🔊</span>
+                <input type="range" class="volume-slider" id="volume" min="0" max="1" step="0.1" value="0.8">
+            </div>
+        </div>
+
+        <!-- About -->
+        <div class="sacred-box">
+            <h2>About This Meditation</h2>
+            <p>
+                The Lightship Meditation guides you to your inner sanctuary, a place of safety, 
+                wisdom, and deep connection with your higher self. As a Lighthouse illuminates 
+                the way for others, this meditation helps you find and strengthen your own inner light.
+            </p>
+            <p class="quote">"We must stand in our light first to light the way for others."</p>
+        </div>
+
+        <!-- Tips -->
+        <div class="tips-section">
+            <h3>For the Best Experience</h3>
+            <ul>
+                <li>Find a quiet, comfortable space where you won't be disturbed</li>
+                <li>Use headphones for the full immersive experience</li>
+                <li>Sit or lie down in a relaxed position</li>
+                <li>Take three deep breaths before pressing play</li>
+                <li>Allow yourself to receive whatever comes through</li>
+            </ul>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <p>Want more guided meditations and healing experiences?</p>
+            <a href="services.html" class="cta-btn">Explore Healing Services</a>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audio" preload="metadata">
+        <source src="audio/Lightship.m4a" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Audio Player
+        const audio = document.getElementById('audio');
+        const playBtn = document.getElementById('play-btn');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const progressBar = document.getElementById('progress-bar');
+        const progressFill = document.getElementById('progress-fill');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+        const volumeSlider = document.getElementById('volume');
+        const visualization = document.getElementById('visualization');
+        const rewindBtn = document.getElementById('rewind');
+        const forwardBtn = document.getElementById('forward');
+
+        // Format time
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // Load metadata
+        audio.addEventListener('loadedmetadata', () => {
+            durationEl.textContent = formatTime(audio.duration);
+        });
+
+        // Play/Pause
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                playBtn.classList.add('playing');
+                visualization.classList.add('playing');
+            } else {
+                audio.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+                playBtn.classList.remove('playing');
+                visualization.classList.remove('playing');
+            }
+        });
+
+        // Update progress
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressFill.style.width = progress + '%';
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        // Click progress bar
+        progressBar.addEventListener('click', (e) => {
+            const rect = progressBar.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            audio.currentTime = percent * audio.duration;
+        });
+
+        // Volume
+        volumeSlider.addEventListener('input', () => {
+            audio.volume = volumeSlider.value;
+        });
+
+        // Skip buttons
+        rewindBtn.addEventListener('click', () => {
+            audio.currentTime = Math.max(0, audio.currentTime - 10);
+        });
+
+        forwardBtn.addEventListener('click', () => {
+            audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+        });
+
+        // Reset on end
+        audio.addEventListener('ended', () => {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            playBtn.classList.remove('playing');
+            visualization.classList.remove('playing');
+            progressFill.style.width = '0%';
+        });
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                playBtn.click();
+            } else if (e.code === 'ArrowLeft') {
+                rewindBtn.click();
+            } else if (e.code === 'ArrowRight') {
+                forwardBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>
