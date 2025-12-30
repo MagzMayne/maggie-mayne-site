@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul Architecture™ 19-Domain Assessment | Maggie Mayne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --pink: #FF69B4;
+            --pink-dark: #C71585;
+            --gold: #FFD700;
+            --purple: #9932CC;
+            --cream: #FFF8F0;
+            --deep: #0a0510;
+            --teal: #20B2AA;
+        }
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--deep);
+            color: var(--cream);
+            line-height: 1.7;
+            font-size: 18px;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 2rem;
+            border-bottom: 1px solid rgba(255,105,180,0.3);
+        }
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--pink);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { color: var(--gold); }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            flex-wrap: wrap;
+            background: rgba(10,5,16,0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,105,180,0.1);
+            border: 1px solid rgba(255,105,180,0.3);
+            border-radius: 25px;
+            color: var(--cream);
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: rgba(255,105,180,0.3);
+            border-color: var(--pink);
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .tab-content.active { display: block; }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Form Styles */
+        .form-section {
+            background: rgba(255,105,180,0.05);
+            border: 1px solid rgba(255,105,180,0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-section h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--pink);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,105,180,0.2);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label {
+            display: block;
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255,248,240,0.05);
+            border: 1px solid rgba(255,105,180,0.3);
+            border-radius: 8px;
+            color: var(--cream);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--pink);
+        }
+        
+        /* Scale Rating */
+        .scale-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .scale-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,105,180,0.3);
+            background: transparent;
+            color: var(--cream);
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .scale-btn:hover, .scale-btn.selected {
+            background: var(--pink);
+            border-color: var(--pink);
+        }
+        .scale-label {
+            font-size: 0.8rem;
+            color: rgba(255,248,240,0.6);
+        }
+        
+        /* Domain Cards */
+        .domain-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .domain-btn {
+            padding: 0.5rem;
+            background: rgba(255,105,180,0.1);
+            border: 1px solid rgba(255,105,180,0.2);
+            border-radius: 10px;
+            color: var(--cream);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .domain-btn:hover { border-color: var(--pink); }
+        .domain-btn.completed { background: rgba(50,205,50,0.2); border-color: #32CD32; }
+        .domain-btn .emoji { font-size: 1.2rem; display: block; }
+        
+        /* Domain Section */
+        .domain-section {
+            background: rgba(255,105,180,0.05);
+            border: 1px solid rgba(255,105,180,0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .domain-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .domain-emoji { font-size: 2rem; }
+        .domain-info h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+        }
+        .domain-info p {
+            font-size: 0.9rem;
+            color: var(--pink);
+        }
+        
+        /* Progress */
+        .progress-bar {
+            height: 8px;
+            background: rgba(255,105,180,0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink), var(--gold));
+            transition: width 0.3s;
+        }
+        
+        /* Results */
+        .result-card {
+            background: rgba(255,215,0,0.08);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .result-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .essence-tag {
+            display: inline-block;
+            padding: 0.3rem 0.75rem;
+            background: rgba(255,105,180,0.2);
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin: 0.25rem;
+        }
+        
+        /* Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,105,180,0.2);
+        }
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--pink-dark), var(--pink));
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .nav-btn:hover { transform: translateY(-2px); }
+        .nav-btn.gold { background: linear-gradient(135deg, #DAA520, var(--gold)); color: var(--deep); }
+        
+        /* Checkbox styling */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(255,105,180,0.05);
+            border-radius: 8px;
+        }
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--pink);
+        }
+        
+        @media (max-width: 768px) {
+            .tabs { gap: 0.3rem; }
+            .tab-btn { padding: 0.5rem 1rem; font-size: 0.75rem; }
+            .tab-content { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🌸 Soul Architecture™ Assessment</h1>
+    <p>19-Domain Holistic Evaluation System</p>
+    <a href="index.html" class="back-link">← Back to Sacred Map</a>
+</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('intake')">1. Client Intake</button>
+    <button class="tab-btn" onclick="switchTab('assessment')">2. 19-Domain Assessment</button>
+    <button class="tab-btn" onclick="switchTab('kinesiology')">3. Applied Kinesiology</button>
+    <button class="tab-btn" onclick="switchTab('results')">4. Results & Protocol</button>
+</div>
+
+<!-- TAB 1: CLIENT INTAKE -->
+<div id="intake" class="tab-content active">
+    <div class="section-header">
+        <h2>📋 Client Intake Form</h2>
+        <p>Basic information and health history</p>
+    </div>
+    
+    <div class="form-section">
+        <h3>Personal Information</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="clientName" required>
+            </div>
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" id="dob">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" id="phone">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Occupation</label>
+                <input type="text" id="occupation">
+            </div>
+            <div class="form-group">
+                <label>How did you hear about us?</label>
+                <input type="text" id="referral">
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-section">
+        <h3>Health History</h3>
+        <div class="form-group">
+            <label>Current Medications</label>
+            <textarea id="medications" rows="2" placeholder="List any current medications..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>Previous Surgeries or Major Injuries</label>
+            <textarea id="surgeries" rows="2" placeholder="List any surgeries or major injuries..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>Current Health Conditions (check all that apply)</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" value="headaches"> Headaches/Migraines</label>
+                <label class="checkbox-item"><input type="checkbox" value="backpain"> Back Pain</label>
+                <label class="checkbox-item"><input type="checkbox" value="neckpain"> Neck/Shoulder Pain</label>
+                <label class="checkbox-item"><input type="checkbox" value="anxiety"> Anxiety</label>
+                <label class="checkbox-item"><input type="checkbox" value="depression"> Depression</label>
+                <label class="checkbox-item"><input type="checkbox" value="insomnia"> Sleep Issues</label>
+                <label class="checkbox-item"><input type="checkbox" value="digestive"> Digestive Issues</label>
+                <label class="checkbox-item"><input type="checkbox" value="autoimmune"> Autoimmune Condition</label>
+                <label class="checkbox-item"><input type="checkbox" value="fibromyalgia"> Fibromyalgia</label>
+                <label class="checkbox-item"><input type="checkbox" value="arthritis"> Arthritis</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Are you pregnant or nursing?</label>
+                <select id="pregnant">
+                    <option value="no">No</option>
+                    <option value="pregnant">Yes - Pregnant</option>
+                    <option value="nursing">Yes - Nursing</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-section">
+        <h3>Self-Assessment (1 = Poor, 5 = Excellent)</h3>
+        <div class="form-group">
+            <label>How would you rate your overall SLEEP?</label>
+            <div class="scale-group">
+                <span class="scale-label">Poor</span>
+                <button class="scale-btn" data-scale="sleep" data-value="1">1</button>
+                <button class="scale-btn" data-scale="sleep" data-value="2">2</button>
+                <button class="scale-btn" data-scale="sleep" data-value="3">3</button>
+                <button class="scale-btn" data-scale="sleep" data-value="4">4</button>
+                <button class="scale-btn" data-scale="sleep" data-value="5">5</button>
+                <span class="scale-label">Excellent</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>How would you rate your overall HEALTH?</label>
+            <div class="scale-group">
+                <span class="scale-label">Poor</span>
+                <button class="scale-btn" data-scale="health" data-value="1">1</button>
+                <button class="scale-btn" data-scale="health" data-value="2">2</button>
+                <button class="scale-btn" data-scale="health" data-value="3">3</button>
+                <button class="scale-btn" data-scale="health" data-value="4">4</button>
+                <button class="scale-btn" data-scale="health" data-value="5">5</button>
+                <span class="scale-label">Excellent</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>How would you rate your SELF-CARE practices?</label>
+            <div class="scale-group">
+                <span class="scale-label">Poor</span>
+                <button class="scale-btn" data-scale="selfcare" data-value="1">1</button>
+                <button class="scale-btn" data-scale="selfcare" data-value="2">2</button>
+                <button class="scale-btn" data-scale="selfcare" data-value="3">3</button>
+                <button class="scale-btn" data-scale="selfcare" data-value="4">4</button>
+                <button class="scale-btn" data-scale="selfcare" data-value="5">5</button>
+                <span class="scale-label">Excellent</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>How would you rate your HYDRATION?</label>
+            <div class="scale-group">
+                <span class="scale-label">Poor</span>
+                <button class="scale-btn" data-scale="hydration" data-value="1">1</button>
+                <button class="scale-btn" data-scale="hydration" data-value="2">2</button>
+                <button class="scale-btn" data-scale="hydration" data-value="3">3</button>
+                <button class="scale-btn" data-scale="hydration" data-value="4">4</button>
+                <button class="scale-btn" data-scale="hydration" data-value="5">5</button>
+                <span class="scale-label">Excellent</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-section">
+        <h3>Goals & Intentions</h3>
+        <div class="form-group">
+            <label>What are your wellness goals?</label>
+            <textarea id="goals" rows="3" placeholder="What would you like to achieve through this work?"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Are you ALL-IN? Ready to do the work?</label>
+            <select id="allIn">
+                <option value="">Select...</option>
+                <option value="yes">YES! I'm ready!</option>
+                <option value="mostly">Mostly ready</option>
+                <option value="exploring">Just exploring</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="nav-buttons">
+        <div></div>
+        <button class="nav-btn" onclick="switchTab('assessment')">Continue to Assessment →</button>
+    </div>
+</div>
+
+<!-- TAB 2: 19-DOMAIN ASSESSMENT -->
+<div id="assessment" class="tab-content">
+    <div class="section-header">
+        <h2>🌸 19-Domain Assessment</h2>
+        <p>Rate each domain from 1 (needs support) to 5 (thriving)</p>
+    </div>
+    
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+    
+    <div id="domainAssessment">
+        <!-- Domain 1 -->
+        <div class="domain-section">
+            <div class="domain-header">
+                <span class="domain-emoji">💗</span>
+                <div class="domain-info">
+                    <h3>Domain 1: Heart Center</h3>
+                    <p>The Queen • Fire • Leo • Law of Love</p>
+                </div>
+            </div>
+            <p style="margin-bottom: 1rem;">How connected do you feel to your heart? Do you practice self-love?</p>
+            <div class="scale-group">
+                <span class="scale-label">Needs Support</span>
+                <button class="scale-btn" data-domain="1" data-value="1">1</button>
+                <button class="scale-btn" data-domain="1" data-value="2">2</button>
+                <button class="scale-btn" data-domain="1" data-value="3">3</button>
+                <button class="scale-btn" data-domain="1" data-value="4">4</button>
+                <button class="scale-btn" data-domain="1" data-value="5">5</button>
+                <span class="scale-label">Thriving</span>
+            </div>
+        </div>
+        
+        <!-- Domain 2 -->
+        <div class="domain-section">
+            <div class="domain-header">
+                <span class="domain-emoji">🧠</span>
+                <div class="domain-info">
+                    <h3>Domain 2: Mind Temple</h3>
+                    <p>The High Priestess • Air • Aquarius • Law of Correspondence</p>
+                </div>
+            </div>
+            <p style="margin-bottom: 1rem;">How is your mental clarity? Do you feel peace in your mind?</p>
+            <div class="scale-group">
+                <span class="scale-label">Needs Support</span>
+                <button class="scale-btn" data-domain="2" data-value="1">1</button>
+                <button class="scale-btn" data-domain="2" data-value="2">2</button>
+                <button class="scale-btn" data-domain="2" data-value="3">3</button>
+                <button class="scale-btn" data-domain="2" data-value="4">4</button>
+                <button class="scale-btn" data-domain="2" data-value="5">5</button>
+                <span class="scale-label">Thriving</span>
+            </div>
+        </div>
+        
+        <!-- Domain 3 -->
+        <div class="domain-section">
+            <div class="domain-header">
+                <span class="domain-emoji">💆</span>
+                <div class="domain-info">
+                    <h3>Domain 3: Healing</h3>
+                    <p>The Sacred Healer • Water • Cancer • Law of Nature</p>
+                </div>
+            </div>
+            <p style="margin-bottom: 1rem;">How is your relationship with your body's healing capacity?</p>
+            <div class="scale-group">
+                <span class="scale-label">Needs Support</span>
+                <button class="scale-btn" data-domain="3" data-value="1">1</button>
+                <button class="scale-btn" data-domain="3" data-value="2">2</button>
+                <button class="scale-btn" data-domain="3" data-value="3">3</button>
+                <button class="scale-btn" data-domain="3" data-value="4">4</button>
+                <button class="scale-btn" data-domain="3" data-value="5">5</button>
+                <span class="scale-label">Thriving</span>
+            </div>
+        </div>
+        
+        <!-- Domain 4 -->
+        <div class="domain-section">
+            <div class="domain-header">
+                <span class="domain-emoji">🔮</span>
+                <div class="domain-info">
+                    <h3>Domain 4: Oracle</h3>
+                    <p>The Divine Seer • Aether • Pisces • Law of Warning</p>
+                </div>
+            </div>
+            <p style="margin-bottom: 1rem;">How connected are you to your intuition? Do you trust your inner knowing?</p>
+            <div class="scale-group">
+                <span class="scale-label">Needs Support</span>
+                <button class="scale-btn" data-domain="4" data-value="1">1</button>
+                <button class="scale-btn" data-domain="4" data-value="2">2</button>
+                <button class="scale-btn" data-domain="4" data-value="3">3</button>
+                <button class="scale-btn" data-domain="4" data-value="4">4</button>
+                <button class="scale-btn" data-domain="4" data-value="5">5</button>
+                <span class="scale-label">Thriving</span>
+            </div>
+        </div>
+        
+        <!-- Domain 5 -->
+        <div class="domain-section">
+            <div class="domain-header">
+                <span class="domain-emoji">📚</span>
+                <div class="domain-info">
+                    <h3>Domain 5: Education</h3>
+                    <p>The Wise Woman • Earth • Virgo • Law of Sharing</p>
+                </div>
+            </div>
+            <p style="margin-bottom: 1rem;">Are you learning and growing? Do you share your wisdom?</p>
+            <div class="scale-group">
+                <span class="scale-label">Needs Support</span>
+                <button class="scale-btn" data-domain="5" data-value="1">1</button>
+                <button class="scale-btn" data-domain="5" data-value="2">2</button>
+                <button class="scale-btn" data-domain="5" data-value="3">3</button>
+                <button class="scale-btn" data-domain="5" data-value="4">4</button>
+                <button class="scale-btn" data-domain="5" data-value="5">5</button>
+                <span class="scale-label">Thriving</span>
+            </div>
+        </div>
+        
+        <!-- Domain 6 -->
+        <div class="domain-section">
+            <div class="domain-header">
+                <span class="domain-emoji">🎭</span>
+                <div class="domain-info">
+                    <h3>Domain 6: Expression</h3>
+                    <p>The Songstress • Fire • Sagittarius • Law of Manifestation</p>
+                </div>
+            </div>
+            <p style="margin-bottom: 1rem;">Are you expressing your authentic self? Do you speak your truth?</p>
+            <div class="scale-group">
+                <span class="scale-label">Needs Support</span>
+                <button class="scale-btn" data-domain="6" data-value="1">1</button>
+                <button class="scale-btn" data-domain="6" data-value="2">2</button>
+                <button class="scale-btn" data-domain="6" data-value="3">3</button>
+                <button class="scale-btn" data-domain="6" data-value="4">4</button>
+                <button class="scale-btn" data-domain="6" data-value="5">5</button>
+                <span class="scale-label">Thriving</span>
+            </div>
+        </div>
+        
+        <!-- Domain 7 -->
+        <div class="domain-section">
+            <div class="domain-header">
+                <span class="domain-emoji">🌐</span>
+                <div class="domain-info">
+                    <h3>Domain 7: Community</h3>
+                    <p>The Earth Mother • Earth • Taurus • Law of Compensation</p>
+                </div>
+            </div>
+            <p style="margin-bottom: 1rem;">Do you have supportive relationships? Do you feel connected to community?</p>
+            <div class="scale-group">
+                <span class="scale-label">Needs Support</span>
+                <button class="scale-btn" data-domain="7" data-value="1">1</button>
+                <button class="scale-btn" data-domain="7" data-value="2">2</button>
+                <button class="scale-btn" data-domain="7" data-value="3">3</button>
+                <button class="scale-btn" data-domain="7" data-value="4">4</button>
+                <button class="scale-btn" data-domain="7" data-value="5">5</button>
+                <span class="scale-label">Thriving</span>
+            </div>
+        </div>
+        
+        <!-- Domains 8-19 abbreviated for file size -->
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">🌕</span><div class="domain-info"><h3>Domain 8: The Spark</h3><p>The Light Bearer • Spirit • Law of Love</p></div></div>
+            <p style="margin-bottom: 1rem;">Do you feel your inner fire? Are you connected to source energy?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="8" data-value="1">1</button><button class="scale-btn" data-domain="8" data-value="2">2</button><button class="scale-btn" data-domain="8" data-value="3">3</button><button class="scale-btn" data-domain="8" data-value="4">4</button><button class="scale-btn" data-domain="8" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">💰</span><div class="domain-info"><h3>Domain 9: Abundance</h3><p>The Empress • Earth • Taurus • Law of Generation</p></div></div>
+            <p style="margin-bottom: 1rem;">How is your relationship with abundance and prosperity?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="9" data-value="1">1</button><button class="scale-btn" data-domain="9" data-value="2">2</button><button class="scale-btn" data-domain="9" data-value="3">3</button><button class="scale-btn" data-domain="9" data-value="4">4</button><button class="scale-btn" data-domain="9" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">🎵</span><div class="domain-info"><h3>Domain 10: Sound</h3><p>The Sound Healer • Aether • Libra • Law of Harmony</p></div></div>
+            <p style="margin-bottom: 1rem;">Are you in harmony? Do you use sound for healing?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="10" data-value="1">1</button><button class="scale-btn" data-domain="10" data-value="2">2</button><button class="scale-btn" data-domain="10" data-value="3">3</button><button class="scale-btn" data-domain="10" data-value="4">4</button><button class="scale-btn" data-domain="10" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">🌉</span><div class="domain-info"><h3>Domain 11: Bridge</h3><p>The Warrior Queen • Air • Libra • Law of Cause and Effect</p></div></div>
+            <p style="margin-bottom: 1rem;">Are you standing in your power? Fighting for what's right?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="11" data-value="1">1</button><button class="scale-btn" data-domain="11" data-value="2">2</button><button class="scale-btn" data-domain="11" data-value="3">3</button><button class="scale-btn" data-domain="11" data-value="4">4</button><button class="scale-btn" data-domain="11" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">📿</span><div class="domain-info"><h3>Domain 12: The Word</h3><p>The Poetess • Aether • Gemini • Law of Affinity</p></div></div>
+            <p style="margin-bottom: 1rem;">Are your words aligned with your truth? Do you speak with intention?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="12" data-value="1">1</button><button class="scale-btn" data-domain="12" data-value="2">2</button><button class="scale-btn" data-domain="12" data-value="3">3</button><button class="scale-btn" data-domain="12" data-value="4">4</button><button class="scale-btn" data-domain="12" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">🔥</span><div class="domain-info"><h3>Domain 13: The Flame</h3><p>The Fire Priestess • Fire • Aries • Law of Evolution</p></div></div>
+            <p style="margin-bottom: 1rem;">Are you transforming? Working through what needs to burn away?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="13" data-value="1">1</button><button class="scale-btn" data-domain="13" data-value="2">2</button><button class="scale-btn" data-domain="13" data-value="3">3</button><button class="scale-btn" data-domain="13" data-value="4">4</button><button class="scale-btn" data-domain="13" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">💎</span><div class="domain-info"><h3>Domain 14: The Crystal</h3><p>The Crystal Keeper • Earth • Capricorn • Law of Inquiry</p></div></div>
+            <p style="margin-bottom: 1rem;">Do you have clarity? Are you working with crystalline energy?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="14" data-value="1">1</button><button class="scale-btn" data-domain="14" data-value="2">2</button><button class="scale-btn" data-domain="14" data-value="3">3</button><button class="scale-btn" data-domain="14" data-value="4">4</button><button class="scale-btn" data-domain="14" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">🌊</span><div class="domain-info"><h3>Domain 15: The Flow</h3><p>The Water Bearer • Water • Scorpio • Law of Flow</p></div></div>
+            <p style="margin-bottom: 1rem;">Are you in flow? Properly hydrated? Emotionally fluid?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="15" data-value="1">1</button><button class="scale-btn" data-domain="15" data-value="2">2</button><button class="scale-btn" data-domain="15" data-value="3">3</button><button class="scale-btn" data-domain="15" data-value="4">4</button><button class="scale-btn" data-domain="15" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">🌬️</span><div class="domain-info"><h3>Domain 16: The Breath</h3><p>The Wind Dancer • Air • Gemini • Law of Three</p></div></div>
+            <p style="margin-bottom: 1rem;">How is your breath? Do you practice breathwork?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="16" data-value="1">1</button><button class="scale-btn" data-domain="16" data-value="2">2</button><button class="scale-btn" data-domain="16" data-value="3">3</button><button class="scale-btn" data-domain="16" data-value="4">4</button><button class="scale-btn" data-domain="16" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">🌍</span><div class="domain-info"><h3>Domain 17: The Body</h3><p>The Earth Mother • Earth • Virgo • Law of Nature</p></div></div>
+            <p style="margin-bottom: 1rem;">How is your physical body? Do you care for it as your temple?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="17" data-value="1">1</button><button class="scale-btn" data-domain="17" data-value="2">2</button><button class="scale-btn" data-domain="17" data-value="3">3</button><button class="scale-btn" data-domain="17" data-value="4">4</button><button class="scale-btn" data-domain="17" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">📜</span><div class="domain-info"><h3>Domain 18: Akashic</h3><p>The Record Keeper • Aether • Law of Correspondence</p></div></div>
+            <p style="margin-bottom: 1rem;">Are you aware of your patterns? Connected to ancestral wisdom?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="18" data-value="1">1</button><button class="scale-btn" data-domain="18" data-value="2">2</button><button class="scale-btn" data-domain="18" data-value="3">3</button><button class="scale-btn" data-domain="18" data-value="4">4</button><button class="scale-btn" data-domain="18" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+        
+        <div class="domain-section">
+            <div class="domain-header"><span class="domain-emoji">👁️</span><div class="domain-info"><h3>Domain 19: The Void</h3><p>The Void Priestess • Spirit • Law of Empty Spaces</p></div></div>
+            <p style="margin-bottom: 1rem;">Can you sit in stillness? Are you comfortable with the unknown?</p>
+            <div class="scale-group"><span class="scale-label">Needs Support</span><button class="scale-btn" data-domain="19" data-value="1">1</button><button class="scale-btn" data-domain="19" data-value="2">2</button><button class="scale-btn" data-domain="19" data-value="3">3</button><button class="scale-btn" data-domain="19" data-value="4">4</button><button class="scale-btn" data-domain="19" data-value="5">5</button><span class="scale-label">Thriving</span></div>
+        </div>
+    </div>
+    
+    <div class="nav-buttons">
+        <button class="nav-btn" onclick="switchTab('intake')">← Back to Intake</button>
+        <button class="nav-btn" onclick="switchTab('kinesiology')">Continue to Kinesiology →</button>
+    </div>
+</div>
+
+<!-- TAB 3: APPLIED KINESIOLOGY -->
+<div id="kinesiology" class="tab-content">
+    <div class="section-header">
+        <h2>💪 Applied Kinesiology</h2>
+        <p>Muscle testing and meridian assessment</p>
+    </div>
+    
+    <div class="form-section">
+        <h3>Muscle Response Testing</h3>
+        <p style="margin-bottom: 1rem; color: rgba(255,248,240,0.8);">For practitioner use during session. Note weak muscle responses.</p>
+        
+        <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox" id="m-deltoid"> Deltoid (Lung/LI)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-pectoralis"> Pectoralis Major (Stomach)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-latissimus"> Latissimus Dorsi (Spleen)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-subscapularis"> Subscapularis (Heart)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-quadriceps"> Quadriceps (Small Intestine)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-peroneus"> Peroneus (Bladder)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-psoas"> Psoas (Kidney)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-gluteus"> Gluteus Medius (Circulation)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-teres"> Teres Minor (Triple Warmer)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-anterior"> Anterior Deltoid (Gallbladder)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-popliteus"> Popliteus (Liver)</label>
+            <label class="checkbox-item"><input type="checkbox" id="m-supraspinatus"> Supraspinatus (Central/Governing)</label>
+        </div>
+    </div>
+    
+    <div class="form-section">
+        <h3>Touch For Health Elements</h3>
+        <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox" id="e-fire"> 🔥 Fire (Heart, SI, TW, Circulation)</label>
+            <label class="checkbox-item"><input type="checkbox" id="e-earth"> 🌍 Earth (Stomach, Spleen)</label>
+            <label class="checkbox-item"><input type="checkbox" id="e-metal"> ⚪ Metal (Lung, Large Intestine)</label>
+            <label class="checkbox-item"><input type="checkbox" id="e-water"> 💧 Water (Kidney, Bladder)</label>
+            <label class="checkbox-item"><input type="checkbox" id="e-wood"> 🌲 Wood (Liver, Gallbladder)</label>
+        </div>
+    </div>
+    
+    <div class="form-section">
+        <h3>Practitioner Notes</h3>
+        <div class="form-group">
+            <label>Session Observations</label>
+            <textarea id="kinesiologyNotes" rows="4" placeholder="Note findings from muscle testing, meridian assessment, etc."></textarea>
+        </div>
+    </div>
+    
+    <div class="nav-buttons">
+        <button class="nav-btn" onclick="switchTab('assessment')">← Back to Assessment</button>
+        <button class="nav-btn gold" onclick="generateResults()">✨ Generate Protocol ✨</button>
+    </div>
+</div>
+
+<!-- TAB 4: RESULTS -->
+<div id="results" class="tab-content">
+    <div class="section-header">
+        <h2>✨ Soul Architecture™ Protocol</h2>
+        <p>Your personalized healing recommendations</p>
+    </div>
+    
+    <div id="resultsContent">
+        <p style="text-align: center; color: rgba(255,248,240,0.6); padding: 3rem;">
+            Complete the assessment to generate your personalized protocol.
+        </p>
+    </div>
+    
+    <div class="nav-buttons">
+        <button class="nav-btn" onclick="switchTab('kinesiology')">← Back to Kinesiology</button>
+        <button class="nav-btn gold" onclick="window.print()">🖨️ Print Protocol</button>
+    </div>
+</div>
+
+<script>
+// Tab switching
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    document.querySelector(`[onclick="switchTab('${tabId}')"]`).classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+// Scale button selection
+document.querySelectorAll('.scale-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const group = this.parentElement;
+        group.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+        updateProgress();
+    });
+});
+
+// Update progress bar
+function updateProgress() {
+    const total = 19;
+    const completed = document.querySelectorAll('[data-domain].selected').length;
+    const unique = new Set();
+    document.querySelectorAll('[data-domain].selected').forEach(b => unique.add(b.dataset.domain));
+    const pct = (unique.size / total) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+}
+
+// Generate results
+function generateResults() {
+    const scores = {};
+    document.querySelectorAll('[data-domain].selected').forEach(btn => {
+        scores[btn.dataset.domain] = parseInt(btn.dataset.value);
+    });
+    
+    const domainNames = {
+        1: '💗 Heart Center', 2: '🧠 Mind Temple', 3: '💆 Healing', 4: '🔮 Oracle',
+        5: '📚 Education', 6: '🎭 Expression', 7: '🌐 Community', 8: '🌕 The Spark',
+        9: '💰 Abundance', 10: '🎵 Sound', 11: '🌉 Bridge', 12: '📿 The Word',
+        13: '🔥 The Flame', 14: '💎 The Crystal', 15: '🌊 The Flow', 16: '🌬️ The Breath',
+        17: '🌍 The Body', 18: '📜 Akashic', 19: '👁️ The Void'
+    };
+    
+    let html = '<div class="result-card"><h3>🎯 Priority Domains (Needs Support)</h3>';
+    const lowScores = Object.entries(scores).filter(([k,v]) => v <= 2).sort((a,b) => a[1] - b[1]);
+    if (lowScores.length > 0) {
+        lowScores.forEach(([domain, score]) => {
+            html += `<p style="margin: 0.5rem 0;">${domainNames[domain]} - Score: ${score}/5</p>`;
+        });
+    } else {
+        html += '<p>No critical areas identified. All domains scoring 3+.</p>';
+    }
+    html += '</div>';
+    
+    html += '<div class="result-card"><h3>💪 Strengths (Thriving)</h3>';
+    const highScores = Object.entries(scores).filter(([k,v]) => v >= 4).sort((a,b) => b[1] - a[1]);
+    if (highScores.length > 0) {
+        highScores.forEach(([domain, score]) => {
+            html += `<p style="margin: 0.5rem 0;">${domainNames[domain]} - Score: ${score}/5</p>`;
+        });
+    } else {
+        html += '<p>Keep building! Your strengths are developing.</p>';
+    }
+    html += '</div>';
+    
+    html += '<div class="result-card"><h3>🌸 Recommended Next Steps</h3>';
+    html += '<p>Based on your assessment:</p><ul style="margin-left: 1.5rem; margin-top: 0.5rem;">';
+    html += '<li>Book a 90-Min Soul-Lit Session for hands-on healing</li>';
+    html += '<li>Use the Flower Essence Protocol Builder for vibrational support</li>';
+    html += '<li>Explore the Sacred Map domains that need attention</li>';
+    html += '<li>Begin daily protocols: Hydration, Breath, Movement</li>';
+    html += '</ul></div>';
+    
+    document.getElementById('resultsContent').innerHTML = html;
+    switchTab('results');
+}
+</script>
+
+</body>
+</html>
