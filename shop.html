@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Digital Shop | The Maggie Way</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-teal: #1a5c5c;
+            --teal-light: #2d8a8a;
+            --coral: #e07850;
+            --coral-soft: #f4a683;
+            --gold: #d4a574;
+            --gold-light: #e8c9a0;
+            --cream: #faf8f5;
+            --cream-dark: #f0ebe3;
+            --text-dark: #2a2a2a;
+            --text-muted: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 50%, #e8dfd3 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Sacred geometry background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(26, 92, 92, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(224, 120, 80, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(212, 165, 116, 0.02) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Flower of Life subtle pattern */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='20' fill='none' stroke='%231a5c5c' stroke-width='0.3' opacity='0.08'/%3E%3Ccircle cx='30' cy='10' r='20' fill='none' stroke='%231a5c5c' stroke-width='0.3' opacity='0.08'/%3E%3Ccircle cx='30' cy='50' r='20' fill='none' stroke='%231a5c5c' stroke-width='0.3' opacity='0.08'/%3E%3Ccircle cx='12.68' cy='20' r='20' fill='none' stroke='%231a5c5c' stroke-width='0.3' opacity='0.08'/%3E%3Ccircle cx='47.32' cy='20' r='20' fill='none' stroke='%231a5c5c' stroke-width='0.3' opacity='0.08'/%3E%3Ccircle cx='12.68' cy='40' r='20' fill='none' stroke='%231a5c5c' stroke-width='0.3' opacity='0.08'/%3E%3Ccircle cx='47.32' cy='40' r='20' fill='none' stroke='%231a5c5c' stroke-width='0.3' opacity='0.08'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(26, 92, 92, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--deep-teal);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: var(--deep-teal);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .header-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--deep-teal);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--coral);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 4rem 0 2rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--deep-teal);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header .stars {
+            color: var(--gold);
+            font-size: 1.2rem;
+            letter-spacing: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(250,248,245,0.95) 100%);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(26, 92, 92, 0.1);
+            box-shadow: 
+                0 4px 20px rgba(0,0,0,0.05),
+                0 0 0 1px rgba(255,255,255,0.8) inset;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--deep-teal), var(--coral), var(--gold));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(26, 92, 92, 0.15),
+                0 0 30px rgba(212, 165, 116, 0.1),
+                0 0 0 1px rgba(255,255,255,0.8) inset;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-icon {
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        .product-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--deep-teal);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-soft) 100%);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .product-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--deep-teal);
+            margin: 1rem 0;
+        }
+
+        .product-price .currency {
+            font-size: 1.5rem;
+            vertical-align: top;
+        }
+
+        .product-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .product-features {
+            text-align: left;
+            background: rgba(26, 92, 92, 0.03);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features li {
+            list-style: none;
+            padding: 0.4rem 0;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-features li::before {
+            content: '✧';
+            color: var(--gold);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--deep-teal) 0%, var(--teal-light) 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(26, 92, 92, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(26, 92, 92, 0.4);
+            background: linear-gradient(135deg, var(--teal-light) 0%, var(--deep-teal) 100%);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-soft) 100%);
+            box-shadow: 0 4px 15px rgba(224, 120, 80, 0.3);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 25px rgba(224, 120, 80, 0.4);
+            background: linear-gradient(135deg, var(--coral-soft) 0%, var(--coral) 100%);
+        }
+
+        /* She Tries / But Watch Section */
+        .media-section {
+            background: linear-gradient(135deg, var(--deep-teal) 0%, #0f3d3d 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .media-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='20' fill='none' stroke='white' stroke-width='0.3' opacity='0.1'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .media-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .media-section .tagline {
+            color: var(--gold-light);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .media-section .quote {
+            color: rgba(255,255,255,0.8);
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .media-section .btn {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--deep-teal);
+        }
+
+        .media-section .btn:hover {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+        }
+
+        /* Visit Shop Link */
+        .shop-link {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .shop-link a {
+            color: var(--coral);
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .shop-link a:hover {
+            color: var(--deep-teal);
+            gap: 1rem;
+        }
+
+        /* Back to Home */
+        .back-home {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .back-home a {
+            color: var(--deep-teal);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-home a:hover {
+            color: var(--coral);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(26, 92, 92, 0.1);
+            margin-top: 4rem;
+        }
+
+        footer .brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--deep-teal);
+            margin-bottom: 0.5rem;
+        }
+
+        footer .mantra {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        footer .copyright {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .products-grid { grid-template-columns: 1fr; }
+            nav { gap: 0.5rem; }
+            nav a { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">✨ Home</a>
+    <a href="oracle-the-seed.html">🔮 Oracle</a>
+    <a href="#shop">🛒 Shop</a>
+    <a href="#books">📚 Books</a>
+    <a href="https://mayneflower.gumroad.com" target="_blank">💰 Gumroad</a>
+</nav>
+
+<div class="container">
+
+    <header>
+        <div class="header-glow"></div>
+        <h1>✨ Digital Shop</h1>
+        <p class="subtitle">Instant downloads for your sacred journey</p>
+        <p class="tagline">Oracle wisdom, games for the soul, and tools for transformation</p>
+    </header>
+
+    <section id="shop">
+        <div class="section-header">
+            <div class="stars">✧ ✧ ✧</div>
+            <h2>Sacred Downloads</h2>
+            <p>Yours forever, the moment you receive them</p>
+        </div>
+
+        <div class="products-grid">
+
+            <!-- The Seed Oracle -->
+            <div class="product-card">
+                <span class="product-icon floating">🔮</span>
+                <span class="product-badge">Bestseller</span>
+                <h3>The Maggie Way Oracle: The Seed</h3>
+                <div class="product-price"><span class="currency">$</span>11.88</div>
+                <p class="product-description">
+                    The complete 70+ page guidebook for The Seed Oracle deck. 
+                    Let this be your Opening. Your Remembering. Your Return.
+                </p>
+                <ul class="product-features">
+                    <li>31 cards (29+2 sacred structure)</li>
+                    <li>Channeled poems & messages</li>
+                    <li>Affirmations for each card</li>
+                    <li>Numerology wisdom</li>
+                    <li>Self-care rituals</li>
+                    <li>Journal reflection prompts</li>
+                </ul>
+                <a href="https://mayneflower.gumroad.com/l/ykzrga" class="btn" target="_blank">
+                    Get the Guidebook ✨
+                </a>
+            </div>
+
+            <!-- LID'Z Game -->
+            <div class="product-card">
+                <span class="product-icon floating" style="animation-delay: -2s;">🎮</span>
+                <span class="product-badge">New Release</span>
+                <h3>"LID'Z" The Tupperware Game</h3>
+                <div class="product-price"><span class="currency">$</span>8.88</div>
+                <p class="product-description">
+                    She tried to organize it. Then she watched the system reveal itself.
+                    Clean your drawer AND your life.
+                </p>
+                <ul class="product-features">
+                    <li>11 games for release & reclamation</li>
+                    <li>Mantras for each game</li>
+                    <li>Conscious messages to carry</li>
+                    <li>Real photos of the chaos</li>
+                    <li>She Tries / But Watch philosophy</li>
+                    <li>Play solo or with others</li>
+                </ul>
+                <a href="https://mayneflower.gumroad.com/l/giuhx" class="btn btn-secondary" target="_blank">
+                    Get the Game 🎯
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- She Tries / But Watch Section -->
+    <section class="media-section">
+        <h2>🎬 She Tries / But Watch Media</h2>
+        <p class="tagline">A Production from OverkorTek</p>
+        <p class="quote">"She tried to organize it. Then she watched the system reveal itself."</p>
+        <p style="color: rgba(255,255,255,0.7); margin-bottom: 2rem;">
+            Games, books, and experiences that honor the invisible labor of daily life 
+            while making space for play, release, and reclamation.
+        </p>
+        <a href="https://www.amazon.com/s?k=maggie+mayne" class="btn" target="_blank">
+            📚 "She Tries / But Watch" on Amazon
+        </a>
+    </section>
+
+    <!-- Books Section -->
+    <section id="books">
+        <div class="section-header">
+            <div class="stars">✧ ✧ ✧</div>
+            <h2>📚 Books on Amazon</h2>
+            <p>9 published works for your healing journey</p>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <span class="product-icon">📖</span>
+                <h3>Weathering "They"</h3>
+                <p class="product-description">Surviving Modern Targeting. A guide for those navigating systems designed to break them.</p>
+                <a href="https://www.amazon.com/Weathering-They-Surviving-Modern-Targeting/dp/B0FNCMKDYR" class="btn" target="_blank">Amazon</a>
+            </div>
+            <div class="product-card">
+                <span class="product-icon">✨</span>
+                <h3>The Maggie Way</h3>
+                <p class="product-description">Soul-Lit MAGIC & Miracles. The philosophy behind everything.</p>
+                <a href="https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH" class="btn" target="_blank">Amazon</a>
+            </div>
+            <div class="product-card">
+                <span class="product-icon">🌹</span>
+                <h3>She Tries, But Watch</h3>
+                <p class="product-description">Poetry and healing. The book behind the movement.</p>
+                <a href="https://www.amazon.com/s?k=maggie+mayne" class="btn" target="_blank">Amazon</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Full Shop -->
+    <div class="shop-link">
+        <a href="https://mayneflower.gumroad.com" target="_blank">
+            Visit the Full Gumroad Shop →
+        </a>
+    </div>
+
+    <!-- Back Home -->
+    <div class="back-home">
+        <a href="index.html">← Back to Soul Architecture™</a>
+    </div>
+
+</div>
+
+<footer>
+    <p class="brand">HEALERS GOING FIRST™</p>
+    <p class="brand">The Maggie Way™ · Soul Architecture™</p>
+    <p class="mantra">"We must stand in our light first to light the way for others."</p>
+    <p class="copyright">© 2025 Maggie Mayne</p>
+</footer>
+
+</body>
+</html>
