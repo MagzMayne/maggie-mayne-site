@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Revolution | Overkor-tek</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #6366f1 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
+        }
+        .glow {
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .float { animation: float 3s ease-in-out infinite; }
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .sparkle { animation: sparkle 2s ease-in-out infinite; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50">
+    
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white p-4 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-bold flex items-center gap-2">
+                🌸 Pink Revolution
+            </a>
+            <div class="flex gap-6 text-sm md:text-base">
+                <a href="index.html" class="text-pink-200 font-bold">Apps</a>
+                <a href="sparkle-squad.html" class="hover:text-pink-200 transition-colors">✨ Sparkle Squad</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="gradient-bg text-white py-16 md:py-24 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-10 left-10 text-6xl float">✨</div>
+            <div class="absolute top-20 right-20 text-4xl float" style="animation-delay: 0.5s">🌸</div>
+            <div class="absolute bottom-10 left-1/4 text-5xl float" style="animation-delay: 1s">💜</div>
+            <div class="absolute bottom-20 right-1/3 text-3xl float" style="animation-delay: 1.5s">⭐</div>
+        </div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                🌸 Pink Revolution 🌸
+            </h1>
+            <p class="text-xl md:text-2xl text-pink-100 mb-2">
+                by Overkor-tek
+            </p>
+            <p class="text-lg text-pink-200 max-w-2xl mx-auto mb-8">
+                Building tools that empower. Technology with heart. 
+                Consciousness meets code. 💜
+            </p>
+            <a href="sparkle-squad.html" class="inline-block bg-white text-pink-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-pink-50 transition-all shadow-lg hover:shadow-xl hover:scale-105">
+                ✨ Try Sparkle Squad FREE ✨
+            </a>
+        </div>
+    </header>
+
+    <!-- Featured App - Sparkle Squad -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        
+        <!-- Sparkle Squad Hero Card -->
+        <div class="mb-12">
+            <a href="sparkle-squad.html" class="block bg-white rounded-3xl shadow-2xl overflow-hidden card-hover transition-all duration-300 border-4 border-pink-200 relative glow">
+                <div class="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-yellow-900 px-4 py-2 rounded-full text-sm font-bold animate-pulse z-10">
+                    🔥 NEW! Try it now!
+                </div>
+                <div class="grid md:grid-cols-2">
+                    <div class="gradient-bg p-8 md:p-12 text-white">
+                        <div class="text-6xl mb-4 sparkle">✨</div>
+                        <h2 class="text-4xl font-bold mb-2">Sparkle Squad</h2>
+                        <p class="text-xl text-pink-100 mb-4">The MOST fun way to clean! 🧹💪🎉</p>
+                        <p class="text-pink-200 mb-6">
+                            Gamified cleaning with secret multipliers, oracle messages, 
+                            constitutional law facts, tech trivia, and social bonuses!
+                        </p>
+                        <div class="text-2xl font-bold">
+                            Let's GOOOO! 🚀
+                        </div>
+                    </div>
+                    <div class="p-8 md:p-12 bg-gradient-to-br from-pink-50 to-purple-50">
+                        <h3 class="font-bold text-gray-800 mb-4 text-lg">🎮 Features:</h3>
+                        <div class="grid grid-cols-2 gap-3 mb-6">
+                            <div class="bg-white rounded-xl p-3 shadow text-center">
+                                <div class="text-2xl">🦸</div>
+                                <div class="text-xs font-bold text-gray-600">Solo Mode</div>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 shadow text-center">
+                                <div class="text-2xl">👯‍♀️</div>
+                                <div class="text-xs font-bold text-gray-600">Team Mode</div>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 shadow text-center">
+                                <div class="text-2xl">🤫</div>
+                                <div class="text-xs font-bold text-gray-600">Secret Bonuses</div>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 shadow text-center">
+                                <div class="text-2xl">📱</div>
+                                <div class="text-xs font-bold text-gray-600">+11 Social Pts</div>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 shadow text-center">
+                                <div class="text-2xl">🔮</div>
+                                <div class="text-xs font-bold text-gray-600">Oracle Messages</div>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 shadow text-center">
+                                <div class="text-2xl">⚖️</div>
+                                <div class="text-xs font-bold text-gray-600">Know Your Rights</div>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 shadow text-center">
+                                <div class="text-2xl">💻</div>
+                                <div class="text-xs font-bold text-gray-600">Tech Trivia</div>
+                            </div>
+                            <div class="bg-white rounded-xl p-3 shadow text-center">
+                                <div class="text-2xl">🧭</div>
+                                <div class="text-xs font-bold text-gray-600">Guide Me</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-xs font-bold">150+ Tasks</span>
+                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-bold">10 Sections</span>
+                            <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs font-bold">28 Badges</span>
+                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-bold">10 Levels</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">N/A Button</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Feature Highlights -->
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">✨ What Makes Sparkle Squad Special ✨</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="bg-white rounded-2xl p-6 shadow-lg text-center hover:scale-105 transition-all">
+                <div class="text-4xl mb-3">🤫</div>
+                <h3 class="font-bold text-gray-800 mb-2">Hidden Points</h3>
+                <p class="text-sm text-gray-500">Task values are SECRET! Discover which tasks are worth more as you play!</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-lg text-center hover:scale-105 transition-all">
+                <div class="text-4xl mb-3">👯‍♀️</div>
+                <h3 class="font-bold text-gray-800 mb-2">Team Multipliers</h3>
+                <p class="text-sm text-gray-500">Work together = mystery bonuses! The more people, the bigger the secret reward!</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-lg text-center hover:scale-105 transition-all">
+                <div class="text-4xl mb-3">📱</div>
+                <h3 class="font-bold text-gray-800 mb-2">Social Bonus</h3>
+                <p class="text-sm text-gray-500">Document your work on socials for +11 bonus points per task! Content creator vibes!</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-lg text-center hover:scale-105 transition-all">
+                <div class="text-4xl mb-3">🔮</div>
+                <h3 class="font-bold text-gray-800 mb-2">Magic Popups</h3>
+                <p class="text-sm text-gray-500">Oracle messages, numerology, constitutional law, tech trivia & life hacks!</p>
+            </div>
+        </div>
+
+        <!-- Funny Badges Section -->
+        <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-3xl p-8 mb-12">
+            <h3 class="text-xl font-bold text-center text-gray-800 mb-6">😂 Funny Badges to Earn (or avoid!)</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🍒 Cherry Picker</span>
+                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🏅 Participation Trophy</span>
+                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">👻 The Ghost</span>
+                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🐺 Lone Wolf</span>
+                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🐷 Point Hog</span>
+                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🚽 Toilet Duty</span>
+                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">👶 Boss Baby</span>
+                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🕐 Fashionably Late</span>
+                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">👑 Sparkle Royalty</span>
+                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🔥 Viral Cleaner</span>
+            </div>
+        </div>
+
+        <!-- Other Apps -->
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-2">📱 Other Apps</h2>
+        <p class="text-center text-gray-500 mb-8">More tools coming soon!</p>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            
+            <!-- Classic Turnover Pro -->
+            <a href="turnover-pro-v2.html" class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover transition-all duration-300 border-2 border-gray-200 relative opacity-75">
+                <div class="absolute top-2 right-2 bg-gray-400 text-white px-2 py-1 rounded-full text-xs font-bold">
+                    CLASSIC
+                </div>
+                <div class="bg-gray-500 p-6 text-white">
+                    <div class="text-3xl mb-2">🏠</div>
+                    <h3 class="text-xl font-bold">Turnover Pro Classic</h3>
+                    <p class="text-gray-300 text-sm">Original Version</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-gray-500 text-sm mb-3">
+                        The original gamified cleaning checklist.
+                    </p>
+                    <div class="text-gray-400 font-bold text-sm">
+                        Launch Classic →
+                    </div>
+                </div>
+            </a>
+
+            <!-- Coming Soon Card 1 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 opacity-50">
+                <div class="bg-gray-400 p-6 text-white">
+                    <div class="text-3xl mb-2">📋</div>
+                    <h3 class="text-xl font-bold">Task Master</h3>
+                    <p class="text-gray-200 text-sm">Project Management</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-gray-400 text-sm mb-3">
+                        Manage projects & track deadlines.
+                    </p>
+                    <div class="text-gray-400 font-bold text-sm">
+                        🔒 Coming Soon
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coming Soon Card 2 -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 opacity-50">
+                <div class="bg-gray-400 p-6 text-white">
+                    <div class="text-3xl mb-2">⚖️</div>
+                    <h3 class="text-xl font-bold">Doc Builder</h3>
+                    <p class="text-gray-200 text-sm">Legal Documents</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-gray-400 text-sm mb-3">
+                        Justice Without Limits toolkit.
+                    </p>
+                    <div class="text-gray-400 font-bold text-sm">
+                        🔒 Coming Soon
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="gradient-bg py-16 px-4 text-white text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4">✨ Ready to make cleaning FUN? ✨</h2>
+            <p class="text-xl text-pink-100 mb-8">
+                Solo or squad - Sparkle Squad makes every turnover an adventure!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="sparkle-squad.html" class="inline-block bg-white text-pink-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-pink-50 transition-all shadow-lg hover:shadow-xl">
+                    🦸 Play Solo
+                </a>
+                <a href="sparkle-squad.html" class="inline-block bg-purple-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-purple-700 transition-all shadow-lg hover:shadow-xl border-2 border-white/30">
+                    👯‍♀️ Squad Up!
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">🌸 Pink Revolution</h3>
+                    <p class="text-gray-400">by Overkor-tek</p>
+                    <p class="text-gray-400 mt-2">Technology with heart. Built with 💜</p>
+                    <p class="text-gray-500 mt-4 text-sm">"Cleaning has never been this lit" 🔥✨</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Apps</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="sparkle-squad.html" class="hover:text-pink-400">✨ Sparkle Squad (NEW!)</a></li>
+                        <li><a href="turnover-pro-v2.html" class="hover:text-pink-400 text-gray-500">Turnover Pro Classic</a></li>
+                        <li><span class="text-gray-600">Task Master (Coming Soon)</span></li>
+                        <li><span class="text-gray-600">Doc Builder (Coming Soon)</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>🌐 JusticeWithoutLimits.org</li>
+                        <li>📱 @MaggieMayne</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>© 2026 Pink Revolution • Overkor-tek • All Rights Reserved</p>
+                <p class="mt-2">🦅 Justice Without Limits • Universal Accountability Solutions 🌸</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
