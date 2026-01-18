@@ -1,0 +1,2543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Sparkle Squad ✨ | Pink Revolution | Overkor-tek</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        .confetti {
+            animation: confetti 3s ease-out forwards;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(236, 72, 153, 0.8); }
+        }
+        .pulse-glow { animation: pulse-glow 2s infinite; }
+        @keyframes bounce-in {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .bounce-in { animation: bounce-in 0.5s ease-out; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .float { animation: float 2s ease-in-out infinite; }
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        .sparkle { animation: sparkle 1s ease-in-out infinite; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // ============================================
+        // TEAM MEMBERS - OVERKOR-TEK CREW 🌸
+        // ============================================
+        const TEAM_MEMBERS = {
+            'D Rebel': { 
+                color: '#00CED1', // Bright Teal/Aqua
+                bgColor: 'bg-teal-500',
+                textColor: 'text-teal-600',
+                bgLight: 'bg-teal-50',
+                borderColor: 'border-teal-200',
+                emoji: '🎸'
+            },
+            'Magz': { 
+                color: '#FF1493', // Neon Pink
+                bgColor: 'bg-pink-500',
+                textColor: 'text-pink-600',
+                bgLight: 'bg-pink-50',
+                borderColor: 'border-pink-200',
+                emoji: '🌸'
+            },
+            'Tiger': { 
+                color: '#8B0000', // Red/Burgundy
+                bgColor: 'bg-red-800',
+                textColor: 'text-red-800',
+                bgLight: 'bg-red-50',
+                borderColor: 'border-red-200',
+                emoji: '🐅'
+            },
+            'Erica': { 
+                color: '#000080', // Navy Blue
+                bgColor: 'bg-blue-900',
+                textColor: 'text-blue-900',
+                bgLight: 'bg-blue-50',
+                borderColor: 'border-blue-200',
+                emoji: '👑'
+            }
+        };
+
+        // ============================================
+        // PROPERTIES - OVERKOR-TEK LOCATIONS
+        // ============================================
+        const PROPERTIES = [
+            { id: 'myrtle', name: 'Myrtle', location: 'Spokane, WA', emoji: '🏠' },
+            { id: 'hub', name: 'HUB', location: 'Sandpoint, ID', emoji: '🏡' },
+        ];
+
+        // ============================================
+        // BACKEND INTEGRATION POINT
+        // Replace these functions with real API calls
+        // ============================================
+        const API = {
+            // Save session data to backend
+            saveSession: async (sessionId, data) => {
+                // TODO: Replace with real API call
+                // await fetch('/api/sessions/' + sessionId, { method: 'POST', body: JSON.stringify(data) });
+                localStorage.setItem(`turnoverPro_session_${sessionId}`, JSON.stringify(data));
+                return true;
+            },
+            
+            // Load session data from backend
+            loadSession: async (sessionId) => {
+                // TODO: Replace with real API call
+                // const res = await fetch('/api/sessions/' + sessionId);
+                // return await res.json();
+                const data = localStorage.getItem(`turnoverPro_session_${sessionId}`);
+                return data ? JSON.parse(data) : null;
+            },
+            
+            // Generate unique session ID
+            generateSessionId: () => {
+                return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+            }
+        };
+
+        // ============================================
+        // POINTS SYSTEM - Based on estimated task times
+        // ============================================
+        const POINTS = {
+            quick: 5,      // < 1 min tasks
+            easy: 10,      // 1-2 min tasks
+            medium: 15,    // 2-5 min tasks
+            thorough: 25,  // 5-10 min tasks
+            deep: 40,      // 10+ min tasks
+        };
+
+        const LEVELS = [
+            { level: 1, name: "Dust Bunny 🐰", minPoints: 0, emoji: "🐰" },
+            { level: 2, name: "Mop Rookie 🧹", minPoints: 100, emoji: "🧹" },
+            { level: 3, name: "Sparkle Starter ✨", minPoints: 250, emoji: "✨" },
+            { level: 4, name: "Clean Machine 🤖", minPoints: 500, emoji: "🤖" },
+            { level: 5, name: "Grime Fighter 💪", minPoints: 800, emoji: "💪" },
+            { level: 6, name: "Shine Boss 🌟", minPoints: 1200, emoji: "🌟" },
+            { level: 7, name: "Sparkle Captain ⭐", minPoints: 1700, emoji: "⭐" },
+            { level: 8, name: "Cleaning LEGEND 👑", minPoints: 2500, emoji: "👑" },
+            { level: 9, name: "5-STAR ROYALTY 💎", minPoints: 4000, emoji: "💎" },
+            { level: 10, name: "SPARKLE GOD ✨👑✨", minPoints: 6000, emoji: "🏆" },
+        ];
+
+        const BADGES = [
+            // Achievement Badges 🏆
+            { id: 'first_task', name: 'First Blood! 🩸', emoji: '🎯', desc: 'Complete your first task' },
+            { id: 'kitchen_master', name: 'Kitchen Commander', emoji: '👨‍🍳', desc: 'Complete all kitchen tasks' },
+            { id: 'bathroom_boss', name: 'Bathroom Boss', emoji: '🚿', desc: 'Complete all bathroom tasks' },
+            { id: 'bedroom_ninja', name: 'Bedroom Ninja', emoji: '🥷', desc: 'Complete all bedroom tasks' },
+            { id: 'outdoor_warrior', name: 'Outdoor Warrior', emoji: '🌲', desc: 'Complete all outdoor tasks' },
+            { id: 'speed_demon', name: 'Speed Demon', emoji: '⚡', desc: 'Complete 10 tasks in 5 minutes' },
+            { id: 'perfectionist', name: 'Perfectionist', emoji: '💯', desc: 'Help complete 100% of all tasks' },
+            
+            // Team Badges 🤝
+            { id: 'team_player', name: 'Team Player', emoji: '🤝', desc: 'Complete a task with a teammate' },
+            { id: 'dynamic_duo', name: 'Dynamic Duo', emoji: '👯', desc: 'Complete 5 tasks as a team' },
+            { id: 'squad_goals', name: 'Squad Goals', emoji: '🦸‍♂️', desc: 'Complete 10 tasks as a team' },
+            { id: 'power_couple', name: 'Power Couple', emoji: '💪', desc: 'Complete 3 tasks with same partner' },
+            { id: 'full_house', name: 'Full House!', emoji: '🏠', desc: 'Complete a task with ALL team members' },
+            
+            // Time-Based Badges ⏰
+            { id: 'early_bird', name: 'Early Bird', emoji: '🐦', desc: 'Start a turnover before 8am' },
+            { id: 'night_owl', name: 'Night Owl', emoji: '🦉', desc: 'Complete a turnover after 8pm' },
+            { id: 'streak_3', name: '3-Day Streak', emoji: '🔥', desc: 'Use the app 3 days in a row' },
+            
+            // Funny/Shade Badges 😂
+            { id: 'cherry_picker', name: 'Cherry Picker 🍒', emoji: '🍒', desc: 'Only did easy tasks under 10 pts... we see you!' },
+            { id: 'slacker', name: 'Participation Trophy', emoji: '🏅', desc: 'Completed the LEAST tasks. Thanks for showing up?' },
+            { id: 'fashionably_late', name: 'Fashionably Late', emoji: '🕐', desc: 'Last one to join the session' },
+            { id: 'ghost', name: 'The Ghost 👻', emoji: '👻', desc: 'Joined but completed zero tasks' },
+            { id: 'lone_wolf', name: 'Lone Wolf', emoji: '🐺', desc: 'Never did a single team task' },
+            { id: 'point_hog', name: 'Point Hog 🐷', emoji: '🐷', desc: 'Hogged all the high-point tasks' },
+            { id: 'toilet_duty', name: 'Toilet Duty 🚽', emoji: '🚽', desc: 'Did ALL the bathroom tasks solo' },
+            { id: 'boss_baby', name: 'Boss Baby', emoji: '👶', desc: 'Directed others more than working' },
+            { id: 'caffeinated', name: 'Caffeinated', emoji: '☕', desc: 'Completed 20 tasks in one session' },
+            { id: 'sparkle_royalty', name: 'Sparkle Royalty 👑', emoji: '👑', desc: 'Top scorer of the session!' },
+        ];
+
+        // ============================================
+        // MOTIVATION QUOTES & LIFE HACKS 💬
+        // Pop up when tasks are completed!
+        // ============================================
+        const TASK_QUOTES = [
+            // Motivational
+            { text: "You're CRUSHING it! 💪", type: "hype" },
+            { text: "That's the Sparkle Squad spirit! ✨", type: "hype" },
+            { text: "Guest is gonna LOVE this! 🌟", type: "hype" },
+            { text: "5-star energy right there! ⭐⭐⭐⭐⭐", type: "hype" },
+            { text: "Beyoncé would be proud! 👑", type: "hype" },
+            { text: "Main character energy! 🎬", type: "hype" },
+            { text: "That task didn't stand a CHANCE! 😤", type: "hype" },
+            { text: "SLAY! 💅", type: "hype" },
+            { text: "You're on FIRE! 🔥", type: "hype" },
+            { text: "Mic drop moment! 🎤", type: "hype" },
+            { text: "Legend behavior! 🏆", type: "hype" },
+            { text: "Absolutely ICONIC! ✨", type: "hype" },
+            
+            // Funny
+            { text: "That toilet has never looked better! 🚽✨", type: "funny" },
+            { text: "If cleaning was an Olympic sport... GOLD! 🥇", type: "funny" },
+            { text: "The dust bunnies are SHAKING! 🐰", type: "funny" },
+            { text: "Marie Kondo just felt a disturbance 👀", type: "funny" },
+            { text: "That's what we call a GLOW UP! 💫", type: "funny" },
+            { text: "Dirt: 0, You: 1 😎", type: "funny" },
+            { text: "Someone's getting a good review! 📝", type: "funny" },
+            { text: "Germs are crying rn 😭🦠", type: "funny" },
+            
+            // Life Hacks
+            { text: "💡 Pro tip: Wipe mirrors with newspaper for streak-free shine!", type: "hack" },
+            { text: "💡 Life hack: Put a dryer sheet in trash cans to keep them fresh!", type: "hack" },
+            { text: "💡 Pro tip: Clean top to bottom so dust falls down!", type: "hack" },
+            { text: "💡 Life hack: Microwave a wet sponge for 2 min to kill germs!", type: "hack" },
+            { text: "💡 Pro tip: Use vinegar + baking soda for tough stains!", type: "hack" },
+            { text: "💡 Life hack: Vacuum mattresses to remove dust mites!", type: "hack" },
+            { text: "💡 Pro tip: Clean light switches - they're germ hotspots!", type: "hack" },
+            { text: "💡 Life hack: Put lemon in garbage disposal for fresh smell!", type: "hack" },
+            { text: "💡 Pro tip: Dust ceiling fans BEFORE you dust everything else!", type: "hack" },
+            { text: "💡 Life hack: Use a squeegee on pet hair - works magic!", type: "hack" },
+            { text: "💡 Pro tip: Clean your cleaning supplies too!", type: "hack" },
+            { text: "💡 Life hack: Pillow yellowing? Wash with baking soda + vinegar!", type: "hack" },
+        ];
+
+        const getRandomQuote = () => {
+            return TASK_QUOTES[Math.floor(Math.random() * TASK_QUOTES.length)];
+        };
+
+        const TurnoverProApp = () => {
+            // ============================================
+            // STATE MANAGEMENT
+            // ============================================
+            const [view, setView] = useState('home'); // home, create, session, leaderboard
+            const [sessionId, setSessionId] = useState(null);
+            const [sessionData, setSessionData] = useState(null);
+            const [currentUser, setCurrentUser] = useState('');
+            const [userNameInput, setUserNameInput] = useState('');
+            const [activeSection, setActiveSection] = useState('dashboard');
+            const [showConfetti, setShowConfetti] = useState(false);
+            const [newBadge, setNewBadge] = useState(null);
+            const [copied, setCopied] = useState(false);
+            const [showShareModal, setShowShareModal] = useState(false);
+            const [elapsedTime, setElapsedTime] = useState(0);
+            const [timerRunning, setTimerRunning] = useState(false);
+            const [teamCompleteModal, setTeamCompleteModal] = useState(null); // { itemId, itemText, points, selectedMembers: [] }
+            const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+            const [newTaskText, setNewTaskText] = useState('');
+            const [newTaskPoints, setNewTaskPoints] = useState(15);
+            const [showAddSupplyModal, setShowAddSupplyModal] = useState(false);
+            const [newSupplyText, setNewSupplyText] = useState('');
+            const [taskQuote, setTaskQuote] = useState(null); // Quote popup after task completion
+            const [guideMode, setGuideMode] = useState(false); // Auto-direct to highest point task
+            
+            // Custom tasks & supplies input
+            const [newTaskText, setNewTaskText] = useState('');
+            const [newTaskPoints, setNewTaskPoints] = useState(15);
+            const [newSupplyText, setNewSupplyText] = useState('');
+            
+            // Create session form
+            const [createForm, setCreateForm] = useState({
+                propertyId: '',
+                propertyName: '',
+                location: '',
+                date: new Date().toISOString().split('T')[0],
+                time: '11:00',
+                notes: ''
+            });
+            
+            // Select property helper
+            const selectProperty = (prop) => {
+                setCreateForm({
+                    ...createForm,
+                    propertyId: prop.id,
+                    propertyName: prop.name,
+                    location: prop.location
+                });
+            };
+            
+            // Get member style
+            const getMemberStyle = (name) => {
+                return TEAM_MEMBERS[name] || {
+                    color: '#9CA3AF',
+                    bgColor: 'bg-gray-500',
+                    textColor: 'text-gray-600',
+                    bgLight: 'bg-gray-50',
+                    borderColor: 'border-gray-200',
+                    emoji: '👤'
+                };
+            };
+
+            // ============================================
+            // TIMER FUNCTIONS
+            // ============================================
+            const formatTime = (seconds) => {
+                const hrs = Math.floor(seconds / 3600);
+                const mins = Math.floor((seconds % 3600) / 60);
+                const secs = seconds % 60;
+                if (hrs > 0) {
+                    return `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                }
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            };
+
+            // Timer effect - runs when session is active
+            useEffect(() => {
+                let interval;
+                if (sessionData && currentUser && !sessionData.completedAt) {
+                    // Get or set timer start
+                    const startTime = sessionData.timerStartedAt 
+                        ? new Date(sessionData.timerStartedAt).getTime()
+                        : Date.now();
+                    
+                    // Save timer start if not already saved
+                    if (!sessionData.timerStartedAt) {
+                        setSessionData(prev => ({
+                            ...prev,
+                            timerStartedAt: new Date(startTime).toISOString()
+                        }));
+                    }
+                    
+                    const updateTimer = () => {
+                        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                        setElapsedTime(elapsed);
+                    };
+                    
+                    updateTimer();
+                    interval = setInterval(updateTimer, 1000);
+                    setTimerRunning(true);
+                } else if (sessionData?.completedAt && sessionData?.completionTime) {
+                    // Session already completed - show final time
+                    setElapsedTime(sessionData.completionTime);
+                    setTimerRunning(false);
+                }
+                
+                return () => {
+                    if (interval) clearInterval(interval);
+                };
+            }, [sessionData?.timerStartedAt, sessionData?.completedAt, currentUser]);
+
+            // Check for 100% completion
+            useEffect(() => {
+                if (sessionData && currentUser && !sessionData.completedAt) {
+                    const allItems = Object.values(sections).flatMap(s => s.items);
+                    const checkedCount = allItems.filter(item => sessionData.checkedItems[item.id]).length;
+                    
+                    if (checkedCount === allItems.length && allItems.length > 0) {
+                        // 🎉 COMPLETED!
+                        const finalTime = elapsedTime;
+                        setTimerRunning(false);
+                        setShowConfetti(true);
+                        
+                        // Save completion to session
+                        setSessionData(prev => ({
+                            ...prev,
+                            completedAt: new Date().toISOString(),
+                            completionTime: finalTime,
+                            completedBy: Object.keys(prev.teamMembers)
+                        }));
+                        
+                        setTimeout(() => setShowConfetti(false), 6000);
+                    }
+                }
+            }, [sessionData?.checkedItems]);
+
+            // ============================================
+            // TIMER FUNCTIONS
+            // ============================================
+            const formatTime = (seconds) => {
+                const hrs = Math.floor(seconds / 3600);
+                const mins = Math.floor((seconds % 3600) / 60);
+                const secs = seconds % 60;
+                if (hrs > 0) {
+                    return `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                }
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            };
+
+            // Timer effect
+            useEffect(() => {
+                let interval;
+                if (sessionData && currentUser && !completionTime) {
+                    // Calculate elapsed time from session start
+                    const startTime = new Date(sessionData.timerStartedAt || sessionData.createdAt).getTime();
+                    
+                    const updateTimer = () => {
+                        const now = Date.now();
+                        const elapsed = Math.floor((now - startTime) / 1000);
+                        setElapsedTime(elapsed);
+                    };
+                    
+                    updateTimer();
+                    interval = setInterval(updateTimer, 1000);
+                    setTimerRunning(true);
+                }
+                return () => {
+                    if (interval) clearInterval(interval);
+                };
+            }, [sessionData, currentUser, completionTime]);
+
+            // Check for 100% completion
+            useEffect(() => {
+                if (sessionData && !completionTime) {
+                    const prog = getProgress();
+                    if (prog.checked === prog.total && prog.total > 0) {
+                        // COMPLETED!
+                        const finalTime = elapsedTime;
+                        setCompletionTime(finalTime);
+                        setTimerRunning(false);
+                        setShowConfetti(true);
+                        setTimeout(() => setShowConfetti(false), 5000);
+                        
+                        // Save completion time to session
+                        setSessionData(prev => ({
+                            ...prev,
+                            completedAt: new Date().toISOString(),
+                            completionTime: finalTime
+                        }));
+                    }
+                }
+            }, [sessionData?.checkedItems]);
+
+            // ============================================
+            // SECTIONS WITH POINTS
+            // ============================================
+            const sections = {
+                kitchen: {
+                    title: '🍽️ Kitchen',
+                    emoji: '🍽️',
+                    color: 'from-pink-500 to-pink-600',
+                    items: [
+                        { id: 'k1', text: '🧊 Refrigerator - wipe inside & outside', points: POINTS.thorough },
+                        { id: 'k2', text: '❄️ Freezer - check for ice buildup', points: POINTS.easy },
+                        { id: 'k3', text: '📻 Microwave - clean inside & outside', points: POINTS.medium },
+                        { id: 'k4', text: '🔥 Oven/Stove - wipe down, clean burners', points: POINTS.thorough },
+                        { id: 'k5', text: '🍽️ Dishwasher - run cycle, wipe door', points: POINTS.medium },
+                        { id: 'k6', text: '☕ Coffee maker - run water cycle, empty grounds', points: POINTS.medium },
+                        { id: 'k7', text: '🍞 Toaster - empty crumb tray', points: POINTS.quick },
+                        { id: 'k8', text: '✨ Countertops - clean & sanitize', points: POINTS.medium },
+                        { id: 'k9', text: '🚿 Sink - scrub & polish faucet', points: POINTS.medium },
+                        { id: 'k10', text: '🚪 Cabinet fronts - wipe down', points: POINTS.medium },
+                        { id: 'k11', text: '🧹 Floor - sweep & mop', points: POINTS.thorough },
+                        { id: 'k12', text: '🗑️ Trash - empty, new liner', points: POINTS.easy },
+                        { id: 'k13', text: '🧴 Restock: Dish soap', points: POINTS.quick },
+                        { id: 'k14', text: '🧻 Restock: Paper towels', points: POINTS.quick },
+                        { id: 'k15', text: '🛒 Restock: Trash bags', points: POINTS.quick },
+                        { id: 'k16', text: '☕ Restock: Coffee/Tea/Sugar', points: POINTS.quick },
+                        { id: 'k17', text: '🧽 Restock: Sponge (new)', points: POINTS.quick },
+                    ]
+                },
+                bathroom: {
+                    title: '🚿 Bathrooms',
+                    emoji: '🚿',
+                    color: 'from-purple-500 to-purple-600',
+                    items: [
+                        { id: 'b1', text: '🚽 Toilet - clean bowl, seat, base, behind', points: POINTS.thorough },
+                        { id: 'b2', text: '🦠 Toilet handle - sanitize', points: POINTS.quick },
+                        { id: 'b3', text: '🛁 Shower/Tub - scrub walls & floor', points: POINTS.deep },
+                        { id: 'b4', text: '🚿 Shower door/curtain - clean', points: POINTS.medium },
+                        { id: 'b5', text: '🕳️ Drain - remove hair, clean', points: POINTS.easy },
+                        { id: 'b6', text: '🚰 Sink - scrub basin, polish faucet', points: POINTS.medium },
+                        { id: 'b7', text: '🪞 Mirror - clean streak-free', points: POINTS.easy },
+                        { id: 'b8', text: '✨ Countertop - wipe & sanitize', points: POINTS.easy },
+                        { id: 'b9', text: '🧹 Floor - sweep & mop', points: POINTS.medium },
+                        { id: 'b10', text: '💨 Exhaust fan - dust', points: POINTS.easy },
+                        { id: 'b11', text: '🗑️ Trash - empty, new liner', points: POINTS.easy },
+                        { id: 'b12', text: '🧻 Restock: Toilet paper (2+ rolls)', points: POINTS.quick },
+                        { id: 'b13', text: '🧴 Restock: Hand soap', points: POINTS.quick },
+                        { id: 'b14', text: '🧴 Restock: Shampoo', points: POINTS.quick },
+                        { id: 'b15', text: '🧴 Restock: Conditioner', points: POINTS.quick },
+                        { id: 'b16', text: '🧴 Restock: Body wash', points: POINTS.quick },
+                        { id: 'b17', text: '🛁 Fresh towels hung (bath, hand, wash)', points: POINTS.medium },
+                        { id: 'b18', text: '🧼 Fresh bathmat placed', points: POINTS.easy },
+                        { id: 'b19', text: '💇 Hair dryer - check working', points: POINTS.quick },
+                    ]
+                },
+                bedroom: {
+                    title: '🛏️ Bedrooms',
+                    emoji: '🛏️',
+                    color: 'from-pink-400 to-pink-500',
+                    items: [
+                        { id: 'br1', text: '🛏️ Strip all bedding', points: POINTS.medium },
+                        { id: 'br2', text: '🛡️ Check mattress protector', points: POINTS.easy },
+                        { id: 'br3', text: '📐 Fitted sheet - crisp, no wrinkles', points: POINTS.medium },
+                        { id: 'br4', text: '📋 Flat sheet - tucked, hospital corners', points: POINTS.medium },
+                        { id: 'br5', text: '🛏️ Pillowcases - fresh', points: POINTS.easy },
+                        { id: 'br6', text: '☁️ Comforter/Duvet - fresh & fluffy', points: POINTS.medium },
+                        { id: 'br7', text: '🥋 Pillows - fluffed & karate chopped', points: POINTS.easy },
+                        { id: 'br8', text: '💜 Decorative pillows arranged', points: POINTS.easy },
+                        { id: 'br9', text: '🧣 Extra blanket folded at foot', points: POINTS.easy },
+                        { id: 'br10', text: '🪔 Nightstands - dust & wipe', points: POINTS.easy },
+                        { id: 'br11', text: '🗄️ Dresser - dust & wipe', points: POINTS.medium },
+                        { id: 'br12', text: '💡 Lamps - dust, check bulbs', points: POINTS.easy },
+                        { id: 'br13', text: '🪞 Mirrors - clean streak-free', points: POINTS.easy },
+                        { id: 'br14', text: '👔 Closet - empty hangers (10+)', points: POINTS.easy },
+                        { id: 'br15', text: '🗃️ Drawers - check empty', points: POINTS.easy },
+                        { id: 'br16', text: '🧹 Vacuum/mop floor', points: POINTS.thorough },
+                        { id: 'br17', text: '🔍 Under bed - vacuum', points: POINTS.medium },
+                        { id: 'br18', text: '🪟 Curtains/blinds - dust & arrange', points: POINTS.medium },
+                        { id: 'br19', text: '🗑️ Trash - empty, new liner', points: POINTS.easy },
+                    ]
+                },
+                living: {
+                    title: '🛋️ Living Areas',
+                    emoji: '🛋️',
+                    color: 'from-fuchsia-500 to-fuchsia-600',
+                    items: [
+                        { id: 'l1', text: '🛋️ Couch - vacuum cushions & crevices', points: POINTS.thorough },
+                        { id: 'l2', text: '💨 Pillows - fluff & arrange', points: POINTS.easy },
+                        { id: 'l3', text: '🧣 Throw blankets - fold nicely', points: POINTS.easy },
+                        { id: 'l4', text: '☕ Coffee table - dust & clean', points: POINTS.easy },
+                        { id: 'l5', text: '🪔 Side tables - dust & clean', points: POINTS.easy },
+                        { id: 'l6', text: '📺 TV - dust screen', points: POINTS.easy },
+                        { id: 'l7', text: '📦 TV stand - dust, organize cords', points: POINTS.medium },
+                        { id: 'l8', text: '🎮 Remotes - wipe, check batteries', points: POINTS.easy },
+                        { id: 'l9', text: '💡 Lamps - dust, check bulbs', points: POINTS.easy },
+                        { id: 'l10', text: '🌀 Ceiling fan - dust blades', points: POINTS.medium },
+                        { id: 'l11', text: '🪟 Windows - clean if needed', points: POINTS.thorough },
+                        { id: 'l12', text: '🏠 Blinds/curtains - dust & arrange', points: POINTS.medium },
+                        { id: 'l13', text: '💡 Light switches - wipe', points: POINTS.quick },
+                        { id: 'l14', text: '🖼️ Decor - dust & straighten', points: POINTS.medium },
+                        { id: 'l15', text: '🧹 Vacuum carpet/mop floor', points: POINTS.thorough },
+                        { id: 'l16', text: '🔍 Under furniture - vacuum', points: POINTS.medium },
+                    ]
+                },
+                entry: {
+                    title: '🚪 Entry & Hallways',
+                    emoji: '🚪',
+                    color: 'from-rose-500 to-rose-600',
+                    items: [
+                        { id: 'e1', text: '🚪 Front door - wipe inside & out', points: POINTS.medium },
+                        { id: 'e2', text: '🦠 Door handle - sanitize', points: POINTS.quick },
+                        { id: 'e3', text: '🔐 Lockbox - wipe, check code', points: POINTS.easy },
+                        { id: 'e4', text: '🚶 Doormat - shake out/replace', points: POINTS.easy },
+                        { id: 'e5', text: '💡 Light switch - wipe', points: POINTS.quick },
+                        { id: 'e6', text: '🧥 Coat hooks - wipe', points: POINTS.quick },
+                        { id: 'e7', text: '🧹 Entry floor - sweep/mop', points: POINTS.medium },
+                        { id: 'e8', text: '🏠 Hallway surfaces - dust', points: POINTS.easy },
+                        { id: 'e9', text: '🧹 Hallway floors - vacuum/mop', points: POINTS.medium },
+                        { id: 'e10', text: '🔒 All doors lock properly', points: POINTS.easy },
+                    ]
+                },
+                outdoor: {
+                    title: '🌳 Outdoor Areas',
+                    emoji: '🌳',
+                    color: 'from-green-600 to-green-700',
+                    items: [
+                        { id: 'o1', text: '🧹 Patio/Deck - sweep thoroughly', points: POINTS.thorough },
+                        { id: 'o2', text: '🪑 Patio furniture - wipe down all pieces', points: POINTS.medium },
+                        { id: 'o3', text: '💺 Cushions - arrange/fluff, check for stains', points: POINTS.easy },
+                        { id: 'o4', text: '🕸️ Cobwebs - check corners, eaves, lights', points: POINTS.medium },
+                        { id: 'o5', text: '🔥 BBQ grill - clean grates, wipe exterior', points: POINTS.deep },
+                        { id: 'o6', text: '⛽ Propane/Gas level - check & note', points: POINTS.quick },
+                        { id: 'o7', text: '🗑️ Outdoor trash cans - empty, clean, new liner', points: POINTS.medium },
+                        { id: 'o8', text: '🌿 Yard debris - pick up branches, leaves', points: POINTS.thorough },
+                        { id: 'o9', text: '💩 PET WASTE - entire yard cleaned!', points: POINTS.thorough },
+                        { id: 'o10', text: '🗑️ Litter/trash - picked up from all areas', points: POINTS.medium },
+                        { id: 'o11', text: '🪵 FIREWOOD - stocked & neatly organized', points: POINTS.thorough },
+                        { id: 'o12', text: '🔥 Fire pit - cleaned, ashes removed', points: POINTS.medium },
+                        { id: 'o13', text: '🚿 Outdoor shower/hose - check working', points: POINTS.easy },
+                        { id: 'o14', text: '💡 Outdoor/porch lights - all working', points: POINTS.easy },
+                        { id: 'o15', text: '🚪 Back porch - sweep & tidy', points: POINTS.medium },
+                        { id: 'o16', text: '🚪 Front porch - sweep & tidy', points: POINTS.medium },
+                        { id: 'o17', text: '🌸 Planters/flowers - water if needed', points: POINTS.easy },
+                        { id: 'o18', text: '🚴 Bikes/toys - organized (if provided)', points: POINTS.easy },
+                        { id: 'o19', text: '🏊 Pool area - tidy, chairs arranged', points: POINTS.medium },
+                        { id: 'o20', text: '♨️ Hot tub - check temp, cover secure', points: POINTS.medium },
+                        { id: 'o21', text: '🚗 Driveway - clear of debris', points: POINTS.easy },
+                        { id: 'o22', text: '📬 Mailbox area - tidy', points: POINTS.quick },
+                        { id: 'o23', text: '🔔 Doorbell/cameras - check working', points: POINTS.easy },
+                        { id: 'o24', text: '🧊 Outdoor fridge/cooler - cleaned (if any)', points: POINTS.medium },
+                    ],
+                },
+                security: {
+                    title: '🔐 SECURE & PROTECT',
+                    emoji: '🔐',
+                    color: 'from-slate-600 to-slate-800',
+                    items: [
+                        { id: 'sec1', text: '📹 Security cameras - all working & recording', points: POINTS.medium },
+                        { id: 'sec2', text: '📹 Camera angles - not blocked, clear view', points: POINTS.easy },
+                        { id: 'sec3', text: '🔑 ALL spare keys accounted for', points: POINTS.medium },
+                        { id: 'sec4', text: '🔐 Lockbox code - reset/verified', points: POINTS.easy },
+                        { id: 'sec5', text: '🚪 Smart lock - working, code updated', points: POINTS.medium },
+                        { id: 'sec6', text: '💰 VALUABLES - secured/removed (cash, jewelry)', points: POINTS.thorough },
+                        { id: 'sec7', text: '📁 Personal documents - secured/removed', points: POINTS.medium },
+                        { id: 'sec8', text: '💊 Medications - locked away safely', points: POINTS.thorough },
+                        { id: 'sec9', text: '🔫 Weapons/firearms - secured (if any)', points: POINTS.deep },
+                        { id: 'sec10', text: '🚨 Alarm system - armed/code set', points: POINTS.medium },
+                        { id: 'sec11', text: '🔔 Doorbell camera - working, charged', points: POINTS.easy },
+                        { id: 'sec12', text: '💡 Motion lights - all working', points: POINTS.easy },
+                        { id: 'sec13', text: '🪟 Window locks - all secured', points: POINTS.medium },
+                        { id: 'sec14', text: '🚗 Garage door - closes properly, code set', points: POINTS.easy },
+                        { id: 'sec15', text: '📱 WiFi password - reset for new guest', points: POINTS.medium },
+                        { id: 'sec16', text: '🔒 Owner closet/room - locked', points: POINTS.easy },
+                        { id: 'sec17', text: '🗄️ Safe - working, instructions clear', points: POINTS.easy },
+                        { id: 'sec18', text: '📝 Emergency contacts - posted/updated', points: POINTS.quick },
+                    ]
+                },
+                final: {
+                    title: '✅ Final Walkthrough',
+                    emoji: '✅',
+                    color: 'from-green-500 to-green-600',
+                    items: [
+                        { id: 'f1', text: '💡 All lights working', points: POINTS.easy },
+                        { id: 'f2', text: '🚿 All faucets working (no drips)', points: POINTS.easy },
+                        { id: 'f3', text: '🚽 All toilets flush properly', points: POINTS.easy },
+                        { id: 'f4', text: '🌡️ Thermostat set correctly', points: POINTS.quick },
+                        { id: 'f5', text: '📺 TV & remotes working', points: POINTS.easy },
+                        { id: 'f6', text: '📶 WiFi working (test connection)', points: POINTS.easy },
+                        { id: 'f7', text: '🔒 All doors lock properly', points: POINTS.easy },
+                        { id: 'f8', text: '🪟 All windows close & lock', points: POINTS.easy },
+                        { id: 'f9', text: '🔥 Smoke detector working (test)', points: POINTS.easy },
+                        { id: 'f10', text: '⚠️ CO detector working (test)', points: POINTS.easy },
+                        { id: 'f11', text: '🧯 Fire extinguisher present', points: POINTS.quick },
+                        { id: 'f12', text: '🩹 First aid kit stocked', points: POINTS.easy },
+                        { id: 'f13', text: '📋 House manual visible', points: POINTS.quick },
+                        { id: 'f14', text: '👃 Pleasant smell (not overwhelming)', points: POINTS.easy },
+                        { id: 'f15', text: '✨ Overall "WOW" factor!', points: POINTS.medium },
+                        { id: 'f16', text: '📸 Photos taken for records', points: POINTS.medium },
+                    ]
+                },
+                dontforget: {
+                    title: '🚨 DON\'T FORGET!',
+                    emoji: '🚨',
+                    color: 'from-red-500 to-orange-500',
+                    items: [
+                        { id: 'df1', text: '📱 PHONE - Check all rooms!', points: POINTS.medium },
+                        { id: 'df2', text: '👛 WALLET - Under cushions, drawers', points: POINTS.medium },
+                        { id: 'df3', text: '🔑 KEYS - Check all surfaces', points: POINTS.medium },
+                        { id: 'df4', text: '🔌 CHARGERS - Behind beds, under desks', points: POINTS.medium },
+                        { id: 'df5', text: '💊 MEDICATIONS - Bathroom, nightstands', points: POINTS.medium },
+                        { id: 'df6', text: '👓 GLASSES/CONTACTS - Bathroom, bedroom', points: POINTS.easy },
+                        { id: 'df7', text: '💍 JEWELRY - Bathroom, dresser', points: POINTS.medium },
+                        { id: 'df8', text: '👕 CLOTHING - Closets, drawers, under bed', points: POINTS.medium },
+                        { id: 'df9', text: '🧸 KIDS ITEMS - Toys, blankets, bottles', points: POINTS.medium },
+                        { id: 'df10', text: '🐕 PET ITEMS - Bowls, toys, leashes', points: POINTS.easy },
+                        { id: 'df11', text: '💻 LAPTOP/TABLET - Safe, desk, couch', points: POINTS.medium },
+                        { id: 'df12', text: '📷 CAMERA - Check all rooms', points: POINTS.easy },
+                        { id: 'df13', text: '🎧 HEADPHONES/AIRPODS - Everywhere!', points: POINTS.easy },
+                        { id: 'df14', text: '🧴 TOILETRIES - Shower, sink, bag', points: POINTS.easy },
+                        { id: 'df15', text: '🍕 FOOD - Fridge, freezer, pantry', points: POINTS.easy },
+                    ]
+                }
+            };
+
+            // ============================================
+            // LOAD SESSION FROM URL
+            // ============================================
+            useEffect(() => {
+                const params = new URLSearchParams(window.location.search);
+                const urlSessionId = params.get('session');
+                if (urlSessionId) {
+                    loadSession(urlSessionId);
+                }
+            }, []);
+
+            const loadSession = async (id) => {
+                const data = await API.loadSession(id);
+                if (data) {
+                    setSessionId(id);
+                    setSessionData(data);
+                    setView('session');
+                } else {
+                    alert('Session not found! It may have expired or the link is invalid.');
+                }
+            };
+
+            // ============================================
+            // SAVE SESSION DATA
+            // ============================================
+            useEffect(() => {
+                if (sessionId && sessionData) {
+                    API.saveSession(sessionId, sessionData);
+                }
+            }, [sessionData]);
+
+            // ============================================
+            // CREATE NEW SESSION
+            // ============================================
+            const createSession = () => {
+                const newId = API.generateSessionId();
+                const newSession = {
+                    id: newId,
+                    createdAt: new Date().toISOString(),
+                    property: createForm.propertyName,
+                    location: createForm.location,
+                    date: createForm.date,
+                    time: createForm.time,
+                    notes: createForm.notes,
+                    checkedItems: {},
+                    teamMembers: {},
+                    completionLog: [],
+                    timerStartedAt: null, // Timer starts when first person joins
+                    completedAt: null,
+                    completionTime: null,
+                    customTasks: [], // { id, text, points, addedBy }
+                    supplies: [], // { id, text, checked, addedBy }
+                };
+                setSessionId(newId);
+                setSessionData(newSession);
+                setView('session');
+                setShowShareModal(true); // Show share modal immediately!
+                
+                // Update URL
+                window.history.pushState({}, '', `?session=${newId}`);
+            };
+
+            // ============================================
+            // JOIN SESSION AS TEAM MEMBER
+            // ============================================
+            const joinSession = () => {
+                if (!userNameInput.trim()) {
+                    alert('Please enter your name!');
+                    return;
+                }
+                const name = userNameInput.trim();
+                setCurrentUser(name);
+                
+                // Add to team members if not exists
+                if (!sessionData.teamMembers[name]) {
+                    setSessionData(prev => ({
+                        ...prev,
+                        teamMembers: {
+                            ...prev.teamMembers,
+                            [name]: {
+                                joinedAt: new Date().toISOString(),
+                                points: 0,
+                                tasksCompleted: 0,
+                                badges: []
+                            }
+                        }
+                    }));
+                }
+            };
+
+            // ============================================
+            // TOGGLE TASK COMPLETION (Solo)
+            // ============================================
+            const toggleItem = (id, points) => {
+                if (!currentUser) return;
+                
+                const wasChecked = sessionData.checkedItems[id];
+                const now = new Date().toISOString();
+                
+                setSessionData(prev => {
+                    const newChecked = { ...prev.checkedItems };
+                    const newTeam = { ...prev.teamMembers };
+                    const newLog = [...prev.completionLog];
+                    
+                    if (wasChecked) {
+                        // Unchecking - remove points from all who checked it
+                        const completers = wasChecked.users || [wasChecked.user];
+                        delete newChecked[id];
+                        completers.forEach(user => {
+                            if (newTeam[user]) {
+                                // Calculate what points they got (with secret multiplier if team)
+                                const teamSize = completers.length;
+                                const actualPoints = teamSize > 1 
+                                    ? Math.round(points * teamSize) // Secret: 2x, 3x, 4x!
+                                    : points;
+                                newTeam[user] = {
+                                    ...newTeam[user],
+                                    points: Math.max(0, newTeam[user].points - actualPoints),
+                                    tasksCompleted: Math.max(0, newTeam[user].tasksCompleted - 1)
+                                };
+                            }
+                        });
+                    } else {
+                        // Solo checking - add points to current user
+                        newChecked[id] = { user: currentUser, users: [currentUser], timestamp: now };
+                        newTeam[currentUser] = {
+                            ...newTeam[currentUser],
+                            points: (newTeam[currentUser]?.points || 0) + points,
+                            tasksCompleted: (newTeam[currentUser]?.tasksCompleted || 0) + 1
+                        };
+                        newLog.push({ id, user: currentUser, users: [currentUser], timestamp: now, points });
+                        
+                        // Check for badges
+                        checkBadges(currentUser, newTeam[currentUser], newChecked);
+                        
+                        // 🎉 Show random quote/hack popup!
+                        showRandomQuote();
+                    }
+                    
+                    return {
+                        ...prev,
+                        checkedItems: newChecked,
+                        teamMembers: newTeam,
+                        completionLog: newLog
+                    };
+                });
+            };
+            
+            // Show random motivational quote or life hack
+            const showRandomQuote = () => {
+                const quote = getRandomQuote();
+                setTaskQuote(quote);
+                setTimeout(() => setTaskQuote(null), 2500);
+            };
+
+            // ============================================
+            // GUIDE ME - Find next highest point task
+            // ============================================
+            const getNextTask = () => {
+                if (!sessionData) return null;
+                
+                // Get all uncompleted tasks from all sections
+                const allTasks = [];
+                Object.entries(sections).forEach(([sectionKey, section]) => {
+                    section.items.forEach(item => {
+                        if (!sessionData.checkedItems[item.id]) {
+                            allTasks.push({ ...item, section: sectionKey, sectionTitle: section.title });
+                        }
+                    });
+                });
+                
+                // Add custom tasks
+                (sessionData.customTasks || []).forEach(task => {
+                    if (!sessionData.checkedItems[task.id]) {
+                        allTasks.push({ ...task, section: 'custom', sectionTitle: '⭐ Custom Task' });
+                    }
+                });
+                
+                if (allTasks.length === 0) return null;
+                
+                // Sort by points (highest first)
+                allTasks.sort((a, b) => b.points - a.points);
+                return allTasks[0];
+            };
+
+            const guideToNextTask = () => {
+                const nextTask = getNextTask();
+                if (nextTask) {
+                    setActiveSection(nextTask.section);
+                    // Could scroll to task in future
+                }
+            };
+
+            // ============================================
+            // TEAM COMPLETE - Multiple people get credit!
+            // Secret: Team completions get bonus multiplier!
+            // ============================================
+            const openTeamComplete = (item) => {
+                setTeamCompleteModal({
+                    itemId: item.id,
+                    itemText: item.text,
+                    points: item.points,
+                    selectedMembers: [currentUser] // Pre-select current user
+                });
+            };
+
+            const toggleTeamMember = (memberName) => {
+                if (!teamCompleteModal) return;
+                setTeamCompleteModal(prev => {
+                    const isSelected = prev.selectedMembers.includes(memberName);
+                    return {
+                        ...prev,
+                        selectedMembers: isSelected
+                            ? prev.selectedMembers.filter(n => n !== memberName)
+                            : [...prev.selectedMembers, memberName]
+                    };
+                });
+            };
+
+            const submitTeamComplete = () => {
+                if (!teamCompleteModal || teamCompleteModal.selectedMembers.length === 0) return;
+                
+                const { itemId, points, selectedMembers } = teamCompleteModal;
+                const now = new Date().toISOString();
+                const teamSize = selectedMembers.length;
+                
+                // 🤫 SECRET MULTIPLIER: More people = DOUBLE, TRIPLE, QUADRUPLE points!
+                // Solo: 1x, 2 people: 2x each, 3 people: 3x each, 4 people: 4x each!
+                const secretMultiplier = teamSize;
+                const actualPoints = Math.round(points * secretMultiplier);
+                
+                setSessionData(prev => {
+                    const newChecked = { ...prev.checkedItems };
+                    const newTeam = { ...prev.teamMembers };
+                    const newLog = [...prev.completionLog];
+                    
+                    // Mark item as completed by the team
+                    newChecked[itemId] = { 
+                        user: selectedMembers[0], // Primary for display
+                        users: selectedMembers,   // All who did it
+                        timestamp: now,
+                        isTeam: teamSize > 1
+                    };
+                    
+                    // Give EACH team member their (secretly boosted) points!
+                    selectedMembers.forEach(member => {
+                        if (newTeam[member]) {
+                            const newTeamTasks = (newTeam[member].teamTasks || 0) + (teamSize > 1 ? 1 : 0);
+                            newTeam[member] = {
+                                ...newTeam[member],
+                                points: newTeam[member].points + actualPoints,
+                                tasksCompleted: newTeam[member].tasksCompleted + 1,
+                                teamTasks: newTeamTasks
+                            };
+                            
+                            // Check for team badges (secretly!)
+                            const earnedBadges = newTeam[member].badges || [];
+                            if (teamSize > 1) {
+                                // Team Player badge - first team completion
+                                if (!earnedBadges.includes('team_player')) {
+                                    newTeam[member].badges = [...earnedBadges, 'team_player'];
+                                    if (member === currentUser) {
+                                        unlockBadge(member, 'team_player');
+                                    }
+                                }
+                                // Dynamic Duo - 5 team tasks
+                                if (newTeamTasks >= 5 && !earnedBadges.includes('dynamic_duo')) {
+                                    newTeam[member].badges = [...(newTeam[member].badges || []), 'dynamic_duo'];
+                                    if (member === currentUser) {
+                                        setTimeout(() => unlockBadge(member, 'dynamic_duo'), 500);
+                                    }
+                                }
+                                // Squad Goals - 10 team tasks
+                                if (newTeamTasks >= 10 && !earnedBadges.includes('squad_goals')) {
+                                    newTeam[member].badges = [...(newTeam[member].badges || []), 'squad_goals'];
+                                    if (member === currentUser) {
+                                        setTimeout(() => unlockBadge(member, 'squad_goals'), 1000);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    
+                    // Log it (show base points, not the secret bonus!)
+                    newLog.push({ 
+                        id: itemId, 
+                        user: selectedMembers.join(' + '),
+                        users: selectedMembers,
+                        timestamp: now, 
+                        points: points, // Show base, not actual (keep it secret!)
+                        isTeam: teamSize > 1
+                    });
+                    
+                    return {
+                        ...prev,
+                        checkedItems: newChecked,
+                        teamMembers: newTeam,
+                        completionLog: newLog
+                    };
+                });
+                
+                // 🎉 Show random quote/hack popup for team completion!
+                showRandomQuote();
+                
+                setTeamCompleteModal(null);
+            };
+
+            // ============================================
+            // CUSTOM TASKS - Add extra tasks on the fly
+            // ============================================
+            const addCustomTask = () => {
+                if (!newTaskText.trim()) return;
+                
+                const taskId = `custom_${Date.now()}`;
+                setSessionData(prev => ({
+                    ...prev,
+                    customTasks: [
+                        ...(prev.customTasks || []),
+                        {
+                            id: taskId,
+                            text: `⭐ ${newTaskText.trim()}`,
+                            points: newTaskPoints,
+                            addedBy: currentUser,
+                            addedAt: new Date().toISOString()
+                        }
+                    ]
+                }));
+                
+                setNewTaskText('');
+                setNewTaskPoints(15);
+                setShowAddTaskModal(false);
+            };
+
+            const removeCustomTask = (taskId) => {
+                setSessionData(prev => ({
+                    ...prev,
+                    customTasks: (prev.customTasks || []).filter(t => t.id !== taskId),
+                    checkedItems: Object.fromEntries(
+                        Object.entries(prev.checkedItems).filter(([id]) => id !== taskId)
+                    )
+                }));
+            };
+
+            // ============================================
+            // SUPPLIES NEEDED - Track what to restock
+            // ============================================
+            const addSupply = () => {
+                if (!newSupplyText.trim()) return;
+                
+                const supplyId = `supply_${Date.now()}`;
+                setSessionData(prev => ({
+                    ...prev,
+                    supplies: [
+                        ...(prev.supplies || []),
+                        {
+                            id: supplyId,
+                            text: newSupplyText.trim(),
+                            checked: false,
+                            addedBy: currentUser,
+                            addedAt: new Date().toISOString()
+                        }
+                    ]
+                }));
+                
+                setNewSupplyText('');
+                setShowAddSupplyModal(false);
+            };
+
+            const toggleSupply = (supplyId) => {
+                setSessionData(prev => ({
+                    ...prev,
+                    supplies: (prev.supplies || []).map(s => 
+                        s.id === supplyId ? { ...s, checked: !s.checked } : s
+                    )
+                }));
+            };
+
+            const removeSupply = (supplyId) => {
+                setSessionData(prev => ({
+                    ...prev,
+                    supplies: (prev.supplies || []).filter(s => s.id !== supplyId)
+                }));
+            };
+
+            // ============================================
+            // CUSTOM TASKS MANAGEMENT
+            // ============================================
+            const addCustomTask = () => {
+                if (!newTaskText.trim() || !currentUser) return;
+                
+                const taskId = 'custom_' + Date.now();
+                setSessionData(prev => ({
+                    ...prev,
+                    customTasks: [
+                        ...(prev.customTasks || []),
+                        {
+                            id: taskId,
+                            text: newTaskText.trim(),
+                            points: newTaskPoints,
+                            addedBy: currentUser,
+                            addedAt: new Date().toISOString()
+                        }
+                    ]
+                }));
+                setNewTaskText('');
+                setNewTaskPoints(15);
+            };
+
+            const removeCustomTask = (taskId) => {
+                setSessionData(prev => ({
+                    ...prev,
+                    customTasks: (prev.customTasks || []).filter(t => t.id !== taskId),
+                    checkedItems: Object.fromEntries(
+                        Object.entries(prev.checkedItems).filter(([id]) => id !== taskId)
+                    )
+                }));
+            };
+
+            const toggleCustomTask = (task) => {
+                if (!currentUser) return;
+                
+                const wasChecked = sessionData.checkedItems[task.id];
+                const now = new Date().toISOString();
+                
+                setSessionData(prev => {
+                    const newChecked = { ...prev.checkedItems };
+                    const newTeam = { ...prev.teamMembers };
+                    const newLog = [...prev.completionLog];
+                    
+                    if (wasChecked) {
+                        const completers = wasChecked.users || [wasChecked.user];
+                        delete newChecked[task.id];
+                        completers.forEach(user => {
+                            if (newTeam[user]) {
+                                const teamSize = completers.length;
+                                const actualPoints = teamSize > 1 
+                                    ? Math.round(task.points * (1 + 0.25 * (teamSize - 1)))
+                                    : task.points;
+                                newTeam[user] = {
+                                    ...newTeam[user],
+                                    points: Math.max(0, newTeam[user].points - actualPoints),
+                                    tasksCompleted: Math.max(0, newTeam[user].tasksCompleted - 1)
+                                };
+                            }
+                        });
+                    } else {
+                        newChecked[task.id] = { user: currentUser, users: [currentUser], timestamp: now };
+                        newTeam[currentUser] = {
+                            ...newTeam[currentUser],
+                            points: (newTeam[currentUser]?.points || 0) + task.points,
+                            tasksCompleted: (newTeam[currentUser]?.tasksCompleted || 0) + 1
+                        };
+                        newLog.push({ id: task.id, user: currentUser, users: [currentUser], timestamp: now, points: task.points, isCustom: true });
+                    }
+                    
+                    return { ...prev, checkedItems: newChecked, teamMembers: newTeam, completionLog: newLog };
+                });
+            };
+
+            // ============================================
+            // SUPPLIES LIST MANAGEMENT
+            // ============================================
+            const addSupply = () => {
+                if (!newSupplyText.trim() || !currentUser) return;
+                
+                const supplyId = 'supply_' + Date.now();
+                setSessionData(prev => ({
+                    ...prev,
+                    supplies: [
+                        ...(prev.supplies || []),
+                        {
+                            id: supplyId,
+                            text: newSupplyText.trim(),
+                            checked: false,
+                            addedBy: currentUser,
+                            addedAt: new Date().toISOString()
+                        }
+                    ]
+                }));
+                setNewSupplyText('');
+            };
+
+            const toggleSupply = (supplyId) => {
+                setSessionData(prev => ({
+                    ...prev,
+                    supplies: (prev.supplies || []).map(s => 
+                        s.id === supplyId ? { ...s, checked: !s.checked } : s
+                    )
+                }));
+            };
+
+            const removeSupply = (supplyId) => {
+                setSessionData(prev => ({
+                    ...prev,
+                    supplies: (prev.supplies || []).filter(s => s.id !== supplyId)
+                }));
+            };
+
+            // ============================================
+            // CHECK FOR BADGE UNLOCKS
+            // ============================================
+            const checkBadges = (user, userData, checkedItems) => {
+                const earnedBadges = userData.badges || [];
+                
+                // First task badge
+                if (userData.tasksCompleted === 1 && !earnedBadges.includes('first_task')) {
+                    unlockBadge(user, 'first_task');
+                }
+                
+                // Section completion badges
+                const kitchenItems = sections.kitchen.items.map(i => i.id);
+                const kitchenComplete = kitchenItems.every(id => checkedItems[id]);
+                if (kitchenComplete && !earnedBadges.includes('kitchen_master')) {
+                    unlockBadge(user, 'kitchen_master');
+                }
+                
+                // Time-based badges
+                const hour = new Date().getHours();
+                if (hour < 8 && !earnedBadges.includes('early_bird')) {
+                    unlockBadge(user, 'early_bird');
+                }
+                if (hour >= 20 && !earnedBadges.includes('night_owl')) {
+                    unlockBadge(user, 'night_owl');
+                }
+            };
+
+            const unlockBadge = (user, badgeId) => {
+                const badge = BADGES.find(b => b.id === badgeId);
+                if (badge) {
+                    setNewBadge(badge);
+                    setTimeout(() => setNewBadge(null), 3000);
+                    
+                    setSessionData(prev => ({
+                        ...prev,
+                        teamMembers: {
+                            ...prev.teamMembers,
+                            [user]: {
+                                ...prev.teamMembers[user],
+                                badges: [...(prev.teamMembers[user]?.badges || []), badgeId]
+                            }
+                        }
+                    }));
+                }
+            };
+
+            // ============================================
+            // CALCULATE PROGRESS
+            // ============================================
+            const getProgress = () => {
+                if (!sessionData) return { checked: 0, total: 0, points: 0, maxPoints: 0 };
+                
+                // Standard section items
+                const allItems = Object.values(sections).flatMap(s => s.items);
+                
+                // Add custom tasks
+                const customTasks = sessionData.customTasks || [];
+                const allTasksWithCustom = [...allItems, ...customTasks];
+                
+                const checked = allTasksWithCustom.filter(item => sessionData.checkedItems[item.id]).length;
+                const earnedPoints = allTasksWithCustom
+                    .filter(item => sessionData.checkedItems[item.id])
+                    .reduce((sum, item) => sum + item.points, 0);
+                const maxPoints = allTasksWithCustom.reduce((sum, item) => sum + item.points, 0);
+                
+                return { checked, total: allTasksWithCustom.length, points: earnedPoints, maxPoints };
+            };
+
+            const getSectionProgress = (sectionKey) => {
+                if (!sessionData) return { checked: 0, total: 0 };
+                
+                // Handle custom section specially
+                if (sectionKey === 'custom') {
+                    const customTasks = sessionData.customTasks || [];
+                    const checked = customTasks.filter(item => sessionData.checkedItems[item.id]).length;
+                    return { checked, total: customTasks.length };
+                }
+                
+                const section = sections[sectionKey];
+                if (!section) return { checked: 0, total: 0 };
+                const checked = section.items.filter(item => sessionData.checkedItems[item.id]).length;
+                return { checked, total: section.items.length };
+            };
+
+            // ============================================
+            // GET USER LEVEL
+            // ============================================
+            const getUserLevel = (points) => {
+                let level = LEVELS[0];
+                for (const l of LEVELS) {
+                    if (points >= l.minPoints) level = l;
+                }
+                return level;
+            };
+
+            // ============================================
+            // COPY SHARE LINK
+            // ============================================
+            const copyShareLink = () => {
+                const link = `${window.location.origin}${window.location.pathname}?session=${sessionId}`;
+                navigator.clipboard.writeText(link);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+            };
+
+            // ============================================
+            // RENDER: HOME VIEW
+            // ============================================
+            if (view === 'home') {
+                return (
+                    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50">
+                        <header className="bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 text-white p-6 shadow-lg">
+                            <div className="max-w-4xl mx-auto text-center">
+                                <h1 className="text-4xl font-bold mb-2 sparkle">✨ Sparkle Squad ✨</h1>
+                                <p className="text-pink-100">The MOST fun way to clean! 🧹💪🎉</p>
+                                <p className="text-xs text-pink-200 mt-1">by Overkor-tek • Pink Revolution 🌸</p>
+                            </div>
+                        </header>
+                        
+                        <main className="max-w-4xl mx-auto p-6">
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {/* Create New Session */}
+                                <button
+                                    onClick={() => setView('create')}
+                                    className="bg-white rounded-3xl shadow-xl p-8 text-left hover:scale-105 transition-all border-2 border-pink-100 hover:border-pink-300"
+                                >
+                                    <div className="text-5xl mb-4 float">🚀</div>
+                                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Let's GOOOO! 🔥</h2>
+                                    <p className="text-gray-500">Start a new session & invite the squad</p>
+                                    <div className="mt-4 text-pink-500 font-bold">Create Session →</div>
+                                </button>
+                                
+                                {/* Join Session */}
+                                <div className="bg-white rounded-3xl shadow-xl p-8 border-2 border-purple-100">
+                                    <div className="text-5xl mb-4">🤝</div>
+                                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Join the Fun!</h2>
+                                    <p className="text-gray-500 mb-4">Got a link? Paste it or enter code</p>
+                                    <input
+                                        type="text"
+                                        placeholder="🔗 Paste session code..."
+                                        className="w-full p-3 border-2 border-purple-200 rounded-xl focus:border-purple-400 focus:outline-none"
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' && e.target.value) {
+                                                loadSession(e.target.value);
+                                            }
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            
+                            {/* Features */}
+                            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <div className="bg-white rounded-2xl p-4 shadow hover:scale-105 transition-all">
+                                    <div className="text-3xl mb-2">🎮</div>
+                                    <div className="font-bold text-gray-800">Gamified</div>
+                                    <div className="text-xs text-gray-500">Earn points & level up!</div>
+                                </div>
+                                <div className="bg-white rounded-2xl p-4 shadow hover:scale-105 transition-all">
+                                    <div className="text-3xl mb-2">👯</div>
+                                    <div className="font-bold text-gray-800">Team Mode</div>
+                                    <div className="text-xs text-gray-500">Compete & collaborate!</div>
+                                </div>
+                                <div className="bg-white rounded-2xl p-4 shadow hover:scale-105 transition-all">
+                                    <div className="text-3xl mb-2">🤫</div>
+                                    <div className="font-bold text-gray-800">Secret Bonuses</div>
+                                    <div className="text-xs text-gray-500">Find hidden multipliers!</div>
+                                </div>
+                                <div className="bg-white rounded-2xl p-4 shadow hover:scale-105 transition-all">
+                                    <div className="text-3xl mb-2">🏆</div>
+                                    <div className="font-bold text-gray-800">Leaderboard</div>
+                                    <div className="text-xs text-gray-500">Who's the MVP? 👀</div>
+                                </div>
+                            </div>
+                            
+                            {/* Fun tagline */}
+                            <div className="mt-8 text-center">
+                                <p className="text-gray-400 text-sm">
+                                    "Cleaning has never been this lit" 🔥✨
+                                </p>
+                            </div>
+                        </main>
+                        
+                        <footer className="bg-gradient-to-r from-pink-500 to-purple-500 text-white p-4 mt-12 text-center">
+                            <p className="font-bold">🌸 Pink Revolution • Overkor-tek 🌸</p>
+                            <p className="text-xs text-pink-200 mt-1">Making boring things FUN since 2026 🎉</p>
+                        </footer>
+                    </div>
+                );
+            }
+
+            // ============================================
+            // RENDER: CREATE SESSION VIEW
+            // ============================================
+            if (view === 'create') {
+                return (
+                    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50">
+                        <header className="bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 text-white p-4 shadow-lg">
+                            <div className="max-w-4xl mx-auto">
+                                <button onClick={() => setView('home')} className="text-pink-200 hover:text-white mb-2">
+                                    ← Back
+                                </button>
+                                <h1 className="text-2xl font-bold">🎯 Create New Session</h1>
+                            </div>
+                        </header>
+                        
+                        <main className="max-w-lg mx-auto p-6">
+                            <div className="bg-white rounded-3xl shadow-xl p-6 border-2 border-pink-100">
+                                <div className="space-y-4">
+                                    {/* Property Selector */}
+                                    <div>
+                                        <label className="block text-sm font-bold text-gray-700 mb-2">🏠 Select Property *</label>
+                                        <div className="grid grid-cols-2 gap-3">
+                                            {PROPERTIES.map(prop => (
+                                                <button
+                                                    key={prop.id}
+                                                    onClick={() => selectProperty(prop)}
+                                                    className={`p-4 rounded-xl border-2 text-left transition-all ${
+                                                        createForm.propertyId === prop.id
+                                                            ? 'border-pink-500 bg-pink-50 shadow-lg'
+                                                            : 'border-gray-200 hover:border-pink-300'
+                                                    }`}
+                                                >
+                                                    <div className="text-2xl mb-1">{prop.emoji}</div>
+                                                    <div className="font-bold text-gray-800">{prop.name}</div>
+                                                    <div className="text-sm text-gray-500">{prop.location}</div>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    
+                                    {/* Or Custom Property */}
+                                    <div className="text-center text-gray-400 text-sm">— or enter custom —</div>
+                                    
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <input
+                                            type="text"
+                                            value={createForm.propertyName}
+                                            onChange={(e) => setCreateForm({...createForm, propertyName: e.target.value, propertyId: 'custom'})}
+                                            placeholder="Property Name"
+                                            className="p-3 border-2 border-pink-200 rounded-xl focus:border-pink-400 focus:outline-none"
+                                        />
+                                        <input
+                                            type="text"
+                                            value={createForm.location}
+                                            onChange={(e) => setCreateForm({...createForm, location: e.target.value})}
+                                            placeholder="Location"
+                                            className="p-3 border-2 border-pink-200 rounded-xl focus:border-pink-400 focus:outline-none"
+                                        />
+                                    </div>
+                                    
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-bold text-gray-700 mb-1">📅 Date</label>
+                                            <input
+                                                type="date"
+                                                value={createForm.date}
+                                                onChange={(e) => setCreateForm({...createForm, date: e.target.value})}
+                                                className="w-full p-3 border-2 border-pink-200 rounded-xl focus:border-pink-400 focus:outline-none"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-bold text-gray-700 mb-1">⏰ Time</label>
+                                            <input
+                                                type="time"
+                                                value={createForm.time}
+                                                onChange={(e) => setCreateForm({...createForm, time: e.target.value})}
+                                                className="w-full p-3 border-2 border-pink-200 rounded-xl focus:border-pink-400 focus:outline-none"
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label className="block text-sm font-bold text-gray-700 mb-1">📝 Notes (optional)</label>
+                                        <textarea
+                                            value={createForm.notes}
+                                            onChange={(e) => setCreateForm({...createForm, notes: e.target.value})}
+                                            placeholder="Special instructions, access codes, etc..."
+                                            className="w-full p-3 border-2 border-pink-200 rounded-xl focus:border-pink-400 focus:outline-none min-h-20"
+                                        />
+                                    </div>
+                                    
+                                    <button
+                                        onClick={createSession}
+                                        disabled={!createForm.propertyName}
+                                        className={`w-full py-4 rounded-xl font-bold text-lg transition-all ${
+                                            createForm.propertyName
+                                                ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white hover:from-pink-600 hover:to-purple-600 shadow-lg'
+                                                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                        }`}
+                                    >
+                                        🚀 Create Session & Get Link
+                                    </button>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                );
+            }
+
+            // ============================================
+            // RENDER: MAIN SESSION VIEW
+            // ============================================
+            if (!sessionData) return <div className="p-8 text-center">Loading...</div>;
+
+            const progress = getProgress();
+            const progressPercent = Math.round((progress.checked / progress.total) * 100);
+
+            // ============================================
+            // JOIN PROMPT (if not yet joined)
+            // ============================================
+            if (!currentUser) {
+                // Calculate elapsed time for display on join screen
+                const joinScreenElapsed = sessionData.timerStartedAt 
+                    ? Math.floor((Date.now() - new Date(sessionData.timerStartedAt).getTime()) / 1000)
+                    : 0;
+                
+                return (
+                    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center p-4">
+                        <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full border-2 border-pink-100">
+                            <div className="text-center mb-6">
+                                <div className="text-5xl mb-4">🏠</div>
+                                <h1 className="text-2xl font-bold text-gray-800">{sessionData.property}</h1>
+                                <p className="text-gray-500">{sessionData.location}</p>
+                                <p className="text-sm text-gray-400 mt-2">
+                                    📅 {new Date(sessionData.date).toLocaleDateString()} at {sessionData.time}
+                                </p>
+                                
+                                {/* Timer Status */}
+                                {sessionData.completedAt ? (
+                                    <div className="mt-4 bg-green-100 text-green-700 rounded-xl p-3">
+                                        <div className="text-sm">✅ COMPLETED IN</div>
+                                        <div className="text-2xl font-bold font-mono">{formatTime(sessionData.completionTime)}</div>
+                                    </div>
+                                ) : sessionData.timerStartedAt ? (
+                                    <div className="mt-4 bg-pink-100 text-pink-700 rounded-xl p-3">
+                                        <div className="text-sm">⏱️ IN PROGRESS</div>
+                                        <div className="text-2xl font-bold font-mono">{formatTime(joinScreenElapsed)}</div>
+                                        <div className="text-xs opacity-70">Timer running!</div>
+                                    </div>
+                                ) : (
+                                    <div className="mt-4 bg-gray-100 text-gray-600 rounded-xl p-3">
+                                        <div className="text-sm">⏱️ READY TO START</div>
+                                        <div className="text-xs">Timer begins when you join!</div>
+                                    </div>
+                                )}
+                            </div>
+                            
+                            {/* Team Member Buttons */}
+                            <div className="mb-6">
+                                <label className="block text-sm font-bold text-gray-700 mb-3 text-center">👥 Who's clocking in?</label>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {Object.entries(TEAM_MEMBERS).map(([name, style]) => {
+                                        const isJoined = sessionData.teamMembers[name];
+                                        return (
+                                            <button
+                                                key={name}
+                                                onClick={() => {
+                                                    setUserNameInput(name);
+                                                    setCurrentUser(name);
+                                                    if (!sessionData.teamMembers[name]) {
+                                                        setSessionData(prev => ({
+                                                            ...prev,
+                                                            timerStartedAt: prev.timerStartedAt || new Date().toISOString(),
+                                                            teamMembers: {
+                                                                ...prev.teamMembers,
+                                                                [name]: {
+                                                                    joinedAt: new Date().toISOString(),
+                                                                    points: 0,
+                                                                    tasksCompleted: 0,
+                                                                    badges: [],
+                                                                    color: style.color
+                                                                }
+                                                            }
+                                                        }));
+                                                    }
+                                                }}
+                                                className={`p-4 rounded-xl border-3 text-center transition-all hover:scale-105 ${
+                                                    isJoined ? 'opacity-90' : ''
+                                                }`}
+                                                style={{ 
+                                                    borderColor: style.color,
+                                                    backgroundColor: `${style.color}15`
+                                                }}
+                                            >
+                                                <div className="text-3xl mb-1">{style.emoji}</div>
+                                                <div className="font-bold" style={{ color: style.color }}>{name}</div>
+                                                {isJoined && (
+                                                    <div className="text-xs text-gray-500 mt-1">
+                                                        ✓ {sessionData.teamMembers[name].points} pts
+                                                    </div>
+                                                )}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                            
+                            {/* Or Custom Name */}
+                            <div className="text-center text-gray-400 text-sm mb-3">— or enter custom name —</div>
+                            <div className="flex gap-2">
+                                <input
+                                    type="text"
+                                    value={userNameInput}
+                                    onChange={(e) => setUserNameInput(e.target.value)}
+                                    placeholder="Your name..."
+                                    className="flex-1 p-3 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none"
+                                    onKeyDown={(e) => e.key === 'Enter' && joinSession()}
+                                />
+                                <button
+                                    onClick={joinSession}
+                                    className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 rounded-xl font-bold hover:from-pink-600 hover:to-purple-600 transition-all"
+                                >
+                                    Join
+                                </button>
+                            </div>
+                            
+                            {/* Currently Active */}
+                            {Object.keys(sessionData.teamMembers).length > 0 && (
+                                <div className="mt-6 pt-6 border-t border-gray-200">
+                                    <p className="text-sm text-gray-500 mb-2 text-center">🔥 Currently Active:</p>
+                                    <div className="flex flex-wrap gap-2 justify-center">
+                                        {Object.entries(sessionData.teamMembers).map(([name, data]) => {
+                                            const style = getMemberStyle(name);
+                                            return (
+                                                <span 
+                                                    key={name} 
+                                                    className="px-3 py-1 rounded-full text-sm font-bold text-white"
+                                                    style={{ backgroundColor: style.color }}
+                                                >
+                                                    {style.emoji} {name} ({data.points} pts)
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                );
+            }
+
+            // ============================================
+            // MAIN SESSION INTERFACE
+            // ============================================
+            const userPoints = sessionData.teamMembers[currentUser]?.points || 0;
+            const userLevel = getUserLevel(userPoints);
+            const currentUserStyle = getMemberStyle(currentUser);
+
+            return (
+                <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50">
+                    {/* SHARE MODAL - Shows after creating session */}
+                    {showShareModal && (
+                        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                            <div className="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl bounce-in">
+                                <div className="text-6xl mb-4">🔗</div>
+                                <h2 className="text-2xl font-bold text-gray-800 mb-2">Session Created!</h2>
+                                <p className="text-gray-500 mb-4">Share this link with your team:</p>
+                                
+                                <div className="bg-gray-100 rounded-xl p-4 mb-4 break-all text-sm font-mono">
+                                    {`${window.location.origin}${window.location.pathname}?session=${sessionId}`}
+                                </div>
+                                
+                                <button
+                                    onClick={() => {
+                                        copyShareLink();
+                                        setTimeout(() => setCopied(false), 2000);
+                                    }}
+                                    className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-4 rounded-xl font-bold text-lg hover:from-pink-600 hover:to-purple-600 transition-all mb-3"
+                                >
+                                    {copied ? '✅ Copied to Clipboard!' : '📋 Copy Link'}
+                                </button>
+                                
+                                <button
+                                    onClick={() => setShowShareModal(false)}
+                                    className="w-full bg-gray-200 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-300 transition-all"
+                                >
+                                    Let's Go! 🚀
+                                </button>
+                                
+                                <p className="text-xs text-gray-400 mt-4">
+                                    ⏱️ Timer starts when the first person joins!
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* COMPLETION MODAL - Shows when 100% done */}
+                    {sessionData?.completedAt && showConfetti && (
+                        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                            <div className="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl bounce-in">
+                                <div className="text-6xl mb-4">🎉</div>
+                                <h2 className="text-3xl font-bold text-pink-600 mb-2">TURNOVER COMPLETE!</h2>
+                                <p className="text-gray-600 mb-4">{sessionData.property} is 5-star ready! ⭐⭐⭐⭐⭐</p>
+                                
+                                <div className="bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl p-6 text-white mb-4">
+                                    <div className="text-sm opacity-80">Final Time</div>
+                                    <div className="text-5xl font-bold font-mono">{formatTime(sessionData.completionTime)}</div>
+                                </div>
+                                
+                                <div className="text-left bg-gray-50 rounded-xl p-4 mb-4">
+                                    <div className="font-bold text-gray-700 mb-2">🏆 Team Stats:</div>
+                                    {Object.entries(sessionData.teamMembers)
+                                        .sort((a, b) => b[1].points - a[1].points)
+                                        .map(([name, data], i) => {
+                                            const style = getMemberStyle(name);
+                                            return (
+                                                <div key={name} className="flex items-center justify-between py-1">
+                                                    <span>
+                                                        {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '  '} {style.emoji} {name}
+                                                    </span>
+                                                    <span className="font-bold" style={{ color: style.color }}>
+                                                        {data.points} pts
+                                                    </span>
+                                                </div>
+                                            );
+                                        })}
+                                </div>
+                                
+                                <button
+                                    onClick={() => setShowConfetti(false)}
+                                    className="w-full bg-gradient-to-r from-green-400 to-green-500 text-white py-4 rounded-xl font-bold text-lg hover:from-green-500 hover:to-green-600 transition-all"
+                                >
+                                    Amazing Work! 💪
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Badge Unlock Modal */}
+                    {newBadge && (
+                        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                            <div className="bg-white rounded-3xl p-8 text-center shadow-2xl bounce-in">
+                                <div className="text-6xl mb-4">{newBadge.emoji}</div>
+                                <h2 className="text-2xl font-bold text-pink-600 mb-2">Badge Unlocked!</h2>
+                                <p className="text-xl font-bold text-gray-800">{newBadge.name}</p>
+                                <p className="text-gray-500">{newBadge.desc}</p>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* 💬 QUOTE/HACK POPUP - Shows after completing task */}
+                    {taskQuote && (
+                        <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 z-40 bounce-in">
+                            <div className={`px-6 py-4 rounded-2xl shadow-2xl max-w-xs text-center ${
+                                taskQuote.type === 'hack' 
+                                    ? 'bg-gradient-to-r from-yellow-400 to-amber-400 text-amber-900'
+                                    : taskQuote.type === 'funny'
+                                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                                        : 'bg-gradient-to-r from-pink-500 to-rose-500 text-white'
+                            }`}>
+                                <p className="font-bold text-lg">{taskQuote.text}</p>
+                                <div className="text-xs mt-1 opacity-70">
+                                    {taskQuote.type === 'hack' ? '💡 Pro Tip' : taskQuote.type === 'funny' ? '😂 LOL' : '🔥 LET\'S GO'}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* TEAM COMPLETE MODAL - Select who did this together */}
+                    {teamCompleteModal && (
+                        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                            <div className="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl bounce-in">
+                                <div className="text-center mb-4">
+                                    <div className="text-4xl mb-2">👥</div>
+                                    <h2 className="text-xl font-bold text-gray-800">Team Complete!</h2>
+                                    <p className="text-sm text-gray-500">Who did this together?</p>
+                                </div>
+                                
+                                {/* Task being completed */}
+                                <div className="bg-gray-100 rounded-xl p-3 mb-4 text-sm">
+                                    <span className="text-gray-600">{teamCompleteModal.itemText}</span>
+                                    <span className="text-pink-500 font-bold ml-2">+{teamCompleteModal.points} pts each</span>
+                                </div>
+                                
+                                {/* Team member selection */}
+                                <div className="space-y-2 mb-4">
+                                    {/* Show joined session members first */}
+                                    {Object.keys(sessionData.teamMembers).map(name => {
+                                        const style = getMemberStyle(name);
+                                        const isSelected = teamCompleteModal.selectedMembers.includes(name);
+                                        return (
+                                            <button
+                                                key={name}
+                                                onClick={() => toggleTeamMember(name)}
+                                                className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 transition-all ${
+                                                    isSelected 
+                                                        ? 'border-green-400 bg-green-50' 
+                                                        : 'border-gray-200 hover:border-gray-300'
+                                                }`}
+                                            >
+                                                <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                                                    isSelected ? 'bg-green-500 text-white' : 'bg-gray-200'
+                                                }`}>
+                                                    {isSelected ? '✓' : ''}
+                                                </div>
+                                                <span className="text-xl">{style.emoji}</span>
+                                                <span className="font-bold" style={{ color: style.color }}>{name}</span>
+                                                {name === currentUser && (
+                                                    <span className="text-xs bg-gray-200 px-2 py-0.5 rounded-full">you</span>
+                                                )}
+                                            </button>
+                                        );
+                                    })}
+                                    
+                                    {/* Show other team members not in session yet */}
+                                    {Object.entries(TEAM_MEMBERS)
+                                        .filter(([name]) => !sessionData.teamMembers[name])
+                                        .map(([name, style]) => {
+                                            const isSelected = teamCompleteModal.selectedMembers.includes(name);
+                                            return (
+                                                <button
+                                                    key={name}
+                                                    onClick={() => {
+                                                        // Add them to session first, then select
+                                                        if (!sessionData.teamMembers[name]) {
+                                                            setSessionData(prev => ({
+                                                                ...prev,
+                                                                teamMembers: {
+                                                                    ...prev.teamMembers,
+                                                                    [name]: {
+                                                                        joinedAt: new Date().toISOString(),
+                                                                        points: 0,
+                                                                        tasksCompleted: 0,
+                                                                        badges: [],
+                                                                        color: style.color
+                                                                    }
+                                                                }
+                                                            }));
+                                                        }
+                                                        toggleTeamMember(name);
+                                                    }}
+                                                    className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 transition-all opacity-60 ${
+                                                        isSelected 
+                                                            ? 'border-green-400 bg-green-50 opacity-100' 
+                                                            : 'border-gray-200 hover:border-gray-300'
+                                                    }`}
+                                                >
+                                                    <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                                                        isSelected ? 'bg-green-500 text-white' : 'bg-gray-200'
+                                                    }`}>
+                                                        {isSelected ? '✓' : ''}
+                                                    </div>
+                                                    <span className="text-xl">{style.emoji}</span>
+                                                    <span className="font-bold" style={{ color: style.color }}>{name}</span>
+                                                    <span className="text-xs bg-gray-100 px-2 py-0.5 rounded-full text-gray-500">not joined</span>
+                                                </button>
+                                            );
+                                        })}
+                                </div>
+                                
+                                {/* Selected count */}
+                                <div className="text-center text-sm text-gray-500 mb-4">
+                                    {teamCompleteModal.selectedMembers.length} selected
+                                    {teamCompleteModal.selectedMembers.length === 2 && (
+                                        <span className="text-pink-500 ml-1">• Dynamic Duo! 👯</span>
+                                    )}
+                                    {teamCompleteModal.selectedMembers.length === 3 && (
+                                        <span className="text-purple-500 ml-1">• Triple Threat! 🔥🔥🔥</span>
+                                    )}
+                                    {teamCompleteModal.selectedMembers.length >= 4 && (
+                                        <span className="text-yellow-500 ml-1">• FULL SQUAD! 💪👑💪</span>
+                                    )}
+                                </div>
+                                
+                                {/* Buttons */}
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={() => setTeamCompleteModal(null)}
+                                        className="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-300 transition-all"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        onClick={submitTeamComplete}
+                                        disabled={teamCompleteModal.selectedMembers.length === 0}
+                                        className={`flex-1 py-3 rounded-xl font-bold transition-all ${
+                                            teamCompleteModal.selectedMembers.length > 0
+                                                ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white hover:from-pink-600 hover:to-purple-600'
+                                                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                        }`}
+                                    >
+                                        ✓ Complete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Confetti */}
+                    {showConfetti && (
+                        <div className="fixed inset-0 pointer-events-none z-40">
+                            {[...Array(50)].map((_, i) => (
+                                <div
+                                    key={i}
+                                    className="confetti absolute text-2xl"
+                                    style={{
+                                        left: `${Math.random() * 100}%`,
+                                        top: '-20px',
+                                        animationDelay: `${Math.random() * 2}s`
+                                    }}
+                                >
+                                    {['🎉', '⭐', '💜', '🌸', '✨'][Math.floor(Math.random() * 5)]}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Header */}
+                    <header 
+                        className="text-white p-4 shadow-lg sticky top-0 z-30"
+                        style={{ background: `linear-gradient(135deg, ${currentUserStyle.color} 0%, #a855f7 100%)` }}
+                    >
+                        <div className="max-w-4xl mx-auto">
+                            {/* Top row: Property + Timer */}
+                            <div className="flex items-center justify-between mb-2">
+                                <div>
+                                    <h1 className="text-xl font-bold">{sessionData.property}</h1>
+                                    <p className="text-white/70 text-sm">{sessionData.location}</p>
+                                </div>
+                                
+                                {/* TIMER */}
+                                <div className={`text-center px-4 py-2 rounded-xl ${
+                                    sessionData.completedAt 
+                                        ? 'bg-green-500' 
+                                        : 'bg-white/20'
+                                }`}>
+                                    <div className="text-xs opacity-80">
+                                        {sessionData.completedAt ? '✅ DONE!' : '⏱️ TIME'}
+                                    </div>
+                                    <div className="text-2xl font-bold font-mono">
+                                        {formatTime(elapsedTime)}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {/* Progress Bar */}
+                            <div className="bg-white/30 rounded-full h-3 overflow-hidden">
+                                <div 
+                                    className={`h-full rounded-full transition-all duration-500 ${
+                                        sessionData.completedAt ? 'bg-green-400' : 'bg-white'
+                                    }`}
+                                    style={{ width: `${progressPercent}%` }}
+                                />
+                            </div>
+                            
+                            {/* Bottom row: User info + Progress + Share */}
+                            <div className="flex items-center justify-between mt-2">
+                                <div className="flex items-center gap-2">
+                                    <span className="text-lg">{currentUserStyle.emoji}</span>
+                                    <span className="text-sm font-bold">{currentUser}</span>
+                                    <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">{userPoints} pts</span>
+                                </div>
+                                
+                                <div className="text-center">
+                                    <span className="text-xl font-bold">{progressPercent}%</span>
+                                    <span className="text-xs opacity-70 ml-1">({progress.checked}/{progress.total})</span>
+                                </div>
+                                
+                                <button
+                                    onClick={() => {
+                                        copyShareLink();
+                                        setShowShareModal(true);
+                                    }}
+                                    className="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-sm flex items-center gap-1 font-bold"
+                                >
+                                    🔗 Share
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main className="max-w-4xl mx-auto p-4">
+                        {/* Navigation */}
+                        <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
+                            <button
+                                onClick={() => setActiveSection('dashboard')}
+                                className={`px-4 py-2 rounded-full font-bold whitespace-nowrap transition-all ${
+                                    activeSection === 'dashboard'
+                                        ? 'bg-pink-500 text-white'
+                                        : 'bg-white text-gray-600 hover:bg-pink-100'
+                                }`}
+                            >
+                                📊 Dashboard
+                            </button>
+                            <button
+                                onClick={() => setActiveSection('leaderboard')}
+                                className={`px-4 py-2 rounded-full font-bold whitespace-nowrap transition-all ${
+                                    activeSection === 'leaderboard'
+                                        ? 'bg-pink-500 text-white'
+                                        : 'bg-white text-gray-600 hover:bg-pink-100'
+                                }`}
+                            >
+                                🏆 Leaderboard
+                            </button>
+                            <button
+                                onClick={() => setActiveSection('activity')}
+                                className={`px-4 py-2 rounded-full font-bold whitespace-nowrap transition-all ${
+                                    activeSection === 'activity'
+                                        ? 'bg-pink-500 text-white'
+                                        : 'bg-white text-gray-600 hover:bg-pink-100'
+                                }`}
+                            >
+                                📜 Activity
+                            </button>
+                        </div>
+
+                        {/* Dashboard View */}
+                        {activeSection === 'dashboard' && (
+                            <>
+                                {/* Header with Guide Me toggle */}
+                                <div className="flex items-center justify-between mb-3">
+                                    <h2 className="text-lg font-bold text-pink-600">✨ Sparkle Squad ✨</h2>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            onClick={() => setGuideMode(!guideMode)}
+                                            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+                                                guideMode
+                                                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                                                    : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                                            }`}
+                                        >
+                                            {guideMode ? '🧭 GUIDE ME ON' : '🧭 Guide Me'}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Guide Me - Next Highest Point Task */}
+                                {guideMode && getNextTask() && (
+                                    <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 rounded-2xl p-4 mb-4 text-white shadow-lg pulse-glow">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex-1">
+                                                <div className="text-xs opacity-80 mb-1">🎯 HIGHEST VALUE TASK:</div>
+                                                <div className="font-bold text-lg">{getNextTask().text}</div>
+                                                <div className="text-sm opacity-80 mt-1">
+                                                    {getNextTask().sectionTitle} • <span className="font-bold">+{getNextTask().points} pts!</span>
+                                                </div>
+                                            </div>
+                                            <button
+                                                onClick={guideToNextTask}
+                                                className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-xl font-bold transition-all ml-4"
+                                            >
+                                                GO! 🚀
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                {/* Section Cards */}
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                                    {Object.entries(sections).map(([key, section]) => {
+                                        const prog = getSectionProgress(key);
+                                        const pct = Math.round((prog.checked / prog.total) * 100);
+                                        const isComplete = pct === 100;
+                                        const isDontForget = key === 'dontforget';
+                                        const isSecurity = key === 'security';
+                                        
+                                        return (
+                                            <button
+                                                key={key}
+                                                onClick={() => setActiveSection(key)}
+                                                className={`p-3 rounded-2xl shadow-lg text-left transition-all hover:scale-105 ${
+                                                    isComplete 
+                                                        ? 'bg-gradient-to-br from-green-400 to-green-500 text-white' 
+                                                        : isDontForget
+                                                            ? 'bg-gradient-to-br from-red-100 to-orange-100 border-2 border-red-200'
+                                                            : isSecurity
+                                                                ? 'bg-gradient-to-br from-slate-100 to-slate-200 border-2 border-slate-300'
+                                                                : 'bg-white border-2 border-pink-100 hover:border-pink-300'
+                                                }`}
+                                            >
+                                                <div className="text-2xl mb-1">{section.emoji}</div>
+                                                <div className={`font-bold text-xs ${
+                                                    isComplete ? 'text-white' 
+                                                    : isDontForget ? 'text-red-600' 
+                                                    : isSecurity ? 'text-slate-700'
+                                                    : 'text-gray-800'
+                                                }`}>
+                                                    {section.title.replace(section.emoji + ' ', '').replace("DON'T FORGET!", "DON'T FORGET")}
+                                                </div>
+                                                <div className={`text-xs ${isComplete ? 'text-green-100' : 'text-gray-500'}`}>
+                                                    {prog.checked}/{prog.total}
+                                                </div>
+                                                <div className={`mt-1 h-1.5 rounded-full ${isComplete ? 'bg-green-300' : isSecurity ? 'bg-slate-300' : 'bg-pink-100'}`}>
+                                                    <div 
+                                                        className={`h-full rounded-full transition-all ${
+                                                            isComplete ? 'bg-white' 
+                                                            : isDontForget ? 'bg-red-400' 
+                                                            : isSecurity ? 'bg-slate-600'
+                                                            : 'bg-pink-400'
+                                                        }`}
+                                                        style={{ width: `${pct}%` }}
+                                                    />
+                                                </div>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+
+                                {/* ============================================ */}
+                                {/* CUSTOM TASKS SECTION */}
+                                {/* ============================================ */}
+                                <div className="bg-white rounded-2xl shadow-lg p-4 mb-4 border-2 border-yellow-200">
+                                    <h3 className="font-bold text-yellow-700 mb-3 flex items-center gap-2">
+                                        ⭐ Extra Tasks
+                                        <span className="text-xs bg-yellow-100 px-2 py-0.5 rounded-full text-yellow-600">
+                                            {(sessionData.customTasks || []).length} added
+                                        </span>
+                                    </h3>
+                                    
+                                    {/* Add new task form */}
+                                    <div className="flex gap-2 mb-3">
+                                        <input
+                                            type="text"
+                                            value={newTaskText}
+                                            onChange={(e) => setNewTaskText(e.target.value)}
+                                            placeholder="Add task (e.g. Back porch cleanup)"
+                                            className="flex-1 p-2 border-2 border-yellow-200 rounded-xl text-sm focus:border-yellow-400 focus:outline-none"
+                                            onKeyDown={(e) => e.key === 'Enter' && addCustomTask()}
+                                        />
+                                        <select
+                                            value={newTaskPoints}
+                                            onChange={(e) => setNewTaskPoints(Number(e.target.value))}
+                                            className="p-2 border-2 border-yellow-200 rounded-xl text-sm bg-white focus:border-yellow-400 focus:outline-none"
+                                        >
+                                            <option value={5}>5 pts (Quick)</option>
+                                            <option value={10}>10 pts (Easy)</option>
+                                            <option value={15}>15 pts (Medium)</option>
+                                            <option value={25}>25 pts (Thorough)</option>
+                                            <option value={40}>40 pts (Deep)</option>
+                                        </select>
+                                        <button
+                                            onClick={addCustomTask}
+                                            disabled={!newTaskText.trim()}
+                                            className={`px-4 py-2 rounded-xl font-bold text-sm transition-all ${
+                                                newTaskText.trim()
+                                                    ? 'bg-yellow-500 text-white hover:bg-yellow-600'
+                                                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                            }`}
+                                        >
+                                            + Add
+                                        </button>
+                                    </div>
+                                    
+                                    {/* Custom tasks list */}
+                                    {(sessionData.customTasks || []).length > 0 ? (
+                                        <div className="space-y-2">
+                                            {(sessionData.customTasks || []).map(task => {
+                                                const checked = sessionData.checkedItems[task.id];
+                                                const checkerStyle = checked ? getMemberStyle(checked.user) : null;
+                                                const isTeamComplete = checked?.users?.length > 1;
+                                                
+                                                return (
+                                                    <div
+                                                        key={task.id}
+                                                        className={`flex items-center gap-2 p-2 rounded-xl transition-all ${
+                                                            checked 
+                                                                ? 'bg-green-50 border-2 border-green-200' 
+                                                                : 'bg-yellow-50 border-2 border-yellow-100'
+                                                        }`}
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={!!checked}
+                                                            onChange={() => toggleCustomTask(task)}
+                                                            className="w-5 h-5 rounded accent-yellow-500 cursor-pointer flex-shrink-0"
+                                                        />
+                                                        <span className={`flex-1 text-sm ${checked ? 'line-through text-gray-400' : 'text-gray-700'}`}>
+                                                            ⭐ {task.text}
+                                                        </span>
+                                                        <span className="text-xs px-2 py-0.5 rounded-full bg-yellow-200 text-yellow-700">
+                                                            +{task.points}
+                                                        </span>
+                                                        {!checked && (
+                                                            <button
+                                                                onClick={() => openTeamComplete({ id: task.id, text: task.text, points: task.points })}
+                                                                className="text-xs px-2 py-1 rounded-full bg-purple-100 text-purple-600 hover:bg-purple-200"
+                                                            >
+                                                                👥
+                                                            </button>
+                                                        )}
+                                                        {checked && isTeamComplete && (
+                                                            <span className="text-xs text-purple-500 font-bold">TEAM</span>
+                                                        )}
+                                                        {checked && !isTeamComplete && (
+                                                            <span className="text-xs px-2 py-0.5 rounded-full text-white" style={{ backgroundColor: checkerStyle?.color }}>
+                                                                {checkerStyle?.emoji}
+                                                            </span>
+                                                        )}
+                                                        <button
+                                                            onClick={() => removeCustomTask(task.id)}
+                                                            className="text-xs text-red-400 hover:text-red-600 px-1"
+                                                            title="Remove task"
+                                                        >
+                                                            ✕
+                                                        </button>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    ) : (
+                                        <p className="text-sm text-yellow-600 text-center py-2">
+                                            No extra tasks yet. Add property-specific tasks above!
+                                        </p>
+                                    )}
+                                </div>
+
+                                {/* ============================================ */}
+                                {/* SUPPLIES NEEDED SECTION */}
+                                {/* ============================================ */}
+                                <div className="bg-white rounded-2xl shadow-lg p-4 mb-4 border-2 border-blue-200">
+                                    <h3 className="font-bold text-blue-700 mb-3 flex items-center gap-2">
+                                        🛒 Supplies Needed
+                                        <span className="text-xs bg-blue-100 px-2 py-0.5 rounded-full text-blue-600">
+                                            {(sessionData.supplies || []).filter(s => !s.checked).length} remaining
+                                        </span>
+                                    </h3>
+                                    
+                                    {/* Add supply form */}
+                                    <div className="flex gap-2 mb-3">
+                                        <input
+                                            type="text"
+                                            value={newSupplyText}
+                                            onChange={(e) => setNewSupplyText(e.target.value)}
+                                            placeholder="Add supply (e.g. Paper towels)"
+                                            className="flex-1 p-2 border-2 border-blue-200 rounded-xl text-sm focus:border-blue-400 focus:outline-none"
+                                            onKeyDown={(e) => e.key === 'Enter' && addSupply()}
+                                        />
+                                        <button
+                                            onClick={addSupply}
+                                            disabled={!newSupplyText.trim()}
+                                            className={`px-4 py-2 rounded-xl font-bold text-sm transition-all ${
+                                                newSupplyText.trim()
+                                                    ? 'bg-blue-500 text-white hover:bg-blue-600'
+                                                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                            }`}
+                                        >
+                                            + Add
+                                        </button>
+                                    </div>
+                                    
+                                    {/* Supplies list */}
+                                    {(sessionData.supplies || []).length > 0 ? (
+                                        <div className="space-y-2">
+                                            {(sessionData.supplies || []).map(supply => (
+                                                <div
+                                                    key={supply.id}
+                                                    className={`flex items-center gap-2 p-2 rounded-xl transition-all ${
+                                                        supply.checked 
+                                                            ? 'bg-green-50 border-2 border-green-200' 
+                                                            : 'bg-blue-50 border-2 border-blue-100'
+                                                    }`}
+                                                >
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={supply.checked}
+                                                        onChange={() => toggleSupply(supply.id)}
+                                                        className="w-5 h-5 rounded accent-blue-500 cursor-pointer flex-shrink-0"
+                                                    />
+                                                    <span className={`flex-1 text-sm ${supply.checked ? 'line-through text-gray-400' : 'text-gray-700'}`}>
+                                                        🛒 {supply.text}
+                                                    </span>
+                                                    {supply.checked && (
+                                                        <span className="text-xs text-green-600">✓ Got it!</span>
+                                                    )}
+                                                    <button
+                                                        onClick={() => removeSupply(supply.id)}
+                                                        className="text-xs text-red-400 hover:text-red-600 px-1"
+                                                        title="Remove supply"
+                                                    >
+                                                        ✕
+                                                    </button>
+                                                </div>
+                                            ))}
+                                            
+                                            {/* Quick summary */}
+                                            <div className="text-xs text-blue-500 text-center pt-2 border-t border-blue-100">
+                                                {(sessionData.supplies || []).filter(s => s.checked).length} of {(sessionData.supplies || []).length} supplies obtained
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <p className="text-sm text-blue-600 text-center py-2">
+                                            No supplies listed yet. Add items you need to pick up!
+                                        </p>
+                                    )}
+                                </div>
+
+                                {/* Your Stats + Timer */}
+                                <div 
+                                    className="rounded-2xl p-4 text-white mb-4"
+                                    style={{ background: `linear-gradient(135deg, ${currentUserStyle.color} 0%, #a855f7 100%)` }}
+                                >
+                                    <div className="flex items-center justify-between mb-3">
+                                        <h3 className="font-bold">{currentUserStyle.emoji} {currentUser}'s Stats</h3>
+                                        <div className={`px-3 py-1 rounded-full text-sm font-mono font-bold ${
+                                            sessionData.completedAt ? 'bg-green-500' : 'bg-white/20'
+                                        }`}>
+                                            ⏱️ {formatTime(elapsedTime)}
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-4 gap-2 text-center">
+                                        <div className="bg-white/20 rounded-xl p-2">
+                                            <div className="text-xl font-bold">{sessionData.teamMembers[currentUser]?.tasksCompleted || 0}</div>
+                                            <div className="text-xs">Tasks</div>
+                                        </div>
+                                        <div className="bg-white/20 rounded-xl p-2">
+                                            <div className="text-xl font-bold">{userPoints}</div>
+                                            <div className="text-xs">Points</div>
+                                        </div>
+                                        <div className="bg-white/20 rounded-xl p-2">
+                                            <div className="text-xl font-bold">{userLevel.level}</div>
+                                            <div className="text-xs">Level</div>
+                                        </div>
+                                        <div className="bg-white/20 rounded-xl p-2">
+                                            <div className="text-xl font-bold">
+                                                {sessionData.teamMembers[currentUser]?.teamTasks || 0}
+                                                {(sessionData.teamMembers[currentUser]?.teamTasks || 0) > 0 && <span className="text-sm">👥</span>}
+                                            </div>
+                                            <div className="text-xs">Collabs</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Notes */}
+                                {sessionData.notes && (
+                                    <div className="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-4 mb-4">
+                                        <h3 className="font-bold text-yellow-700 mb-1">📝 Session Notes</h3>
+                                        <p className="text-yellow-800">{sessionData.notes}</p>
+                                    </div>
+                                )}
+                            </>
+                        )}
+
+                        {/* Leaderboard View */}
+                        {activeSection === 'leaderboard' && (
+                            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-pink-100">
+                                <div className="bg-gradient-to-r from-pink-500 to-purple-500 text-white p-4">
+                                    <h2 className="text-xl font-bold">🏆 Leaderboard</h2>
+                                </div>
+                                <div className="p-4">
+                                    {Object.entries(sessionData.teamMembers)
+                                        .sort((a, b) => b[1].points - a[1].points)
+                                        .map(([name, data], index) => {
+                                            const level = getUserLevel(data.points);
+                                            const style = getMemberStyle(name);
+                                            const teamTasks = data.teamTasks || 0;
+                                            return (
+                                                <div
+                                                    key={name}
+                                                    className={`flex items-center gap-3 p-3 rounded-xl mb-2 ${
+                                                        name === currentUser ? 'ring-2 ring-offset-2' : ''
+                                                    }`}
+                                                    style={{ 
+                                                        backgroundColor: `${style.color}15`,
+                                                        borderLeft: `4px solid ${style.color}`,
+                                                        ringColor: name === currentUser ? style.color : 'transparent'
+                                                    }}
+                                                >
+                                                    <div className={`text-2xl font-bold w-8 ${
+                                                        index === 0 ? 'text-yellow-500' :
+                                                        index === 1 ? 'text-gray-400' :
+                                                        index === 2 ? 'text-orange-400' : 'text-gray-300'
+                                                    }`}>
+                                                        {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`}
+                                                    </div>
+                                                    <div className="text-2xl">{style.emoji}</div>
+                                                    <div className="flex-1">
+                                                        <div className="font-bold flex items-center gap-1" style={{ color: style.color }}>
+                                                            {name}
+                                                            {teamTasks > 0 && (
+                                                                <span className="text-xs bg-purple-100 text-purple-600 px-1.5 py-0.5 rounded-full">
+                                                                    👥{teamTasks}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                        <div className="text-xs text-gray-500">{level.emoji} {level.name} • {data.tasksCompleted} tasks</div>
+                                                    </div>
+                                                    <div className="text-right">
+                                                        <div className="font-bold text-xl" style={{ color: style.color }}>{data.points}</div>
+                                                        <div className="text-xs text-gray-500">points</div>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    {Object.keys(sessionData.teamMembers).length === 0 && (
+                                        <p className="text-center text-gray-400 py-8">No one has joined yet!</p>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Activity Feed */}
+                        {activeSection === 'activity' && (
+                            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-pink-100">
+                                <div className="bg-gradient-to-r from-pink-500 to-purple-500 text-white p-4">
+                                    <h2 className="text-xl font-bold">📜 Activity Feed</h2>
+                                </div>
+                                <div className="p-4 max-h-96 overflow-y-auto">
+                                    {sessionData.completionLog.slice().reverse().slice(0, 50).map((log, i) => {
+                                        const item = Object.values(sections).flatMap(s => s.items).find(item => item.id === log.id);
+                                        const isTeam = log.users?.length > 1;
+                                        const firstUserStyle = getMemberStyle(log.users?.[0] || log.user);
+                                        
+                                        return (
+                                            <div 
+                                                key={i} 
+                                                className="flex items-start gap-3 p-2 border-b border-gray-100 last:border-0"
+                                                style={{ borderLeftColor: firstUserStyle.color, borderLeftWidth: '3px' }}
+                                            >
+                                                {isTeam ? (
+                                                    // Team completion - show stacked emojis
+                                                    <div className="flex -space-x-1">
+                                                        {log.users.slice(0, 3).map((user, idx) => {
+                                                            const uStyle = getMemberStyle(user);
+                                                            return (
+                                                                <span key={user} className="text-lg" style={{ zIndex: 3 - idx }}>
+                                                                    {uStyle.emoji}
+                                                                </span>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                ) : (
+                                                    <div className="text-lg">{firstUserStyle.emoji}</div>
+                                                )}
+                                                <div className="flex-1">
+                                                    <div className="text-sm">
+                                                        {isTeam ? (
+                                                            <>
+                                                                <span className="font-bold text-purple-600">
+                                                                    {log.users.join(' + ')}
+                                                                </span>
+                                                                <span className="text-purple-500 text-xs ml-1">TEAM</span>
+                                                            </>
+                                                        ) : (
+                                                            <span className="font-bold" style={{ color: firstUserStyle.color }}>
+                                                                {log.user}
+                                                            </span>
+                                                        )}
+                                                        <span className="text-gray-600"> completed </span>
+                                                        <span className="text-gray-800">{item?.text.substring(0, 30)}...</span>
+                                                    </div>
+                                                    <div className="text-xs text-gray-400">
+                                                        +{log.points} pts {isTeam && 'each'} • {new Date(log.timestamp).toLocaleTimeString()}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                    {sessionData.completionLog.length === 0 && (
+                                        <p className="text-center text-gray-400 py-8">No activity yet. Start checking off tasks!</p>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Section Detail View */}
+                        {sections[activeSection] && (
+                            <>
+                                <button
+                                    onClick={() => setActiveSection('dashboard')}
+                                    className="mb-4 text-pink-600 font-bold flex items-center gap-2 hover:text-pink-700"
+                                >
+                                    ← Back to Dashboard
+                                </button>
+                                
+                                <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-pink-100">
+                                    <div className={`bg-gradient-to-r ${sections[activeSection].color} text-white p-4`}>
+                                        <h2 className="text-xl font-bold">{sections[activeSection].title}</h2>
+                                        <p className="text-sm opacity-80">
+                                            {getSectionProgress(activeSection).checked}/{getSectionProgress(activeSection).total} • Tap ✓ solo or 👥 for team!
+                                        </p>
+                                    </div>
+                                    
+                                    <div className="p-2">
+                                        {sections[activeSection].items.map((item) => {
+                                            const checked = sessionData.checkedItems[item.id];
+                                            const checkerStyle = checked ? getMemberStyle(checked.user) : null;
+                                            const isTeamComplete = checked?.users?.length > 1;
+                                            
+                                            return (
+                                                <div
+                                                    key={item.id}
+                                                    className={`flex items-center gap-2 p-3 rounded-xl transition-all ${
+                                                        checked 
+                                                            ? 'border-2' 
+                                                            : 'hover:bg-pink-50 border-2 border-transparent'
+                                                    }`}
+                                                    style={checked ? {
+                                                        backgroundColor: `${checkerStyle.color}10`,
+                                                        borderColor: `${checkerStyle.color}50`
+                                                    } : {}}
+                                                >
+                                                    {/* Checkbox - click to solo complete */}
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={!!checked}
+                                                        onChange={() => toggleItem(item.id, item.points)}
+                                                        className="w-6 h-6 rounded-lg accent-pink-500 cursor-pointer flex-shrink-0"
+                                                    />
+                                                    
+                                                    {/* Task text */}
+                                                    <span 
+                                                        className={`flex-1 cursor-pointer ${checked ? 'line-through text-gray-400' : 'text-gray-700'}`}
+                                                        onClick={() => toggleItem(item.id, item.points)}
+                                                    >
+                                                        {item.text}
+                                                    </span>
+                                                    
+                                                    {/* Points badge */}
+                                                    <span className={`text-xs px-2 py-1 rounded-full flex-shrink-0 ${
+                                                        checked ? 'bg-green-100 text-green-600' : 'bg-pink-100 text-pink-600'
+                                                    }`}>
+                                                        +{item.points}
+                                                    </span>
+                                                    
+                                                    {/* Team button (only show if not checked) */}
+                                                    {!checked && (
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                openTeamComplete(item);
+                                                            }}
+                                                            className="text-xs px-2 py-1 rounded-full bg-purple-100 text-purple-600 hover:bg-purple-200 transition-all flex-shrink-0 font-bold"
+                                                            title="Complete as a team"
+                                                        >
+                                                            👥
+                                                        </button>
+                                                    )}
+                                                    
+                                                    {/* Show who completed it */}
+                                                    {checked && (
+                                                        <div className="flex items-center gap-1 flex-shrink-0">
+                                                            {isTeamComplete ? (
+                                                                // Multiple people - show all with stacked avatars
+                                                                <div className="flex items-center">
+                                                                    <div className="flex -space-x-2">
+                                                                        {checked.users.slice(0, 3).map((user, i) => {
+                                                                            const uStyle = getMemberStyle(user);
+                                                                            return (
+                                                                                <span 
+                                                                                    key={user}
+                                                                                    className="w-6 h-6 rounded-full flex items-center justify-center text-xs border-2 border-white"
+                                                                                    style={{ backgroundColor: uStyle.color, zIndex: 3 - i }}
+                                                                                    title={user}
+                                                                                >
+                                                                                    {uStyle.emoji}
+                                                                                </span>
+                                                                            );
+                                                                        })}
+                                                                    </div>
+                                                                    {checked.users.length > 3 && (
+                                                                        <span className="text-xs text-gray-500 ml-1">+{checked.users.length - 3}</span>
+                                                                    )}
+                                                                    <span className="text-xs ml-1 text-purple-500 font-bold">TEAM</span>
+                                                                </div>
+                                                            ) : (
+                                                                // Single person
+                                                                <span 
+                                                                    className="text-xs px-2 py-1 rounded-full text-white font-bold"
+                                                                    style={{ backgroundColor: checkerStyle.color }}
+                                                                >
+                                                                    {checkerStyle.emoji} {checked.user}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="bg-gradient-to-r from-pink-500 to-purple-500 text-white p-4 mt-8 text-center">
+                        <p className="font-bold">🌸 Pink Revolution • Overkor-tek 🌸</p>
+                        <p className="text-xs text-pink-100 mt-1">✨ Sparkle Squad v2.0 • Team Edition ✨</p>
+                    </footer>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<TurnoverProApp />, document.getElementById('root'));
+    </script>
+</body>
+</html>
