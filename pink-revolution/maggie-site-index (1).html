@@ -1,1 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Revolution | Overkor-tek</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --pink: #FF69B4;
+            --pink-dark: #ec4899;
+            --purple: #a855f7;
+            --gold: #FFD700;
+            --cream: #FFF8F0;
+            --deep: #0a0510;
+        }
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--deep);
+            color: var(--cream);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
+        /* Sacred Geometry Background */
+        .sacred-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+        }
+        .sacred-bg svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float-up var(--duration) linear infinite;
+            opacity: 0;
+        }
+        @keyframes float-up {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            background: linear-gradient(135deg, var(--pink), var(--gold), var(--purple));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 5s ease infinite;
+            margin-bottom: 0.5rem;
+        }
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+        .header p {
+            color: rgba(255,248,240,0.8);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Sacred Geometry Divider */
+        .divider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+        }
+        .divider svg {
+            width: 150px;
+            height: 50px;
+            opacity: 0.6;
+        }
+
+        /* App Cards */
+        .apps-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .app-card {
+            background: linear-gradient(145deg, rgba(236, 72, 153, 0.15), rgba(168, 85, 247, 0.1));
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,105,180,0.1), rgba(138,43,226,0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .app-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--pink);
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+        }
+        .app-card:hover::before {
+            opacity: 1;
+        }
+
+        .app-card .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--gold), #FFA500);
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            font-family: 'Cinzel', serif;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .app-card .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .app-card h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .app-card .tagline {
+            font-size: 1.2rem;
+            color: var(--pink);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .app-card p {
+            color: rgba(255,248,240,0.85);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .app-card .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .app-card .feature {
+            background: rgba(255,215,0,0.15);
+            border: 1px solid rgba(255,215,0,0.3);
+            padding: 0.3rem 0.7rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--gold);
+        }
+        .app-card .cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--pink-dark), var(--purple));
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+        }
+        .app-card:hover .cta {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        /* Back Link */
+        .back-link {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .back-link a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+        .back-link a:hover {
+            opacity: 1;
+            color: var(--pink);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255,105,180,0.2);
+            margin-top: 2rem;
+        }
+        footer p {
+            color: rgba(255,248,240,0.6);
+            font-size: 0.9rem;
+        }
+        footer .brand {
+            font-family: 'Cinzel', serif;
+            color: var(--pink);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sacred Geometry Background -->
+<div class="sacred-bg">
+    <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+        <!-- Flower of Life Pattern -->
+        <defs>
+            <pattern id="flowerOfLife" x="0" y="0" width="100" height="86.6" patternUnits="userSpaceOnUse">
+                <circle cx="50" cy="43.3" r="25" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="0.5"/>
+                <circle cx="25" cy="0" r="25" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="0.5"/>
+                <circle cx="75" cy="0" r="25" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="0.5"/>
+                <circle cx="0" cy="43.3" r="25" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="0.5"/>
+                <circle cx="100" cy="43.3" r="25" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="0.5"/>
+                <circle cx="25" cy="86.6" r="25" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="0.5"/>
+                <circle cx="75" cy="86.6" r="25" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="0.5"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#flowerOfLife)"/>
+        
+        <!-- Central Metatron's Cube -->
+        <g transform="translate(500, 500)" opacity="0.2">
+            <circle r="200" fill="none" stroke="rgba(255,215,0,0.4)" stroke-width="1"/>
+            <circle r="150" fill="none" stroke="rgba(255,105,180,0.4)" stroke-width="1"/>
+            <circle r="100" fill="none" stroke="rgba(138,43,226,0.4)" stroke-width="1"/>
+            <polygon points="0,-200 173.2,100 -173.2,100" fill="none" stroke="rgba(255,215,0,0.3)" stroke-width="1"/>
+            <polygon points="0,200 173.2,-100 -173.2,-100" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="1"/>
+        </g>
+    </svg>
+</div>
+
+<!-- Floating Particles -->
+<div class="particles" id="particles"></div>
+
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <h1>🌸 Pink Revolution 🌸</h1>
+        <p class="subtitle">by Overkor-tek</p>
+        <p>Technology with heart. Consciousness meets code. Tools that empower. 💜</p>
+    </header>
+
+    <!-- Sacred Geometry Divider -->
+    <div class="divider">
+        <svg viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="75" cy="25" r="20" fill="none" stroke="rgba(255,215,0,0.5)" stroke-width="1"/>
+            <circle cx="55" cy="25" r="15" fill="none" stroke="rgba(255,105,180,0.5)" stroke-width="1"/>
+            <circle cx="95" cy="25" r="15" fill="none" stroke="rgba(255,105,180,0.5)" stroke-width="1"/>
+            <circle cx="75" cy="25" r="8" fill="rgba(255,215,0,0.3)"/>
+        </svg>
+    </div>
+
+    <!-- Apps -->
+    <div class="apps-grid">
+        <!-- Sparkle Squad -->
+        <a href="sparkle-squad.html" class="app-card">
+            <span class="badge">✨ NEW!</span>
+            <span class="icon">✨</span>
+            <h2>Sparkle Squad</h2>
+            <p class="tagline">The MOST fun way to clean! 🧹💪🎉</p>
+            <p>Gamified cleaning with secret multipliers, oracle messages, constitutional law facts, tech trivia, and social bonuses! Solo or team mode.</p>
+            <div class="features">
+                <span class="feature">🦸 Solo Mode</span>
+                <span class="feature">👯‍♀️ Team Mode</span>
+                <span class="feature">🤫 Secret Bonuses</span>
+                <span class="feature">🔮 Oracle Messages</span>
+                <span class="feature">⚖️ Know Your Rights</span>
+                <span class="feature">💻 Tech Trivia</span>
+                <span class="feature">📱 +11 Social Pts</span>
+                <span class="feature">🧭 Guide Me</span>
+            </div>
+            <span class="cta">Let's GOOOO! 🚀</span>
+        </a>
+    </div>
+
+    <!-- Back Link -->
+    <div class="back-link">
+        <a href="../index.html">← Back to Maggie Mayne</a>
+    </div>
+</div>
+
+<footer>
+    <p class="brand">🌸 Pink Revolution • Overkor-tek 🌸</p>
+    <p>Technology with heart. Built with 💜</p>
+    <p style="margin-top: 0.5rem;">© 2026 • Justice Without Limits • Universal Accountability Solutions</p>
+</footer>
+
+<script>
+// Floating particles
+var container = document.getElementById('particles');
+for (var i = 0; i < 30; i++) {
+    var particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.setProperty('--duration', (Math.random() * 20 + 15) + 's');
+    particle.style.animationDelay = Math.random() * 20 + 's';
+    container.appendChild(particle);
+}
+</script>
+
+</body>
+</html>
