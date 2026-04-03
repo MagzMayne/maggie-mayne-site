@@ -32,23 +32,15 @@
             font-size: 18px;
             overflow-x: hidden;
         }
-        
-        /* Stars Background */
         .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
         .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle var(--duration) ease-in-out infinite; }
         @keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
-        
-        /* Aurora Effect */
         .aurora {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.15;
-            background: 
-                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255, 105, 180, 0.4), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(138, 43, 226, 0.3), transparent),
-                radial-gradient(ellipse 70% 50% at 50% 80%, rgba(255, 215, 0, 0.2), transparent);
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; z-index: 1; opacity: 0.15;
+            background: radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255,105,180,0.4), transparent),
+                        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(138,43,226,0.3), transparent),
+                        radial-gradient(ellipse 70% 50% at 50% 80%, rgba(255,215,0,0.2), transparent);
             animation: aurora-shift 20s ease-in-out infinite;
         }
         @keyframes aurora-shift {
@@ -57,428 +49,131 @@
             50% { transform: translateX(-3%) translateY(5%); }
             75% { transform: translateX(-5%) translateY(-2%); }
         }
-        
-        /* Floating Particles */
         .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; overflow: hidden; }
         .particle {
-            position: absolute;
-            width: 4px; height: 4px;
+            position: absolute; width: 4px; height: 4px;
             background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float-up var(--float-duration) linear infinite;
-            opacity: 0;
+            border-radius: 50%; animation: float-up var(--float-duration) linear infinite; opacity: 0;
         }
         @keyframes float-up {
             0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
+            10% { opacity: 0.8; } 90% { opacity: 0.8; }
             100% { transform: translateY(-100vh) translateX(var(--drift)) scale(1); opacity: 0; }
         }
-        
-        /* TOP BAR */
         .top-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
+            position: fixed; top: 0; left: 0; right: 0;
             padding: 0.5rem 2rem;
-            background: rgba(10, 5, 16, 0.98);
-            z-index: 1001;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-            flex-wrap: wrap;
+            background: rgba(10,5,16,0.98); z-index: 1001;
+            display: flex; justify-content: center; align-items: center; gap: 1rem;
+            border-bottom: 1px solid rgba(255,215,0,0.2); flex-wrap: wrap;
             backdrop-filter: blur(10px);
         }
-        .top-bar a {
-            color: rgba(255, 248, 240, 0.8);
-            text-decoration: none;
-            font-size: 0.75rem;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
+        .top-bar a { color: rgba(255,248,240,0.8); text-decoration: none; font-size: 0.75rem; transition: all 0.3s; display: flex; align-items: center; gap: 0.3rem; }
         .top-bar a:hover { color: var(--gold); transform: translateY(-2px); }
         .top-bar .social-icon { font-size: 1rem; }
-        .top-bar .love-letter-top {
-            background: linear-gradient(135deg, rgba(255, 248, 231, 0.9), rgba(245, 230, 211, 0.9));
-            color: #8B4513;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-weight: 600;
-        }
-        
-        /* NAVIGATION */
+        .top-bar .love-letter-top { background: linear-gradient(135deg, rgba(255,248,231,0.9), rgba(245,230,211,0.9)); color: #8B4513; padding: 0.3rem 0.8rem; border-radius: 15px; font-weight: 600; }
         nav {
-            position: fixed;
-            top: 36px;
-            left: 0; right: 0;
-            padding: 0.75rem 1rem;
-            background: rgba(10, 5, 16, 0.97);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            border-bottom: 1px solid rgba(255, 105, 180, 0.3);
+            position: fixed; top: 36px; left: 0; right: 0;
+            padding: 0.75rem 1rem; background: rgba(10,5,16,0.97);
+            backdrop-filter: blur(10px); z-index: 1000;
+            display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255,105,180,0.3);
         }
         nav a {
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            transition: all 0.3s;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            background: rgba(255, 105, 180, 0.15);
-            border: 1px solid rgba(255, 105, 180, 0.3);
+            color: #fff; text-decoration: none; font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.8rem; font-weight: 500; letter-spacing: 0.02em; transition: all 0.3s;
+            padding: 0.4rem 0.8rem; border-radius: 20px;
+            background: rgba(255,105,180,0.15); border: 1px solid rgba(255,105,180,0.3);
         }
-        nav a:hover { 
-            background: rgba(255, 105, 180, 0.3);
-            transform: translateY(-2px);
-        }
-        nav a.nav-highlight {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
-            border: 1px solid rgba(255, 215, 0, 0.5);
-        }
-        nav a.nav-highlight:hover {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.5), rgba(255, 165, 0, 0.4));
-        }
-        
-        /* HEADER */
-        .header {
-            text-align: center;
-            padding: 9rem 2rem 2rem;
-            position: relative;
-            z-index: 10;
-        }
+        nav a:hover { background: rgba(255,105,180,0.3); transform: translateY(-2px); }
+        nav a.nav-highlight { background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,165,0,0.2)); border: 1px solid rgba(255,215,0,0.5); }
+        nav a.nav-highlight:hover { background: linear-gradient(135deg, rgba(255,215,0,0.5), rgba(255,165,0,0.4)); }
+        .header { text-align: center; padding: 9rem 2rem 2rem; position: relative; z-index: 10; }
         .header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 7vw, 4rem);
-            font-weight: 400;
+            font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 7vw, 4rem); font-weight: 400;
             background: linear-gradient(135deg, var(--pink), var(--gold), var(--pink), var(--purple));
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 5s ease infinite;
-            margin-bottom: 0.5rem;
+            background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; animation: shimmer 5s ease infinite; margin-bottom: 0.5rem;
         }
         @keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        .header .subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            letter-spacing: 0.25em;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--gold), var(--pink-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .header .intro {
-            font-size: 1.35rem;
-            color: rgba(255, 248, 240, 0.9);
-            margin-bottom: 1.5rem;
-            max-width: 750px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.9;
-        }
-        .header .tagline {
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--cream);
-            margin-bottom: 0.5rem;
-        }
-        .header .mantra {
-            font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
-            color: var(--pink);
-            letter-spacing: 0.2em;
-        }
-        
-        /* Ask Oracle Button */
         .ask-oracle-btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #8A2BE2, #9400D3, #FFD700);
-            background-size: 200% 200%;
-            animation: oracle-gradient 3s ease infinite;
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            letter-spacing: 0.1em;
-            border-radius: 30px;
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
-            transition: all 0.3s;
-            margin: 1rem 0;
+            display: inline-block; padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #8A2BE2, #9400D3, #FFD700); background-size: 200% 200%;
+            animation: oracle-gradient 3s ease infinite; color: #fff; text-decoration: none;
+            font-family: 'Cinzel', serif; font-size: 1.2rem; letter-spacing: 0.1em;
+            border-radius: 30px; border: 2px solid rgba(255,215,0,0.5);
+            box-shadow: 0 0 20px rgba(138,43,226,0.4); transition: all 0.3s; margin: 1rem 0;
         }
-        @keyframes oracle-gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .ask-oracle-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
-        }
-        
-        /* SECTIONS */
+        @keyframes oracle-gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .ask-oracle-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 0 30px rgba(138,43,226,0.6); }
         .section { padding: 3rem 2rem; position: relative; z-index: 10; }
         .container { max-width: 1000px; margin: 0 auto; }
         h2 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.6rem, 4vw, 2.2rem);
-            text-align: center;
-            margin-bottom: 0.5rem;
+            font-family: 'Cinzel', serif; font-size: clamp(1.6rem, 4vw, 2.2rem);
+            text-align: center; margin-bottom: 0.5rem;
             background: linear-gradient(135deg, var(--pink), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 500;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 500;
         }
-        .section-subtitle {
-            text-align: center;
-            font-style: italic;
-            color: var(--gold-soft);
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-        }
-        
-        /* Divider */
-        .divider {
-            width: 120px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--pink), var(--gold), var(--pink), transparent);
-            margin: 2rem auto;
-            position: relative;
-        }
-        .divider::before {
-            content: '✧';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--gold);
-            font-size: 1rem;
-            background: var(--deep);
-            padding: 0 0.5rem;
-        }
-        
-        /* FLOWER CONTAINER */
-        .flower-section {
-            padding: 2rem;
-            position: relative;
-            z-index: 10;
-        }
-        .flower-section h2 {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        .legend {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-        }
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            box-shadow: 0 0 8px currentColor;
-        }
-        .flower-container {
-            position: relative;
-            width: 100%;
-            max-width: 650px;
-            margin: 0 auto;
-            z-index: 50;
-        }
-        .domain-group {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .domain-group:hover circle {
-            filter: drop-shadow(0 0 15px currentColor);
-        }
-        
-        /* LIBRARY CARDS */
-        .library-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
+        .section-subtitle { text-align: center; font-style: italic; color: var(--gold-soft); margin-bottom: 2rem; font-size: 0.95rem; }
+        .divider { width: 120px; height: 2px; background: linear-gradient(90deg, transparent, var(--pink), var(--gold), var(--pink), transparent); margin: 2rem auto; position: relative; }
+        .divider::before { content: '✧'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); color: var(--gold); font-size: 1rem; background: var(--deep); padding: 0 0.5rem; }
+        .flower-section { padding: 2rem; position: relative; z-index: 10; }
+        .legend { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
+        .flower-container { position: relative; width: 100%; max-width: 650px; margin: 0 auto; z-index: 50; touch-action: manipulation; }
+        .domain-group { cursor: pointer; transition: all 0.3s ease; }
+        .domain-group:hover circle { filter: drop-shadow(0 0 15px currentColor); }
+        .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
         .library-card {
-            background: rgba(147, 112, 219, 0.08);
-            border: 1px solid rgba(147, 112, 219, 0.25);
-            border-radius: 15px;
-            padding: 1.5rem;
-            transition: all 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            background: rgba(147,112,219,0.08); border: 1px solid rgba(147,112,219,0.25);
+            border-radius: 15px; padding: 1.5rem; transition: all 0.3s;
+            text-decoration: none; color: inherit; display: block;
         }
-        .library-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(147, 112, 219, 0.5);
-            box-shadow: 0 10px 30px rgba(147, 112, 219, 0.2);
-        }
+        .library-card:hover { transform: translateY(-5px); border-color: rgba(147,112,219,0.5); box-shadow: 0 10px 30px rgba(147,112,219,0.2); }
         .library-card .card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-        .library-card h3 {
-            font-family: 'Cinzel', serif;
-            color: #E6E6FA;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        .library-card p {
-            color: rgba(255, 248, 240, 0.75);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
-        }
-        .library-card .domain-tag {
-            background: rgba(255, 215, 0, 0.15);
-            padding: 0.2rem 0.5rem;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            color: var(--gold);
-            margin-top: 0.5rem;
-            display: inline-block;
-        }
-        
-        /* Modalities Section */
-        .modalities-section { background: linear-gradient(180deg, rgba(32, 178, 170, 0.05) 0%, transparent 100%); }
-        .modalities-section .library-card {
-            background: rgba(32, 178, 170, 0.08);
-            border-color: rgba(32, 178, 170, 0.25);
-        }
-        .modalities-section .library-card:hover {
-            border-color: rgba(32, 178, 170, 0.5);
-        }
+        .library-card h3 { font-family: 'Cinzel', serif; color: #E6E6FA; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .library-card p { color: rgba(255,248,240,0.75); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem; }
+        .library-card .domain-tag { background: rgba(255,215,0,0.15); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.7rem; color: var(--gold); margin-top: 0.5rem; display: inline-block; }
+        .modalities-section { background: linear-gradient(180deg, rgba(32,178,170,0.05) 0%, transparent 100%); }
+        .modalities-section .library-card { background: rgba(32,178,170,0.08); border-color: rgba(32,178,170,0.25); }
+        .modalities-section .library-card:hover { border-color: rgba(32,178,170,0.5); }
         .modalities-section .library-card h3 { color: #AFEEEE; }
-        
-        /* OFFERINGS */
-        .offerings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
-        }
+        .offerings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
         .offering-card {
-            background: linear-gradient(145deg, rgba(45, 27, 46, 0.6), rgba(26, 10, 26, 0.7));
-            border: 1px solid rgba(255, 105, 180, 0.2);
-            border-radius: 12px;
-            padding: 1.25rem;
-            text-align: center;
-            transition: all 0.4s;
+            background: linear-gradient(145deg, rgba(45,27,46,0.6), rgba(26,10,26,0.7));
+            border: 1px solid rgba(255,105,180,0.2); border-radius: 12px;
+            padding: 1.25rem; text-align: center; transition: all 0.4s;
         }
-        .offering-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--pink);
-            box-shadow: 0 12px 35px rgba(255, 105, 180, 0.15);
-        }
+        .offering-card:hover { transform: translateY(-4px); border-color: var(--pink); box-shadow: 0 12px 35px rgba(255,105,180,0.15); }
         .offering-card .emoji { font-size: 1.8rem; margin-bottom: 0.5rem; }
         .offering-card h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 0.4rem; }
         .offering-card .price { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--pink); margin-bottom: 0.5rem; }
         .offering-card p { font-size: 0.85rem; margin-bottom: 0.75rem; color: rgba(255,248,240,0.8); }
-        .btn {
-            display: inline-block;
-            padding: 0.5rem 1.25rem;
-            background: linear-gradient(135deg, var(--pink-dark), var(--pink));
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            border-radius: 20px;
-            transition: all 0.3s;
-        }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4); }
+        .btn { display: inline-block; padding: 0.5rem 1.25rem; background: linear-gradient(135deg, var(--pink-dark), var(--pink)); color: #fff; text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 20px; transition: all 0.3s; }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(255,105,180,0.4); }
         .btn-gold { background: linear-gradient(135deg, var(--gold-soft), var(--gold)); color: var(--deep); }
         .btn-oracle { background: linear-gradient(135deg, #8A2BE2, #FFD700); }
         .btn-amazon { background: linear-gradient(135deg, #FF9900, #FFB84D); color: #000; }
         .btn-free { background: linear-gradient(135deg, #32CD32, #228B22); }
-        
-        /* CCT Section */
-        .cct-section {
-            background: linear-gradient(135deg, rgba(0, 206, 209, 0.1), rgba(138, 43, 226, 0.1));
-            border: 1px solid rgba(0, 206, 209, 0.3);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin: 2rem auto;
-            max-width: 900px;
-        }
-        .cct-section h2 {
-            background: linear-gradient(135deg, #00CED1, #8A2BE2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        /* INFO PANEL */
+        .btn-teal { background: linear-gradient(135deg, #00CED1, #008B8B); }
+        .cct-section { background: linear-gradient(135deg, rgba(0,206,209,0.1), rgba(138,43,226,0.1)); border: 1px solid rgba(0,206,209,0.3); border-radius: 20px; padding: 2.5rem; margin: 2rem auto; max-width: 900px; }
+        .cct-section h2 { background: linear-gradient(135deg, #00CED1, #8A2BE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .info-panel {
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            background: linear-gradient(145deg, rgba(26, 10, 38, 0.98), rgba(10, 5, 16, 0.98));
-            border: 1px solid var(--pink);
-            border-radius: 16px;
-            padding: 2rem;
-            max-width: 520px;
-            width: 92%;
-            max-height: 85vh;
-            overflow-y: auto;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 0 60px rgba(255, 105, 180, 0.3);
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0.9);
+            background: linear-gradient(145deg, rgba(26,10,38,0.98), rgba(10,5,16,0.98));
+            border: 1px solid var(--pink); border-radius: 16px; padding: 2rem;
+            max-width: 520px; width: 92%; max-height: 85vh; overflow-y: auto;
+            z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s;
+            box-shadow: 0 0 60px rgba(255,105,180,0.3);
         }
-        .info-panel.active { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
-        .panel-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
+        .info-panel.active { opacity: 1; visibility: visible; transform: translate(-50%,-50%) scale(1); }
+        .panel-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1999; opacity: 0; visibility: hidden; transition: all 0.3s; }
         .panel-overlay.active { opacity: 1; visibility: visible; }
-        .panel-close { 
-            position: absolute; 
-            top: 1rem; 
-            right: 1rem; 
-            background: rgba(255, 105, 180, 0.2); 
-            border: 1px solid rgba(255, 105, 180, 0.4);
-            color: var(--cream); 
-            font-size: 1.5rem; 
-            cursor: pointer; 
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-        .panel-close:hover { 
-            background: rgba(255, 105, 180, 0.4);
-            transform: rotate(90deg);
-        }
-        .panel-header { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 105, 180, 0.3); }
+        .panel-close { position: absolute; top: 1rem; right: 1rem; background: rgba(255,105,180,0.2); border: 1px solid rgba(255,105,180,0.4); color: var(--cream); font-size: 1.5rem; cursor: pointer; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .panel-close:hover { background: rgba(255,105,180,0.4); transform: rotate(90deg); }
+        .panel-header { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,105,180,0.3); }
         .panel-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
         .panel-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold); margin-bottom: 0.25rem; }
         .panel-archetype { font-style: italic; color: var(--pink); font-size: 0.95rem; }
@@ -495,118 +190,27 @@
         .panel-links { margin-top: 1rem; }
         .panel-offerings { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,215,0,0.2); }
         .panel-offerings h4 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 0.75rem; text-align: center; font-size: 0.9rem; }
-        .offering-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        .offering-link:hover {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
-            transform: translateY(-2px);
-        }
+        .offering-link { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; margin-bottom: 0.5rem; background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,165,0,0.1)); border: 1px solid rgba(255,215,0,0.3); border-radius: 10px; color: var(--cream); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; }
+        .offering-link:hover { background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,165,0,0.2)); transform: translateY(-2px); }
         .offering-name { color: var(--cream); }
         .offering-price { color: var(--pink); font-family: 'Cinzel', serif; font-weight: 600; }
         .panel-links h4 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 0.75rem; text-align: center; font-size: 0.9rem; }
-        .domain-link {
-            display: block;
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, rgba(255, 105, 180, 0.15), rgba(153, 50, 204, 0.15));
-            border: 1px solid rgba(255, 105, 180, 0.3);
-            border-radius: 10px;
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        .domain-link:hover {
-            background: linear-gradient(135deg, rgba(255, 105, 180, 0.3), rgba(153, 50, 204, 0.3));
-            transform: translateY(-2px);
-            color: var(--gold);
-        }
-        .panel-nav {
-            display: flex;
-            justify-content: space-between;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        .nav-btn {
-            flex: 1;
-            padding: 0.75rem 0.5rem;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(184, 134, 11, 0.1));
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 10px;
-            color: var(--gold);
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .nav-btn:hover {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(184, 134, 11, 0.2));
-            transform: translateY(-2px);
-        }
-        
-        /* Justice Section */
-        .justice-section {
-            background: linear-gradient(180deg, rgba(0, 40, 104, 0.15), rgba(191, 10, 48, 0.1), transparent);
-        }
-        .justice-section h2 {
-            background: linear-gradient(135deg, #BF0A30, #FFFFFF, #002868);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid rgba(255, 105, 180, 0.2);
-            position: relative;
-            z-index: 10;
-        }
+        .domain-link { display: block; padding: 0.75rem 1rem; margin-bottom: 0.5rem; background: linear-gradient(135deg, rgba(255,105,180,0.15), rgba(153,50,204,0.15)); border: 1px solid rgba(255,105,180,0.3); border-radius: 10px; color: var(--cream); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; text-align: center; }
+        .domain-link:hover { background: linear-gradient(135deg, rgba(255,105,180,0.3), rgba(153,50,204,0.3)); transform: translateY(-2px); color: var(--gold); }
+        .panel-nav { display: flex; justify-content: space-between; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(212,175,55,0.2); }
+        .nav-btn { flex: 1; padding: 0.75rem 0.5rem; background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(184,134,11,0.1)); border: 1px solid rgba(212,175,55,0.4); border-radius: 10px; color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.75rem; cursor: pointer; transition: all 0.3s ease; }
+        .nav-btn:hover { background: linear-gradient(135deg, rgba(212,175,55,0.3), rgba(184,134,11,0.2)); transform: translateY(-2px); }
+        .justice-section { background: linear-gradient(180deg, rgba(0,40,104,0.15), rgba(191,10,48,0.1), transparent); }
+        .justice-section h2 { background: linear-gradient(135deg, #BF0A30, #FFFFFF, #002868); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid rgba(255,105,180,0.2); position: relative; z-index: 10; }
         footer .mantra { font-family: 'Cinzel', serif; color: var(--pink); font-size: 0.9rem; letter-spacing: 0.15em; margin-bottom: 0.5rem; }
         footer p { font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem; }
         footer a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
         footer a:hover { color: var(--pink); }
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 1.5rem 0;
-        }
-        .footer-social-link {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 105, 180, 0.1);
-            border: 1px solid rgba(255, 105, 180, 0.3);
-            border-radius: 20px;
-            color: var(--cream);
-            font-size: 0.85rem;
-            transition: all 0.3s;
-        }
-        .footer-social-link:hover {
-            background: rgba(255, 105, 180, 0.2);
-            transform: translateY(-2px);
-            color: var(--gold);
-        }
-        
-        /* RESPONSIVE */
+        .footer-socials { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+        .footer-social-link { display: flex; align-items: center; gap: 0.3rem; padding: 0.5rem 1rem; background: rgba(255,105,180,0.1); border: 1px solid rgba(255,105,180,0.3); border-radius: 20px; color: var(--cream); font-size: 0.85rem; transition: all 0.3s; }
+        .footer-social-link:hover { background: rgba(255,105,180,0.2); transform: translateY(-2px); color: var(--gold); }
+        @keyframes pulse-red { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
         @media (max-width: 768px) {
             .top-bar { justify-content: center; padding: 0.4rem 1rem; gap: 0.5rem; }
             .top-bar a { font-size: 0.7rem; }
@@ -614,7 +218,6 @@
             nav a { font-size: 0.65rem; padding: 0.3rem 0.6rem; }
             .header { padding: 7rem 1.5rem 1.5rem; }
             .header h1 { font-size: 2rem; }
-            .header .subtitle { font-size: 1.2rem; letter-spacing: 0.15em; }
             .info-panel { padding: 1.5rem; width: 95%; }
             .panel-nav { flex-direction: column; }
         }
@@ -626,7 +229,6 @@
 <div class="aurora"></div>
 <div class="particles" id="particles"></div>
 
-<!-- TOP BAR -->
 <div class="top-bar">
     <a href="https://instagram.com/MaggieMayne1111" target="_blank"><span class="social-icon">📸</span> @MaggieMayne1111</a>
     <a href="https://instagram.com/littletonmassage_maggiemagic" target="_blank"><span class="social-icon">✨</span> @MaggieMagic</a>
@@ -636,7 +238,6 @@
     <a href="mailto:maggiemayne1111@gmail.com" class="love-letter-top">💌 Send a Love Letter</a>
 </div>
 
-<!-- NAVIGATION -->
 <nav>
     <a href="00-about-the-maggie-way.html">About</a>
     <a href="#flower">Sacred Map</a>
@@ -661,48 +262,38 @@
 </nav>
 
 <div class="header">
-    <p class="subtitle" style="font-size: 1rem; color: var(--pink); margin-bottom: 0.5rem;">by Maggie Mayne</p>
+    <p style="font-size: 1rem; color: var(--pink); margin-bottom: 0.5rem; font-family: 'Cinzel', serif; letter-spacing: 0.1em;">by Maggie Mayne</p>
     <h1 style="font-size: 3.5rem; margin-bottom: 0.5rem;">SOUL ARCHITECTURE™</h1>
-    <p class="intro" style="font-size: 1.3rem; max-width: 600px; margin: 0 auto 1.5rem;">A 19-Domain Sacred Map for Healing, Transformation & Remembering Your MAGIC</p>
+    <p style="font-size: 1.3rem; max-width: 600px; margin: 0 auto 1.5rem; color: rgba(255,248,240,0.9); line-height: 1.9;">A 19-Domain Sacred Map for Healing, Transformation &amp; Remembering Your MAGIC</p>
     <a href="oracle-the-seed.html" class="ask-oracle-btn">🔮 Ask The Oracle ✨</a>
-    <p class="tagline" style="margin-top: 1.5rem;">"We must stand in our light first to light the way for others."</p>
-    <p class="mantra">HEALERS GOING FIRST™</p>
+    <p style="margin-top: 1.5rem; font-size: 1.1rem; font-style: italic; color: var(--cream);">"We must stand in our light first to light the way for others."</p>
+    <p style="font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--pink); letter-spacing: 0.2em; margin-top: 0.5rem;">HEALERS GOING FIRST™</p>
 </div>
 
-<!-- LIVE TONIGHT BANNER WITH PINK REVOLUTION -->
-<section class="live-banner" style="padding: 1rem; background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(0,0,0,0.85)); border-bottom: 1px solid rgba(255,0,0,0.5); text-align: center;">
+<!-- D REBEL / OVERKOR-TEK PROMO BANNER -->
+<section style="padding: 1rem; background: linear-gradient(135deg, rgba(0,206,209,0.08), rgba(153,50,204,0.1), rgba(0,0,0,0.85)); border-top: 1px solid rgba(0,206,209,0.3); border-bottom: 1px solid rgba(153,50,204,0.3); text-align: center; position: relative; z-index: 10;">
     <div style="max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-        <img src="d-live-tonight.jpg" alt="D Goes Live Tonight" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 2px solid #FF0000;">
-        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem;">
-            <div style="display: flex; align-items: center; gap: 0.4rem;">
-                <span style="display: inline-block; width: 8px; height: 8px; background: #FF0000; border-radius: 50%; animation: pulse-red 1.5s infinite;"></span>
-                <span style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: #FF0000; font-weight: bold;">LIVE TONIGHT</span>
-            </div>
-            <span style="color: var(--cream); font-size: 1rem;">D Goes Live <strong style="color: var(--gold);">5:05 PM PST</strong></span>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+            <span style="font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--teal); letter-spacing: 0.15em;">🩵 TEAL FOR REAL</span>
+            <span style="color: var(--cream); font-size: 0.9rem;">consciousness revolution · <strong style="color: var(--gold);">building in public</strong></span>
         </div>
-        <a href="https://www.instagram.com/overkill_kulture?igsh=MWVtaXNhdXhvOWQ4Mg==" target="_blank" style="padding: 0.5rem 1.25rem; background: linear-gradient(135deg, #833AB4, #E1306C); color: white; text-decoration: none; font-family: 'Cinzel', serif; border-radius: 20px; font-size: 0.8rem;">📸 Instagram</a>
-        <a href="https://www.facebook.com/profile.php?id=61571502951498" target="_blank" style="padding: 0.5rem 1.25rem; background: linear-gradient(135deg, #1877F2, #3b5998); color: white; text-decoration: none; font-family: 'Cinzel', serif; border-radius: 20px; font-size: 0.8rem;">📘 Facebook</a>
+        <a href="https://www.instagram.com/overkill_kulture?igsh=MWVtaXNhdXhvOWQ4Mg==" target="_blank" style="padding: 0.5rem 1.25rem; background: linear-gradient(135deg, #833AB4, #E1306C); color: white; text-decoration: none; font-family: 'Cinzel', serif; border-radius: 20px; font-size: 0.8rem;">📸 D REBEL</a>
+        <a href="https://conciousnessrevolution.io" target="_blank" style="padding: 0.5rem 1.25rem; background: linear-gradient(135deg, #00CED1, #008B8B); color: white; text-decoration: none; font-family: 'Cinzel', serif; border-radius: 20px; font-size: 0.8rem;">🌐 7 Forges</a>
         <a href="pink-revolution/" style="padding: 0.5rem 1.25rem; background: linear-gradient(135deg, #ec4899, #a855f7); color: white; text-decoration: none; font-family: 'Cinzel', serif; border-radius: 20px; font-size: 0.8rem;">🌸 Pink Revolution</a>
     </div>
-    <style>
-        @keyframes pulse-red {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-    </style>
 </section>
 
 <!-- SACRED MAP -->
 <section class="flower-section" id="flower">
     <h2>✧ THE SACRED MAP ✧</h2>
-    <p class="section-subtitle">Click any domain to explore its wisdom</p>
+    <p class="section-subtitle">Soul Architecture™ by Maggie Mayne · Click any domain to explore its wisdom</p>
     <div class="legend">
-        <div class="legend-item"><span class="legend-dot" style="background:#FF69B4;"></span> The Seed (1-7)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#FFD700;"></span> Root & Bloom (8-11)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#9932CC;"></span> The Legacy (12-19)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#FF69B4; color:#FF69B4;"></span> The Seed (1-7)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#FFD700; color:#FFD700;"></span> Root &amp; Bloom (8-11)</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#9932CC; color:#9932CC;"></span> The Legacy (12-19)</div>
     </div>
-    <div class="flower-container">
-        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+    <div class="flower-container" id="flowerContainer">
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="width:100%; touch-action: manipulation;" id="sacredSvg">
             <defs>
                 <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
                     <stop offset="0%" style="stop-color:#FF69B4;stop-opacity:0.3"/>
@@ -713,159 +304,42 @@
                     <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
             </defs>
-            
-            <!-- Rings -->
             <circle cx="250" cy="250" r="240" fill="none" stroke="rgba(255,105,180,0.25)" stroke-width="1"/>
             <circle cx="250" cy="250" r="190" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="1"/>
             <circle cx="250" cy="250" r="140" fill="none" stroke="rgba(153,50,204,0.2)" stroke-width="1"/>
             <circle cx="250" cy="250" r="90" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="1"/>
             <circle cx="250" cy="250" r="100" fill="url(#centerGlow)"/>
-            
-            <!-- Flower Pattern -->
             <g fill="none" stroke="rgba(255,105,180,0.15)" stroke-width="1">
                 <circle cx="250" cy="250" r="60"/><circle cx="250" cy="190" r="60"/><circle cx="302" cy="220" r="60"/>
                 <circle cx="302" cy="280" r="60"/><circle cx="250" cy="310" r="60"/><circle cx="198" cy="280" r="60"/><circle cx="198" cy="220" r="60"/>
             </g>
-            
-            <!-- Domain 1: Heart Center -->
             <g class="domain-group" data-domain="1" transform="translate(250,250)">
-                <circle r="32" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2.5" filter="url(#glow)" style="cursor:pointer;">
-                    <animate attributeName="r" values="32;34;32" dur="2s" repeatCount="indefinite"/>
-                </circle>
+                <circle r="32" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2.5" filter="url(#glow)" style="cursor:pointer;"><animate attributeName="r" values="32;34;32" dur="2s" repeatCount="indefinite"/></circle>
                 <text y="5" text-anchor="middle" style="font-size:20px;pointer-events:none;">💗</text>
                 <text y="22" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Heart Center</text>
             </g>
-            
-            <!-- Domain 2 -->
-            <g class="domain-group" data-domain="2" transform="translate(250,168)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🧠</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Mind Temple</text>
-            </g>
-            
-            <!-- Domain 3 -->
-            <g class="domain-group" data-domain="3" transform="translate(320,209)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💆</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Healing</text>
-            </g>
-            
-            <!-- Domain 4 -->
-            <g class="domain-group" data-domain="4" transform="translate(320,291)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🔮</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Oracle</text>
-            </g>
-            
-            <!-- Domain 5 -->
-            <g class="domain-group" data-domain="5" transform="translate(250,332)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📚</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Education</text>
-            </g>
-            
-            <!-- Domain 6 -->
-            <g class="domain-group" data-domain="6" transform="translate(180,291)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🎭</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Expression</text>
-            </g>
-            
-            <!-- Domain 7 -->
-            <g class="domain-group" data-domain="7" transform="translate(180,209)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌐</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Community</text>
-            </g>
-            
-            <!-- Domain 8 (Gold) -->
-            <g class="domain-group" data-domain="8" transform="translate(250,98)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌕</text>
-                <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Spark</text>
-            </g>
-            
-            <!-- Domain 9 -->
-            <g class="domain-group" data-domain="9" transform="translate(380,178)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💰</text>
-                <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Abundance</text>
-            </g>
-            
-            <!-- Domain 10 -->
-            <g class="domain-group" data-domain="10" transform="translate(380,322)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🎵</text>
-                <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Sound</text>
-            </g>
-            
-            <!-- Domain 11 -->
-            <g class="domain-group" data-domain="11" transform="translate(250,402)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌉</text>
-                <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Bridge</text>
-            </g>
-            
-            <!-- Domain 12 (Purple) -->
-            <g class="domain-group" data-domain="12" transform="translate(120,178)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📿</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Word</text>
-            </g>
-            
-            <!-- Domain 13 -->
-            <g class="domain-group" data-domain="13" transform="translate(120,322)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🔥</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Flame</text>
-            </g>
-            
-            <!-- Domain 14 -->
-            <g class="domain-group" data-domain="14" transform="translate(178,98)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💎</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Crystal</text>
-            </g>
-            
-            <!-- Domain 15 -->
-            <g class="domain-group" data-domain="15" transform="translate(322,98)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌊</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Flow</text>
-            </g>
-            
-            <!-- Domain 16 -->
-            <g class="domain-group" data-domain="16" transform="translate(425,250)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌬️</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Breath</text>
-            </g>
-            
-            <!-- Domain 17 -->
-            <g class="domain-group" data-domain="17" transform="translate(322,402)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌍</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Body</text>
-            </g>
-            
-            <!-- Domain 18 -->
-            <g class="domain-group" data-domain="18" transform="translate(178,402)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📜</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Akashic</text>
-            </g>
-            
-            <!-- Domain 19 -->
-            <g class="domain-group" data-domain="19" transform="translate(75,250)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">👁️</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Void</text>
-            </g>
+            <g class="domain-group" data-domain="2" transform="translate(250,168)"><circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🧠</text><text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Mind Temple</text></g>
+            <g class="domain-group" data-domain="3" transform="translate(320,209)"><circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💆</text><text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Healing</text></g>
+            <g class="domain-group" data-domain="4" transform="translate(320,291)"><circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🔮</text><text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Oracle</text></g>
+            <g class="domain-group" data-domain="5" transform="translate(250,332)"><circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📚</text><text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Education</text></g>
+            <g class="domain-group" data-domain="6" transform="translate(180,291)"><circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🎭</text><text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Expression</text></g>
+            <g class="domain-group" data-domain="7" transform="translate(180,209)"><circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌐</text><text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Community</text></g>
+            <g class="domain-group" data-domain="8" transform="translate(250,98)"><circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌕</text><text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Spark</text></g>
+            <g class="domain-group" data-domain="9" transform="translate(380,178)"><circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💰</text><text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Abundance</text></g>
+            <g class="domain-group" data-domain="10" transform="translate(380,322)"><circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🎵</text><text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Sound</text></g>
+            <g class="domain-group" data-domain="11" transform="translate(250,402)"><circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌉</text><text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Bridge</text></g>
+            <g class="domain-group" data-domain="12" transform="translate(120,178)"><circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📿</text><text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Word</text></g>
+            <g class="domain-group" data-domain="13" transform="translate(120,322)"><circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🔥</text><text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Flame</text></g>
+            <g class="domain-group" data-domain="14" transform="translate(178,98)"><circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💎</text><text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Crystal</text></g>
+            <g class="domain-group" data-domain="15" transform="translate(322,98)"><circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌊</text><text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Flow</text></g>
+            <g class="domain-group" data-domain="16" transform="translate(425,250)"><circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌬️</text><text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Breath</text></g>
+            <g class="domain-group" data-domain="17" transform="translate(322,402)"><circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌍</text><text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Body</text></g>
+            <g class="domain-group" data-domain="18" transform="translate(178,402)"><circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📜</text><text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Akashic</text></g>
+            <g class="domain-group" data-domain="19" transform="translate(75,250)"><circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/><text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">👁️</text><text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Void</text></g>
         </svg>
     </div>
 </section>
 
-<!-- CTA BUTTONS -->
 <div style="text-align:center; padding:2rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; position:relative; z-index:10;">
     <a href="oracle-the-seed.html" class="btn btn-oracle" style="padding:0.75rem 1.5rem;">🔮 Pull Oracle Cards</a>
     <a href="https://square.link/u/dIIrQUzO" target="_blank" class="btn btn-gold">Oracle Reading · $33</a>
@@ -873,10 +347,7 @@
     <a href="shop.html" class="btn" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🛒 Digital Shop</a>
 </div>
 
-<!-- Panel Overlay -->
 <div class="panel-overlay" id="panelOverlay"></div>
-
-<!-- Info Panel -->
 <div class="info-panel" id="infoPanel">
     <button class="panel-close" id="panelClose">×</button>
     <div id="panelContent"></div>
@@ -884,38 +355,17 @@
 
 <div class="divider"></div>
 
-<!-- OFFERINGS -->
 <section class="section" id="offerings">
     <div class="container">
         <h2>💗 Work With Maggie</h2>
         <p class="section-subtitle">Healing, guidance, transformation — from FREE to immersive</p>
-        
-        <h3 style="font-family: 'Cinzel', serif; color: #32CD32; text-align: center; margin: 2rem 0 1rem;">🎁 Free Offerings</h3>
-        <div class="offerings-grid" style="margin-bottom: 2rem;">
-            <div class="offering-card" style="border-color: rgba(50,205,50,0.5);">
-                <div class="emoji">🔮</div>
-                <h3>Pull Your Own Oracle Cards</h3>
-                <div class="price" style="color: #32CD32;">FREE</div>
-                <p>Interactive digital oracle. Pull from The Seed deck anytime.</p>
-                <a href="oracle-the-seed.html" class="btn btn-free">Pull Cards</a>
-            </div>
-            <div class="offering-card" style="border-color: rgba(50,205,50,0.5);">
-                <div class="emoji">✨</div>
-                <h3>Affirmations For Magic</h3>
-                <div class="price" style="color: #32CD32;">FREE</div>
-                <p>Introduction + Weeks 1-5 + 11 Rituals + Mirror Mantras.</p>
-                <a href="affirmations-for-magic.html" class="btn btn-free">Start Free</a>
-            </div>
-            <div class="offering-card" style="border-color: rgba(50,205,50,0.5);">
-                <div class="emoji">💎</div>
-                <h3>CCT™ Free Mini Sessions</h3>
-                <div class="price" style="color: #32CD32;">FREE</div>
-                <p>5 sacred geometry healing audios from CCT™.</p>
-                <a href="cct.html" class="btn btn-free">Experience</a>
-            </div>
+        <h3 style="font-family:'Cinzel',serif; color:#32CD32; text-align:center; margin:2rem 0 1rem;">🎁 Free Offerings</h3>
+        <div class="offerings-grid" style="margin-bottom:2rem;">
+            <div class="offering-card" style="border-color:rgba(50,205,50,0.5);"><div class="emoji">🔮</div><h3>Pull Your Own Oracle Cards</h3><div class="price" style="color:#32CD32;">FREE</div><p>Interactive digital oracle. Pull from The Seed deck anytime.</p><a href="oracle-the-seed.html" class="btn btn-free">Pull Cards</a></div>
+            <div class="offering-card" style="border-color:rgba(50,205,50,0.5);"><div class="emoji">✨</div><h3>Affirmations For Magic</h3><div class="price" style="color:#32CD32;">FREE</div><p>Introduction + Weeks 1-5 + 11 Rituals + Mirror Mantras.</p><a href="affirmations-for-magic.html" class="btn btn-free">Start Free</a></div>
+            <div class="offering-card" style="border-color:rgba(50,205,50,0.5);"><div class="emoji">💎</div><h3>CCT™ Free Mini Sessions</h3><div class="price" style="color:#32CD32;">FREE</div><p>5 sacred geometry healing audios from CCT™.</p><a href="cct.html" class="btn btn-free">Experience</a></div>
         </div>
-        
-        <h3 style="font-family: 'Cinzel', serif; color: #FFD700; text-align: center; margin: 2rem 0 1rem;">✨ Sessions & Experiences</h3>
+        <h3 style="font-family:'Cinzel',serif; color:#FFD700; text-align:center; margin:2rem 0 1rem;">✨ Sessions &amp; Experiences</h3>
         <div class="offerings-grid">
             <div class="offering-card"><div class="emoji">🔮</div><h3>Oracle Card Pull by Maggie</h3><div class="price">$33</div><p>One intuitively chosen card with a personal channeled message.</p><a href="https://square.link/u/dIIrQUzO" class="btn btn-oracle" target="_blank">Get Reading</a></div>
             <div class="offering-card"><div class="emoji">📞</div><h3>30-Min Remote Session</h3><div class="price">$111</div><p>Energy work knows no distance.</p><a href="https://square.link/u/n9WztX2P" class="btn" target="_blank">Connect</a></div>
@@ -928,7 +378,6 @@
 
 <div class="divider"></div>
 
-<!-- MODALITIES -->
 <section class="section modalities-section" id="modalities">
     <div class="container">
         <h2>✨ HEALING MODALITIES</h2>
@@ -937,64 +386,58 @@
             <a href="oracle-the-seed.html" class="library-card"><div class="card-icon">🔮</div><h3>The Maggie Way Oracle</h3><p>31 cards for MAGIC, clarity, and new growth.</p><span class="domain-tag">Domain 4: Oracle</span></a>
             <a href="06-massage-is-magic.html" class="library-card"><div class="card-icon">💆</div><h3>Massage = MAGIC</h3><p>22+ years of bodywork mastery.</p><span class="domain-tag">Domain 3: Healing</span></a>
             <a href="cct.html" class="library-card"><div class="card-icon">💎</div><h3>CCT™</h3><p>Crystalline Consciousness Technique.</p><span class="domain-tag">Domain 14: Crystal</span></a>
-            <a href="08-trust-your-intuition.html" class="library-card"><div class="card-icon">⚡</div><h3>Energy Work & Reiki</h3><p>Universal life force energy.</p><span class="domain-tag">Domain 8: Spark</span></a>
+            <a href="08-trust-your-intuition.html" class="library-card"><div class="card-icon">⚡</div><h3>Energy Work &amp; Reiki</h3><p>Universal life force energy.</p><span class="domain-tag">Domain 8: Spark</span></a>
             <a href="41-sound-healing.html" class="library-card"><div class="card-icon">🎵</div><h3>Sound Healing</h3><p>Crystal bowls, tuning forks, Solfeggio.</p><span class="domain-tag">Domain 10: Sound</span></a>
-            <a href="04-trauma-and-the-body.html" class="library-card"><div class="card-icon">💔</div><h3>Trauma & The Body</h3><p>Your body remembers what the mind forgets.</p><span class="domain-tag">Domain 13: Flame</span></a>
+            <a href="04-trauma-and-the-body.html" class="library-card"><div class="card-icon">💔</div><h3>Trauma &amp; The Body</h3><p>Your body remembers what the mind forgets.</p><span class="domain-tag">Domain 13: Flame</span></a>
         </div>
     </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- CCT -->
 <section class="cct-section" id="cct">
     <h2>💎 Crystalline Consciousness Technique™</h2>
-    <p class="section-subtitle">Advanced Energy Healing & Consciousness Expansion</p>
-    <div style="text-align: center; margin-bottom: 2rem;">
-        <p style="font-size: 1.15rem; line-height: 1.9;">CCT™ works with sacred geometry, crystalline frequencies, and conscious intent to access higher states of consciousness.</p>
+    <p class="section-subtitle">Advanced Energy Healing &amp; Consciousness Expansion</p>
+    <div style="text-align:center; margin-bottom:2rem;">
+        <p style="font-size:1.15rem; line-height:1.9;">CCT™ works with sacred geometry, crystalline frequencies, and conscious intent to access higher states of consciousness.</p>
     </div>
-    <div style="text-align: center;">
-        <a href="cct.html" class="btn" style="background: linear-gradient(135deg, #00CED1, #8A2BE2); padding: 0.75rem 1.5rem;">💎 Explore CCT™</a>
-    </div>
+    <div style="text-align:center;"><a href="cct.html" class="btn" style="background:linear-gradient(135deg,#00CED1,#8A2BE2); padding:0.75rem 1.5rem;">💎 Explore CCT™</a></div>
 </section>
 
 <div class="divider"></div>
 
-<!-- GEMSTONES -->
-<section class="section" id="gemstones" style="background: linear-gradient(180deg, rgba(138, 43, 226, 0.08) 0%, rgba(0, 206, 209, 0.05) 50%, transparent 100%);">
+<section class="section" id="gemstones" style="background:linear-gradient(180deg,rgba(138,43,226,0.08) 0%,rgba(0,206,209,0.05) 50%,transparent 100%);">
     <div class="container">
         <h2>💎 HEALING GEMSTONES</h2>
         <p class="section-subtitle">Gemstones embody concentrated energy with powerful resonance for healing</p>
         <div class="library-grid">
-            <div class="library-card" style="border-color: rgba(255,255,255,0.4);"><div class="card-icon">🤍</div><h3>Howlite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Inspiration ♥ Creativity</p><p>An aid to insomnia. Strengthens memory and stimulates desire for knowledge.</p><span class="domain-tag">Bones • Teeth • Soft Tissue</span></div>
-            <div class="library-card" style="border-color: rgba(70,70,90,0.6);"><div class="card-icon">🖤</div><h3>Larvikite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Grounding ♥ Protective</p><p>A protective and grounding stone. Strong connection with Earth energies.</p><span class="domain-tag">Root Chakra • Protection</span></div>
-            <div class="library-card" style="border-color: rgba(138,43,226,0.5);"><div class="card-icon">💜</div><h3>Amethyst</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Peace ♥ Intuition</p><p>The stone of spirituality. Excellent for meditation and psychic abilities.</p><span class="domain-tag">Third Eye • Crown Chakra</span></div>
-            <div class="library-card" style="border-color: rgba(0,128,0,0.5);"><div class="card-icon">💚</div><h3>Malachite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Transformation</p><p>The stone of transformation. Absorbs negative energies.</p><span class="domain-tag">Heart Chakra</span></div>
-            <div class="library-card" style="border-color: rgba(255,255,255,0.5);"><div class="card-icon">💎</div><h3>Clear Quartz</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Amplification</p><p>The master healer. Amplifies energy and intention.</p><span class="domain-tag">All Chakras</span></div>
-            <div class="library-card" style="border-color: rgba(0,206,209,0.5);"><div class="card-icon">💙</div><h3>Amazonite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Truth ♥ Warrior</p><p>Calls on the spirit of inner strength. Stand strong in your authentic light.</p><span class="domain-tag">Heart • Throat Chakra</span></div>
+            <div class="library-card" style="border-color:rgba(255,255,255,0.4);"><div class="card-icon">🤍</div><h3>Howlite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Inspiration ♥ Creativity</p><p>An aid to insomnia. Strengthens memory and stimulates desire for knowledge.</p><span class="domain-tag">Bones • Teeth • Soft Tissue</span></div>
+            <div class="library-card" style="border-color:rgba(70,70,90,0.6);"><div class="card-icon">🖤</div><h3>Larvikite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Grounding ♥ Protective</p><p>A protective and grounding stone. Strong connection with Earth energies.</p><span class="domain-tag">Root Chakra • Protection</span></div>
+            <div class="library-card" style="border-color:rgba(138,43,226,0.5);"><div class="card-icon">💜</div><h3>Amethyst</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Peace ♥ Intuition</p><p>The stone of spirituality. Excellent for meditation and psychic abilities.</p><span class="domain-tag">Third Eye • Crown Chakra</span></div>
+            <div class="library-card" style="border-color:rgba(0,128,0,0.5);"><div class="card-icon">💚</div><h3>Malachite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Transformation</p><p>The stone of transformation. Absorbs negative energies.</p><span class="domain-tag">Heart Chakra</span></div>
+            <div class="library-card" style="border-color:rgba(255,255,255,0.5);"><div class="card-icon">💎</div><h3>Clear Quartz</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Amplification</p><p>The master healer. Amplifies energy and intention.</p><span class="domain-tag">All Chakras</span></div>
+            <div class="library-card" style="border-color:rgba(0,206,209,0.5);"><div class="card-icon">💙</div><h3>Amazonite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Truth ♥ Warrior</p><p>Calls on the spirit of inner strength. Stand strong in your authentic light.</p><span class="domain-tag">Heart • Throat Chakra</span></div>
         </div>
     </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ELIXIR -->
-<section class="section" id="elixir" style="background: linear-gradient(180deg, rgba(139, 69, 19, 0.08) 0%, rgba(218, 165, 32, 0.05) 50%, transparent 100%);">
+<section class="section" id="elixir" style="background:linear-gradient(180deg,rgba(139,69,19,0.08) 0%,rgba(218,165,32,0.05) 50%,transparent 100%);">
     <div class="container">
         <h2>🍄 VITALITY MUSHROOM ELIXIR</h2>
         <p class="section-subtitle">Maggie's Magic — Ancient Wisdom in Every Drop</p>
         <div class="library-grid">
-            <div class="library-card" style="border-color: rgba(139,69,19,0.5);"><div class="card-icon">🦁</div><h3>Lion's Mane</h3><p>Cognitive enhancement, nerve regeneration, focus and clarity.</p><span class="domain-tag">Mind • Nervous System</span></div>
-            <div class="library-card" style="border-color: rgba(139,69,19,0.5);"><div class="card-icon">🍄</div><h3>Reishi</h3><p>The mushroom of immortality. Immune modulation, stress relief.</p><span class="domain-tag">Immune • Spirit</span></div>
-            <div class="library-card" style="border-color: rgba(139,69,19,0.5);"><div class="card-icon">⚡</div><h3>Cordyceps</h3><p>Energy and endurance. Oxygen utilization, vitality.</p><span class="domain-tag">Energy • Vitality</span></div>
-            <div class="library-card" style="border-color: rgba(139,69,19,0.5);"><div class="card-icon">🌿</div><h3>Chaga</h3><p>The king of medicinal mushrooms. Antioxidant powerhouse.</p><span class="domain-tag">Immune • Antioxidant</span></div>
+            <div class="library-card" style="border-color:rgba(139,69,19,0.5);"><div class="card-icon">🦁</div><h3>Lion's Mane</h3><p>Cognitive enhancement, nerve regeneration, focus and clarity.</p><span class="domain-tag">Mind • Nervous System</span></div>
+            <div class="library-card" style="border-color:rgba(139,69,19,0.5);"><div class="card-icon">🍄</div><h3>Reishi</h3><p>The mushroom of immortality. Immune modulation, stress relief.</p><span class="domain-tag">Immune • Spirit</span></div>
+            <div class="library-card" style="border-color:rgba(139,69,19,0.5);"><div class="card-icon">⚡</div><h3>Cordyceps</h3><p>Energy and endurance. Oxygen utilization, vitality.</p><span class="domain-tag">Energy • Vitality</span></div>
+            <div class="library-card" style="border-color:rgba(139,69,19,0.5);"><div class="card-icon">🌿</div><h3>Chaga</h3><p>The king of medicinal mushrooms. Antioxidant powerhouse.</p><span class="domain-tag">Immune • Antioxidant</span></div>
         </div>
     </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- LIBRARY -->
 <section class="section" id="library">
     <div class="container">
         <h2>📚 THE MAGGIE WAY LIBRARY</h2>
@@ -1012,26 +455,24 @@
 
 <div class="divider"></div>
 
-<!-- PROTOCOLS -->
-<section class="section" id="protocols" style="background: linear-gradient(180deg, rgba(32, 178, 170, 0.08) 0%, transparent 100%);">
+<section class="section" id="protocols" style="background:linear-gradient(180deg,rgba(32,178,170,0.08) 0%,transparent 100%);">
     <div class="container">
         <h2>🌀 DAILY PROTOCOLS</h2>
         <p class="section-subtitle">Practical exercises and rituals for your healing journey</p>
         <div class="library-grid">
-            <a href="02-water-is-life.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">💧</div><h3 style="color: #AFEEEE;">Hydration Protocol</h3><p>Water is LIFE. True cellular hydration.</p><span class="domain-tag">Domain 15: Flow</span></a>
-            <a href="17-find-breath.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">🌬️</div><h3 style="color: #AFEEEE;">Find Breath Protocol</h3><p>Breath is the bridge between physical and spiritual.</p><span class="domain-tag">Domain 16: Breath</span></a>
-            <a href="16-move-your-magic.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">🏃</div><h3 style="color: #AFEEEE;">Move Your Magic</h3><p>Movement clears stuck energy.</p><span class="domain-tag">Domain 17: Body</span></a>
-            <a href="31-get-outside.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">🌳</div><h3 style="color: #AFEEEE;">Go Outside Already</h3><p>Get your feet in the dirt.</p><span class="domain-tag">Domain 17: Body</span></a>
-            <a href="12-rest-is-essential.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">😴</div><h3 style="color: #AFEEEE;">Rest Protocol</h3><p>Rest is not weakness. It is wisdom.</p><span class="domain-tag">Domain 17: Body</span></a>
-            <a href="21-feed-your-body.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">🍎</div><h3 style="color: #AFEEEE;">Eat the Good Food</h3><p>D.I.E.T. = Did I Eat Today.</p><span class="domain-tag">Domain 17: Body</span></a>
+            <a href="02-water-is-life.html" class="library-card" style="background:rgba(32,178,170,0.08);border-color:rgba(32,178,170,0.3);"><div class="card-icon">💧</div><h3 style="color:#AFEEEE;">Hydration Protocol</h3><p>Water is LIFE. True cellular hydration.</p><span class="domain-tag">Domain 15: Flow</span></a>
+            <a href="17-find-breath.html" class="library-card" style="background:rgba(32,178,170,0.08);border-color:rgba(32,178,170,0.3);"><div class="card-icon">🌬️</div><h3 style="color:#AFEEEE;">Find Breath Protocol</h3><p>Breath is the bridge between physical and spiritual.</p><span class="domain-tag">Domain 16: Breath</span></a>
+            <a href="16-move-your-magic.html" class="library-card" style="background:rgba(32,178,170,0.08);border-color:rgba(32,178,170,0.3);"><div class="card-icon">🏃</div><h3 style="color:#AFEEEE;">Move Your Magic</h3><p>Movement clears stuck energy.</p><span class="domain-tag">Domain 17: Body</span></a>
+            <a href="31-get-outside.html" class="library-card" style="background:rgba(32,178,170,0.08);border-color:rgba(32,178,170,0.3);"><div class="card-icon">🌳</div><h3 style="color:#AFEEEE;">Go Outside Already</h3><p>Get your feet in the dirt.</p><span class="domain-tag">Domain 17: Body</span></a>
+            <a href="12-rest-is-essential.html" class="library-card" style="background:rgba(32,178,170,0.08);border-color:rgba(32,178,170,0.3);"><div class="card-icon">😴</div><h3 style="color:#AFEEEE;">Rest Protocol</h3><p>Rest is not weakness. It is wisdom.</p><span class="domain-tag">Domain 17: Body</span></a>
+            <a href="21-feed-your-body.html" class="library-card" style="background:rgba(32,178,170,0.08);border-color:rgba(32,178,170,0.3);"><div class="card-icon">🍎</div><h3 style="color:#AFEEEE;">Eat the Good Food</h3><p>D.I.E.T. = Did I Eat Today.</p><span class="domain-tag">Domain 17: Body</span></a>
         </div>
     </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- MEDITATIONS -->
-<section class="section" id="meditations" style="background: linear-gradient(180deg, rgba(138, 43, 226, 0.05) 0%, rgba(255, 105, 180, 0.05) 50%, transparent 100%);">
+<section class="section" id="meditations" style="background:linear-gradient(180deg,rgba(138,43,226,0.05) 0%,rgba(255,105,180,0.05) 50%,transparent 100%);">
     <div class="container">
         <h2>🧘 GUIDED MEDITATIONS</h2>
         <p class="section-subtitle">Close your eyes. Find your light.</p>
@@ -1044,15 +485,14 @@
 
 <div class="divider"></div>
 
-<!-- BLOG -->
-<section class="section" id="blog" style="background: linear-gradient(180deg, rgba(255, 105, 180, 0.05) 0%, transparent 100%);">
+<section class="section" id="blog" style="background:linear-gradient(180deg,rgba(255,105,180,0.05) 0%,transparent 100%);">
     <div class="container">
         <h2>✍️ THE MAGGIE WAY BLOG</h2>
         <p class="section-subtitle">Teachings, stories, and wisdom</p>
         <div class="library-grid">
             <a href="00-about-the-maggie-way.html" class="library-card"><div class="card-icon">✨</div><h3>About The Maggie Way</h3><p>The full introduction.</p><span class="domain-tag">Domain 1: Heart</span></a>
             <a href="01-show-up-loud.html" class="library-card"><div class="card-icon">🔥</div><h3>Show Up Loud</h3><p>Speaking your truth.</p><span class="domain-tag">Domain 6: Expression</span></a>
-            <a href="04-trauma-and-the-body.html" class="library-card"><div class="card-icon">💔</div><h3>Trauma & The Body</h3><p>Your body remembers.</p><span class="domain-tag">Domain 13: Flame</span></a>
+            <a href="04-trauma-and-the-body.html" class="library-card"><div class="card-icon">💔</div><h3>Trauma &amp; The Body</h3><p>Your body remembers.</p><span class="domain-tag">Domain 13: Flame</span></a>
             <a href="05-glow-up-gets-lonely.html" class="library-card"><div class="card-icon">🦋</div><h3>The Glow Up Gets Lonely</h3><p>What happens when you rise.</p><span class="domain-tag">Domain 6: Expression</span></a>
             <a href="03-boundaries.html" class="library-card"><div class="card-icon">🛡️</div><h3>Set Healthy Boundaries</h3><p>Protect your energy.</p><span class="domain-tag">Domain 7: Community</span></a>
             <a href="27-gratitude-is-magic.html" class="library-card"><div class="card-icon">🙏</div><h3>Gratitude is MAGIC</h3><p>The frequency of abundance.</p><span class="domain-tag">Domain 9: Abundance</span></a>
@@ -1062,15 +502,14 @@
 
 <div class="divider"></div>
 
-<!-- BOOKS -->
 <section class="section" id="books">
     <div class="container">
-        <h2>📚 Books & Oracle</h2>
+        <h2>📚 Books &amp; Oracle</h2>
         <p class="section-subtitle">9 published works on Amazon</p>
         <div class="offerings-grid">
             <div class="offering-card"><div class="emoji">📖</div><h3>Weathering "They"</h3><p>Surviving Modern Targeting.</p><a href="https://www.amazon.com/Weathering-They-Surviving-Modern-Targeting/dp/B0FNCMKDYR" class="btn btn-amazon" target="_blank">Amazon</a></div>
             <div class="offering-card"><div class="emoji">🌱</div><h3>The Seed Guidebook</h3><p>Oracle companion. 31 cards for MAGIC.</p><a href="https://www.amazon.com/Maggie-Way-Oracle-SEED/dp/B0F8V3S8ZJ" class="btn btn-amazon" target="_blank">Amazon</a></div>
-            <div class="offering-card"><div class="emoji">✨</div><h3>The Maggie Way</h3><p>Soul-Lit MAGIC & Miracles.</p><a href="https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH" class="btn btn-amazon" target="_blank">Amazon</a></div>
+            <div class="offering-card"><div class="emoji">✨</div><h3>The Maggie Way</h3><p>Soul-Lit MAGIC &amp; Miracles.</p><a href="https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH" class="btn btn-amazon" target="_blank">Amazon</a></div>
             <div class="offering-card"><div class="emoji">👧</div><h3>Pull Up Your Socks</h3><p>Finding Your Voice.</p><a href="https://www.amazon.com/s?k=maggie+mayne" class="btn btn-amazon" target="_blank">Amazon</a></div>
             <div class="offering-card"><div class="emoji">🌹</div><h3>She Tries, But Watch</h3><p>Poetry and healing.</p><a href="https://www.amazon.com/s?k=maggie+mayne" class="btn btn-amazon" target="_blank">Amazon</a></div>
             <div class="offering-card"><div class="emoji">🎂</div><h3>Birthday Bash</h3><p>Children's celebration book.</p><a href="https://www.amazon.com/s?k=maggie+mayne" class="btn btn-amazon" target="_blank">Amazon</a></div>
@@ -1080,12 +519,11 @@
 
 <div class="divider"></div>
 
-<!-- JUSTICE -->
 <section class="section justice-section" id="justice">
     <div class="container">
         <h2>⚖️ Justice Without Limits</h2>
         <p class="section-subtitle">Civil rights advocacy for those fighting systems</p>
-        <div class="offerings-grid" style="max-width: 700px; margin: 0 auto;">
+        <div class="offerings-grid" style="max-width:700px; margin:0 auto;">
             <div class="offering-card"><div class="emoji">📊</div><h3>Pro Se Strategy Session</h3><div class="price">$111/hr</div><p>When you're representing yourself.</p><a href="https://square.link/u/n9WztX2P" class="btn" target="_blank">Book</a></div>
             <div class="offering-card"><div class="emoji">🗺️</div><h3>Full Case Strategy</h3><div class="price">$444</div><p>Comprehensive case mapping.</p><a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Strategy</a></div>
         </div>
@@ -1094,12 +532,11 @@
 
 <div class="divider"></div>
 
-<!-- GARDEN -->
-<section class="section" id="garden" style="background: linear-gradient(180deg, rgba(34, 139, 34, 0.08), transparent);">
+<section class="section" id="garden" style="background:linear-gradient(180deg,rgba(34,139,34,0.08),transparent);">
     <div class="container">
         <h2>🌿 The Resiliency Garden</h2>
         <p class="section-subtitle">Where healers go to bloom</p>
-        <div class="offerings-grid" style="max-width: 550px; margin: 0 auto;">
+        <div class="offerings-grid" style="max-width:550px; margin:0 auto;">
             <div class="offering-card"><div class="emoji">🌱</div><h3>Founding Member</h3><div class="price">$222</div><p>Join the movement.</p><a href="https://square.link/u/qJQL3qjS" class="btn btn-gold" target="_blank">Join</a></div>
             <div class="offering-card"><div class="emoji">💝</div><h3>Support the Garden</h3><div class="price">Any Amount</div><p>Every seed matters.</p><a href="https://square.link/u/4Yna5M2G" class="btn" target="_blank">Give</a></div>
         </div>
@@ -1110,19 +547,18 @@
 
 <footer>
     <p class="mantra">HEALERS GOING FIRST™</p>
-    <p style="font-family: 'Cinzel', serif; color: #FFD700; font-size: 1.1rem; margin-bottom: 0.75rem;">The Maggie Way™ · Soul Architecture™</p>
-    <p style="font-style: italic; color: rgba(255,248,240,0.8); margin-bottom: 1rem;">"We must stand in our light first to light the way for others."</p>
-    
+    <p style="font-family:'Cinzel',serif; color:#FFD700; font-size:1.1rem; margin-bottom:0.75rem;">The Maggie Way™ · Soul Architecture™</p>
+    <p style="font-style:italic; color:rgba(255,248,240,0.8); margin-bottom:1rem;">"We must stand in our light first to light the way for others."</p>
     <div class="footer-socials">
         <a href="https://instagram.com/MaggieMayne1111" target="_blank" class="footer-social-link">📸 @MaggieMayne1111</a>
         <a href="https://www.facebook.com/share/1FzHyu1qid/" target="_blank" class="footer-social-link">📘 Maggie Mayne</a>
         <a href="https://www.facebook.com/MaggieMAGIC1111" target="_blank" class="footer-social-link">💗 Maggie's MAGIC</a>
         <a href="https://www.facebook.com/share/1KhNt6tTd2/" target="_blank" class="footer-social-link">🌿 Resiliency Garden</a>
         <a href="https://mayneflower.gumroad.com" target="_blank" class="footer-social-link">🛒 Gumroad Shop</a>
+        <a href="https://conciousnessrevolution.io" target="_blank" class="footer-social-link">🩵 7 Forges</a>
     </div>
-    
-    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6);">© 2025 Maggie Mayne</p>
-    <p style="margin-top: 0.75rem;"><a href="mailto:maggiemayne1111@gmail.com" style="color: #FFD700;">💌 maggiemayne1111@gmail.com</a></p>
+    <p style="font-size:0.85rem; color:rgba(255,248,240,0.6);">© 2026 Maggie Mayne · Soul Architecture™ · All Rights Reserved</p>
+    <p style="margin-top:0.75rem;"><a href="mailto:maggiemayne1111@gmail.com" style="color:#FFD700;">💌 maggiemayne1111@gmail.com</a></p>
 </footer>
 
 <script>
@@ -1153,32 +589,31 @@ for (var i = 0; i < 20; i++) {
 
 // Domain Data
 var domains = {
-    1: { name: "Heart Center", emoji: "💗", archetype: "The Queen", element: "Fire", zodiac: "Leo", chakra: "Heart", law: "Law of Love", teaching: "Love is the source of everything.", practice: "Place your hand on your heart. Ask: What does my heart need?", description: "Where all healing begins. The center of your sacred architecture.", links: [{title:"🔮 Ask The Oracle",url:"oracle-the-seed.html"},{title:"About The Maggie Way",url:"00-about-the-maggie-way.html"}], offerings: []},
-    2: { name: "Mind Temple", emoji: "🧠", archetype: "The High Priestess", element: "Air", zodiac: "Aquarius", chakra: "Third Eye", law: "Law of Correspondence", teaching: "As above, so below. As within, so without.", practice: "What is this teaching me?", description: "Consciousness expansion and nervous system healing.", links: [{title:"💎 CCT™",url:"cct.html"}], offerings: []},
-    3: { name: "Healing", emoji: "💆", archetype: "The Sacred Healer", element: "Water", zodiac: "Cancer", chakra: "Sacral", law: "Law of Nature", teaching: "The body knows. Trust your body's wisdom.", practice: "Ask your body: What do you need?", description: "22+ years of bodywork mastery. Massage = MAGIC.", links: [{title:"Massage = MAGIC",url:"06-massage-is-magic.html"}], offerings: [{name:"90-Min Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
-    4: { name: "Oracle", emoji: "🔮", archetype: "The Divine Seer", element: "Aether", zodiac: "Pisces", chakra: "Third Eye + Crown", law: "Law of Warning", teaching: "Life warns us 3 times before anything happens.", practice: "Ask for a sign. Be specific.", description: "Oracle readings and intuitive guidance.", links: [{title:"🔮 The Maggie Way Oracle",url:"oracle-the-seed.html"},{title:"Trust Your Intuition",url:"08-trust-your-intuition.html"}], offerings: [{name:"Oracle Reading",price:"$33",link:"https://square.link/u/dIIrQUzO"}]},
-    5: { name: "Education", emoji: "📚", archetype: "The Wise Woman", element: "Earth", zodiac: "Virgo", chakra: "Throat", law: "Law of Sharing", teaching: "Those who know should tell with love.", practice: "What wisdom can you share today?", description: "9 books on Amazon. Courses and teachings.", links: [{title:"✨ Affirmations For Magic",url:"affirmations-for-magic.html"},{title:"Show Up Loud",url:"01-show-up-loud.html"}], offerings: []},
-    6: { name: "Expression", emoji: "🎭", archetype: "The Songstress", element: "Fire", zodiac: "Sagittarius", chakra: "Throat", law: "Law of Manifestation", teaching: "Thoughts become words become reality.", practice: "Speak aloud what you want to create.", description: "Creative expression as healing.", links: [{title:"Show Up Loud",url:"01-show-up-loud.html"},{title:"Set Healthy Boundaries",url:"03-boundaries.html"}], offerings: []},
-    7: { name: "Community", emoji: "🌐", archetype: "The Earth Mother", element: "Earth", zodiac: "Taurus", chakra: "Heart", law: "Law of Compensation", teaching: "Give and receive in balance.", practice: "Where are you giving without receiving?", description: "The Resiliency Garden. Healers supporting healers.", links: [{title:"Boundaries",url:"03-boundaries.html"}], offerings: [{name:"🌿 Founding Member",price:"$222",link:"https://square.link/u/qJQL3qjS"}]},
-    8: { name: "The Spark", emoji: "🌕", archetype: "The Light Bearer", element: "Spirit", zodiac: "—", chakra: "Crown", law: "Law of Love (Source)", teaching: "You ARE the spark.", practice: "Visualize golden light through your crown.", description: "Energy work, Reiki, and life force activation.", links: [{title:"💎 CCT™",url:"cct.html"}], offerings: []},
-    9: { name: "Abundance", emoji: "💰", archetype: "The Empress", element: "Earth", zodiac: "Taurus", chakra: "Root + Sacral", law: "Law of Generation", teaching: "Gratitude is the frequency of abundance.", practice: "Write 10 things you're grateful for.", description: "Signature experiences. Premium transformation.", links: [{title:"Gratitude is MAGIC",url:"27-gratitude-is-magic.html"}], offerings: [{name:"19-Domain Map",price:"$444",link:"https://square.link/u/9jqMqRSU"}]},
-    10: { name: "Sound", emoji: "🎵", archetype: "The Sound Healer", element: "Aether", zodiac: "Libra", chakra: "Throat", law: "Law of Harmony", teaching: "Sound restores balance. Vibration heals.", practice: "Hum. Tone. Sing. Your voice is medicine.", description: "Sound healing. Crystal bowls, Solfeggio frequencies.", links: [{title:"Sound Healing",url:"41-sound-healing.html"}], offerings: []},
-    11: { name: "Bridge", emoji: "🌉", archetype: "The Warrior Queen", element: "Air", zodiac: "Libra", chakra: "Solar Plexus", law: "Law of Cause and Effect", teaching: "Everything returns multiplied.", practice: "What patterns keep repeating?", description: "Justice Without Limits. Civil rights advocacy.", links: [], offerings: [{name:"Pro Se Strategy",price:"$111/hr",link:"https://square.link/u/n9WztX2P"}]},
-    12: { name: "The Word", emoji: "📿", archetype: "The Poetess", element: "Aether", zodiac: "Gemini", chakra: "Throat", law: "Law of Affinity", teaching: "Your words create your tribe.", practice: "What words do you speak most often?", description: "Poetry, prophecy, sacred writing.", links: [{title:"✨ Affirmations",url:"affirmations-for-magic.html"}], offerings: []},
-    13: { name: "The Flame", emoji: "🔥", archetype: "The Fire Priestess", element: "Fire", zodiac: "Aries", chakra: "Solar Plexus", law: "Law of Evolution", teaching: "Fire transmutes.", practice: "What is ready to be burned away?", description: "Transformation through fire. Shadow work.", links: [{title:"Trauma and the Body",url:"04-trauma-and-the-body.html"},{title:"The Glow Up Gets Lonely",url:"05-glow-up-gets-lonely.html"}], offerings: []},
-    14: { name: "The Crystal", emoji: "💎", archetype: "The Crystal Keeper", element: "Earth", zodiac: "Capricorn", chakra: "Third Eye", law: "Law of Inquiry", teaching: "Clarity comes through asking.", practice: "Hold a crystal. Ask a yes/no question.", description: "CCT™. Sacred geometry, crystalline grid.", links: [{title:"💎 CCT™",url:"cct.html"}], offerings: [{name:"CCT™ Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
-    15: { name: "The Flow", emoji: "🌊", archetype: "The Water Bearer", element: "Water", zodiac: "Scorpio", chakra: "Sacral", law: "Law of Communicating Vessels", teaching: "Don't leak vital force.", practice: "Where is your energy leaking?", description: "Detox and purification.", links: [{title:"Water is LIFE",url:"02-water-is-life.html"}], offerings: []},
-    16: { name: "The Breath", emoji: "🌬️", archetype: "The Wind Dancer", element: "Air", zodiac: "Gemini", chakra: "Heart", law: "Law of Three", teaching: "Breath is the bridge.", practice: "4-7-8 breath: Inhale 4, hold 7, exhale 8.", description: "Breathwork. Prana. Life force activation.", links: [{title:"Find Breath",url:"17-find-breath.html"}], offerings: []},
-    17: { name: "The Body", emoji: "🌍", archetype: "The Earth Mother", element: "Earth", zodiac: "Virgo", chakra: "Root", law: "Law of Nature", teaching: "Self care is your #1 job.", practice: "What does your body need right now?", description: "22+ years massage mastery.", links: [{title:"Self Care",url:"07-self-care-is-your-job.html"},{title:"Move Your Magic",url:"16-move-your-magic.html"}], offerings: [{name:"90-Min Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
-    18: { name: "Akashic", emoji: "📜", archetype: "The Record Keeper", element: "Aether", zodiac: "—", chakra: "Crown", law: "Law of Correspondence", teaching: "Your body remembers what the mind forgets.", practice: "Journal. Document. Your story matters.", description: "Records and documentation.", links: [], offerings: []},
-    19: { name: "The Void", emoji: "👁️", archetype: "The Void Priestess", element: "Spirit", zodiac: "—", chakra: "Crown", law: "Law of Empty Spaces", teaching: "The void is full of possibility.", practice: "Sit in stillness.", description: "Psychic investigation. Pure potential.", links: [{title:"💎 CCT™",url:"cct.html"}], offerings: []}
+    1:{name:"Heart Center",emoji:"💗",archetype:"The Queen",element:"Fire",zodiac:"Leo",chakra:"Heart",law:"Law of Love",teaching:"Love is the source of everything.",practice:"Place your hand on your heart. Ask: What does my heart need?",description:"Where all healing begins. The center of your sacred architecture.",links:[{title:"🔮 Ask The Oracle",url:"oracle-the-seed.html"},{title:"About The Maggie Way",url:"00-about-the-maggie-way.html"}],offerings:[]},
+    2:{name:"Mind Temple",emoji:"🧠",archetype:"The High Priestess",element:"Air",zodiac:"Aquarius",chakra:"Third Eye",law:"Law of Correspondence",teaching:"As above, so below. As within, so without.",practice:"What is this teaching me?",description:"Consciousness expansion and nervous system healing.",links:[{title:"💎 CCT™",url:"cct.html"}],offerings:[]},
+    3:{name:"Healing",emoji:"💆",archetype:"The Sacred Healer",element:"Water",zodiac:"Cancer",chakra:"Sacral",law:"Law of Nature",teaching:"The body knows. Trust your body's wisdom.",practice:"Ask your body: What do you need?",description:"22+ years of bodywork mastery. Massage = MAGIC.",links:[{title:"Massage = MAGIC",url:"06-massage-is-magic.html"}],offerings:[{name:"90-Min Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
+    4:{name:"Oracle",emoji:"🔮",archetype:"The Divine Seer",element:"Aether",zodiac:"Pisces",chakra:"Third Eye + Crown",law:"Law of Warning",teaching:"Life warns us 3 times before anything happens.",practice:"Ask for a sign. Be specific.",description:"Oracle readings and intuitive guidance.",links:[{title:"🔮 The Maggie Way Oracle",url:"oracle-the-seed.html"},{title:"Trust Your Intuition",url:"08-trust-your-intuition.html"}],offerings:[{name:"Oracle Reading",price:"$33",link:"https://square.link/u/dIIrQUzO"}]},
+    5:{name:"Education",emoji:"📚",archetype:"The Wise Woman",element:"Earth",zodiac:"Virgo",chakra:"Throat",law:"Law of Sharing",teaching:"Those who know should tell with love.",practice:"What wisdom can you share today?",description:"9 books on Amazon. Courses and teachings.",links:[{title:"✨ Affirmations For Magic",url:"affirmations-for-magic.html"},{title:"Show Up Loud",url:"01-show-up-loud.html"}],offerings:[]},
+    6:{name:"Expression",emoji:"🎭",archetype:"The Songstress",element:"Fire",zodiac:"Sagittarius",chakra:"Throat",law:"Law of Manifestation",teaching:"Thoughts become words become reality.",practice:"Speak aloud what you want to create.",description:"Creative expression as healing.",links:[{title:"Show Up Loud",url:"01-show-up-loud.html"},{title:"Set Healthy Boundaries",url:"03-boundaries.html"}],offerings:[]},
+    7:{name:"Community",emoji:"🌐",archetype:"The Earth Mother",element:"Earth",zodiac:"Taurus",chakra:"Heart",law:"Law of Compensation",teaching:"Give and receive in balance.",practice:"Where are you giving without receiving?",description:"The Resiliency Garden. Healers supporting healers.",links:[{title:"Boundaries",url:"03-boundaries.html"}],offerings:[{name:"🌿 Founding Member",price:"$222",link:"https://square.link/u/qJQL3qjS"}]},
+    8:{name:"The Spark",emoji:"🌕",archetype:"The Light Bearer",element:"Spirit",zodiac:"—",chakra:"Crown",law:"Law of Love (Source)",teaching:"You ARE the spark.",practice:"Visualize golden light through your crown.",description:"Energy work, Reiki, and life force activation.",links:[{title:"💎 CCT™",url:"cct.html"}],offerings:[]},
+    9:{name:"Abundance",emoji:"💰",archetype:"The Empress",element:"Earth",zodiac:"Taurus",chakra:"Root + Sacral",law:"Law of Generation",teaching:"Gratitude is the frequency of abundance.",practice:"Write 10 things you're grateful for.",description:"Signature experiences. Premium transformation.",links:[{title:"Gratitude is MAGIC",url:"27-gratitude-is-magic.html"}],offerings:[{name:"19-Domain Map",price:"$444",link:"https://square.link/u/9jqMqRSU"}]},
+    10:{name:"Sound",emoji:"🎵",archetype:"The Sound Healer",element:"Aether",zodiac:"Libra",chakra:"Throat",law:"Law of Harmony",teaching:"Sound restores balance. Vibration heals.",practice:"Hum. Tone. Sing. Your voice is medicine.",description:"Sound healing. Crystal bowls, Solfeggio frequencies.",links:[{title:"Sound Healing",url:"41-sound-healing.html"}],offerings:[]},
+    11:{name:"Bridge",emoji:"🌉",archetype:"The Warrior Queen",element:"Air",zodiac:"Libra",chakra:"Solar Plexus",law:"Law of Cause and Effect",teaching:"Everything returns multiplied.",practice:"What patterns keep repeating?",description:"Justice Without Limits. Civil rights advocacy.",links:[],offerings:[{name:"Pro Se Strategy",price:"$111/hr",link:"https://square.link/u/n9WztX2P"}]},
+    12:{name:"The Word",emoji:"📿",archetype:"The Poetess",element:"Aether",zodiac:"Gemini",chakra:"Throat",law:"Law of Affinity",teaching:"Your words create your tribe.",practice:"What words do you speak most often?",description:"Poetry, prophecy, sacred writing.",links:[{title:"✨ Affirmations",url:"affirmations-for-magic.html"}],offerings:[]},
+    13:{name:"The Flame",emoji:"🔥",archetype:"The Fire Priestess",element:"Fire",zodiac:"Aries",chakra:"Solar Plexus",law:"Law of Evolution",teaching:"Fire transmutes.",practice:"What is ready to be burned away?",description:"Transformation through fire. Shadow work.",links:[{title:"Trauma and the Body",url:"04-trauma-and-the-body.html"},{title:"The Glow Up Gets Lonely",url:"05-glow-up-gets-lonely.html"}],offerings:[]},
+    14:{name:"The Crystal",emoji:"💎",archetype:"The Crystal Keeper",element:"Earth",zodiac:"Capricorn",chakra:"Third Eye",law:"Law of Inquiry",teaching:"Clarity comes through asking.",practice:"Hold a crystal. Ask a yes/no question.",description:"CCT™. Sacred geometry, crystalline grid.",links:[{title:"💎 CCT™",url:"cct.html"}],offerings:[{name:"CCT™ Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
+    15:{name:"The Flow",emoji:"🌊",archetype:"The Water Bearer",element:"Water",zodiac:"Scorpio",chakra:"Sacral",law:"Law of Communicating Vessels",teaching:"Don't leak vital force.",practice:"Where is your energy leaking?",description:"Detox and purification.",links:[{title:"Water is LIFE",url:"02-water-is-life.html"}],offerings:[]},
+    16:{name:"The Breath",emoji:"🌬️",archetype:"The Wind Dancer",element:"Air",zodiac:"Gemini",chakra:"Heart",law:"Law of Three",teaching:"Breath is the bridge.",practice:"4-7-8 breath: Inhale 4, hold 7, exhale 8.",description:"Breathwork. Prana. Life force activation.",links:[{title:"Find Breath",url:"17-find-breath.html"}],offerings:[]},
+    17:{name:"The Body",emoji:"🌍",archetype:"The Earth Mother",element:"Earth",zodiac:"Virgo",chakra:"Root",law:"Law of Nature",teaching:"Self care is your #1 job.",practice:"What does your body need right now?",description:"22+ years massage mastery.",links:[{title:"Self Care",url:"07-self-care-is-your-job.html"},{title:"Move Your Magic",url:"16-move-your-magic.html"}],offerings:[{name:"90-Min Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
+    18:{name:"Akashic",emoji:"📜",archetype:"The Record Keeper",element:"Aether",zodiac:"—",chakra:"Crown",law:"Law of Correspondence",teaching:"Your body remembers what the mind forgets.",practice:"Journal. Document. Your story matters.",description:"Records and documentation.",links:[],offerings:[]},
+    19:{name:"The Void",emoji:"👁️",archetype:"The Void Priestess",element:"Spirit",zodiac:"—",chakra:"Crown",law:"Law of Empty Spaces",teaching:"The void is full of possibility.",practice:"Sit in stillness.",description:"Psychic investigation. Pure potential.",links:[{title:"💎 CCT™",url:"cct.html"}],offerings:[]}
 };
 
 function showDomain(n) {
     var d = domains[n];
     var panel = document.getElementById('infoPanel');
     var overlay = document.getElementById('panelOverlay');
-    
     var links = '';
     if (d.links && d.links.length > 0) {
         links = '<div class="panel-links"><h4>📖 Explore This Domain</h4>';
@@ -1187,7 +622,6 @@ function showDomain(n) {
         }
         links += '</div>';
     }
-    
     var offerings = '';
     if (d.offerings && d.offerings.length > 0) {
         offerings = '<div class="panel-offerings"><h4>✨ Offerings</h4>';
@@ -1197,30 +631,19 @@ function showDomain(n) {
         }
         offerings += '</div>';
     }
-    
     var wisdom = '<div class="panel-wisdom">';
     if (d.law) wisdom += '<div class="panel-law">⚖️ ' + d.law + '</div>';
     if (d.teaching) wisdom += '<div class="panel-teaching">' + d.teaching + '</div>';
     if (d.practice) wisdom += '<div class="panel-practice"><strong>✨ Practice:</strong> ' + d.practice + '</div>';
     wisdom += '</div>';
-    
     var prevDomain = n === 1 ? 19 : n - 1;
     var nextDomain = n === 19 ? 1 : n + 1;
     var navigation = '<div class="panel-nav"><button onclick="showDomain(' + prevDomain + ')" class="nav-btn">← ' + domains[prevDomain].emoji + ' ' + domains[prevDomain].name + '</button><button onclick="showDomain(' + nextDomain + ')" class="nav-btn">' + domains[nextDomain].emoji + ' ' + domains[nextDomain].name + ' →</button></div>';
-    
     var zodiacDisplay = d.zodiac && d.zodiac !== '—' ? '<span class="panel-zodiac">♈ ' + d.zodiac + '</span>' : '';
     var chakraDisplay = d.chakra ? '<span class="panel-chakra">🔮 ' + d.chakra + '</span>' : '';
-    
-    document.getElementById('panelContent').innerHTML = 
-        '<div class="panel-header">' +
-            '<div class="panel-emoji">' + d.emoji + '</div>' +
-            '<div class="panel-title">Domain ' + n + ': ' + d.name + '</div>' +
-            '<div class="panel-archetype">' + d.archetype + '</div>' +
-            '<div class="panel-meta"><span class="panel-element">' + d.element + '</span>' + zodiacDisplay + chakraDisplay + '</div>' +
-        '</div>' +
-        '<div class="panel-desc">' + d.description + '</div>' +
-        wisdom + links + offerings + navigation;
-    
+    document.getElementById('panelContent').innerHTML =
+        '<div class="panel-header"><div class="panel-emoji">' + d.emoji + '</div><div class="panel-title">Domain ' + n + ': ' + d.name + '</div><div class="panel-archetype">' + d.archetype + '</div><div class="panel-meta"><span class="panel-element">' + d.element + '</span>' + zodiacDisplay + chakraDisplay + '</div></div>' +
+        '<div class="panel-desc">' + d.description + '</div>' + wisdom + links + offerings + navigation;
     panel.classList.add('active');
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -1232,1279 +655,25 @@ function closePanel() {
     document.body.style.overflow = '';
 }
 
-// Close panel handlers
 document.getElementById('panelOverlay').onclick = closePanel;
 document.getElementById('panelClose').onclick = closePanel;
 document.onkeydown = function(e) { if (e.key === 'Escape') closePanel(); };
 
-// Add click handlers to domain circles
+// Click AND touch handlers for SVG domains
 var domainGroups = document.querySelectorAll('.domain-group');
 for (var i = 0; i < domainGroups.length; i++) {
     (function(group) {
         var domainNum = parseInt(group.getAttribute('data-domain'));
-        group.onclick = function() { showDomain(domainNum); };
-    })(domainGroups[i]);
-}
-</script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Maggie Mayne | Soul Architecture™ - Psychic Investigator, Intuitive Lightworker, Author, Healer. 22+ years of bodywork mastery. The Maggie Way Oracle.">
-    <meta name="keywords" content="Soul Architecture, The Maggie Way, Oracle, Healing, Massage, CCT, Crystalline Consciousness, Psychic, Intuitive">
-    <meta name="author" content="Maggie Mayne">
-    <title>Maggie Mayne | Soul-Lit™ · The Maggie Way™</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --pink: #FF69B4;
-            --pink-dark: #C71585;
-            --pink-light: #FFB6C1;
-            --gold: #FFD700;
-            --gold-soft: #DAA520;
-            --purple: #9932CC;
-            --purple-light: #DDA0DD;
-            --cream: #FFF8F0;
-            --deep: #0a0510;
-            --fire: #FF4500;
-            --teal: #00CED1;
-        }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            background: var(--deep);
-            color: var(--cream);
-            line-height: 1.7;
-            font-size: 18px;
-            overflow-x: hidden;
-        }
-        
-        /* Stars Background */
-        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-        .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle var(--duration) ease-in-out infinite; }
-        @keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
-        
-        /* Aurora Effect */
-        .aurora {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.15;
-            background: 
-                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(255, 105, 180, 0.4), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(138, 43, 226, 0.3), transparent),
-                radial-gradient(ellipse 70% 50% at 50% 80%, rgba(255, 215, 0, 0.2), transparent);
-            animation: aurora-shift 20s ease-in-out infinite;
-        }
-        @keyframes aurora-shift {
-            0%, 100% { transform: translateX(0) translateY(0); }
-            25% { transform: translateX(5%) translateY(-3%); }
-            50% { transform: translateX(-3%) translateY(5%); }
-            75% { transform: translateX(-5%) translateY(-2%); }
-        }
-        
-        /* Floating Particles */
-        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; overflow: hidden; }
-        .particle {
-            position: absolute;
-            width: 4px; height: 4px;
-            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float-up var(--float-duration) linear infinite;
-            opacity: 0;
-        }
-        @keyframes float-up {
-            0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-100vh) translateX(var(--drift)) scale(1); opacity: 0; }
-        }
-        
-        /* TOP BAR */
-        .top-bar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            padding: 0.5rem 2rem;
-            background: rgba(10, 5, 16, 0.98);
-            z-index: 1001;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-            flex-wrap: wrap;
-            backdrop-filter: blur(10px);
-        }
-        .top-bar a {
-            color: rgba(255, 248, 240, 0.8);
-            text-decoration: none;
-            font-size: 0.75rem;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        .top-bar a:hover { color: var(--gold); transform: translateY(-2px); }
-        .top-bar .social-icon { font-size: 1rem; }
-        .top-bar .love-letter-top {
-            background: linear-gradient(135deg, rgba(255, 248, 231, 0.9), rgba(245, 230, 211, 0.9));
-            color: #8B4513;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-weight: 600;
-        }
-        
-        /* NAVIGATION */
-        nav {
-            position: fixed;
-            top: 36px;
-            left: 0; right: 0;
-            padding: 0.75rem 1rem;
-            background: rgba(10, 5, 16, 0.97);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            border-bottom: 1px solid rgba(255, 105, 180, 0.3);
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            transition: all 0.3s;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            background: rgba(255, 105, 180, 0.15);
-            border: 1px solid rgba(255, 105, 180, 0.3);
-        }
-        nav a:hover { 
-            background: rgba(255, 105, 180, 0.3);
-            transform: translateY(-2px);
-        }
-        nav a.nav-highlight {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
-            border: 1px solid rgba(255, 215, 0, 0.5);
-        }
-        nav a.nav-highlight:hover {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.5), rgba(255, 165, 0, 0.4));
-        }
-        
-        /* HEADER */
-        .header {
-            text-align: center;
-            padding: 9rem 2rem 2rem;
-            position: relative;
-            z-index: 10;
-        }
-        .header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 7vw, 4rem);
-            font-weight: 400;
-            background: linear-gradient(135deg, var(--pink), var(--gold), var(--pink), var(--purple));
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 5s ease infinite;
-            margin-bottom: 0.5rem;
-        }
-        @keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        .header .subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            letter-spacing: 0.25em;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--gold), var(--pink-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .header .intro {
-            font-size: 1.35rem;
-            color: rgba(255, 248, 240, 0.9);
-            margin-bottom: 1.5rem;
-            max-width: 750px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.9;
-        }
-        .header .tagline {
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--cream);
-            margin-bottom: 0.5rem;
-        }
-        .header .mantra {
-            font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
-            color: var(--pink);
-            letter-spacing: 0.2em;
-        }
-        
-        /* Ask Oracle Button */
-        .ask-oracle-btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #8A2BE2, #9400D3, #FFD700);
-            background-size: 200% 200%;
-            animation: oracle-gradient 3s ease infinite;
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            letter-spacing: 0.1em;
-            border-radius: 30px;
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
-            transition: all 0.3s;
-            margin: 1rem 0;
-        }
-        @keyframes oracle-gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .ask-oracle-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
-        }
-        
-        /* SECTIONS */
-        .section { padding: 3rem 2rem; position: relative; z-index: 10; }
-        .container { max-width: 1000px; margin: 0 auto; }
-        h2 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.6rem, 4vw, 2.2rem);
-            text-align: center;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--pink), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 500;
-        }
-        .section-subtitle {
-            text-align: center;
-            font-style: italic;
-            color: var(--gold-soft);
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-        }
-        
-        /* Divider */
-        .divider {
-            width: 120px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--pink), var(--gold), var(--pink), transparent);
-            margin: 2rem auto;
-            position: relative;
-        }
-        .divider::before {
-            content: '✧';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--gold);
-            font-size: 1rem;
-            background: var(--deep);
-            padding: 0 0.5rem;
-        }
-        
-        /* FLOWER CONTAINER */
-        .flower-section {
-            padding: 2rem;
-            position: relative;
-            z-index: 10;
-        }
-        .flower-section h2 {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        .legend {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-        }
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            box-shadow: 0 0 8px currentColor;
-        }
-        .flower-container {
-            position: relative;
-            width: 100%;
-            max-width: 650px;
-            margin: 0 auto;
-            z-index: 50;
-        }
-        .domain-group {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .domain-group:hover circle {
-            filter: drop-shadow(0 0 15px currentColor);
-        }
-        
-        /* LIBRARY CARDS */
-        .library-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        .library-card {
-            background: rgba(147, 112, 219, 0.08);
-            border: 1px solid rgba(147, 112, 219, 0.25);
-            border-radius: 15px;
-            padding: 1.5rem;
-            transition: all 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        .library-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(147, 112, 219, 0.5);
-            box-shadow: 0 10px 30px rgba(147, 112, 219, 0.2);
-        }
-        .library-card .card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-        .library-card h3 {
-            font-family: 'Cinzel', serif;
-            color: #E6E6FA;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        .library-card p {
-            color: rgba(255, 248, 240, 0.75);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
-        }
-        .library-card .domain-tag {
-            background: rgba(255, 215, 0, 0.15);
-            padding: 0.2rem 0.5rem;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            color: var(--gold);
-            margin-top: 0.5rem;
-            display: inline-block;
-        }
-        
-        /* Modalities Section */
-        .modalities-section { background: linear-gradient(180deg, rgba(32, 178, 170, 0.05) 0%, transparent 100%); }
-        .modalities-section .library-card {
-            background: rgba(32, 178, 170, 0.08);
-            border-color: rgba(32, 178, 170, 0.25);
-        }
-        .modalities-section .library-card:hover {
-            border-color: rgba(32, 178, 170, 0.5);
-        }
-        .modalities-section .library-card h3 { color: #AFEEEE; }
-        
-        /* OFFERINGS */
-        .offerings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
-        }
-        .offering-card {
-            background: linear-gradient(145deg, rgba(45, 27, 46, 0.6), rgba(26, 10, 26, 0.7));
-            border: 1px solid rgba(255, 105, 180, 0.2);
-            border-radius: 12px;
-            padding: 1.25rem;
-            text-align: center;
-            transition: all 0.4s;
-        }
-        .offering-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--pink);
-            box-shadow: 0 12px 35px rgba(255, 105, 180, 0.15);
-        }
-        .offering-card .emoji { font-size: 1.8rem; margin-bottom: 0.5rem; }
-        .offering-card h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 0.4rem; }
-        .offering-card .price { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--pink); margin-bottom: 0.5rem; }
-        .offering-card p { font-size: 0.85rem; margin-bottom: 0.75rem; color: rgba(255,248,240,0.8); }
-        .btn {
-            display: inline-block;
-            padding: 0.5rem 1.25rem;
-            background: linear-gradient(135deg, var(--pink-dark), var(--pink));
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            border-radius: 20px;
-            transition: all 0.3s;
-        }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4); }
-        .btn-gold { background: linear-gradient(135deg, var(--gold-soft), var(--gold)); color: var(--deep); }
-        .btn-oracle { background: linear-gradient(135deg, #8A2BE2, #FFD700); }
-        .btn-amazon { background: linear-gradient(135deg, #FF9900, #FFB84D); color: #000; }
-        .btn-free { background: linear-gradient(135deg, #32CD32, #228B22); }
-        
-        /* CCT Section */
-        .cct-section {
-            background: linear-gradient(135deg, rgba(0, 206, 209, 0.1), rgba(138, 43, 226, 0.1));
-            border: 1px solid rgba(0, 206, 209, 0.3);
-            border-radius: 20px;
-            padding: 2.5rem;
-            margin: 2rem auto;
-            max-width: 900px;
-        }
-        .cct-section h2 {
-            background: linear-gradient(135deg, #00CED1, #8A2BE2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        /* INFO PANEL */
-        .info-panel {
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            background: linear-gradient(145deg, rgba(26, 10, 38, 0.98), rgba(10, 5, 16, 0.98));
-            border: 1px solid var(--pink);
-            border-radius: 16px;
-            padding: 2rem;
-            max-width: 520px;
-            width: 92%;
-            max-height: 85vh;
-            overflow-y: auto;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 0 60px rgba(255, 105, 180, 0.3);
-        }
-        .info-panel.active { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
-        .panel-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
-        .panel-overlay.active { opacity: 1; visibility: visible; }
-        .panel-close { 
-            position: absolute; 
-            top: 1rem; 
-            right: 1rem; 
-            background: rgba(255, 105, 180, 0.2); 
-            border: 1px solid rgba(255, 105, 180, 0.4);
-            color: var(--cream); 
-            font-size: 1.5rem; 
-            cursor: pointer; 
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-        .panel-close:hover { 
-            background: rgba(255, 105, 180, 0.4);
-            transform: rotate(90deg);
-        }
-        .panel-header { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 105, 180, 0.3); }
-        .panel-emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .panel-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold); margin-bottom: 0.25rem; }
-        .panel-archetype { font-style: italic; color: var(--pink); font-size: 0.95rem; }
-        .panel-meta { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
-        .panel-element { background: rgba(255,215,0,0.2); color: var(--gold); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; }
-        .panel-zodiac { background: rgba(138,43,226,0.2); color: #DDA0DD; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; }
-        .panel-chakra { background: rgba(255,105,180,0.2); color: var(--pink); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; }
-        .panel-desc { text-align: center; margin-bottom: 1rem; font-size: 1rem; line-height: 1.7; color: rgba(255,248,240,0.9); }
-        .panel-wisdom { background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.2); border-radius: 15px; padding: 1.25rem; margin: 1rem 0; }
-        .panel-law { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1rem; margin-bottom: 0.75rem; text-align: center; }
-        .panel-teaching { font-style: italic; color: rgba(255,248,240,0.9); margin-bottom: 0.75rem; line-height: 1.6; }
-        .panel-practice { background: rgba(255,105,180,0.1); padding: 0.75rem; border-radius: 10px; font-size: 0.9rem; color: rgba(255,248,240,0.85); }
-        .panel-practice strong { color: var(--pink); }
-        .panel-links { margin-top: 1rem; }
-        .panel-offerings { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,215,0,0.2); }
-        .panel-offerings h4 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 0.75rem; text-align: center; font-size: 0.9rem; }
-        .offering-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        .offering-link:hover {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
-            transform: translateY(-2px);
-        }
-        .offering-name { color: var(--cream); }
-        .offering-price { color: var(--pink); font-family: 'Cinzel', serif; font-weight: 600; }
-        .panel-links h4 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 0.75rem; text-align: center; font-size: 0.9rem; }
-        .domain-link {
-            display: block;
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, rgba(255, 105, 180, 0.15), rgba(153, 50, 204, 0.15));
-            border: 1px solid rgba(255, 105, 180, 0.3);
-            border-radius: 10px;
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        .domain-link:hover {
-            background: linear-gradient(135deg, rgba(255, 105, 180, 0.3), rgba(153, 50, 204, 0.3));
-            transform: translateY(-2px);
-            color: var(--gold);
-        }
-        .panel-nav {
-            display: flex;
-            justify-content: space-between;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        .nav-btn {
-            flex: 1;
-            padding: 0.75rem 0.5rem;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(184, 134, 11, 0.1));
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 10px;
-            color: var(--gold);
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .nav-btn:hover {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(184, 134, 11, 0.2));
-            transform: translateY(-2px);
-        }
-        
-        /* Justice Section */
-        .justice-section {
-            background: linear-gradient(180deg, rgba(0, 40, 104, 0.15), rgba(191, 10, 48, 0.1), transparent);
-        }
-        .justice-section h2 {
-            background: linear-gradient(135deg, #BF0A30, #FFFFFF, #002868);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid rgba(255, 105, 180, 0.2);
-            position: relative;
-            z-index: 10;
-        }
-        footer .mantra { font-family: 'Cinzel', serif; color: var(--pink); font-size: 0.9rem; letter-spacing: 0.15em; margin-bottom: 0.5rem; }
-        footer p { font-size: 0.85rem; color: rgba(255,248,240,0.6); margin-bottom: 0.5rem; }
-        footer a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
-        footer a:hover { color: var(--pink); }
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 1.5rem 0;
-        }
-        .footer-social-link {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 105, 180, 0.1);
-            border: 1px solid rgba(255, 105, 180, 0.3);
-            border-radius: 20px;
-            color: var(--cream);
-            font-size: 0.85rem;
-            transition: all 0.3s;
-        }
-        .footer-social-link:hover {
-            background: rgba(255, 105, 180, 0.2);
-            transform: translateY(-2px);
-            color: var(--gold);
-        }
-        
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .top-bar { justify-content: center; padding: 0.4rem 1rem; gap: 0.5rem; }
-            .top-bar a { font-size: 0.7rem; }
-            nav { top: 32px; gap: 0.4rem; padding: 0.6rem 0.75rem; }
-            nav a { font-size: 0.65rem; padding: 0.3rem 0.6rem; }
-            .header { padding: 7rem 1.5rem 1.5rem; }
-            .header h1 { font-size: 2rem; }
-            .header .subtitle { font-size: 1.2rem; letter-spacing: 0.15em; }
-            .info-panel { padding: 1.5rem; width: 95%; }
-            .panel-nav { flex-direction: column; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="stars" id="stars"></div>
-<div class="aurora"></div>
-<div class="particles" id="particles"></div>
-
-<!-- TOP BAR -->
-<div class="top-bar">
-    <a href="https://instagram.com/MaggieMayne1111" target="_blank"><span class="social-icon">📸</span> @MaggieMayne1111</a>
-    <a href="https://instagram.com/littletonmassage_maggiemagic" target="_blank"><span class="social-icon">✨</span> @MaggieMagic</a>
-    <a href="https://www.facebook.com/share/1FzHyu1qid/" target="_blank"><span class="social-icon">📘</span> Maggie Mayne</a>
-    <a href="https://www.facebook.com/MaggieMAGIC1111" target="_blank"><span class="social-icon">💗</span> Maggie's MAGIC</a>
-    <a href="https://www.facebook.com/share/1KhNt6tTd2/" target="_blank"><span class="social-icon">🌿</span> Resiliency Garden</a>
-    <a href="mailto:maggiemayne1111@gmail.com" class="love-letter-top">💌 Send a Love Letter</a>
-</div>
-
-<!-- NAVIGATION -->
-<nav>
-    <a href="00-about-the-maggie-way.html">About</a>
-    <a href="#flower">Sacred Map</a>
-    <a href="#offerings">Offerings</a>
-    <a href="shop.html" class="nav-highlight">🛒 Shop</a>
-    <a href="oracle-the-seed.html">🔮 Oracle</a>
-    <a href="affirmations-for-magic.html">✨ Affirmations</a>
-    <a href="cct.html">💎 CCT™</a>
-    <a href="#gemstones">💎 Gemstones</a>
-    <a href="#elixir">🍄 Elixir</a>
-    <a href="soul-architecture-assessment.html">🌸 Assessment</a>
-    <a href="flower-essence-protocol-builder.html">🌸 Essences</a>
-    <a href="#library">Library</a>
-    <a href="#modalities">Modalities</a>
-    <a href="#protocols">Protocols</a>
-    <a href="#meditations">Meditations</a>
-    <a href="#blog">Blog</a>
-    <a href="#books">Books</a>
-    <a href="#justice">⚖️ Justice</a>
-    <a href="#garden">🌿 Garden</a>
-    <a href="https://mayneflower.gumroad.com" target="_blank" class="nav-highlight">💰 Gumroad</a>
-</nav>
-
-<div class="header">
-    <p class="subtitle" style="font-size: 1rem; color: var(--pink); margin-bottom: 0.5rem;">by Maggie Mayne</p>
-    <h1 style="font-size: 3.5rem; margin-bottom: 0.5rem;">SOUL ARCHITECTURE™</h1>
-    <p class="intro" style="font-size: 1.3rem; max-width: 600px; margin: 0 auto 1.5rem;">A 19-Domain Sacred Map for Healing, Transformation & Remembering Your MAGIC</p>
-    <a href="oracle-the-seed.html" class="ask-oracle-btn">🔮 Ask The Oracle ✨</a>
-    <p class="tagline" style="margin-top: 1.5rem;">"We must stand in our light first to light the way for others."</p>
-    <p class="mantra">HEALERS GOING FIRST™</p>
-</div>
-
-<!-- LIVE TONIGHT BANNER WITH PINK REVOLUTION -->
-<section class="live-banner" style="padding: 1rem; background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(0,0,0,0.85)); border-bottom: 1px solid rgba(255,0,0,0.5); text-align: center;">
-    <div style="max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-        <img src="d-live-tonight.jpg" alt="D Goes Live Tonight" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 2px solid #FF0000;">
-        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem;">
-            <div style="display: flex; align-items: center; gap: 0.4rem;">
-                <span style="display: inline-block; width: 8px; height: 8px; background: #FF0000; border-radius: 50%; animation: pulse-red 1.5s infinite;"></span>
-                <span style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: #FF0000; font-weight: bold;">LIVE TONIGHT</span>
-            </div>
-            <span style="color: var(--cream); font-size: 1rem;">D Goes Live <strong style="color: var(--gold);">5:05 PM PST</strong></span>
-        </div>
-        <a href="https://www.instagram.com/overkill_kulture?igsh=MWVtaXNhdXhvOWQ4Mg==" target="_blank" style="padding: 0.5rem 1.25rem; background: linear-gradient(135deg, #833AB4, #E1306C); color: white; text-decoration: none; font-family: 'Cinzel', serif; border-radius: 20px; font-size: 0.8rem;">📸 Instagram</a>
-        <a href="https://www.facebook.com/profile.php?id=61571502951498" target="_blank" style="padding: 0.5rem 1.25rem; background: linear-gradient(135deg, #1877F2, #3b5998); color: white; text-decoration: none; font-family: 'Cinzel', serif; border-radius: 20px; font-size: 0.8rem;">📘 Facebook</a>
-        <a href="pink-revolution/" style="padding: 0.5rem 1.25rem; background: linear-gradient(135deg, #ec4899, #a855f7); color: white; text-decoration: none; font-family: 'Cinzel', serif; border-radius: 20px; font-size: 0.8rem;">🌸 Pink Revolution</a>
-    </div>
-    <style>
-        @keyframes pulse-red {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-    </style>
-</section>
-
-<!-- SACRED MAP -->
-<section class="flower-section" id="flower">
-    <h2>✧ THE SACRED MAP ✧</h2>
-    <p class="section-subtitle">Click any domain to explore its wisdom</p>
-    <div class="legend">
-        <div class="legend-item"><span class="legend-dot" style="background:#FF69B4;"></span> The Seed (1-7)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#FFD700;"></span> Root & Bloom (8-11)</div>
-        <div class="legend-item"><span class="legend-dot" style="background:#9932CC;"></span> The Legacy (12-19)</div>
-    </div>
-    <div class="flower-container">
-        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
-            <defs>
-                <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" style="stop-color:#FF69B4;stop-opacity:0.3"/>
-                    <stop offset="100%" style="stop-color:#FF69B4;stop-opacity:0"/>
-                </radialGradient>
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-            </defs>
-            
-            <!-- Rings -->
-            <circle cx="250" cy="250" r="240" fill="none" stroke="rgba(255,105,180,0.25)" stroke-width="1"/>
-            <circle cx="250" cy="250" r="190" fill="none" stroke="rgba(255,215,0,0.2)" stroke-width="1"/>
-            <circle cx="250" cy="250" r="140" fill="none" stroke="rgba(153,50,204,0.2)" stroke-width="1"/>
-            <circle cx="250" cy="250" r="90" fill="none" stroke="rgba(255,105,180,0.3)" stroke-width="1"/>
-            <circle cx="250" cy="250" r="100" fill="url(#centerGlow)"/>
-            
-            <!-- Flower Pattern -->
-            <g fill="none" stroke="rgba(255,105,180,0.15)" stroke-width="1">
-                <circle cx="250" cy="250" r="60"/><circle cx="250" cy="190" r="60"/><circle cx="302" cy="220" r="60"/>
-                <circle cx="302" cy="280" r="60"/><circle cx="250" cy="310" r="60"/><circle cx="198" cy="280" r="60"/><circle cx="198" cy="220" r="60"/>
-            </g>
-            
-            <!-- Domain 1: Heart Center -->
-            <g class="domain-group" data-domain="1" transform="translate(250,250)">
-                <circle r="32" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2.5" filter="url(#glow)" style="cursor:pointer;">
-                    <animate attributeName="r" values="32;34;32" dur="2s" repeatCount="indefinite"/>
-                </circle>
-                <text y="5" text-anchor="middle" style="font-size:20px;pointer-events:none;">💗</text>
-                <text y="22" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Heart Center</text>
-            </g>
-            
-            <!-- Domain 2 -->
-            <g class="domain-group" data-domain="2" transform="translate(250,168)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🧠</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Mind Temple</text>
-            </g>
-            
-            <!-- Domain 3 -->
-            <g class="domain-group" data-domain="3" transform="translate(320,209)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💆</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Healing</text>
-            </g>
-            
-            <!-- Domain 4 -->
-            <g class="domain-group" data-domain="4" transform="translate(320,291)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🔮</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Oracle</text>
-            </g>
-            
-            <!-- Domain 5 -->
-            <g class="domain-group" data-domain="5" transform="translate(250,332)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📚</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Education</text>
-            </g>
-            
-            <!-- Domain 6 -->
-            <g class="domain-group" data-domain="6" transform="translate(180,291)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🎭</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Expression</text>
-            </g>
-            
-            <!-- Domain 7 -->
-            <g class="domain-group" data-domain="7" transform="translate(180,209)">
-                <circle r="26" fill="rgba(20,10,30,0.8)" stroke="#FF69B4" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌐</text>
-                <text y="18" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Community</text>
-            </g>
-            
-            <!-- Domain 8 (Gold) -->
-            <g class="domain-group" data-domain="8" transform="translate(250,98)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌕</text>
-                <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Spark</text>
-            </g>
-            
-            <!-- Domain 9 -->
-            <g class="domain-group" data-domain="9" transform="translate(380,178)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💰</text>
-                <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Abundance</text>
-            </g>
-            
-            <!-- Domain 10 -->
-            <g class="domain-group" data-domain="10" transform="translate(380,322)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🎵</text>
-                <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Sound</text>
-            </g>
-            
-            <!-- Domain 11 -->
-            <g class="domain-group" data-domain="11" transform="translate(250,402)">
-                <circle r="24" fill="rgba(20,10,30,0.8)" stroke="#FFD700" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌉</text>
-                <text y="17" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Bridge</text>
-            </g>
-            
-            <!-- Domain 12 (Purple) -->
-            <g class="domain-group" data-domain="12" transform="translate(120,178)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📿</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Word</text>
-            </g>
-            
-            <!-- Domain 13 -->
-            <g class="domain-group" data-domain="13" transform="translate(120,322)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🔥</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Flame</text>
-            </g>
-            
-            <!-- Domain 14 -->
-            <g class="domain-group" data-domain="14" transform="translate(178,98)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">💎</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Crystal</text>
-            </g>
-            
-            <!-- Domain 15 -->
-            <g class="domain-group" data-domain="15" transform="translate(322,98)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌊</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Flow</text>
-            </g>
-            
-            <!-- Domain 16 -->
-            <g class="domain-group" data-domain="16" transform="translate(425,250)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌬️</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Breath</text>
-            </g>
-            
-            <!-- Domain 17 -->
-            <g class="domain-group" data-domain="17" transform="translate(322,402)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">🌍</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Body</text>
-            </g>
-            
-            <!-- Domain 18 -->
-            <g class="domain-group" data-domain="18" transform="translate(178,402)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">📜</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Akashic</text>
-            </g>
-            
-            <!-- Domain 19 -->
-            <g class="domain-group" data-domain="19" transform="translate(75,250)">
-                <circle r="22" fill="rgba(20,10,30,0.8)" stroke="#9932CC" stroke-width="2" style="cursor:pointer;"/>
-                <text y="5" text-anchor="middle" style="font-size:18px;pointer-events:none;">👁️</text>
-                <text y="16" text-anchor="middle" style="font-size:7px;fill:#FFF8F0;pointer-events:none;">Void</text>
-            </g>
-        </svg>
-    </div>
-</section>
-
-<!-- CTA BUTTONS -->
-<div style="text-align:center; padding:2rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; position:relative; z-index:10;">
-    <a href="oracle-the-seed.html" class="btn btn-oracle" style="padding:0.75rem 1.5rem;">🔮 Pull Oracle Cards</a>
-    <a href="https://square.link/u/dIIrQUzO" target="_blank" class="btn btn-gold">Oracle Reading · $33</a>
-    <a href="https://square.link/u/n9WztX2P" target="_blank" class="btn">Book Remote Session · $111</a>
-    <a href="shop.html" class="btn" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🛒 Digital Shop</a>
-</div>
-
-<!-- Panel Overlay -->
-<div class="panel-overlay" id="panelOverlay"></div>
-
-<!-- Info Panel -->
-<div class="info-panel" id="infoPanel">
-    <button class="panel-close" id="panelClose">×</button>
-    <div id="panelContent"></div>
-</div>
-
-<div class="divider"></div>
-
-<!-- OFFERINGS -->
-<section class="section" id="offerings">
-    <div class="container">
-        <h2>💗 Work With Maggie</h2>
-        <p class="section-subtitle">Healing, guidance, transformation — from FREE to immersive</p>
-        
-        <h3 style="font-family: 'Cinzel', serif; color: #32CD32; text-align: center; margin: 2rem 0 1rem;">🎁 Free Offerings</h3>
-        <div class="offerings-grid" style="margin-bottom: 2rem;">
-            <div class="offering-card" style="border-color: rgba(50,205,50,0.5);">
-                <div class="emoji">🔮</div>
-                <h3>Pull Your Own Oracle Cards</h3>
-                <div class="price" style="color: #32CD32;">FREE</div>
-                <p>Interactive digital oracle. Pull from The Seed deck anytime.</p>
-                <a href="oracle-the-seed.html" class="btn btn-free">Pull Cards</a>
-            </div>
-            <div class="offering-card" style="border-color: rgba(50,205,50,0.5);">
-                <div class="emoji">✨</div>
-                <h3>Affirmations For Magic</h3>
-                <div class="price" style="color: #32CD32;">FREE</div>
-                <p>Introduction + Weeks 1-5 + 11 Rituals + Mirror Mantras.</p>
-                <a href="affirmations-for-magic.html" class="btn btn-free">Start Free</a>
-            </div>
-            <div class="offering-card" style="border-color: rgba(50,205,50,0.5);">
-                <div class="emoji">💎</div>
-                <h3>CCT™ Free Mini Sessions</h3>
-                <div class="price" style="color: #32CD32;">FREE</div>
-                <p>5 sacred geometry healing audios from CCT™.</p>
-                <a href="cct.html" class="btn btn-free">Experience</a>
-            </div>
-        </div>
-        
-        <h3 style="font-family: 'Cinzel', serif; color: #FFD700; text-align: center; margin: 2rem 0 1rem;">✨ Sessions & Experiences</h3>
-        <div class="offerings-grid">
-            <div class="offering-card"><div class="emoji">🔮</div><h3>Oracle Card Pull by Maggie</h3><div class="price">$33</div><p>One intuitively chosen card with a personal channeled message.</p><a href="https://square.link/u/dIIrQUzO" class="btn btn-oracle" target="_blank">Get Reading</a></div>
-            <div class="offering-card"><div class="emoji">📞</div><h3>30-Min Remote Session</h3><div class="price">$111</div><p>Energy work knows no distance.</p><a href="https://square.link/u/n9WztX2P" class="btn" target="_blank">Connect</a></div>
-            <div class="offering-card"><div class="emoji">🌊</div><h3>90-Min Soul-Lit Session</h3><div class="price">$222</div><p>All the things. Bodywork, energy work, healing.</p><a href="https://square.link/u/jGBu81PX" class="btn" target="_blank">Book</a></div>
-            <div class="offering-card"><div class="emoji">🗺️</div><h3>19-Domain Map</h3><div class="price">$444</div><p>Your complete sacred architecture mapped.</p><a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Get Mapped</a></div>
-            <div class="offering-card"><div class="emoji">🌟</div><h3>An Evening with Maggie</h3><div class="price">$888</div><p>Book reading, signing, live experience.</p><a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Reserve</a></div>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- MODALITIES -->
-<section class="section modalities-section" id="modalities">
-    <div class="container">
-        <h2>✨ HEALING MODALITIES</h2>
-        <p class="section-subtitle">The ancient arts of bodywork, energy medicine, and somatic healing</p>
-        <div class="library-grid">
-            <a href="oracle-the-seed.html" class="library-card"><div class="card-icon">🔮</div><h3>The Maggie Way Oracle</h3><p>31 cards for MAGIC, clarity, and new growth.</p><span class="domain-tag">Domain 4: Oracle</span></a>
-            <a href="06-massage-is-magic.html" class="library-card"><div class="card-icon">💆</div><h3>Massage = MAGIC</h3><p>22+ years of bodywork mastery.</p><span class="domain-tag">Domain 3: Healing</span></a>
-            <a href="cct.html" class="library-card"><div class="card-icon">💎</div><h3>CCT™</h3><p>Crystalline Consciousness Technique.</p><span class="domain-tag">Domain 14: Crystal</span></a>
-            <a href="08-trust-your-intuition.html" class="library-card"><div class="card-icon">⚡</div><h3>Energy Work & Reiki</h3><p>Universal life force energy.</p><span class="domain-tag">Domain 8: Spark</span></a>
-            <a href="41-sound-healing.html" class="library-card"><div class="card-icon">🎵</div><h3>Sound Healing</h3><p>Crystal bowls, tuning forks, Solfeggio.</p><span class="domain-tag">Domain 10: Sound</span></a>
-            <a href="04-trauma-and-the-body.html" class="library-card"><div class="card-icon">💔</div><h3>Trauma & The Body</h3><p>Your body remembers what the mind forgets.</p><span class="domain-tag">Domain 13: Flame</span></a>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CCT -->
-<section class="cct-section" id="cct">
-    <h2>💎 Crystalline Consciousness Technique™</h2>
-    <p class="section-subtitle">Advanced Energy Healing & Consciousness Expansion</p>
-    <div style="text-align: center; margin-bottom: 2rem;">
-        <p style="font-size: 1.15rem; line-height: 1.9;">CCT™ works with sacred geometry, crystalline frequencies, and conscious intent to access higher states of consciousness.</p>
-    </div>
-    <div style="text-align: center;">
-        <a href="cct.html" class="btn" style="background: linear-gradient(135deg, #00CED1, #8A2BE2); padding: 0.75rem 1.5rem;">💎 Explore CCT™</a>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- GEMSTONES -->
-<section class="section" id="gemstones" style="background: linear-gradient(180deg, rgba(138, 43, 226, 0.08) 0%, rgba(0, 206, 209, 0.05) 50%, transparent 100%);">
-    <div class="container">
-        <h2>💎 HEALING GEMSTONES</h2>
-        <p class="section-subtitle">Gemstones embody concentrated energy with powerful resonance for healing</p>
-        <div class="library-grid">
-            <div class="library-card" style="border-color: rgba(255,255,255,0.4);"><div class="card-icon">🤍</div><h3>Howlite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Inspiration ♥ Creativity</p><p>An aid to insomnia. Strengthens memory and stimulates desire for knowledge.</p><span class="domain-tag">Bones • Teeth • Soft Tissue</span></div>
-            <div class="library-card" style="border-color: rgba(70,70,90,0.6);"><div class="card-icon">🖤</div><h3>Larvikite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Grounding ♥ Protective</p><p>A protective and grounding stone. Strong connection with Earth energies.</p><span class="domain-tag">Root Chakra • Protection</span></div>
-            <div class="library-card" style="border-color: rgba(138,43,226,0.5);"><div class="card-icon">💜</div><h3>Amethyst</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Peace ♥ Intuition</p><p>The stone of spirituality. Excellent for meditation and psychic abilities.</p><span class="domain-tag">Third Eye • Crown Chakra</span></div>
-            <div class="library-card" style="border-color: rgba(0,128,0,0.5);"><div class="card-icon">💚</div><h3>Malachite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Transformation</p><p>The stone of transformation. Absorbs negative energies.</p><span class="domain-tag">Heart Chakra</span></div>
-            <div class="library-card" style="border-color: rgba(255,255,255,0.5);"><div class="card-icon">💎</div><h3>Clear Quartz</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Amplification</p><p>The master healer. Amplifies energy and intention.</p><span class="domain-tag">All Chakras</span></div>
-            <div class="library-card" style="border-color: rgba(0,206,209,0.5);"><div class="card-icon">💙</div><h3>Amazonite</h3><p style="font-style:italic;color:var(--gold);margin-bottom:0.5rem;">♥ Truth ♥ Warrior</p><p>Calls on the spirit of inner strength. Stand strong in your authentic light.</p><span class="domain-tag">Heart • Throat Chakra</span></div>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ELIXIR -->
-<section class="section" id="elixir" style="background: linear-gradient(180deg, rgba(139, 69, 19, 0.08) 0%, rgba(218, 165, 32, 0.05) 50%, transparent 100%);">
-    <div class="container">
-        <h2>🍄 VITALITY MUSHROOM ELIXIR</h2>
-        <p class="section-subtitle">Maggie's Magic — Ancient Wisdom in Every Drop</p>
-        <div class="library-grid">
-            <div class="library-card" style="border-color: rgba(139,69,19,0.5);"><div class="card-icon">🦁</div><h3>Lion's Mane</h3><p>Cognitive enhancement, nerve regeneration, focus and clarity.</p><span class="domain-tag">Mind • Nervous System</span></div>
-            <div class="library-card" style="border-color: rgba(139,69,19,0.5);"><div class="card-icon">🍄</div><h3>Reishi</h3><p>The mushroom of immortality. Immune modulation, stress relief.</p><span class="domain-tag">Immune • Spirit</span></div>
-            <div class="library-card" style="border-color: rgba(139,69,19,0.5);"><div class="card-icon">⚡</div><h3>Cordyceps</h3><p>Energy and endurance. Oxygen utilization, vitality.</p><span class="domain-tag">Energy • Vitality</span></div>
-            <div class="library-card" style="border-color: rgba(139,69,19,0.5);"><div class="card-icon">🌿</div><h3>Chaga</h3><p>The king of medicinal mushrooms. Antioxidant powerhouse.</p><span class="domain-tag">Immune • Antioxidant</span></div>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- LIBRARY -->
-<section class="section" id="library">
-    <div class="container">
-        <h2>📚 THE MAGGIE WAY LIBRARY</h2>
-        <p class="section-subtitle">Sacred teachings organized by theme</p>
-        <div class="library-grid">
-            <a href="00-about-the-maggie-way.html" class="library-card"><div class="card-icon">✨</div><h3>About The Maggie Way</h3><p>The full introduction. Are you ALL-IN?</p><span class="domain-tag">Domain 1</span></a>
-            <a href="oracle-the-seed.html" class="library-card"><div class="card-icon">🔮</div><h3>The Maggie Way Oracle</h3><p>Pull a card. Trust the message.</p><span class="domain-tag">Domain 4</span></a>
-            <a href="01-show-up-loud.html" class="library-card"><div class="card-icon">🔥</div><h3>Show Up Loud</h3><p>Speaking your truth.</p><span class="domain-tag">Domain 6</span></a>
-            <a href="08-trust-your-intuition.html" class="library-card"><div class="card-icon">🧭</div><h3>Trust Your Intuition</h3><p>Your inner compass never lies.</p><span class="domain-tag">Domain 4</span></a>
-            <a href="07-self-care-is-your-job.html" class="library-card"><div class="card-icon">💎</div><h3>Self Care is Your #1 Job</h3><p>The foundation of all healing.</p><span class="domain-tag">Domain 17</span></a>
-            <a href="02-water-is-life.html" class="library-card"><div class="card-icon">💧</div><h3>Water is LIFE</h3><p>True cellular hydration.</p><span class="domain-tag">Domain 15</span></a>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PROTOCOLS -->
-<section class="section" id="protocols" style="background: linear-gradient(180deg, rgba(32, 178, 170, 0.08) 0%, transparent 100%);">
-    <div class="container">
-        <h2>🌀 DAILY PROTOCOLS</h2>
-        <p class="section-subtitle">Practical exercises and rituals for your healing journey</p>
-        <div class="library-grid">
-            <a href="02-water-is-life.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">💧</div><h3 style="color: #AFEEEE;">Hydration Protocol</h3><p>Water is LIFE. True cellular hydration.</p><span class="domain-tag">Domain 15: Flow</span></a>
-            <a href="17-find-breath.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">🌬️</div><h3 style="color: #AFEEEE;">Find Breath Protocol</h3><p>Breath is the bridge between physical and spiritual.</p><span class="domain-tag">Domain 16: Breath</span></a>
-            <a href="16-move-your-magic.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">🏃</div><h3 style="color: #AFEEEE;">Move Your Magic</h3><p>Movement clears stuck energy.</p><span class="domain-tag">Domain 17: Body</span></a>
-            <a href="31-get-outside.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">🌳</div><h3 style="color: #AFEEEE;">Go Outside Already</h3><p>Get your feet in the dirt.</p><span class="domain-tag">Domain 17: Body</span></a>
-            <a href="12-rest-is-essential.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">😴</div><h3 style="color: #AFEEEE;">Rest Protocol</h3><p>Rest is not weakness. It is wisdom.</p><span class="domain-tag">Domain 17: Body</span></a>
-            <a href="21-feed-your-body.html" class="library-card" style="background: rgba(32, 178, 170, 0.08); border-color: rgba(32, 178, 170, 0.3);"><div class="card-icon">🍎</div><h3 style="color: #AFEEEE;">Eat the Good Food</h3><p>D.I.E.T. = Did I Eat Today.</p><span class="domain-tag">Domain 17: Body</span></a>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- MEDITATIONS -->
-<section class="section" id="meditations" style="background: linear-gradient(180deg, rgba(138, 43, 226, 0.05) 0%, rgba(255, 105, 180, 0.05) 50%, transparent 100%);">
-    <div class="container">
-        <h2>🧘 GUIDED MEDITATIONS</h2>
-        <p class="section-subtitle">Close your eyes. Find your light.</p>
-        <div class="library-grid">
-            <a href="meditation-lightship.html" class="library-card"><div class="card-icon">🏠</div><h3>Lightship Meditation</h3><p>A guided journey to your inner sanctuary.</p><span class="domain-tag">Duration: ~15 minutes</span></a>
-            <a href="meditation-healing-light.html" class="library-card"><div class="card-icon">✨</div><h3>The Healing Light</h3><p>Allow healing energy to flow through every cell.</p><span class="domain-tag">Duration: ~12 minutes</span></a>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- BLOG -->
-<section class="section" id="blog" style="background: linear-gradient(180deg, rgba(255, 105, 180, 0.05) 0%, transparent 100%);">
-    <div class="container">
-        <h2>✍️ THE MAGGIE WAY BLOG</h2>
-        <p class="section-subtitle">Teachings, stories, and wisdom</p>
-        <div class="library-grid">
-            <a href="00-about-the-maggie-way.html" class="library-card"><div class="card-icon">✨</div><h3>About The Maggie Way</h3><p>The full introduction.</p><span class="domain-tag">Domain 1: Heart</span></a>
-            <a href="01-show-up-loud.html" class="library-card"><div class="card-icon">🔥</div><h3>Show Up Loud</h3><p>Speaking your truth.</p><span class="domain-tag">Domain 6: Expression</span></a>
-            <a href="04-trauma-and-the-body.html" class="library-card"><div class="card-icon">💔</div><h3>Trauma & The Body</h3><p>Your body remembers.</p><span class="domain-tag">Domain 13: Flame</span></a>
-            <a href="05-glow-up-gets-lonely.html" class="library-card"><div class="card-icon">🦋</div><h3>The Glow Up Gets Lonely</h3><p>What happens when you rise.</p><span class="domain-tag">Domain 6: Expression</span></a>
-            <a href="03-boundaries.html" class="library-card"><div class="card-icon">🛡️</div><h3>Set Healthy Boundaries</h3><p>Protect your energy.</p><span class="domain-tag">Domain 7: Community</span></a>
-            <a href="27-gratitude-is-magic.html" class="library-card"><div class="card-icon">🙏</div><h3>Gratitude is MAGIC</h3><p>The frequency of abundance.</p><span class="domain-tag">Domain 9: Abundance</span></a>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- BOOKS -->
-<section class="section" id="books">
-    <div class="container">
-        <h2>📚 Books & Oracle</h2>
-        <p class="section-subtitle">9 published works on Amazon</p>
-        <div class="offerings-grid">
-            <div class="offering-card"><div class="emoji">📖</div><h3>Weathering "They"</h3><p>Surviving Modern Targeting.</p><a href="https://www.amazon.com/Weathering-They-Surviving-Modern-Targeting/dp/B0FNCMKDYR" class="btn btn-amazon" target="_blank">Amazon</a></div>
-            <div class="offering-card"><div class="emoji">🌱</div><h3>The Seed Guidebook</h3><p>Oracle companion. 31 cards for MAGIC.</p><a href="https://www.amazon.com/Maggie-Way-Oracle-SEED/dp/B0F8V3S8ZJ" class="btn btn-amazon" target="_blank">Amazon</a></div>
-            <div class="offering-card"><div class="emoji">✨</div><h3>The Maggie Way</h3><p>Soul-Lit MAGIC & Miracles.</p><a href="https://www.amazon.com/Maggie-Way-Soul-Lit-MAGIC-Miracles/dp/B0G388MQZH" class="btn btn-amazon" target="_blank">Amazon</a></div>
-            <div class="offering-card"><div class="emoji">👧</div><h3>Pull Up Your Socks</h3><p>Finding Your Voice.</p><a href="https://www.amazon.com/s?k=maggie+mayne" class="btn btn-amazon" target="_blank">Amazon</a></div>
-            <div class="offering-card"><div class="emoji">🌹</div><h3>She Tries, But Watch</h3><p>Poetry and healing.</p><a href="https://www.amazon.com/s?k=maggie+mayne" class="btn btn-amazon" target="_blank">Amazon</a></div>
-            <div class="offering-card"><div class="emoji">🎂</div><h3>Birthday Bash</h3><p>Children's celebration book.</p><a href="https://www.amazon.com/s?k=maggie+mayne" class="btn btn-amazon" target="_blank">Amazon</a></div>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- JUSTICE -->
-<section class="section justice-section" id="justice">
-    <div class="container">
-        <h2>⚖️ Justice Without Limits</h2>
-        <p class="section-subtitle">Civil rights advocacy for those fighting systems</p>
-        <div class="offerings-grid" style="max-width: 700px; margin: 0 auto;">
-            <div class="offering-card"><div class="emoji">📊</div><h3>Pro Se Strategy Session</h3><div class="price">$111/hr</div><p>When you're representing yourself.</p><a href="https://square.link/u/n9WztX2P" class="btn" target="_blank">Book</a></div>
-            <div class="offering-card"><div class="emoji">🗺️</div><h3>Full Case Strategy</h3><div class="price">$444</div><p>Comprehensive case mapping.</p><a href="https://square.link/u/9jqMqRSU" class="btn btn-gold" target="_blank">Strategy</a></div>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- GARDEN -->
-<section class="section" id="garden" style="background: linear-gradient(180deg, rgba(34, 139, 34, 0.08), transparent);">
-    <div class="container">
-        <h2>🌿 The Resiliency Garden</h2>
-        <p class="section-subtitle">Where healers go to bloom</p>
-        <div class="offerings-grid" style="max-width: 550px; margin: 0 auto;">
-            <div class="offering-card"><div class="emoji">🌱</div><h3>Founding Member</h3><div class="price">$222</div><p>Join the movement.</p><a href="https://square.link/u/qJQL3qjS" class="btn btn-gold" target="_blank">Join</a></div>
-            <div class="offering-card"><div class="emoji">💝</div><h3>Support the Garden</h3><div class="price">Any Amount</div><p>Every seed matters.</p><a href="https://square.link/u/4Yna5M2G" class="btn" target="_blank">Give</a></div>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<footer>
-    <p class="mantra">HEALERS GOING FIRST™</p>
-    <p style="font-family: 'Cinzel', serif; color: #FFD700; font-size: 1.1rem; margin-bottom: 0.75rem;">The Maggie Way™ · Soul Architecture™</p>
-    <p style="font-style: italic; color: rgba(255,248,240,0.8); margin-bottom: 1rem;">"We must stand in our light first to light the way for others."</p>
-    
-    <div class="footer-socials">
-        <a href="https://instagram.com/MaggieMayne1111" target="_blank" class="footer-social-link">📸 @MaggieMayne1111</a>
-        <a href="https://www.facebook.com/share/1FzHyu1qid/" target="_blank" class="footer-social-link">📘 Maggie Mayne</a>
-        <a href="https://www.facebook.com/MaggieMAGIC1111" target="_blank" class="footer-social-link">💗 Maggie's MAGIC</a>
-        <a href="https://www.facebook.com/share/1KhNt6tTd2/" target="_blank" class="footer-social-link">🌿 Resiliency Garden</a>
-        <a href="https://mayneflower.gumroad.com" target="_blank" class="footer-social-link">🛒 Gumroad Shop</a>
-    </div>
-    
-    <p style="font-size: 0.85rem; color: rgba(255,248,240,0.6);">© 2025 Maggie Mayne</p>
-    <p style="margin-top: 0.75rem;"><a href="mailto:maggiemayne1111@gmail.com" style="color: #FFD700;">💌 maggiemayne1111@gmail.com</a></p>
-</footer>
-
-<script>
-// Stars
-var starsContainer = document.getElementById('stars');
-for (var i = 0; i < 100; i++) {
-    var star = document.createElement('div');
-    star.className = 'star';
-    star.style.left = Math.random() * 100 + '%';
-    star.style.top = Math.random() * 100 + '%';
-    star.style.width = star.style.height = (Math.random() * 2.5 + 0.5) + 'px';
-    star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
-    star.style.animationDelay = Math.random() * 5 + 's';
-    starsContainer.appendChild(star);
-}
-
-// Particles
-var particlesContainer = document.getElementById('particles');
-for (var i = 0; i < 20; i++) {
-    var particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.setProperty('--float-duration', (Math.random() * 15 + 10) + 's');
-    particle.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
-    particle.style.animationDelay = Math.random() * 15 + 's';
-    particlesContainer.appendChild(particle);
-}
-
-// Domain Data
-var domains = {
-    1: { name: "Heart Center", emoji: "💗", archetype: "The Queen", element: "Fire", zodiac: "Leo", chakra: "Heart", law: "Law of Love", teaching: "Love is the source of everything.", practice: "Place your hand on your heart. Ask: What does my heart need?", description: "Where all healing begins. The center of your sacred architecture.", links: [{title:"🔮 Ask The Oracle",url:"oracle-the-seed.html"},{title:"About The Maggie Way",url:"00-about-the-maggie-way.html"}], offerings: []},
-    2: { name: "Mind Temple", emoji: "🧠", archetype: "The High Priestess", element: "Air", zodiac: "Aquarius", chakra: "Third Eye", law: "Law of Correspondence", teaching: "As above, so below. As within, so without.", practice: "What is this teaching me?", description: "Consciousness expansion and nervous system healing.", links: [{title:"💎 CCT™",url:"cct.html"}], offerings: []},
-    3: { name: "Healing", emoji: "💆", archetype: "The Sacred Healer", element: "Water", zodiac: "Cancer", chakra: "Sacral", law: "Law of Nature", teaching: "The body knows. Trust your body's wisdom.", practice: "Ask your body: What do you need?", description: "22+ years of bodywork mastery. Massage = MAGIC.", links: [{title:"Massage = MAGIC",url:"06-massage-is-magic.html"}], offerings: [{name:"90-Min Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
-    4: { name: "Oracle", emoji: "🔮", archetype: "The Divine Seer", element: "Aether", zodiac: "Pisces", chakra: "Third Eye + Crown", law: "Law of Warning", teaching: "Life warns us 3 times before anything happens.", practice: "Ask for a sign. Be specific.", description: "Oracle readings and intuitive guidance.", links: [{title:"🔮 The Maggie Way Oracle",url:"oracle-the-seed.html"},{title:"Trust Your Intuition",url:"08-trust-your-intuition.html"}], offerings: [{name:"Oracle Reading",price:"$33",link:"https://square.link/u/dIIrQUzO"}]},
-    5: { name: "Education", emoji: "📚", archetype: "The Wise Woman", element: "Earth", zodiac: "Virgo", chakra: "Throat", law: "Law of Sharing", teaching: "Those who know should tell with love.", practice: "What wisdom can you share today?", description: "9 books on Amazon. Courses and teachings.", links: [{title:"✨ Affirmations For Magic",url:"affirmations-for-magic.html"},{title:"Show Up Loud",url:"01-show-up-loud.html"}], offerings: []},
-    6: { name: "Expression", emoji: "🎭", archetype: "The Songstress", element: "Fire", zodiac: "Sagittarius", chakra: "Throat", law: "Law of Manifestation", teaching: "Thoughts become words become reality.", practice: "Speak aloud what you want to create.", description: "Creative expression as healing.", links: [{title:"Show Up Loud",url:"01-show-up-loud.html"},{title:"Set Healthy Boundaries",url:"03-boundaries.html"}], offerings: []},
-    7: { name: "Community", emoji: "🌐", archetype: "The Earth Mother", element: "Earth", zodiac: "Taurus", chakra: "Heart", law: "Law of Compensation", teaching: "Give and receive in balance.", practice: "Where are you giving without receiving?", description: "The Resiliency Garden. Healers supporting healers.", links: [{title:"Boundaries",url:"03-boundaries.html"}], offerings: [{name:"🌿 Founding Member",price:"$222",link:"https://square.link/u/qJQL3qjS"}]},
-    8: { name: "The Spark", emoji: "🌕", archetype: "The Light Bearer", element: "Spirit", zodiac: "—", chakra: "Crown", law: "Law of Love (Source)", teaching: "You ARE the spark.", practice: "Visualize golden light through your crown.", description: "Energy work, Reiki, and life force activation.", links: [{title:"💎 CCT™",url:"cct.html"}], offerings: []},
-    9: { name: "Abundance", emoji: "💰", archetype: "The Empress", element: "Earth", zodiac: "Taurus", chakra: "Root + Sacral", law: "Law of Generation", teaching: "Gratitude is the frequency of abundance.", practice: "Write 10 things you're grateful for.", description: "Signature experiences. Premium transformation.", links: [{title:"Gratitude is MAGIC",url:"27-gratitude-is-magic.html"}], offerings: [{name:"19-Domain Map",price:"$444",link:"https://square.link/u/9jqMqRSU"}]},
-    10: { name: "Sound", emoji: "🎵", archetype: "The Sound Healer", element: "Aether", zodiac: "Libra", chakra: "Throat", law: "Law of Harmony", teaching: "Sound restores balance. Vibration heals.", practice: "Hum. Tone. Sing. Your voice is medicine.", description: "Sound healing. Crystal bowls, Solfeggio frequencies.", links: [{title:"Sound Healing",url:"41-sound-healing.html"}], offerings: []},
-    11: { name: "Bridge", emoji: "🌉", archetype: "The Warrior Queen", element: "Air", zodiac: "Libra", chakra: "Solar Plexus", law: "Law of Cause and Effect", teaching: "Everything returns multiplied.", practice: "What patterns keep repeating?", description: "Justice Without Limits. Civil rights advocacy.", links: [], offerings: [{name:"Pro Se Strategy",price:"$111/hr",link:"https://square.link/u/n9WztX2P"}]},
-    12: { name: "The Word", emoji: "📿", archetype: "The Poetess", element: "Aether", zodiac: "Gemini", chakra: "Throat", law: "Law of Affinity", teaching: "Your words create your tribe.", practice: "What words do you speak most often?", description: "Poetry, prophecy, sacred writing.", links: [{title:"✨ Affirmations",url:"affirmations-for-magic.html"}], offerings: []},
-    13: { name: "The Flame", emoji: "🔥", archetype: "The Fire Priestess", element: "Fire", zodiac: "Aries", chakra: "Solar Plexus", law: "Law of Evolution", teaching: "Fire transmutes.", practice: "What is ready to be burned away?", description: "Transformation through fire. Shadow work.", links: [{title:"Trauma and the Body",url:"04-trauma-and-the-body.html"},{title:"The Glow Up Gets Lonely",url:"05-glow-up-gets-lonely.html"}], offerings: []},
-    14: { name: "The Crystal", emoji: "💎", archetype: "The Crystal Keeper", element: "Earth", zodiac: "Capricorn", chakra: "Third Eye", law: "Law of Inquiry", teaching: "Clarity comes through asking.", practice: "Hold a crystal. Ask a yes/no question.", description: "CCT™. Sacred geometry, crystalline grid.", links: [{title:"💎 CCT™",url:"cct.html"}], offerings: [{name:"CCT™ Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
-    15: { name: "The Flow", emoji: "🌊", archetype: "The Water Bearer", element: "Water", zodiac: "Scorpio", chakra: "Sacral", law: "Law of Communicating Vessels", teaching: "Don't leak vital force.", practice: "Where is your energy leaking?", description: "Detox and purification.", links: [{title:"Water is LIFE",url:"02-water-is-life.html"}], offerings: []},
-    16: { name: "The Breath", emoji: "🌬️", archetype: "The Wind Dancer", element: "Air", zodiac: "Gemini", chakra: "Heart", law: "Law of Three", teaching: "Breath is the bridge.", practice: "4-7-8 breath: Inhale 4, hold 7, exhale 8.", description: "Breathwork. Prana. Life force activation.", links: [{title:"Find Breath",url:"17-find-breath.html"}], offerings: []},
-    17: { name: "The Body", emoji: "🌍", archetype: "The Earth Mother", element: "Earth", zodiac: "Virgo", chakra: "Root", law: "Law of Nature", teaching: "Self care is your #1 job.", practice: "What does your body need right now?", description: "22+ years massage mastery.", links: [{title:"Self Care",url:"07-self-care-is-your-job.html"},{title:"Move Your Magic",url:"16-move-your-magic.html"}], offerings: [{name:"90-Min Session",price:"$222",link:"https://square.link/u/jGBu81PX"}]},
-    18: { name: "Akashic", emoji: "📜", archetype: "The Record Keeper", element: "Aether", zodiac: "—", chakra: "Crown", law: "Law of Correspondence", teaching: "Your body remembers what the mind forgets.", practice: "Journal. Document. Your story matters.", description: "Records and documentation.", links: [], offerings: []},
-    19: { name: "The Void", emoji: "👁️", archetype: "The Void Priestess", element: "Spirit", zodiac: "—", chakra: "Crown", law: "Law of Empty Spaces", teaching: "The void is full of possibility.", practice: "Sit in stillness.", description: "Psychic investigation. Pure potential.", links: [{title:"💎 CCT™",url:"cct.html"}], offerings: []}
-};
-
-function showDomain(n) {
-    var d = domains[n];
-    var panel = document.getElementById('infoPanel');
-    var overlay = document.getElementById('panelOverlay');
-    
-    var links = '';
-    if (d.links && d.links.length > 0) {
-        links = '<div class="panel-links"><h4>📖 Explore This Domain</h4>';
-        for (var i = 0; i < d.links.length; i++) {
-            links += '<a href="' + d.links[i].url + '" class="domain-link">' + d.links[i].title + ' →</a>';
-        }
-        links += '</div>';
-    }
-    
-    var offerings = '';
-    if (d.offerings && d.offerings.length > 0) {
-        offerings = '<div class="panel-offerings"><h4>✨ Offerings</h4>';
-        for (var i = 0; i < d.offerings.length; i++) {
-            var o = d.offerings[i];
-            offerings += '<a href="' + o.link + '" class="offering-link" target="_blank"><span class="offering-name">' + o.name + '</span><span class="offering-price">' + o.price + '</span></a>';
-        }
-        offerings += '</div>';
-    }
-    
-    var wisdom = '<div class="panel-wisdom">';
-    if (d.law) wisdom += '<div class="panel-law">⚖️ ' + d.law + '</div>';
-    if (d.teaching) wisdom += '<div class="panel-teaching">' + d.teaching + '</div>';
-    if (d.practice) wisdom += '<div class="panel-practice"><strong>✨ Practice:</strong> ' + d.practice + '</div>';
-    wisdom += '</div>';
-    
-    var prevDomain = n === 1 ? 19 : n - 1;
-    var nextDomain = n === 19 ? 1 : n + 1;
-    var navigation = '<div class="panel-nav"><button onclick="showDomain(' + prevDomain + ')" class="nav-btn">← ' + domains[prevDomain].emoji + ' ' + domains[prevDomain].name + '</button><button onclick="showDomain(' + nextDomain + ')" class="nav-btn">' + domains[nextDomain].emoji + ' ' + domains[nextDomain].name + ' →</button></div>';
-    
-    var zodiacDisplay = d.zodiac && d.zodiac !== '—' ? '<span class="panel-zodiac">♈ ' + d.zodiac + '</span>' : '';
-    var chakraDisplay = d.chakra ? '<span class="panel-chakra">🔮 ' + d.chakra + '</span>' : '';
-    
-    document.getElementById('panelContent').innerHTML = 
-        '<div class="panel-header">' +
-            '<div class="panel-emoji">' + d.emoji + '</div>' +
-            '<div class="panel-title">Domain ' + n + ': ' + d.name + '</div>' +
-            '<div class="panel-archetype">' + d.archetype + '</div>' +
-            '<div class="panel-meta"><span class="panel-element">' + d.element + '</span>' + zodiacDisplay + chakraDisplay + '</div>' +
-        '</div>' +
-        '<div class="panel-desc">' + d.description + '</div>' +
-        wisdom + links + offerings + navigation;
-    
-    panel.classList.add('active');
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closePanel() {
-    document.getElementById('infoPanel').classList.remove('active');
-    document.getElementById('panelOverlay').classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Close panel handlers
-document.getElementById('panelOverlay').onclick = closePanel;
-document.getElementById('panelClose').onclick = closePanel;
-document.onkeydown = function(e) { if (e.key === 'Escape') closePanel(); };
-
-// Add click handlers to domain circles
-var domainGroups = document.querySelectorAll('.domain-group');
-for (var i = 0; i < domainGroups.length; i++) {
-    (function(group) {
-        var domainNum = parseInt(group.getAttribute('data-domain'));
-        group.onclick = function() { showDomain(domainNum); };
+        group.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            showDomain(domainNum);
+        };
+        group.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            showDomain(domainNum);
+        }, { passive: false });
     })(domainGroups[i]);
 }
 </script>
