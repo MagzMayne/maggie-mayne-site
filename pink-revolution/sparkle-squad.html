@@ -1,304 +1,1164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pink Revolution | Overkor-tek</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * { font-family: 'Poppins', sans-serif; }
-        .gradient-bg {
-            background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #6366f1 100%);
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
-        }
-        .glow {
-            box-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .float { animation: float 3s ease-in-out infinite; }
-        @keyframes sparkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .sparkle { animation: sparkle 2s ease-in-out infinite; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>✨ Sparkle Squad</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#07070f;--s1:#0e0e1c;--s2:#131326;--s3:#191930;--s4:#20203e;
+  --pink:#ff5fa8;--pk2:#d91465;--pglow:rgba(255,95,168,0.3);
+  --teal:#00d9af;--tl2:#00a882;--tglow:rgba(0,217,175,0.22);
+  --gold:#ffca38;--pur:#9b6fff;--pr2:#6030e0;--puglow:rgba(155,111,255,0.22);
+  --red:#ff3f5e;--grn:#00e676;--blu:#38bdf8;--org:#ff9f43;
+  --txt:#d4ccf5;--mut:#55557a;--bdr:rgba(90,70,180,0.18);
+  --glass:rgba(19,19,38,0.55);--glass2:rgba(14,14,28,0.65);
+  --touch:44px;
+}
+html,body{height:100%;overflow-x:hidden;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;padding-bottom:64px;}
+
+/* SACRED GEOMETRY BACKGROUND */
+#geo{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.055;overflow:hidden;}
+
+/* AMBIENT GLOW */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 40% at 10% 20%,rgba(155,111,255,0.08),transparent),
+             radial-gradient(ellipse 50% 35% at 88% 78%,rgba(255,95,168,0.07),transparent),
+             radial-gradient(ellipse 40% 28% at 50% 50%,rgba(0,217,175,0.05),transparent);}
+
+/* HEADER */
+.hdr{position:sticky;top:0;z-index:300;
+  background:var(--glass2);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);
+  border-bottom:1px solid var(--bdr);padding:.65rem 1rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;}
+.logo{display:flex;align-items:center;gap:.6rem;}
+.logo-mark{width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--pk2),var(--pr2));
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  box-shadow:0 0 18px var(--pglow);flex-shrink:0;}
+.logo-name{font-size:.95rem;font-weight:900;letter-spacing:-.02em;
+  background:linear-gradient(135deg,var(--pink),var(--pur),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.logo-sub{font-size:.52rem;color:var(--mut);letter-spacing:.12em;text-transform:uppercase;}
+.hdr-right{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;}
+.squad-row{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.squad-lbl{font-size:.6rem;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;}
+.mpill{display:inline-flex;align-items:center;gap:.3rem;padding:.3rem .7rem;border-radius:20px;
+  border:1.5px solid var(--bdr);cursor:pointer;font-size:.74rem;font-weight:700;
+  background:rgba(19,19,38,.4);transition:all .18s;touch-action:manipulation;min-height:var(--touch);}
+.mpill.on{border-color:var(--pink);background:rgba(255,95,168,.13);color:var(--pink);box-shadow:0 0 12px var(--pglow);}
+.mpill:hover:not(.on){border-color:rgba(155,111,255,.4);}
+.mav{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:900;flex-shrink:0;}
+.icon-btn{padding:.3rem .65rem;border-radius:8px;border:none;cursor:pointer;font-size:.68rem;
+  font-weight:700;font-family:inherit;transition:all .18s;touch-action:manipulation;min-height:var(--touch);display:flex;align-items:center;gap:.3rem;}
+.icon-btn.ghost{background:rgba(19,19,38,.4);color:var(--mut);border:1px solid var(--bdr);}
+.icon-btn.ghost:hover{border-color:var(--pur);color:var(--pur);}
+.icon-btn.danger{background:rgba(255,63,94,.1);color:var(--red);border:1px solid rgba(255,63,94,.25);}
+.icon-btn.primary{background:linear-gradient(135deg,var(--pk2),var(--pr2));color:#fff;}
+
+/* CONFIRM STRIP */
+.confirm-strip{background:rgba(255,63,94,.1);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,63,94,.2);
+  padding:.6rem 1rem;display:none;align-items:center;gap:.6rem;flex-wrap:wrap;position:relative;z-index:200;}
+.confirm-strip.open{display:flex;}
+.confirm-msg{font-size:.78rem;color:var(--red);flex:1;min-width:180px;}
+.confirm-strip input{background:var(--s3);border:1px solid var(--bdr);border-radius:8px;
+  padding:.4rem .7rem;color:var(--txt);font-size:.82rem;font-family:inherit;width:160px;min-height:var(--touch);}
+.confirm-strip input:focus{outline:none;border-color:var(--pink);}
+
+/* SYNC STRIP */
+.sync-strip{background:rgba(0,217,175,.07);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,217,175,.15);
+  padding:.55rem 1rem;display:none;align-items:center;gap:.6rem;flex-wrap:wrap;z-index:199;position:relative;}
+.sync-strip.open{display:flex;}
+.sync-strip input{background:var(--s3);border:1px solid var(--bdr);border-radius:8px;
+  padding:.35rem .65rem;color:var(--txt);font-size:.82rem;font-family:inherit;width:140px;min-height:var(--touch);text-transform:uppercase;letter-spacing:.1em;}
+.sync-msg{font-size:.72rem;color:var(--teal);flex:1;}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--mut);flex-shrink:0;}
+.sync-dot.live{background:var(--grn);box-shadow:0 0 6px var(--grn);animation:pulse 1.5s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+
+/* HUB TABS */
+.hub-nav{display:flex;background:var(--glass2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--bdr);padding:0 1rem;overflow-x:auto;
+  scrollbar-width:none;position:relative;z-index:10;}
+.hub-nav::-webkit-scrollbar{display:none;}
+.htab{padding:.8rem 1.1rem;cursor:pointer;border-bottom:2.5px solid transparent;
+  font-size:.8rem;font-weight:800;color:var(--mut);transition:all .18s;white-space:nowrap;
+  display:flex;align-items:center;gap:.45rem;touch-action:manipulation;min-height:var(--touch);}
+.htab.on{color:var(--pink);border-bottom-color:var(--pink);}
+.htab:hover:not(.on){color:var(--txt);}
+.hdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.htab.on .hdot{box-shadow:0 0 7px currentColor;}
+.hbadge{background:rgba(255,95,168,.18);color:var(--pink);border-radius:10px;padding:.04rem .42rem;font-size:.6rem;font-weight:900;}
+
+/* VIEW TABS */
+.vnav{display:flex;gap:.35rem;padding:.75rem 1rem 0;flex-wrap:wrap;
+  background:rgba(14,14,28,.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  position:relative;z-index:9;overflow-x:auto;scrollbar-width:none;}
+.vnav::-webkit-scrollbar{display:none;}
+.vtab{padding:.32rem .82rem;border-radius:20px;cursor:pointer;font-size:.72rem;font-weight:700;
+  border:1.5px solid var(--bdr);color:var(--mut);background:rgba(19,19,38,.4);
+  transition:all .18s;white-space:nowrap;touch-action:manipulation;min-height:38px;display:flex;align-items:center;}
+.vtab.on{border-color:var(--pur);color:var(--pur);background:rgba(155,111,255,.12);}
+
+/* MAIN */
+.main{padding:1rem;max-width:1280px;margin:0 auto;position:relative;z-index:1;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1rem;}
+.sc{border-radius:14px;padding:.85rem .5rem;text-align:center;border:1px solid var(--bdr);transition:all .2s;
+  background:rgba(19,19,38,.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+.sc:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.5);}
+.sc.pk{border-color:rgba(255,95,168,.3);}
+.sc.tl{border-color:rgba(0,217,175,.3);}
+.sc.pp{border-color:rgba(155,111,255,.3);}
+.sc.gd{border-color:rgba(255,202,56,.3);}
+.sn{font-size:1.7rem;font-weight:900;line-height:1;}
+.sl{font-size:.55rem;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;margin-top:.2rem;}
+
+/* TOOLBAR */
+.bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem;flex-wrap:wrap;gap:.5rem;}
+.bar-title{font-size:.78rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;}
+.bar-actions{display:flex;gap:.35rem;flex-wrap:wrap;}
+
+/* BUTTONS */
+.btn{padding:.42rem .9rem;border-radius:10px;border:none;cursor:pointer;font-size:.75rem;
+  font-weight:800;transition:all .18s;font-family:inherit;touch-action:manipulation;
+  min-height:var(--touch);display:inline-flex;align-items:center;justify-content:center;gap:.3rem;}
+.btn:hover{transform:translateY(-1px);}
+.btn:active{transform:translateY(0) scale(.97);}
+.btn-pk{background:linear-gradient(135deg,var(--pk2),var(--pr2));color:#fff;box-shadow:0 2px 14px var(--pglow);}
+.btn-pk:hover{box-shadow:0 4px 20px var(--pglow);}
+.btn-tl{background:linear-gradient(135deg,var(--tl2),#009ab4);color:#000;font-weight:900;box-shadow:0 2px 10px var(--tglow);}
+.btn-gh{background:rgba(25,25,48,.5);color:var(--txt);border:1px solid var(--bdr);backdrop-filter:blur(8px);}
+.btn-gh:hover{border-color:var(--pur);color:var(--pur);}
+.btn-sm{padding:.3rem .7rem;font-size:.7rem;border-radius:8px;min-height:36px;}
+.btn-del{background:rgba(255,63,94,.12);color:var(--red);border:1px solid rgba(255,63,94,.25);}
+.btn-del:hover{background:rgba(255,63,94,.24);}
+.btn-ok{background:rgba(0,230,118,.12);color:var(--grn);border:1px solid rgba(0,230,118,.25);}
+.btn-ok:hover{background:rgba(0,230,118,.24);}
+
+/* FORM */
+.aform{background:rgba(19,19,38,.6);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid var(--bdr);border-radius:16px;padding:1.1rem;margin-bottom:1.1rem;display:none;}
+.aform.open{display:block;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:.65rem;}
+.frow.t3{grid-template-columns:1fr 1fr 1fr;}
+.frow.f1{grid-template-columns:1fr;}
+.fg{display:flex;flex-direction:column;gap:.28rem;}
+.fg label{font-size:.62rem;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;}
+.fg input,.fg select,.fg textarea{background:var(--s3);border:1px solid var(--bdr);border-radius:9px;
+  padding:.5rem .7rem;color:var(--txt);font-size:.84rem;font-family:inherit;
+  min-height:var(--touch);transition:border-color .18s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--pur);box-shadow:0 0 0 3px var(--puglow);}
+.fg select option{background:var(--s3);}
+.fg textarea{resize:vertical;min-height:72px;}
+.fend{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.75rem;flex-wrap:wrap;}
+.cmd-banner{display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;padding:.4rem .75rem;
+  background:rgba(255,63,94,.08);border:1px solid rgba(255,63,94,.22);border-radius:9px;font-size:.72rem;color:var(--red);font-weight:700;}
+
+/* KANBAN */
+.kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;}
+.kcol{background:rgba(19,19,38,.45);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--bdr);border-radius:15px;padding:.9rem;}
+.kcol-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;padding-bottom:.65rem;border-bottom:1px solid var(--bdr);}
+.kcol-nm{font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;}
+.kcol-ct{background:var(--s3);border-radius:10px;padding:.08rem .45rem;font-size:.62rem;color:var(--mut);}
+.tlist{display:flex;flex-direction:column;gap:.5rem;min-height:40px;}
+
+/* TASK CARD */
+.tc{background:rgba(25,25,48,.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--bdr);border-radius:12px;padding:.82rem;transition:all .2s;
+  position:relative;overflow:hidden;border-left-width:3px;touch-action:manipulation;}
+.tc.pnd{cursor:pointer;border-left-color:var(--mut);}
+.tc.inp{border-left-color:var(--teal);box-shadow:0 0 12px rgba(0,217,175,.08);}
+.tc.dn{opacity:.55;border-left-color:var(--grn);}
+.tc.urg{border-left-color:var(--red);}
+.tc:hover{border-color:rgba(155,111,255,.35);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.5);}
+.tc:active{transform:translateY(0);}
+.tc-ttl{font-size:.83rem;font-weight:700;line-height:1.3;margin-bottom:.3rem;}
+.tc-ttl.dk{text-decoration:line-through;color:var(--mut);}
+.tc-desc{font-size:.72rem;color:var(--mut);margin-bottom:.5rem;line-height:1.38;}
+.tc-meta{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-bottom:.35rem;}
+.pdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.achip{display:inline-flex;align-items:center;gap:.25rem;background:rgba(155,111,255,.13);
+  border-radius:20px;padding:.16rem .48rem;font-size:.67rem;color:var(--pur);}
+.achip.me{border:1px solid var(--pink);color:var(--pink);background:rgba(255,95,168,.1);}
+.fq{font-size:.6rem;border-radius:10px;padding:.1rem .42rem;font-weight:700;}
+.fq-daily{background:rgba(0,217,175,.1);color:var(--teal);}
+.fq-weekly{background:rgba(155,111,255,.1);color:var(--pur);}
+.fq-monthly{background:rgba(255,202,56,.1);color:var(--gold);}
+.fq-asneeded{background:rgba(56,189,248,.1);color:var(--blu);}
+.fq-setup{background:rgba(255,159,67,.1);color:var(--org);}
+.timer-box{display:flex;align-items:center;gap:.35rem;margin:.35rem 0;padding:.3rem .55rem;
+  background:rgba(0,217,175,.08);border:1px solid rgba(0,217,175,.2);border-radius:8px;}
+.tmr{font-family:'Courier New',monospace;font-weight:900;font-size:.74rem;color:var(--teal);}
+.blink{animation:pulse 1.4s ease infinite;}
+.dur-chip{font-size:.62rem;color:var(--grn);background:rgba(0,230,118,.1);border-radius:10px;padding:.1rem .45rem;}
+.est-chip{font-size:.62rem;color:var(--gold);background:rgba(255,202,56,.08);border-radius:10px;padding:.1rem .45rem;cursor:pointer;border:1px dashed rgba(255,202,56,.3);}
+.tc-btns{display:flex;gap:.3rem;flex-wrap:wrap;}
+.tcb{padding:.26rem .6rem;border-radius:7px;border:none;cursor:pointer;font-size:.67rem;font-weight:800;
+  transition:all .15s;font-family:inherit;touch-action:manipulation;min-height:32px;display:inline-flex;align-items:center;}
+.tcb:active{transform:scale(.95);}
+.tcb-start{background:rgba(0,217,175,.14);color:var(--teal);border:1px solid rgba(0,217,175,.28);}
+.tcb-done{background:rgba(0,230,118,.14);color:var(--grn);border:1px solid rgba(0,230,118,.28);}
+.tcb-reopen{background:rgba(155,111,255,.12);color:var(--pur);border:1px solid rgba(155,111,255,.22);}
+.tcb-mine{background:rgba(255,95,168,.12);color:var(--pink);border:1px solid rgba(255,95,168,.22);}
+.tcb-detail{background:var(--s4);color:var(--mut);border:1px solid var(--bdr);}
+.tcb-del{background:rgba(255,63,94,.1);color:var(--red);border:1px solid rgba(255,63,94,.22);}
+
+/* MODAL */
+.movl{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:500;
+  display:none;align-items:flex-end;justify-content:center;padding:0;backdrop-filter:blur(6px);overflow-y:auto;}
+.movl.open{display:flex;}
+.modal{background:rgba(19,19,38,.85);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border:1px solid var(--bdr);border-radius:20px 20px 0 0;padding:1.5rem 1.25rem;
+  max-width:520px;width:100%;position:relative;max-height:90vh;overflow-y:auto;
+  box-shadow:0 -8px 40px rgba(0,0,0,.6);}
+@media(min-width:640px){
+  .movl{align-items:center;}
+  .modal{border-radius:20px;max-height:85vh;}
+}
+.modal-drag{width:36px;height:4px;background:var(--s4);border-radius:2px;margin:0 auto .85rem;}
+.mclose{position:absolute;top:.85rem;right:.85rem;background:var(--s3);border:1px solid var(--bdr);
+  color:var(--mut);width:30px;height:30px;border-radius:50%;cursor:pointer;
+  font-size:1rem;display:flex;align-items:center;justify-content:center;touch-action:manipulation;}
+.mclose:hover{color:var(--txt);}
+.mtitle{font-size:.95rem;font-weight:900;margin-bottom:1rem;line-height:1.3;}
+
+/* CLEANING */
+.czones{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:.9rem;}
+.cz{background:rgba(19,19,38,.45);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--bdr);border-radius:15px;padding:.9rem;}
+.cz-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:.65rem;padding-bottom:.65rem;border-bottom:1px solid var(--bdr);}
+.cz-nm{font-size:.86rem;font-weight:800;display:flex;align-items:center;gap:.4rem;}
+.pbar{width:52px;height:5px;background:var(--s4);border-radius:3px;overflow:hidden;}
+.pfil{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--teal),var(--pur));transition:width .4s;}
+.ptxt{font-size:.64rem;color:var(--mut);}
+.ctask{display:flex;align-items:center;gap:.5rem;padding:.5rem .3rem;
+  border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;border-radius:6px;touch-action:manipulation;min-height:var(--touch);}
+.ctask:last-child{border-bottom:none;}
+.ctask:hover,.ctask:active{background:rgba(255,255,255,.04);}
+.cbox{width:22px;height:22px;border-radius:7px;border:2px solid var(--bdr);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;font-size:.72rem;}
+.cbox.chk{background:var(--grn);border-color:var(--grn);color:#000;font-weight:900;box-shadow:0 0 7px rgba(0,230,118,.3);}
+.ctask-info{flex:1;min-width:0;}
+.ctask-nm{font-size:.82rem;font-weight:600;}
+.ctask-nm.dk{text-decoration:line-through;color:var(--mut);}
+.ctask-sub{font-size:.62rem;color:var(--mut);margin-top:.06rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.est-badge{font-size:.6rem;color:var(--gold);background:rgba(255,202,56,.1);border-radius:10px;
+  padding:.1rem .45rem;cursor:pointer;border:1px dashed rgba(255,202,56,.3);font-family:inherit;touch-action:manipulation;}
+.act-badge{font-size:.6rem;color:var(--grn);background:rgba(0,230,118,.1);border-radius:10px;padding:.1rem .45rem;}
+.cbtn{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  border:1.5px dashed var(--bdr);background:none;cursor:pointer;font-size:.85rem;transition:all .18s;
+  flex-shrink:0;touch-action:manipulation;}
+.cbtn:hover,.cbtn:active{border-color:var(--teal);background:rgba(0,217,175,.1);}
+.cbtn.asgnd{border-style:solid;border-color:var(--pur);background:rgba(155,111,255,.12);}
+
+/* LOG */
+.logbox{background:rgba(19,19,38,.45);backdrop-filter:blur(16px);border:1px solid var(--bdr);border-radius:15px;padding:1rem;}
+.logs{display:flex;flex-direction:column;gap:.44rem;max-height:420px;overflow-y:auto;}
+.le{display:flex;gap:.65rem;padding:.58rem .72rem;border-radius:12px;background:rgba(25,25,48,.5);border-left:3px solid var(--pur);}
+.le.ls{border-left-color:var(--teal);}
+.le.lc{border-left-color:var(--grn);}
+.le.la{border-left-color:var(--pink);}
+.lav{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;flex-shrink:0;}
+.ltxt{font-size:.78rem;line-height:1.38;}
+.ltxt strong{color:#ece6ff;}
+.ltime{font-size:.62rem;color:var(--mut);margin-top:.15rem;}
+
+/* TEAM */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.9rem;}
+.tmcard{background:rgba(19,19,38,.45);backdrop-filter:blur(16px);border:1px solid var(--bdr);
+  border-radius:15px;padding:1.2rem;text-align:center;transition:all .2s;}
+.tmcard:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,.6);}
+.tav-lg{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin:0 auto .7rem;border:3px solid transparent;}
+.tm-nm{font-size:.95rem;font-weight:800;margin-bottom:.18rem;}
+.tm-rl{font-size:.7rem;color:var(--mut);margin-bottom:.78rem;}
+.tm-st{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;}
+.tm-s{background:rgba(25,25,48,.5);border-radius:9px;padding:.45rem;border:1px solid var(--bdr);}
+.tm-sn{font-size:1rem;font-weight:900;}
+.tm-sl{font-size:.58rem;color:var(--mut);}
+
+/* BOTTOM NAV (mobile) */
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:400;
+  background:rgba(7,7,15,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-top:1px solid var(--bdr);
+  display:flex;align-items:center;justify-content:space-around;padding:.3rem 0 env(safe-area-inset-bottom);}
+.bnav-btn{display:flex;flex-direction:column;align-items:center;gap:.18rem;
+  padding:.5rem .75rem;cursor:pointer;border-radius:10px;transition:all .18s;touch-action:manipulation;
+  border:none;background:none;color:var(--mut);font-family:inherit;min-width:52px;}
+.bnav-btn.on{color:var(--pink);}
+.bnav-btn .bi{font-size:1.2rem;}
+.bnav-btn .bl{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.bnav-badge{position:absolute;top:0;right:0;background:var(--pink);color:#fff;border-radius:10px;
+  font-size:.55rem;padding:.05rem .35rem;font-weight:900;min-width:14px;text-align:center;}
+
+/* FAB */
+.fab{position:fixed;bottom:72px;right:1rem;z-index:399;
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--pk2),var(--pr2));
+  border:none;cursor:pointer;font-size:1.4rem;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px var(--pglow);transition:all .2s;touch-action:manipulation;}
+.fab:hover,.fab:active{transform:scale(1.08);box-shadow:0 6px 28px var(--pglow);}
+
+/* EMPTY */
+.empty{text-align:center;padding:2rem 1rem;color:var(--mut);font-size:.85rem;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--s4);border-radius:3px;}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .kanban{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr 1fr;}
+  .frow.t3{grid-template-columns:1fr 1fr;}
+  .frow{grid-template-columns:1fr;}
+  .sn{font-size:1.4rem;}
+  .czones{grid-template-columns:1fr;}
+  .tgrid{grid-template-columns:1fr 1fr;}
+  .main{padding:.75rem;}
+}
+@media(min-width:1024px){
+  .bnav{display:none;}
+  .fab{display:none;}
+  body{padding-bottom:0;}
+}
+</style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50">
-    
-    <!-- Navigation -->
-    <nav class="gradient-bg text-white p-4 shadow-lg sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-bold flex items-center gap-2">
-                🌸 Pink Revolution
-            </a>
-            <div class="flex gap-6 text-sm md:text-base">
-                <a href="index.html" class="text-pink-200 font-bold">Apps</a>
-                <a href="sparkle-squad.html" class="hover:text-pink-200 transition-colors">✨ Sparkle Squad</a>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <!-- Hero Section -->
-    <header class="gradient-bg text-white py-16 md:py-24 px-4 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-10 left-10 text-6xl float">✨</div>
-            <div class="absolute top-20 right-20 text-4xl float" style="animation-delay: 0.5s">🌸</div>
-            <div class="absolute bottom-10 left-1/4 text-5xl float" style="animation-delay: 1s">💜</div>
-            <div class="absolute bottom-20 right-1/3 text-3xl float" style="animation-delay: 1.5s">⭐</div>
-        </div>
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">
-                🌸 Pink Revolution 🌸
-            </h1>
-            <p class="text-xl md:text-2xl text-pink-100 mb-2">
-                by Overkor-tek
-            </p>
-            <p class="text-lg text-pink-200 max-w-2xl mx-auto mb-8">
-                Building tools that empower. Technology with heart. 
-                Consciousness meets code. 💜
-            </p>
-            <a href="sparkle-squad.html" class="inline-block bg-white text-pink-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-pink-50 transition-all shadow-lg hover:shadow-xl hover:scale-105">
-                ✨ Try Sparkle Squad FREE ✨
-            </a>
-        </div>
-    </header>
+<!-- Sacred Geometry Background -->
+<svg id="geo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice">
+<defs>
+  <radialGradient id="g1" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#9b6fff"/>
+    <stop offset="50%" stop-color="#ff5fa8" stop-opacity=".7"/>
+    <stop offset="100%" stop-color="#00d9af" stop-opacity=".4"/>
+  </radialGradient>
+</defs>
+<!-- Flower of Life 19 circles -->
+<circle cx="450" cy="450" r="90" fill="none" stroke="url(#g1)" stroke-width=".9"/>
+<circle cx="540" cy="450" r="90" fill="none" stroke="url(#g1)" stroke-width=".9"/>
+<circle cx="495" cy="372" r="90" fill="none" stroke="url(#g1)" stroke-width=".9"/>
+<circle cx="405" cy="372" r="90" fill="none" stroke="url(#g1)" stroke-width=".9"/>
+<circle cx="360" cy="450" r="90" fill="none" stroke="url(#g1)" stroke-width=".9"/>
+<circle cx="405" cy="528" r="90" fill="none" stroke="url(#g1)" stroke-width=".9"/>
+<circle cx="495" cy="528" r="90" fill="none" stroke="url(#g1)" stroke-width=".9"/>
+<circle cx="630" cy="450" r="90" fill="none" stroke="url(#g1)" stroke-width=".7"/>
+<circle cx="585" cy="294" r="90" fill="none" stroke="url(#g1)" stroke-width=".7"/>
+<circle cx="450" cy="240" r="90" fill="none" stroke="url(#g1)" stroke-width=".7"/>
+<circle cx="315" cy="294" r="90" fill="none" stroke="url(#g1)" stroke-width=".7"/>
+<circle cx="270" cy="450" r="90" fill="none" stroke="url(#g1)" stroke-width=".7"/>
+<circle cx="315" cy="606" r="90" fill="none" stroke="url(#g1)" stroke-width=".7"/>
+<circle cx="450" cy="660" r="90" fill="none" stroke="url(#g1)" stroke-width=".7"/>
+<circle cx="585" cy="606" r="90" fill="none" stroke="url(#g1)" stroke-width=".7"/>
+<!-- Star lines -->
+<line x1="450" y1="240" x2="450" y2="660" stroke="#9b6fff" stroke-width=".5" opacity=".6"/>
+<line x1="270" y1="450" x2="630" y2="450" stroke="#9b6fff" stroke-width=".5" opacity=".6"/>
+<line x1="315" y1="294" x2="585" y2="606" stroke="#9b6fff" stroke-width=".5" opacity=".6"/>
+<line x1="585" y1="294" x2="315" y2="606" stroke="#9b6fff" stroke-width=".5" opacity=".6"/>
+<!-- Hexagrams -->
+<polygon points="450,330 537,382.5 537,487.5 450,540 363,487.5 363,382.5" fill="none" stroke="#ff5fa8" stroke-width=".7" opacity=".7"/>
+<polygon points="450,540 537,487.5 537,382.5 450,330 363,382.5 363,487.5" fill="none" stroke="#00d9af" stroke-width=".6" opacity=".5" transform="rotate(30,450,450)"/>
+<!-- Boundary rings -->
+<circle cx="450" cy="450" r="270" fill="none" stroke="url(#g1)" stroke-width=".5" opacity=".45"/>
+<circle cx="450" cy="450" r="360" fill="none" stroke="url(#g1)" stroke-width=".35" opacity=".25"/>
+</svg>
 
-    <!-- Featured App - Sparkle Squad -->
-    <main class="max-w-6xl mx-auto px-4 py-12">
-        
-        <!-- Sparkle Squad Hero Card -->
-        <div class="mb-12">
-            <a href="sparkle-squad.html" class="block bg-white rounded-3xl shadow-2xl overflow-hidden card-hover transition-all duration-300 border-4 border-pink-200 relative glow">
-                <div class="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-yellow-900 px-4 py-2 rounded-full text-sm font-bold animate-pulse z-10">
-                    🔥 NEW! Try it now!
-                </div>
-                <div class="grid md:grid-cols-2">
-                    <div class="gradient-bg p-8 md:p-12 text-white">
-                        <div class="text-6xl mb-4 sparkle">✨</div>
-                        <h2 class="text-4xl font-bold mb-2">Sparkle Squad</h2>
-                        <p class="text-xl text-pink-100 mb-4">The MOST fun way to clean! 🧹💪🎉</p>
-                        <p class="text-pink-200 mb-6">
-                            Gamified cleaning with secret multipliers, oracle messages, 
-                            constitutional law facts, tech trivia, and social bonuses!
-                        </p>
-                        <div class="text-2xl font-bold">
-                            Let's GOOOO! 🚀
-                        </div>
-                    </div>
-                    <div class="p-8 md:p-12 bg-gradient-to-br from-pink-50 to-purple-50">
-                        <h3 class="font-bold text-gray-800 mb-4 text-lg">🎮 Features:</h3>
-                        <div class="grid grid-cols-2 gap-3 mb-6">
-                            <div class="bg-white rounded-xl p-3 shadow text-center">
-                                <div class="text-2xl">🦸</div>
-                                <div class="text-xs font-bold text-gray-600">Solo Mode</div>
-                            </div>
-                            <div class="bg-white rounded-xl p-3 shadow text-center">
-                                <div class="text-2xl">👯‍♀️</div>
-                                <div class="text-xs font-bold text-gray-600">Team Mode</div>
-                            </div>
-                            <div class="bg-white rounded-xl p-3 shadow text-center">
-                                <div class="text-2xl">🤫</div>
-                                <div class="text-xs font-bold text-gray-600">Secret Bonuses</div>
-                            </div>
-                            <div class="bg-white rounded-xl p-3 shadow text-center">
-                                <div class="text-2xl">📱</div>
-                                <div class="text-xs font-bold text-gray-600">+11 Social Pts</div>
-                            </div>
-                            <div class="bg-white rounded-xl p-3 shadow text-center">
-                                <div class="text-2xl">🔮</div>
-                                <div class="text-xs font-bold text-gray-600">Oracle Messages</div>
-                            </div>
-                            <div class="bg-white rounded-xl p-3 shadow text-center">
-                                <div class="text-2xl">⚖️</div>
-                                <div class="text-xs font-bold text-gray-600">Know Your Rights</div>
-                            </div>
-                            <div class="bg-white rounded-xl p-3 shadow text-center">
-                                <div class="text-2xl">💻</div>
-                                <div class="text-xs font-bold text-gray-600">Tech Trivia</div>
-                            </div>
-                            <div class="bg-white rounded-xl p-3 shadow text-center">
-                                <div class="text-2xl">🧭</div>
-                                <div class="text-xs font-bold text-gray-600">Guide Me</div>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-xs font-bold">150+ Tasks</span>
-                            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-bold">10 Sections</span>
-                            <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs font-bold">28 Badges</span>
-                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-bold">10 Levels</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">N/A Button</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+<!-- HEADER -->
+<div class="hdr">
+  <div class="logo">
+    <div class="logo-mark">✨</div>
+    <div><div class="logo-name">Sparkle Squad</div><div class="logo-sub">Hub Command Center</div></div>
+  </div>
+  <div class="hdr-right">
+    <button class="icon-btn ghost" onclick="toggleSync()" title="Sync across devices">⚡ Sync</button>
+    <button class="icon-btn danger" onclick="tryAction('reset')">↺ Reset</button>
+    <div class="squad-row">
+      <div class="squad-lbl">You:</div>
+      <div id="mPills"></div>
+      <button class="icon-btn ghost" onclick="openModal('memberModal')">+ Me</button>
+    </div>
+  </div>
+</div>
 
-        <!-- Feature Highlights -->
-        <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">✨ What Makes Sparkle Squad Special ✨</h2>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <div class="bg-white rounded-2xl p-6 shadow-lg text-center hover:scale-105 transition-all">
-                <div class="text-4xl mb-3">🤫</div>
-                <h3 class="font-bold text-gray-800 mb-2">Hidden Points</h3>
-                <p class="text-sm text-gray-500">Task values are SECRET! Discover which tasks are worth more as you play!</p>
-            </div>
-            <div class="bg-white rounded-2xl p-6 shadow-lg text-center hover:scale-105 transition-all">
-                <div class="text-4xl mb-3">👯‍♀️</div>
-                <h3 class="font-bold text-gray-800 mb-2">Team Multipliers</h3>
-                <p class="text-sm text-gray-500">Work together = mystery bonuses! The more people, the bigger the secret reward!</p>
-            </div>
-            <div class="bg-white rounded-2xl p-6 shadow-lg text-center hover:scale-105 transition-all">
-                <div class="text-4xl mb-3">📱</div>
-                <h3 class="font-bold text-gray-800 mb-2">Social Bonus</h3>
-                <p class="text-sm text-gray-500">Document your work on socials for +11 bonus points per task! Content creator vibes!</p>
-            </div>
-            <div class="bg-white rounded-2xl p-6 shadow-lg text-center hover:scale-105 transition-all">
-                <div class="text-4xl mb-3">🔮</div>
-                <h3 class="font-bold text-gray-800 mb-2">Magic Popups</h3>
-                <p class="text-sm text-gray-500">Oracle messages, numerology, constitutional law, tech trivia & life hacks!</p>
-            </div>
-        </div>
+<!-- CONFIRM STRIP -->
+<div class="confirm-strip" id="confirmStrip">
+  <div class="confirm-msg" id="confirmMsg"></div>
+  <input id="confirmInput" placeholder="Type your name..." onkeydown="if(event.key==='Enter')doConfirm()">
+  <button class="btn btn-del btn-sm" onclick="doConfirm()">Confirm</button>
+  <button class="btn btn-gh btn-sm" onclick="closeConfirm()">Cancel</button>
+</div>
 
-        <!-- Funny Badges Section -->
-        <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-3xl p-8 mb-12">
-            <h3 class="text-xl font-bold text-center text-gray-800 mb-6">😂 Funny Badges to Earn (or avoid!)</h3>
-            <div class="flex flex-wrap justify-center gap-4">
-                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🍒 Cherry Picker</span>
-                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🏅 Participation Trophy</span>
-                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">👻 The Ghost</span>
-                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🐺 Lone Wolf</span>
-                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🐷 Point Hog</span>
-                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🚽 Toilet Duty</span>
-                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">👶 Boss Baby</span>
-                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🕐 Fashionably Late</span>
-                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">👑 Sparkle Royalty</span>
-                <span class="bg-white px-4 py-2 rounded-full shadow text-sm">🔥 Viral Cleaner</span>
-            </div>
-        </div>
+<!-- SYNC STRIP -->
+<div class="sync-strip" id="syncStrip">
+  <div class="sync-dot" id="syncDot"></div>
+  <div class="sync-msg" id="syncMsg">Enter or generate a Sync PIN to share with your team</div>
+  <input id="syncPin" placeholder="HUB-XXXX" maxlength="8" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')joinSync()">
+  <button class="btn btn-tl btn-sm" onclick="joinSync()">Join</button>
+  <button class="btn btn-pk btn-sm" onclick="createSync()">New PIN</button>
+  <button class="btn btn-gh btn-sm" onclick="leaveSync()">✕</button>
+</div>
 
-        <!-- Other Apps -->
-        <h2 class="text-2xl font-bold text-center text-gray-800 mb-2">📱 Other Apps</h2>
-        <p class="text-center text-gray-500 mb-8">More tools coming soon!</p>
-        
-        <div class="grid md:grid-cols-3 gap-6">
-            
-            <!-- Classic Turnover Pro -->
-            <a href="turnover-pro-v2.html" class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover transition-all duration-300 border-2 border-gray-200 relative opacity-75">
-                <div class="absolute top-2 right-2 bg-gray-400 text-white px-2 py-1 rounded-full text-xs font-bold">
-                    CLASSIC
-                </div>
-                <div class="bg-gray-500 p-6 text-white">
-                    <div class="text-3xl mb-2">🏠</div>
-                    <h3 class="text-xl font-bold">Turnover Pro Classic</h3>
-                    <p class="text-gray-300 text-sm">Original Version</p>
-                </div>
-                <div class="p-4">
-                    <p class="text-gray-500 text-sm mb-3">
-                        The original gamified cleaning checklist.
-                    </p>
-                    <div class="text-gray-400 font-bold text-sm">
-                        Launch Classic →
-                    </div>
-                </div>
-            </a>
+<!-- HUB TABS -->
+<div class="hub-nav" id="hubNav"></div>
 
-            <!-- Coming Soon Card 1 -->
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 opacity-50">
-                <div class="bg-gray-400 p-6 text-white">
-                    <div class="text-3xl mb-2">📋</div>
-                    <h3 class="text-xl font-bold">Task Master</h3>
-                    <p class="text-gray-200 text-sm">Project Management</p>
-                </div>
-                <div class="p-4">
-                    <p class="text-gray-400 text-sm mb-3">
-                        Manage projects & track deadlines.
-                    </p>
-                    <div class="text-gray-400 font-bold text-sm">
-                        🔒 Coming Soon
-                    </div>
-                </div>
-            </div>
+<!-- VIEW TABS -->
+<div class="vnav" id="vNav"></div>
 
-            <!-- Coming Soon Card 2 -->
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 opacity-50">
-                <div class="bg-gray-400 p-6 text-white">
-                    <div class="text-3xl mb-2">⚖️</div>
-                    <h3 class="text-xl font-bold">Doc Builder</h3>
-                    <p class="text-gray-200 text-sm">Legal Documents</p>
-                </div>
-                <div class="p-4">
-                    <p class="text-gray-400 text-sm mb-3">
-                        Justice Without Limits toolkit.
-                    </p>
-                    <div class="text-gray-400 font-bold text-sm">
-                        🔒 Coming Soon
-                    </div>
-                </div>
-            </div>
+<!-- MAIN CONTENT -->
+<div class="main" id="mainContent"></div>
 
-        </div>
-    </main>
+<!-- BOTTOM NAV (mobile) -->
+<div class="bnav" id="bNav">
+  <button class="bnav-btn" id="bnav-tasks" onclick="setView('tasks')">
+    <span class="bi">📋</span><span class="bl">Tasks</span>
+  </button>
+  <button class="bnav-btn" id="bnav-cleaning" onclick="setView('cleaning')">
+    <span class="bi">🧹</span><span class="bl">Clean</span>
+  </button>
+  <button class="bnav-btn" id="bnav-team" onclick="setView('team')">
+    <span class="bi">👥</span><span class="bl">Team</span>
+  </button>
+  <button class="bnav-btn" id="bnav-log" onclick="setView('log')">
+    <span class="bi">📜</span><span class="bl">Log</span>
+  </button>
+</div>
 
-    <!-- CTA Section -->
-    <section class="gradient-bg py-16 px-4 text-white text-center">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold mb-4">✨ Ready to make cleaning FUN? ✨</h2>
-            <p class="text-xl text-pink-100 mb-8">
-                Solo or squad - Sparkle Squad makes every turnover an adventure!
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="sparkle-squad.html" class="inline-block bg-white text-pink-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-pink-50 transition-all shadow-lg hover:shadow-xl">
-                    🦸 Play Solo
-                </a>
-                <a href="sparkle-squad.html" class="inline-block bg-purple-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-purple-700 transition-all shadow-lg hover:shadow-xl border-2 border-white/30">
-                    👯‍♀️ Squad Up!
-                </a>
-            </div>
-        </div>
-    </section>
+<!-- FAB (mobile add button) -->
+<button class="fab" onclick="tf('addTF')" id="fab" title="Add task">＋</button>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">🌸 Pink Revolution</h3>
-                    <p class="text-gray-400">by Overkor-tek</p>
-                    <p class="text-gray-400 mt-2">Technology with heart. Built with 💜</p>
-                    <p class="text-gray-500 mt-4 text-sm">"Cleaning has never been this lit" 🔥✨</p>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4">Apps</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="sparkle-squad.html" class="hover:text-pink-400">✨ Sparkle Squad (NEW!)</a></li>
-                        <li><a href="turnover-pro-v2.html" class="hover:text-pink-400 text-gray-500">Turnover Pro Classic</a></li>
-                        <li><span class="text-gray-600">Task Master (Coming Soon)</span></li>
-                        <li><span class="text-gray-600">Doc Builder (Coming Soon)</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4">Connect</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li>🌐 JusticeWithoutLimits.org</li>
-                        <li>📱 @MaggieMayne</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
-                <p>© 2026 Pink Revolution • Overkor-tek • All Rights Reserved</p>
-                <p class="mt-2">🦅 Justice Without Limits • Universal Accountability Solutions 🌸</p>
-            </div>
-        </div>
-    </footer>
+<!-- TASK MODAL -->
+<div class="movl" id="taskModal">
+  <div class="modal">
+    <div class="modal-drag"></div>
+    <button class="mclose" onclick="closeModal('taskModal')">×</button>
+    <div id="taskModalBody"></div>
+  </div>
+</div>
 
+<!-- EST EDIT MODAL -->
+<div class="movl" id="estModal">
+  <div class="modal" style="max-width:320px;">
+    <div class="modal-drag"></div>
+    <button class="mclose" onclick="closeModal('estModal')">×</button>
+    <div class="mtitle">⏱️ Set estimated time</div>
+    <div id="estModalBody"></div>
+  </div>
+</div>
+
+<!-- ADD MEMBER MODAL -->
+<div class="movl" id="memberModal">
+  <div class="modal">
+    <div class="modal-drag"></div>
+    <button class="mclose" onclick="closeModal('memberModal')">×</button>
+    <div class="mtitle">👤 Join the Squad</div>
+    <div class="frow f1"><div class="fg"><label>Your Name *</label><input id="am_name" placeholder="Tiger, Erica, Brandon..."></div></div>
+    <div class="frow">
+      <div class="fg"><label>Role</label><input id="am_role" placeholder="Cleaner, Builder..."></div>
+      <div class="fg"><label>Emoji</label><input id="am_emoji" placeholder="🌟" maxlength="2"></div>
+    </div>
+    <div class="fg" style="margin-bottom:1rem;"><label>Color</label>
+      <div id="colorPicker" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.4rem;"></div>
+    </div>
+    <div class="fend">
+      <button class="btn btn-gh btn-sm" onclick="closeModal('memberModal')">Cancel</button>
+      <button class="btn btn-pk btn-sm" onclick="addMember()">✨ Join Squad</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────
+const COLORS=['#ff5fa8','#9b6fff','#00d9af','#ffca38','#38bdf8','#ff9f43','#ff3f5e','#00e676'];
+const STORE_KEY='sq4';
+const SYNC_API='https://jsonblob.com/api/jsonBlob';
+
+let S={members:[],me:null,hubs:[],hub:null,view:'tasks',sec:'all',log:[],timers:{},clr:'#9b6fff',pending:null,syncId:null,syncInterval:null};
+
+// ─────────────────────────────────────────────
+// INIT & SAVE
+// ─────────────────────────────────────────────
+function init(){
+  try{const r=localStorage.getItem(STORE_KEY);if(r){const p=JSON.parse(r);S={...S,...p,timers:{},pending:null,syncInterval:null};}}catch(e){}
+  if(!S.members.length)defaultMembers();
+  if(!S.hubs.length||!S.hubs.find(h=>h.id==='spokane')||!S.hubs.find(h=>h.id==='sandpoint'))defaultHubs();
+  if(!S.hub)S.hub=S.hubs[0]?.id;
+  // BroadcastChannel for same-device cross-tab sync
+  try{
+    const bc=new BroadcastChannel('sparkle_squad');
+    bc.onmessage=e=>{if(e.data?.type==='state'){const ns=e.data.state;if(ns){S.hubs=ns.hubs;S.members=ns.members;S.log=ns.log;render();}}};
+    S._bc=bc;
+  }catch(e){}
+  if(S.syncId)resumeSync();
+  render();
+  setTimeout(()=>S.hubs.forEach(h=>h.tasks.forEach(t=>{if(t.status==='inp'&&t.startedAt)startTmr(t.id);})),120);
+}
+
+function save(){
+  try{
+    const {timers,pending,syncInterval,_bc,...rest}=S;
+    const str=JSON.stringify(rest);
+    localStorage.setItem(STORE_KEY,str);
+    if(S._bc)S._bc.postMessage({type:'state',state:rest});
+    if(S.syncId)pushSync();
+  }catch(e){}
+}
+
+// ─────────────────────────────────────────────
+// DEFAULTS
+// ─────────────────────────────────────────────
+function defaultMembers(){S.members=[{id:'m1',name:'Commander',role:'Owner',emoji:'👑',color:'#ffca38'},{id:'m2',name:'Magz',role:'Architect',emoji:'🌸',color:'#ff5fa8'}];}
+
+function sharedZones(){
+  return[
+    {id:'z-office',name:'Hub Office',emoji:'🏢',tasks:[
+      {id:'co1',name:'Wipe whiteboard',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:5,actMin:null},
+      {id:'co2',name:'Organize desk area',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:10,actMin:null},
+      {id:'co3',name:'Vacuum / sweep floor',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:10,actMin:null},
+      {id:'co4',name:'Empty trash',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:3,actMin:null},
+      {id:'co5',name:'Clean tech & equipment',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:15,actMin:null},
+      {id:'co6',name:'Dust shelves & surfaces',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:10,actMin:null},
+    ]},
+    {id:'z-kitchen',name:'Kitchen',emoji:'🍳',tasks:[
+      {id:'ck1',name:'Wipe counters & sink',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:8,actMin:null},
+      {id:'ck2',name:'Take out trash',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:4,actMin:null},
+      {id:'ck3',name:'Wash dishes / run dishwasher',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:15,actMin:null},
+      {id:'ck4',name:'Clean appliances',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:20,actMin:null},
+      {id:'ck5',name:'Mop floor',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:15,actMin:null},
+      {id:'ck6',name:'Restock supplies',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:10,actMin:null},
+      {id:'ck7',name:'Clean fridge / microwave',done:false,assignee:null,freq:'monthly',completedAt:null,startedAt:null,estMin:25,actMin:null},
+    ]},
+    {id:'z-bath',name:'Bathroom',emoji:'🚿',tasks:[
+      {id:'cb1',name:'Scrub toilet',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:10,actMin:null},
+      {id:'cb2',name:'Wipe sink & counters',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:5,actMin:null},
+      {id:'cb3',name:'Mop floor',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:8,actMin:null},
+      {id:'cb4',name:'Restock paper & soap',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:3,actMin:null},
+      {id:'cb5',name:'Clean mirror',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:5,actMin:null},
+      {id:'cb6',name:'Scrub shower / tub',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:20,actMin:null},
+    ]},
+    {id:'z-entry',name:'Entry / Common',emoji:'🚪',tasks:[
+      {id:'ce1',name:'Sweep entry floor',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:6,actMin:null},
+      {id:'ce2',name:'Wipe door handles',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:3,actMin:null},
+      {id:'ce3',name:'Tidy common spaces',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:10,actMin:null},
+      {id:'ce4',name:'Organize coats & shoes',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:8,actMin:null},
+      {id:'ce5',name:'Mop / deep sweep',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:15,actMin:null},
+      {id:'ce6',name:'Clean windows & glass',done:false,assignee:null,freq:'monthly',completedAt:null,startedAt:null,estMin:20,actMin:null},
+    ]},
+    {id:'z-laundry',name:'Laundry',emoji:'🧺',tasks:[
+      {id:'cl1',name:'Wash & dry linens',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:60,actMin:null},
+      {id:'cl2',name:'Fold & put away',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:20,actMin:null},
+      {id:'cl3',name:'Clean washer / dryer',done:false,assignee:null,freq:'monthly',completedAt:null,startedAt:null,estMin:15,actMin:null},
+    ]}
+  ];
+}
+
+function defaultHubs(){
+  const now=new Date().toISOString();
+  const base=pre=>[
+    {id:pre+'b1',title:'Weekly team check-in',desc:'Review wins, blockers, and task status.',sec:'todo',pri:'med',status:'pnd',freq:'weekly',startedAt:null,completedAt:null,createdAt:now,by:'m1',assignee:null,estMin:30},
+    {id:pre+'b2',title:'Morning space sweep',desc:'Quick tidy of common areas before work begins.',sec:'cleaning',pri:'low',status:'pnd',freq:'daily',startedAt:null,completedAt:null,createdAt:now,by:'m2',assignee:null,estMin:15},
+    {id:pre+'b3',title:'Check and restock supplies',desc:'Paper, cleaning supplies, office essentials.',sec:'todo',pri:'low',status:'pnd',freq:'daily',startedAt:null,completedAt:null,createdAt:now,by:'m2',assignee:null,estMin:10},
+    {id:pre+'b4',title:'Hub space deep clean',desc:'Full clean — all surfaces, windows, floors.',sec:'cleaning',pri:'med',status:'pnd',freq:'weekly',startedAt:null,completedAt:null,createdAt:now,by:'m2',assignee:null,estMin:120},
+    {id:pre+'b5',title:'Equipment maintenance check',desc:'All tech and tools — clean and functional.',sec:'todo',pri:'med',status:'pnd',freq:'monthly',startedAt:null,completedAt:null,createdAt:now,by:'m1',assignee:'m1',estMin:45},
+    {id:pre+'b6',title:'File monthly hub report',desc:'Activity summary, wins, blockers, needs.',sec:'project',pri:'med',status:'pnd',freq:'monthly',startedAt:null,completedAt:null,createdAt:now,by:'m1',assignee:'m1',estMin:60},
+  ];
+  S.hubs=[
+    {id:'spokane',name:'Spokane',color:'#9b6fff',dot:'🏙️',
+      tasks:[...base('spk'),
+        {id:'spk7',title:'Review open issues log',desc:'Check all active tickets and outstanding items.',sec:'todo',pri:'med',status:'pnd',freq:'weekly',startedAt:null,completedAt:null,createdAt:now,by:'m1',assignee:'m1',estMin:20},
+        {id:'spk8',title:'Inventory audit',desc:'Count and log all supplies, equipment, assets.',sec:'todo',pri:'low',status:'pnd',freq:'monthly',startedAt:null,completedAt:null,createdAt:now,by:'m1',assignee:null,estMin:30},
+      ],
+      zones:[...sharedZones(),{id:'z-spk',name:'Spokane Only',emoji:'🏙️',tasks:[
+        {id:'spk_z1',name:'Check parking / driveway',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:5,actMin:null},
+        {id:'spk_z2',name:'Exterior walkway sweep',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:10,actMin:null},
+      ]}]},
+    {id:'sandpoint',name:'Sandpoint',color:'#00d9af',dot:'🌲',
+      tasks:[...base('snd'),
+        {id:'snd7',title:'Write applicant criteria for Sandpoint Hub board',desc:'Commander started writing on the board today. Define roles, qualifications, and expectations for new team applicants.',sec:'project',pri:'high',status:'inp',freq:'asneeded',startedAt:now,completedAt:null,createdAt:now,by:'m1',assignee:'m1',estMin:60},
+        {id:'snd8',title:'Finalize team structure and roles',desc:'All positions needed — cleaning, admin, operations, team lead.',sec:'project',pri:'high',status:'pnd',freq:'asneeded',startedAt:null,completedAt:null,createdAt:now,by:'m1',assignee:'m1',estMin:45},
+        {id:'snd9',title:'Create onboarding materials',desc:'Application form, expectations doc, training checklist, code of conduct.',sec:'project',pri:'high',status:'pnd',freq:'asneeded',startedAt:null,completedAt:null,createdAt:now,by:'m2',assignee:'m2',estMin:90},
+        {id:'snd10',title:'Scout and confirm Sandpoint Hub location',desc:'Confirm address, access, lease terms, parking, utilities.',sec:'project',pri:'high',status:'pnd',freq:'asneeded',startedAt:null,completedAt:null,createdAt:now,by:'m1',assignee:'m1',estMin:120},
+        {id:'snd11',title:'Launch day plan and checklist',desc:'First day open — who does what? Full responsibility list.',sec:'project',pri:'med',status:'pnd',freq:'asneeded',startedAt:null,completedAt:null,createdAt:now,by:'m1',assignee:null,estMin:60},
+      ],
+      zones:[...sharedZones(),
+        {id:'z-snd',name:'Sandpoint Only',emoji:'🌲',tasks:[
+          {id:'snd_z1',name:'Bring in firewood',done:false,assignee:null,freq:'daily',completedAt:null,startedAt:null,estMin:10,actMin:null},
+          {id:'snd_z2',name:'Check outdoor trash / recycling',done:false,assignee:null,freq:'weekly',completedAt:null,startedAt:null,estMin:8,actMin:null},
+          {id:'snd_z3',name:'Clear snow / mud from entry',done:false,assignee:null,freq:'asneeded',completedAt:null,startedAt:null,estMin:20,actMin:null},
+        ]},
+        {id:'z-setup',name:'Setup Checklist',emoji:'📋',tasks:[
+          {id:'sc1',name:'Furniture arranged',done:false,assignee:null,freq:'setup',completedAt:null,startedAt:null,estMin:60,actMin:null},
+          {id:'sc2',name:'Signage installed',done:false,assignee:null,freq:'setup',completedAt:null,startedAt:null,estMin:30,actMin:null},
+          {id:'sc3',name:'Supplies stocked',done:false,assignee:null,freq:'setup',completedAt:null,startedAt:null,estMin:45,actMin:null},
+          {id:'sc4',name:'Tech & wifi set up',done:false,assignee:null,freq:'setup',completedAt:null,startedAt:null,estMin:90,actMin:null},
+          {id:'sc5',name:'Whiteboard installed',done:false,assignee:null,freq:'setup',completedAt:null,startedAt:null,estMin:20,actMin:null},
+          {id:'sc6',name:'First clean completed',done:false,assignee:null,freq:'setup',completedAt:null,startedAt:null,estMin:180,actMin:null},
+        ]}
+      ]}
+  ];
+  addLog('la','m1','Added: Write applicant criteria for Sandpoint Hub board');
+  addLog('ls','m1','Started: Write applicant criteria for Sandpoint Hub board');
+}
+
+// ─────────────────────────────────────────────
+// CONFIRM SYSTEM
+// ─────────────────────────────────────────────
+function tryAction(action,arg){
+  if(!S.me){showInfo('Select yourself in the header first.');return;}
+  if(!isAdmin()){showInfo('Only Commander or Magz can do this.');return;}
+  const me=S.members.find(m=>m.id===S.me);
+  const labels={reset:'reset ALL data',delTask:'delete this task',clearLog:'clear the log',removeMember:'remove this member',resetZones:'reset all cleaning'};
+  S.pending={action,arg};
+  const cs=document.getElementById('confirmStrip');
+  const ci=document.getElementById('confirmInput');
+  document.getElementById('confirmMsg').textContent='Type "'+me.name+'" to confirm: '+labels[action];
+  ci.value='';ci.style.borderColor='';ci.style.display='';
+  document.querySelector('#confirmStrip .btn-del').style.display='';
+  cs.classList.add('open');
+  setTimeout(()=>ci.focus(),60);
+}
+
+function showInfo(msg){
+  const cs=document.getElementById('confirmStrip');
+  document.getElementById('confirmMsg').textContent=msg;
+  document.getElementById('confirmInput').style.display='none';
+  document.querySelector('#confirmStrip .btn-del').style.display='none';
+  cs.classList.add('open');
+  setTimeout(closeConfirm,2500);
+}
+
+function closeConfirm(){
+  document.getElementById('confirmStrip').classList.remove('open');
+  document.getElementById('confirmInput').style.display='';
+  document.querySelector('#confirmStrip .btn-del').style.display='';
+  S.pending=null;
+}
+
+function doConfirm(){
+  const me=S.members.find(m=>m.id===S.me);
+  const inp=document.getElementById('confirmInput').value.trim();
+  if(!me||inp!==me.name){
+    document.getElementById('confirmMsg').textContent='Name did not match — try again.';
+    document.getElementById('confirmInput').style.borderColor='var(--red)';
+    return;
+  }
+  const {action,arg}=S.pending||{};
+  S.pending=null;
+  closeConfirm();
+  if(action==='reset')doReset();
+  else if(action==='delTask')doDelTask(arg);
+  else if(action==='clearLog'){S.log=[];save();rLog();}
+  else if(action==='removeMember')doRemoveMember(arg);
+  else if(action==='resetZones')doResetZones();
+}
+
+function doReset(){
+  Object.keys(S.timers).forEach(id=>clearInterval(S.timers[id]));
+  clearInterval(S.syncInterval);
+  S={members:[],me:null,hubs:[],hub:null,view:'tasks',sec:'all',log:[],timers:{},clr:'#9b6fff',pending:null,syncId:null,syncInterval:null};
+  localStorage.removeItem(STORE_KEY);
+  defaultMembers();defaultHubs();S.hub=S.hubs[0]?.id;
+  render();
+  setTimeout(()=>S.hubs.forEach(h=>h.tasks.forEach(t=>{if(t.status==='inp'&&t.startedAt)startTmr(t.id);})),120);
+}
+function doDelTask(id){const h=getHub();const t=h.tasks.find(x=>x.id===id);if(t)addLog('la',S.me,'Deleted: '+t.title);h.tasks=h.tasks.filter(x=>x.id!==id);if(S.timers[id])clearInterval(S.timers[id]);closeModal('taskModal');save();render();}
+function doRemoveMember(id){const m=S.members.find(x=>x.id===id);if(!m)return;S.members=S.members.filter(x=>x.id!==id);if(S.me===id)S.me=null;addLog('la',null,m.name+' removed');save();render();}
+function doResetZones(){getHub().zones.forEach(z=>z.tasks.forEach(t=>{t.done=false;t.assignee=null;t.completedAt=null;t.startedAt=null;t.actMin=null;}));addLog('la',S.me,'Reset all cleaning');save();rMain();}
+
+// ─────────────────────────────────────────────
+// MULTI-DEVICE SYNC (jsonblob.com)
+// ─────────────────────────────────────────────
+function toggleSync(){
+  const ss=document.getElementById('syncStrip');
+  ss.classList.toggle('open');
+  if(ss.classList.contains('open'))document.getElementById('syncPin').focus();
+}
+
+function getStateForSync(){
+  const {timers,pending,syncInterval,_bc,...rest}=S;
+  return rest;
+}
+
+async function createSync(){
+  setSyncStatus('Creating sync PIN...','var(--gold)');
+  try{
+    const r=await fetch(SYNC_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(getStateForSync())});
+    if(!r.ok)throw new Error('API error');
+    const loc=r.headers.get('Location');
+    const id=loc.split('/').pop();
+    const pin='HUB-'+id.slice(-4).toUpperCase();
+    S.syncId=id;
+    document.getElementById('syncPin').value=pin;
+    setSyncStatus('✅ PIN: '+pin+' — share with your team!','var(--grn)');
+    document.getElementById('syncDot').classList.add('live');
+    startSyncPoll();
+    save();
+  }catch(e){setSyncStatus('⚠️ Could not create sync. Check connection.','var(--red)');}
+}
+
+async function joinSync(){
+  const pin=document.getElementById('syncPin').value.trim().toUpperCase();
+  if(!pin||pin.length<4){setSyncStatus('Enter a valid Sync PIN','var(--red)');return;}
+  setSyncStatus('Connecting...','var(--gold)');
+  try{
+    // Try to find blob by last 4 chars - user must enter full ID if 8 chars
+    const id=pin.replace('HUB-','').toLowerCase();
+    const r=await fetch(SYNC_API+'/'+id);
+    if(!r.ok)throw new Error('Not found');
+    const data=await r.json();
+    S.hubs=data.hubs||S.hubs;
+    S.members=data.members||S.members;
+    S.log=data.log||S.log;
+    S.syncId=id;
+    setSyncStatus('🔗 Synced! PIN: HUB-'+id.slice(-4).toUpperCase(),'var(--grn)');
+    document.getElementById('syncDot').classList.add('live');
+    startSyncPoll();
+    save();render();
+  }catch(e){setSyncStatus('⚠️ PIN not found. Check and try again.','var(--red)');}
+}
+
+async function pushSync(){
+  if(!S.syncId)return;
+  try{await fetch(SYNC_API+'/'+S.syncId,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(getStateForSync())});}catch(e){}
+}
+
+async function pullSync(){
+  if(!S.syncId)return;
+  try{
+    const r=await fetch(SYNC_API+'/'+S.syncId);
+    if(!r.ok)return;
+    const data=await r.json();
+    // Merge: take whichever has more recent log entries
+    if(data.log&&data.log.length>S.log.length){
+      S.hubs=data.hubs;S.members=data.members;S.log=data.log;
+      render();
+      localStorage.setItem(STORE_KEY,JSON.stringify(getStateForSync()));
+    }
+  }catch(e){}
+}
+
+function startSyncPoll(){
+  clearInterval(S.syncInterval);
+  S.syncInterval=setInterval(pullSync,30000);
+}
+
+function resumeSync(){if(S.syncId)startSyncPoll();}
+
+function leaveSync(){
+  clearInterval(S.syncInterval);
+  S.syncId=null;S.syncInterval=null;
+  document.getElementById('syncPin').value='';
+  document.getElementById('syncDot').classList.remove('live');
+  setSyncStatus('Sync disconnected.','var(--mut)');
+  setTimeout(()=>document.getElementById('syncStrip').classList.remove('open'),1500);
+  save();
+}
+
+function setSyncStatus(msg,color){
+  const el=document.getElementById('syncMsg');
+  el.textContent=msg;el.style.color=color||'var(--teal)';
+}
+
+// ─────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────
+function render(){rMems();rHubTabs();rViewTabs();rMain();rBNav();}
+
+function rMems(){
+  document.getElementById('mPills').innerHTML=S.members.map(m=>
+    '<div class="mpill '+(S.me===m.id?'on':'')+'" onclick="setMe(\''+m.id+'\')"><div class="mav" style="background:'+m.color+';color:#000">'+m.emoji+'</div>'+m.name+'</div>'
+  ).join('');
+}
+
+function rHubTabs(){
+  document.getElementById('hubNav').innerHTML=S.hubs.map(h=>{
+    const open=h.tasks.filter(t=>t.status!=='dn').length;
+    return '<div class="htab '+(S.hub===h.id?'on':'')+'" onclick="setHub(\''+h.id+'\')"><div class="hdot" style="background:'+h.color+'"></div>'+h.dot+' '+h.name+'<span class="hbadge">'+open+'</span></div>';
+  }).join('');
+}
+
+function rViewTabs(){
+  const views=[{id:'tasks',l:'📋 Tasks'},{id:'cleaning',l:'🧹 Cleaning'},{id:'team',l:'👥 Team'},{id:'log',l:'📜 Log'}];
+  const secs=[{id:'all',l:'All'},{id:'inp',l:'⏱️ Active'},{id:'project',l:'🚀 Projects'},{id:'todo',l:'📝 To-Do'},{id:'mine',l:'Mine'},{id:'dn',l:'✅ Done'}];
+  document.getElementById('vNav').innerHTML=
+    views.map(v=>'<div class="vtab '+(S.view===v.id?'on':'')+'" onclick="setView(\''+v.id+'\')">'+v.l+'</div>').join('')+
+    (S.view==='tasks'?'<span style="width:1px;background:var(--bdr);margin:0 .2rem;align-self:stretch;"></span>'+secs.map(f=>'<div class="vtab '+(S.sec===f.id?'on':'')+'" onclick="setSec(\''+f.id+'\')">'+f.l+'</div>').join(''):'');
+}
+
+function rBNav(){
+  ['tasks','cleaning','team','log'].forEach(v=>{
+    const el=document.getElementById('bnav-'+v);
+    if(el)el.classList.toggle('on',S.view===v);
+  });
+  const fab=document.getElementById('fab');
+  if(fab)fab.style.display=S.view==='tasks'?'':'none';
+}
+
+function rMain(){
+  const h=getHub();
+  if(!h){document.getElementById('mainContent').innerHTML='<div class="empty">Select a hub above</div>';return;}
+  if(S.view==='tasks')rTasks(h);
+  else if(S.view==='cleaning')rCleaning(h);
+  else if(S.view==='team')rTeam();
+  else rLog();
+}
+
+// ─────────────────────────────────────────────
+// TASKS
+// ─────────────────────────────────────────────
+function rTasks(h){
+  let tasks=h.tasks;const f=S.sec;
+  if(f==='mine'&&S.me)tasks=tasks.filter(t=>t.assignee===S.me);
+  else if(f==='inp')tasks=tasks.filter(t=>t.status==='inp');
+  else if(f==='dn')tasks=tasks.filter(t=>t.status==='dn');
+  else if(f!=='all')tasks=tasks.filter(t=>t.sec===f);
+  const tot=h.tasks.length,inp=h.tasks.filter(t=>t.status==='inp').length,dn=h.tasks.filter(t=>t.status==='dn').length,pnd=h.tasks.filter(t=>t.status==='pnd').length;
+  document.getElementById('mainContent').innerHTML=
+    '<div class="stats">'+
+    '<div class="sc pk"><div class="sn" style="background:linear-gradient(135deg,var(--pink),var(--pur));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+tot+'</div><div class="sl">Total</div></div>'+
+    '<div class="sc tl"><div class="sn" style="color:var(--teal)">'+inp+'</div><div class="sl">Active</div></div>'+
+    '<div class="sc pp"><div class="sn" style="color:var(--pur)">'+pnd+'</div><div class="sl">Pending</div></div>'+
+    '<div class="sc gd"><div class="sn" style="color:var(--grn)">'+dn+'</div><div class="sl">Done</div></div>'+
+    '</div>'+
+    '<div class="bar"><div class="bar-title">'+h.dot+' '+h.name+' Tasks</div>'+
+    '<div class="bar-actions"><button class="btn btn-gh btn-sm" onclick="tf(\'addTF\')">+ Add Task</button></div></div>'+
+    '<div class="aform open" id="addTF">'+taskForm()+'</div>'+
+    '<div class="kanban">'+
+    kCol('📋 To Do',tasks.filter(t=>t.status==='pnd'))+
+    kCol('⏱️ In Progress',tasks.filter(t=>t.status==='inp'))+
+    kCol('✅ Done',tasks.filter(t=>t.status==='dn'))+
+    '</div>';
+  setTimeout(()=>h.tasks.filter(t=>t.status==='inp'&&t.startedAt).forEach(t=>startTmr(t.id)),80);
+}
+
+function taskForm(){
+  const isCmd=isCommander();
+  const aOpts='<option value="">— Unassigned —</option>'+S.members.map(m=>'<option value="'+m.id+'"'+(m.id===S.me?' selected':'')+'>'+m.emoji+' '+m.name+'</option>').join('');
+  return (isCmd?'<div class="cmd-banner">🔴 Commander mode — auto HIGH PRIORITY, auto-assigned to you</div>':'')+
+    '<div class="frow f1"><div class="fg"><label>Title *</label><input id="nt_ttl" placeholder="What needs doing?"></div></div>'+
+    '<div class="frow f1"><div class="fg"><label>Notes</label><textarea id="nt_dsc" placeholder="Details, context..."></textarea></div></div>'+
+    '<div class="frow t3">'+
+    '<div class="fg"><label>Section</label><select id="nt_sec"><option value="todo">📝 To-Do</option><option value="project">🚀 Project</option><option value="cleaning">🧹 Cleaning</option><option value="urgent">🔴 Urgent</option></select></div>'+
+    '<div class="fg"><label>Assign To</label><select id="nt_asgn">'+aOpts+'</select></div>'+
+    '<div class="fg"><label>Frequency</label><select id="nt_fq"><option value="asneeded">As Needed</option><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select></div>'+
+    '</div>'+
+    '<div class="frow">'+
+    (isCmd?'<div class="fg"><label>Priority</label><input value="High — locked" disabled style="opacity:.6"></div>':'<div class="fg"><label>Priority</label><select id="nt_pri"><option value="med">Medium</option><option value="high">High</option><option value="low">Low</option></select></div>')+
+    '<div class="fg"><label>Est. Time (min)</label><input type="number" id="nt_est" placeholder="30" min="1"></div>'+
+    '</div>'+
+    '<div class="fend"><button class="btn btn-gh btn-sm" onclick="tf(\'addTF\')">Cancel</button><button class="btn btn-pk btn-sm" onclick="addTask()">✨ Add Task</button></div>';
+}
+
+function kCol(label,tasks){
+  return '<div class="kcol"><div class="kcol-hd"><div class="kcol-nm">'+label+'</div><div class="kcol-ct">'+tasks.length+'</div></div>'+
+    '<div class="tlist">'+(tasks.length?tasks.map(tCard).join(''):'<div class="empty" style="padding:1rem;font-size:.78rem">Empty</div>')+'</div></div>';
+}
+
+function tCard(t){
+  const m=S.members.find(x=>x.id===t.assignee);
+  const isMe=S.me&&S.me===t.assignee;
+  const pc=t.pri==='high'?'var(--red)':t.pri==='low'?'var(--grn)':'var(--gold)';
+  const fqL={daily:'Daily',weekly:'Weekly',monthly:'Monthly',asneeded:'As Needed',setup:'Setup'};
+  const cls='tc '+(t.status==='inp'?'inp':t.status==='dn'?'dn':t.sec==='urgent'?'urg':'pnd');
+  const ca=t.status==='pnd'?'onclick="openTask(\''+t.id+'\')"':'';
+  const aMin=t.completedAt&&t.startedAt?Math.round((new Date(t.completedAt)-new Date(t.startedAt))/60000):null;
+  const timerHtml=t.status==='inp'&&t.startedAt?
+    '<div class="timer-box"><span style="font-size:.68rem;color:var(--mut)">⏱️</span><span id="tmr_'+t.id+'" class="tmr blink">'+elp(t.startedAt)+'</span>'+(t.estMin?'<span class="est-chip">est '+t.estMin+'m</span>':'')+'</div>':'';
+  const durHtml=aMin?'<span class="dur-chip">'+aMin+'m actual'+(t.estMin?' / '+t.estMin+'m est':'')+'</span>':'';
+  return '<div class="'+cls+'" '+ca+'>'+
+    '<div class="tc-ttl '+(t.status==='dn'?'dk':'')+'">'+(t.pri==='high'?'🔴 ':'')+esc(t.title)+'</div>'+
+    (t.desc?'<div class="tc-desc">'+esc(t.desc.slice(0,70))+(t.desc.length>70?'...':'')+'</div>':'')+
+    '<div class="tc-meta">'+
+    '<div class="pdot" style="background:'+pc+'"></div>'+
+    (m?'<div class="achip '+(isMe?'me':'')+'">'+(isMe?'🌟 ':'')+m.name+'</div>':'<span style="font-size:.68rem;color:var(--mut)">Unassigned</span>')+
+    (t.freq?'<span class="fq fq-'+t.freq+'">'+fqL[t.freq]+'</span>':'')+
+    durHtml+
+    '</div>'+timerHtml+
+    '<div class="tc-btns" onclick="event.stopPropagation()">'+
+    (t.status==='pnd'?'<button class="tcb tcb-start" onclick="startTask(\''+t.id+'\')">▶ Start</button>':'')+
+    (t.status==='inp'?'<button class="tcb tcb-done" onclick="doneTask(\''+t.id+'\')">✓ Done</button>':'')+
+    (t.status==='dn'?'<button class="tcb tcb-reopen" onclick="reopenTask(\''+t.id+'\')">↺</button>':'')+
+    (!isMe&&S.me&&t.status!=='dn'?'<button class="tcb tcb-mine" onclick="quickAssign(\''+t.id+'\')">Mine</button>':'')+
+    '<button class="tcb tcb-detail" onclick="openTask(\''+t.id+'\')">···</button>'+
+    '<button class="tcb tcb-del" onclick="tryAction(\'delTask\',\''+t.id+'\')">🗑</button>'+
+    '</div></div>';
+}
+
+function openTask(id){
+  const h=getHub();const t=h&&h.tasks.find(x=>x.id===id);if(!t)return;
+  const opts='<option value="">— Unassigned —</option>'+S.members.map(x=>'<option value="'+x.id+'"'+(t.assignee===x.id?' selected':'')+'>'+x.emoji+' '+x.name+'</option>').join('');
+  const aMin=t.completedAt&&t.startedAt?Math.round((new Date(t.completedAt)-new Date(t.startedAt))/60000):null;
+  document.getElementById('taskModalBody').innerHTML=
+    '<div class="mtitle">'+(t.pri==='high'?'🔴 ':'')+esc(t.title)+'</div>'+
+    (t.desc?'<div style="background:rgba(25,25,48,.5);border-radius:9px;padding:.75rem;margin-bottom:.9rem;font-size:.82rem;color:var(--mut);line-height:1.5">'+esc(t.desc)+'</div>':'')+
+    (t.status==='inp'&&t.startedAt?'<div class="timer-box" style="margin-bottom:.75rem">⏱️ Running: <span id="modal_tmr_'+t.id+'" class="tmr blink">'+elp(t.startedAt)+'</span></div>':'')+
+    (aMin?'<div style="margin-bottom:.75rem"><span class="dur-chip">Actual: '+aMin+'min</span>'+(t.estMin?' <span class="est-chip">Est: '+t.estMin+'min</span>':'')+'</div>':'')+
+    (t.createdAt?'<div style="font-size:.65rem;color:var(--mut);margin-bottom:.2rem">Created: '+fmtDT(t.createdAt)+'</div>':'')+
+    (t.startedAt?'<div style="font-size:.65rem;color:var(--teal);margin-bottom:.2rem">Started: '+fmtDT(t.startedAt)+'</div>':'')+
+    (t.completedAt?'<div style="font-size:.65rem;color:var(--grn);margin-bottom:.75rem">Completed: '+fmtDT(t.completedAt)+'</div>':'')+
+    '<div class="frow" style="margin-bottom:.75rem">'+
+    '<div class="fg"><label>Assign To</label><select onchange="reassign(\''+id+'\',this.value)">'+opts+'</select></div>'+
+    '<div class="fg"><label>Est. Time (min)</label><input type="number" value="'+(t.estMin||'')+'" placeholder="30" onchange="updateEst(\''+id+'\',this.value)"></div>'+
+    '</div>'+
+    '<div style="display:flex;gap:.4rem;flex-wrap:wrap;">'+
+    (t.status!=='inp'&&t.status!=='dn'?'<button class="btn btn-tl btn-sm" onclick="startTask(\''+id+'\');closeModal(\'taskModal\')">▶ Start</button>':'')+
+    (t.status==='inp'?'<button class="btn btn-ok btn-sm" onclick="doneTask(\''+id+'\');closeModal(\'taskModal\')">✓ Complete</button>':'')+
+    (t.status==='dn'?'<button class="btn btn-gh btn-sm" onclick="reopenTask(\''+id+'\');closeModal(\'taskModal\')">↺ Reopen</button>':'')+
+    '<button class="btn btn-pk btn-sm" onclick="selfAssign(\''+id+'\')">'+(S.me?'👤 Mine':'Select yourself first')+'</button>'+
+    '<button class="btn btn-del btn-sm" onclick="tryAction(\'delTask\',\''+id+'\')">🗑 Delete</button>'+
+    '</div>';
+  openModal('taskModal');
+  if(t.status==='inp'&&t.startedAt)startTmr(t.id);
+}
+
+function addTask(){
+  const title=document.getElementById('nt_ttl')?.value.trim();if(!title)return;
+  const h=getHub();const isCmd=isCommander();
+  const t={id:'t'+Date.now(),title,
+    desc:document.getElementById('nt_dsc')?.value.trim()||'',
+    sec:document.getElementById('nt_sec')?.value||'todo',
+    assignee:document.getElementById('nt_asgn')?.value||S.me||null,
+    freq:document.getElementById('nt_fq')?.value||'asneeded',
+    pri:isCmd?'high':(document.getElementById('nt_pri')?.value||'med'),
+    estMin:parseInt(document.getElementById('nt_est')?.value)||null,
+    status:'pnd',startedAt:null,completedAt:null,createdAt:new Date().toISOString(),by:S.me};
+  h.tasks.push(t);
+  addLog('la',S.me,'Added: '+title+(isCmd?' 🔴':''));
+  document.getElementById('nt_ttl').value='';
+  document.getElementById('nt_dsc').value='';
+  save();render();
+}
+
+function startTask(id){const t=findTask(id);if(!t)return;t.status='inp';t.startedAt=new Date().toISOString();if(!t.assignee&&S.me)t.assignee=S.me;addLog('ls',t.assignee||S.me,'Started: '+t.title);startTmr(id);save();render();}
+function doneTask(id){const t=findTask(id);if(!t)return;t.status='dn';t.completedAt=new Date().toISOString();if(S.timers[id])clearInterval(S.timers[id]);const aMin=t.startedAt?Math.round((new Date(t.completedAt)-new Date(t.startedAt))/60000):null;addLog('lc',t.assignee||S.me,'Completed: '+t.title+(aMin?' (actual:'+aMin+'m'+(t.estMin?', est:'+t.estMin+'m':'')+')':''));save();render();}
+function reopenTask(id){const t=findTask(id);if(!t)return;t.status='pnd';t.startedAt=null;t.completedAt=null;addLog('la',S.me,'Reopened: '+t.title);save();render();}
+function quickAssign(id){if(!S.me)return;const t=findTask(id);if(!t)return;t.assignee=S.me;const me=S.members.find(m=>m.id===S.me);addLog('la',S.me,(me?.name||'?')+' claimed: '+t.title);save();rMain();}
+function selfAssign(id){if(!S.me)return;reassign(id,S.me);closeModal('taskModal');}
+function reassign(id,mid){const t=findTask(id);if(!t)return;t.assignee=mid||null;const m=S.members.find(x=>x.id===mid);if(m)addLog('la',S.me,'Assigned "'+t.title+'" to '+m.name);save();rMain();}
+function updateEst(id,val){const t=findTask(id);if(!t)return;t.estMin=parseInt(val)||null;save();}
+
+// ─────────────────────────────────────────────
+// CLEANING
+// ─────────────────────────────────────────────
+function rCleaning(h){
+  const tot=h.zones.reduce((a,z)=>a+z.tasks.length,0);
+  const dn=h.zones.reduce((a,z)=>a+z.tasks.filter(t=>t.done).length,0);
+  document.getElementById('mainContent').innerHTML=
+    '<div class="stats">'+
+    '<div class="sc pk"><div class="sn" style="color:var(--pink)">'+tot+'</div><div class="sl">Total</div></div>'+
+    '<div class="sc tl"><div class="sn" style="color:var(--grn)">'+dn+'</div><div class="sl">Done</div></div>'+
+    '<div class="sc pp"><div class="sn" style="color:var(--mut)">'+(tot-dn)+'</div><div class="sl">Left</div></div>'+
+    '<div class="sc gd"><div class="sn" style="color:var(--teal)">'+(tot?Math.round(dn/tot*100):0)+'%</div><div class="sl">Done</div></div>'+
+    '</div>'+
+    '<div class="bar"><div class="bar-title">'+h.dot+' '+h.name+' Cleaning</div>'+
+    '<div class="bar-actions"><button class="btn btn-gh btn-sm" onclick="tf(\'addZF\')">+ Zone</button>'+
+    '<button class="btn btn-tl btn-sm" onclick="tryAction(\'resetZones\')">↺ Reset</button></div></div>'+
+    '<div class="aform" id="addZF">'+
+    '<div class="frow"><div class="fg"><label>Zone Name *</label><input id="nz_nm" placeholder="Studio, Lobby..."></div><div class="fg"><label>Emoji</label><input id="nz_em" placeholder="🏠" maxlength="2"></div></div>'+
+    '<div class="frow f1"><div class="fg"><label>Tasks (one per line)</label><textarea id="nz_ts" placeholder="Wipe counters\nMop floor\nTake out trash"></textarea></div></div>'+
+    '<div class="fend"><button class="btn btn-gh btn-sm" onclick="tf(\'addZF\')">Cancel</button><button class="btn btn-tl btn-sm" onclick="addZone()">Add Zone</button></div>'+
+    '</div>'+
+    '<div class="czones">'+h.zones.map(zCard).join('')+'</div>';
+}
+
+function zCard(z){
+  const dn=z.tasks.filter(t=>t.done).length;
+  const pct=z.tasks.length?Math.round(dn/z.tasks.length*100):0;
+  const fc={daily:'var(--teal)',weekly:'var(--pur)',monthly:'var(--gold)',asneeded:'var(--blu)',setup:'var(--org)'};
+  return '<div class="cz"><div class="cz-hd"><div class="cz-nm">'+z.emoji+' '+z.name+'</div>'+
+    '<div style="display:flex;align-items:center;gap:.5rem"><div class="pbar"><div class="pfil" style="width:'+pct+'%"></div></div><div class="ptxt">'+dn+'/'+z.tasks.length+'</div></div></div>'+
+    z.tasks.map(t=>{
+      const m=S.members.find(x=>x.id===t.assignee);
+      const estHtml=t.actMin
+        ?'<span class="act-badge">'+t.actMin+'m actual</span>'+(t.estMin?'<span class="est-badge">'+t.estMin+'m est</span>':'')
+        :(t.estMin?'<button class="est-badge" onclick="event.stopPropagation();editEst(\''+z.id+'\',\''+t.id+'\')">'+t.estMin+'m est ✏️</button>':'<button class="est-badge" onclick="event.stopPropagation();editEst(\''+z.id+'\',\''+t.id+'\')">+ est time</button>');
+      return '<div class="ctask" onclick="toggleClean(\''+z.id+'\',\''+t.id+'\')">'+
+        '<div class="cbox '+(t.done?'chk':'')+'">'+( t.done?'✓':'')+'</div>'+
+        '<div class="ctask-info"><div class="ctask-nm '+(t.done?'dk':'')+'">'+esc(t.name)+'</div>'+
+        '<div class="ctask-sub">'+
+        (t.freq?'<span style="color:'+fc[t.freq||'asneeded']+';font-size:.62rem">'+t.freq+'</span>':'')+
+        (m?' <span>'+m.name+'</span>':'')+
+        (t.completedAt?'<span style="color:var(--grn)">✅ '+fmtTime(t.completedAt)+'</span>':'')+
+        estHtml+'</div></div>'+
+        '<button class="cbtn '+(t.assignee?'asgnd':'')+'" onclick="event.stopPropagation();claimClean(\''+z.id+'\',\''+t.id+'\')" title="Claim">'+
+        (m?m.emoji:'👤')+'</button></div>';
+    }).join('')+'</div>';
+}
+
+// Est edit using a proper modal (no window.prompt — works on all devices/browsers)
+function editEst(zid,tid){
+  const h=getHub();const z=h.zones.find(x=>x.id===zid);const t=z?.tasks.find(x=>x.id===tid);if(!t)return;
+  document.getElementById('estModalBody').innerHTML=
+    '<div style="font-size:.9rem;color:var(--txt);margin-bottom:1rem;">'+esc(t.name)+'</div>'+
+    '<div class="fg" style="margin-bottom:1rem;"><label>Estimated minutes</label>'+
+    '<input type="number" id="estVal" value="'+(t.estMin||'')+'" placeholder="e.g. 15" min="1" style="font-size:1rem;"></div>'+
+    '<div class="fend">'+
+    '<button class="btn btn-gh btn-sm" onclick="closeModal(\'estModal\')">Cancel</button>'+
+    '<button class="btn btn-pk btn-sm" onclick="saveEst(\''+zid+'\',\''+tid+'\')">Save</button>'+
+    '</div>';
+  openModal('estModal');
+  setTimeout(()=>document.getElementById('estVal')?.focus(),100);
+}
+
+function saveEst(zid,tid){
+  const val=parseInt(document.getElementById('estVal')?.value);
+  if(!isNaN(val)&&val>0){
+    const h=getHub();const z=h.zones.find(x=>x.id===zid);const t=z?.tasks.find(x=>x.id===tid);
+    if(t){t.estMin=val;addLog('la',S.me,'Set est. '+val+'min for: '+t.name);save();rMain();}
+  }
+  closeModal('estModal');
+}
+
+function toggleClean(zid,tid){
+  const h=getHub();const z=h.zones.find(x=>x.id===zid);const t=z?.tasks.find(x=>x.id===tid);if(!t)return;
+  const who=S.me||t.assignee;
+  if(!t.done){
+    const start=t.startedAt?new Date(t.startedAt):new Date();
+    t.done=true;t.completedAt=new Date().toISOString();
+    if(!t.startedAt)t.startedAt=t.completedAt;
+    t.actMin=Math.max(1,Math.round((new Date(t.completedAt)-start)/60000));
+    if(!t.assignee&&who)t.assignee=who;
+    addLog('lc',who,'Cleaning done: '+t.name+' (est:'+(t.estMin||'?')+'m, actual:'+t.actMin+'m)');
+  }else{t.done=false;t.completedAt=null;t.actMin=null;t.startedAt=null;addLog('la',who,'Unchecked: '+t.name);}
+  save();rMain();
+}
+
+function claimClean(zid,tid){
+  if(!S.me)return;
+  const h=getHub();const z=h.zones.find(x=>x.id===zid);const t=z?.tasks.find(x=>x.id===tid);if(!t)return;
+  t.assignee=S.me;if(!t.startedAt)t.startedAt=new Date().toISOString();
+  const me=S.members.find(m=>m.id===S.me);
+  addLog('ls',S.me,(me?.name||'?')+' claimed: '+t.name);save();rMain();
+}
+
+function addZone(){
+  const name=document.getElementById('nz_nm')?.value.trim();if(!name)return;
+  const h=getHub();
+  const lines=(document.getElementById('nz_ts')?.value||'').split('\n').map(l=>l.trim()).filter(Boolean);
+  h.zones.push({id:'z'+Date.now(),name,emoji:document.getElementById('nz_em')?.value.trim()||'🧹',
+    tasks:lines.map((l,i)=>({id:'c'+Date.now()+i,name:l,done:false,assignee:null,freq:'asneeded',completedAt:null,startedAt:null,estMin:null,actMin:null}))});
+  addLog('la',S.me,'Added zone: '+name);tf('addZF');save();rMain();
+}
+
+// ─────────────────────────────────────────────
+// TEAM
+// ─────────────────────────────────────────────
+function rTeam(){
+  document.getElementById('mainContent').innerHTML=
+    '<div class="bar"><div class="bar-title">👥 The Squad</div><button class="btn btn-pk btn-sm" onclick="openModal(\'memberModal\')">+ Add Member</button></div>'+
+    '<div class="tgrid">'+S.members.map(m=>{
+      const all=S.hubs.flatMap(h=>h.tasks).filter(t=>t.assignee===m.id);
+      const dn=all.filter(t=>t.status==='dn').length,inp=all.filter(t=>t.status==='inp').length;
+      const cDone=S.hubs.flatMap(h=>h.zones.flatMap(z=>z.tasks)).filter(t=>t.assignee===m.id&&t.done).length;
+      return '<div class="tmcard" style="border-color:'+m.color+'30">'+
+        '<div class="tav-lg" style="background:'+m.color+';color:#000;border-color:'+m.color+'">'+m.emoji+'</div>'+
+        '<div class="tm-nm">'+esc(m.name)+'</div><div class="tm-rl">'+esc(m.role)+'</div>'+
+        '<div class="tm-st">'+
+        '<div class="tm-s"><div class="tm-sn" style="color:var(--pink)">'+all.length+'</div><div class="tm-sl">Tasks</div></div>'+
+        '<div class="tm-s"><div class="tm-sn" style="color:var(--grn)">'+dn+'</div><div class="tm-sl">Done</div></div>'+
+        '<div class="tm-s"><div class="tm-sn" style="color:var(--teal)">'+inp+'</div><div class="tm-sl">Active</div></div>'+
+        '<div class="tm-s"><div class="tm-sn" style="color:var(--gold)">'+cDone+'</div><div class="tm-sl">Cleans</div></div>'+
+        '</div>'+
+        '<div style="display:flex;gap:.4rem;margin-top:.8rem;justify-content:center;">'+
+        '<button class="btn btn-gh btn-sm" onclick="setMe(\''+m.id+'\');setView(\'tasks\')">My Tasks</button>'+
+        '<button class="btn btn-del btn-sm" onclick="tryAction(\'removeMember\',\''+m.id+'\')">Remove</button>'+
+        '</div></div>';
+    }).join('')+'</div>';
+}
+
+function addMember(){
+  const name=document.getElementById('am_name')?.value.trim();if(!name)return;
+  const m={id:'m'+Date.now(),name,role:document.getElementById('am_role')?.value.trim()||'Member',
+    emoji:document.getElementById('am_emoji')?.value.trim()||name[0].toUpperCase(),color:S.clr||COLORS[0]};
+  S.members.push(m);S.me=m.id;
+  addLog('la',m.id,m.name+' joined the squad!');
+  closeModal('memberModal');save();render();
+}
+
+// ─────────────────────────────────────────────
+// LOG
+// ─────────────────────────────────────────────
+function rLog(){
+  document.getElementById('mainContent').innerHTML=
+    '<div class="bar"><div class="bar-title">📜 Activity Log</div>'+
+    '<button class="btn btn-del btn-sm" onclick="tryAction(\'clearLog\')">Clear Log</button></div>'+
+    '<div class="logbox"><div class="logs">'+
+    (S.log.length?S.log.map(e=>{
+      const m=S.members.find(x=>x.id===e.mid);
+      return '<div class="le '+e.type+'">'+
+        '<div class="lav" style="background:'+(m?m.color:'#444')+';color:#000">'+(m?m.emoji:'⚙')+'</div>'+
+        '<div><div class="ltxt"><strong>'+(m?m.name:'System')+'</strong> '+esc(e.text)+'</div>'+
+        '<div class="ltime">'+fmtDT(e.time)+'</div></div></div>';
+    }).join(''):'<div class="empty">No activity yet</div>')+
+    '</div></div>';
+}
+
+// ─────────────────────────────────────────────
+// TIMERS
+// ─────────────────────────────────────────────
+function startTmr(id){
+  if(S.timers[id])clearInterval(S.timers[id]);
+  S.timers[id]=setInterval(()=>{
+    const t=findTask(id);if(!t||!t.startedAt){clearInterval(S.timers[id]);return;}
+    ['tmr_'+id,'modal_tmr_'+id].forEach(sel=>{const el=document.getElementById(sel);if(el)el.textContent=elp(t.startedAt);});
+  },1000);
+}
+
+// ─────────────────────────────────────────────
+// MEMBER MODAL HELPERS
+// ─────────────────────────────────────────────
+function openModal(id){
+  const el=document.getElementById(id);if(!el)return;
+  if(id==='memberModal'){
+    S.clr=COLORS[0];
+    document.getElementById('am_name').value='';
+    document.getElementById('am_role').value='';
+    document.getElementById('am_emoji').value='';
+    document.getElementById('colorPicker').innerHTML=COLORS.map(c=>
+      '<div onclick="pickClr(this,\''+c+'\')" style="width:28px;height:28px;border-radius:50%;background:'+c+';cursor:pointer;border:2.5px solid '+(c===S.clr?'#fff':'transparent')+';transition:all .18s;touch-action:manipulation;"></div>'
+    ).join('');
+  }
+  el.classList.add('open');
+}
+function closeModal(id){document.getElementById(id)?.classList.remove('open');}
+function pickClr(el,c){S.clr=c;document.querySelectorAll('#colorPicker div').forEach(d=>d.style.border='2.5px solid transparent');el.style.border='2.5px solid #fff';}
+
+// ─────────────────────────────────────────────
+// UTILS
+// ─────────────────────────────────────────────
+function getHub(){return S.hubs.find(h=>h.id===S.hub);}
+function findTask(id){for(const h of S.hubs){const t=h.tasks.find(x=>x.id===id);if(t)return t;}return null;}
+function isCommander(){return S.me&&S.members.find(m=>m.id===S.me)?.name==='Commander';}
+function isAdmin(){return S.me&&['Commander','Magz'].includes(S.members.find(m=>m.id===S.me)?.name);}
+function setMe(id){S.me=S.me===id?null:id;save();rMems();}
+function setHub(id){Object.keys(S.timers).forEach(tid=>clearInterval(S.timers[tid]));S.timers={};S.hub=id;S.sec='all';save();render();setTimeout(()=>getHub()?.tasks.filter(t=>t.status==='inp'&&t.startedAt).forEach(t=>startTmr(t.id)),100);}
+function setView(v){S.view=v;S.sec='all';save();render();}
+function setSec(s){S.sec=s;save();rViewTabs();rMain();}
+function tf(id){document.getElementById(id)?.classList.toggle('open');}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function elp(s){const d=Math.floor((Date.now()-new Date(s))/1000),h=Math.floor(d/3600),m=Math.floor((d%3600)/60),ss=d%60;return h?h+'h '+m+'m '+ss+'s':m?m+'m '+ss+'s':ss+'s';}
+function fmtDT(iso){const d=new Date(iso);return d.toLocaleDateString('en-US',{month:'short',day:'numeric'})+' '+d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});}
+function fmtTime(iso){return new Date(iso).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});}
+function addLog(type,mid,text){S.log.unshift({id:'l'+Date.now(),type,mid,text,time:new Date().toISOString()});if(S.log.length>300)S.log.length=300;}
+
+// Close modals on overlay click
+['taskModal','memberModal','estModal'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el)el.addEventListener('click',e=>{if(e.target===el)closeModal(id);});
+});
+
+init();
+</script>
 </body>
 </html>
